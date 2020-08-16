@@ -8,7 +8,6 @@
 
 # Mockups
 
-![salesbox2](https://user-images.githubusercontent.com/43153078/90345669-38687d00-dfe8-11ea-98ca-5595bd61b55b.PNG)
 
 ![Mockup1](https://user-images.githubusercontent.com/43153078/90345739-e8d68100-dfe8-11ea-8414-a4dd440ecbae.PNG)
 
