@@ -33,7 +33,7 @@ Esta aplicación permitirá a diferentes almacenes de ropa agrupar sus promocion
 </p>
 
 <p align="left">
-  <img width="460" height="300" src=https://user-images.githubusercontent.com/43153078/90345743-ebd17180-dfe8-11ea-935e-68bfef58f3d4.PNG>
+  <img width="480" height="350" src=https://user-images.githubusercontent.com/43153078/90345743-ebd17180-dfe8-11ea-935e-68bfef58f3d4.PNG>
 </p>
 
 
