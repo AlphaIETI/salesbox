@@ -9,6 +9,8 @@
 
 [![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://salesbox-alpha.herokuapp.com/)
 
+[![CircleCI](https://circleci.com/gh/AlphaIETI/salesbox-FRONTEND.svg?style=svg)](https://circleci.com/gh/AlphaIETI/salesbox-FRONTEND)
+
 
 # Descripción
 <p align="center">
