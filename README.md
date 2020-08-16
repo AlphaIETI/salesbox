@@ -8,7 +8,7 @@
 
 # Descripción
 <p align="center">
-  <img width="460" height="300" src=![salesbox2](https://user-images.githubusercontent.com/43153078/90345669-38687d00-dfe8-11ea-98ca-5595bd61b55b.PNG)>
+  <img width="460" height="300" src=https://user-images.githubusercontent.com/43153078/90345669-38687d00-dfe8-11ea-98ca-5595bd61b55b.PNG>
 </p>
 
 
