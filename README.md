@@ -6,6 +6,14 @@
 - Sergio Alejandro Nuñez
 - Sarah Camila Vieda
 
+# Descripción
+<p align="center">
+  <img width="460" height="300" src=![salesbox2](https://user-images.githubusercontent.com/43153078/90345669-38687d00-dfe8-11ea-98ca-5595bd61b55b.PNG)>
+</p>
+
+
+Esta aplicación permitirá a diferentes almacenes de ropa agrupar sus promociones y productos, permitiendo al cliente filtrar los productos de su interés por categoría mostrando los diferentes descuentos que ofrecen las empreses de estos. Cuando el cliente desee realizar la compra, la tienda separará el producto y lo dejará listo para ser despachada o recoger en tienda de acuerdo a lo que el cliente decida. 
+
 # Mockups
 
 
