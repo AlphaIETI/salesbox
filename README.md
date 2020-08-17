@@ -19,7 +19,7 @@
 </p>
 
 
-Esta aplicación permitirá a diferentes almacenes de ropa agrupar sus promociones y productos, permitiendo al cliente filtrar los productos de su interés por categoría mostrando los diferentes descuentos que ofrecen las empreses de estos. Cuando el cliente desee realizar la compra, la tienda separará el producto y lo dejará listo para ser despachada o recoger en tienda de acuerdo a lo que el cliente decida. 
+Esta aplicación permitirá a diferentes almacenes de ropa agrupar sus promociones y productos, permitiendo al cliente filtrar los productos de su interés por categoría mostrando los diferentes descuentos que ofrecen las empresas de estos. Cuando el cliente desee realizar la compra, la tienda separará el producto y lo dejará listo para ser despachada o recoger en tienda de acuerdo a lo que el cliente decida. 
 
 # Mockups
 
