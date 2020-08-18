@@ -1,0 +1,15 @@
+@media all and (min-width: 480px) {
+  .Login {
+    padding: 60px 0px;
+
+
+  }
+  body {
+    background-color: #385D79;
+  }
+  .Login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+
+}
