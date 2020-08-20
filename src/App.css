@@ -1,20 +1,141 @@
+
 .App {
   text-align: center;
+
 }
 
+body {
+    background-image: linear-gradient(to right top, #0d2a39, #142f40, #1b3448, #22394f, #2a3e56, #294158, #27435b, #26465d, #1e4759, #1a4853, #1c484d, #214846);
+  }
+
 .App-logo {
-  height: 40vmin;
+  height: 11vmin;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.textbox-dg
+{
+    height:30px;
+    width :270px;
+    font-size:11pt;
+    background: #FFFAF0 ;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid ;
+    /* box-shadow: 10px 10px 36px rgb(0,0,0,0.5), -13px -13px 23px rgba(255,255,255, 0.03), inset 14px 14px 70px rgb(0,0,0,0.2), inset -15px -15px 30px rgba(255,255,255, 0.04); */
+    box-shadow: 10px 10px 36px rgb(0,0,0,0.5), -13px -13px 23px rgba(255,255,255, 0.03);
+    border-width: 1px 0px 0 1px;
+    margin-top: 15px;
+}
+
+
+
+.form-control:focus
+{
+
+    border: 1px solid #344d2e;
+    color: #495057;
+    outline: 0;
+    background: #FFFAF0;
+    border-radius: 10px;
+    box-shadow: 10px 10px 36px rgb(0,0,0,0.5), -13px -13px 23px rgba(255,255,255, 0.03);
+}
+.center{
+ text-align: center; }
+.myButton {
+	box-shadow: 3px 0px 0px 0px #1564ad;
+	background:linear-gradient(to bottom, #a8d8ea 5%, #9ab9d6 100%);
+	background-color:#a8d8ea;
+	border-radius:5px;
+	border:1px solid #337bc4;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:10px 44px;
+	text-decoration:none;
+	text-shadow:0px -1px 1px #528ecc;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #9ab9d6 5%, #a8d8ea 100%);
+	background-color:#9ab9d6;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+.izq{
+  font-family: Arial, Helvetica, sans-serif;
+   font-size: 20px;
+}
+.social{
+   background: #ffffff;
+	width: 100%;
+	height: auto;
+	text-align: center;
+	position:relative;
+	top:-90px;
+}
+.social a{
+	display: inline-block;
+	padding: 6px;
+	position:relative;
+	top:-3px;
+
+
+}
+.social a i{
+	color: ##92a8d1;
+    width: 55px;
+    height: 55px;
+    font-size: 25px;
+    line-height: 50px!important;
+    border: 3px solid #fff;
+	opacity: .8;
+transition-property: transform;
+    -moz-transition-property: -moz-transform;
+    -webkit-transition-property: -webkit-transform;
+    transition: all 0.6s cubic-bezier(0.88, -0.48, 0.38, 1.85);
+	border-radius: 50%;
+
+	}
+.social a i:hover{
+	opacity: 1;
+	border-radius: 20%;
+
+}
+.social a:hover i.fa-linkedin-in,.social a:hover i.fa-telegram-plane{
+	transition:  .6s ease-in;
+	background: #0088cc;
+	color: white;
+	border: 3px solid #00aaff;
+
+transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+}
+.social a:hover i.fa-at{
+	transition:  .6s ease-in;
+	background: #D44638;
+	color:white;
+	border: 3px solid #fd8e8e;
+	transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+}
+.social a:hover i.fa-instagram{
+	transition:  .6s ease-in;
+	background: linear-gradient(#F58529 20%, #FEDA77 50%, #DD2A7B 75%, #8134AF 90%, #515BD4)
+;
+	transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+	border: 3px solid #fd8e8e;
+	color:white;
+
 }
 
 .App-header {
-  background-color: #282c34;
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,15 +145,3 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
