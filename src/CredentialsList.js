@@ -7,7 +7,7 @@ export class CredentialsList extends React.Component {
 
       const credentialsList=this.props.todoList;
       const listData= credentialsList.map((dat)=>
-       <Credentials email ={dat.email} password ={dat.password}  />
+       <Credentials nombre={dat.nombre} email ={dat.email} direccion={dat.direccion} telefono={dat.telefono} fecha={dat.fecha} usuario={dat.usuario} contrasena={dat.password}  />
         );
       return <ul>{listData}</ul>
     }

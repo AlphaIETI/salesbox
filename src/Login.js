@@ -3,53 +3,67 @@ import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "./App.css";
 import {CredentialsList} from "./CredentialsList";
 import logo from './logo.png';
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
+import {Register} from "./Register";
 
 
 export class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { items: [{email:"", password:""}],
-                                      email:'', password:''};
-    this.handleChangeText = this.handleChangeText.bind(this);
-    this.handleChangePriority = this.handleChangePriority.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
   render() {
+    const RegisterView = () => (
+     <Register />
+    );
+
+
+    const LoginView = () => (
+     <Login />
+    );
+
+    localStorage.setItem('usuario','prueba');
+    localStorage.setItem('password','prueba');
+
     return (
+    <Router>
       <div class="center">
          <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
-        <br />
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            class="form-control textbox-dg"
-            placeholder="Username"
-            onChange={this.handleChangeText}
-            value={this.state.email}
-          />
-           <br />
+
+        <form >
+
            <input
-                type="Password"
-                 class="form-control textbox-dg"
-                  placeholder="Password"
+              id="usuario"
+              type="text"
+              class="form-control textbox-dg"
+              placeholder="Usuario"
 
-              onChange={this.handleChangePriority}
-              value={this.state.password}
             />
+            <br />
+            <input
+              id="password"
+              type="Password"
+              class="form-control textbox-dg"
+              placeholder="Contraseña"
 
+
+            />
              <br />
              <br />
-
-          <button class ="myButton">
+          <button  class ="myButton" onClick={this.handleOnClick}>
             Login
           </button>
-           <CredentialsList todoList={this.state.items} />
+            <br />
+            <br />
+           <Link to="/register" >Registrate Ahora !</Link>
 
+            <br />
+            <p>
+           </p>
+          <div>
+          <Route path="/register" component={RegisterView}/>
+
+
+         </div>
         </form>
-
        </header>
-    
          	<section class="social">
 
             			<a href="">
@@ -61,39 +75,21 @@ export class Login extends React.Component {
             			<a href="">
             				<i class="fab fa-instagram"></i>
             			</a>
-
-
             </section>
       </div>
+    </Router>
 
 
     );
   }
 
-  handleChangeText(e) {
-    this.setState({ email: e.target.value });
-  }
+  handleOnClick(e){
+   if(document.getElementById("usuario").value===localStorage.getItem("usuario") && document.getElementById("password").value===localStorage.getItem("password")){
+      alert("Puede iniciar sesión");
+   }else{
+      alert("No está registardo");
+   }
 
-  handleChangePriority(e) {
-      this.setState({ password: e.target.value });
-    }
-
-  handleSubmit(e) {
-
-    e.preventDefault();
-    if (!this.state.text.length) {
-      return;
-    }
-    const newItem = {
-      email: this.state.email,
-      password :this.state.password,
-
-    };
-
-    this.setState(prevState => ({
-      items: prevState.items.concat(newItem),
-      //this.state.items.push(newItem);
-      text: ''
-    }));
   }
 }
+

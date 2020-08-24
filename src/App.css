@@ -2,14 +2,18 @@
 .App {
   text-align: center;
 
+
 }
 
 body {
     background-image: linear-gradient(to right top, #0d2a39, #142f40, #1b3448, #22394f, #2a3e56, #294158, #27435b, #26465d, #1e4759, #1a4853, #1c484d, #214846);
   }
+p{
+ font-size:0pt;
+}
 
 .App-logo {
-  height: 11vmin;
+  height: 28vmin;
   pointer-events: none;
 }
 
@@ -17,7 +21,7 @@ body {
 {
     height:30px;
     width :270px;
-    font-size:11pt;
+    font-size:10pt;
     background: #FFFAF0 ;
     border-radius: 6px;
     overflow: hidden;
@@ -41,30 +45,58 @@ body {
     box-shadow: 10px 10px 36px rgb(0,0,0,0.5), -13px -13px 23px rgba(255,255,255, 0.03);
 }
 .center{
- text-align: center; }
+ text-align: center;
+ position: relative;
+ top: -80px}
 .myButton {
-	box-shadow: 3px 0px 0px 0px #1564ad;
-	background:linear-gradient(to bottom, #a8d8ea 5%, #9ab9d6 100%);
-	background-color:#a8d8ea;
-	border-radius:5px;
-	border:1px solid #337bc4;
+	box-shadow:inset 0px 0px 14px -3px #f2fadc;
+	background:linear-gradient(to bottom, #dbe6c4 5%, #7f857b 100%);
+	background-color:#dbe6c4;
+	border-radius:6px;
+	border:1px solid #b2b8ad;
 	display:inline-block;
 	cursor:pointer;
-	color:#ffffff;
+	color:#757d6f;
 	font-family:Arial;
-	font-size:17px;
+	font-size:15px;
 	font-weight:bold;
-	padding:10px 44px;
+	padding:6px 24px;
 	text-decoration:none;
-	text-shadow:0px -1px 1px #528ecc;
+	text-shadow:0px 1px 0px #ced9bf;
 }
 .myButton:hover {
-	background:linear-gradient(to bottom, #9ab9d6 5%, #a8d8ea 100%);
-	background-color:#9ab9d6;
+	background:linear-gradient(to bottom, #7f857b 5%, #dbe6c4 100%);
+	background-color:#7f857b;
 }
 .myButton:active {
 	position:relative;
 	top:1px;
+}
+
+.underlineHover:after {
+  display: block;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 2px;
+  background-color: #56baed;
+  content: "";
+  transition: width 0.2s;
+}
+
+.underlineHover:hover {
+  color: #56baed;
+}
+
+.underlineHover:hover:after{
+  width: 100%;
+}
+
+Link {
+  color: grey;
+  display:inline-block;
+  text-decoration: none;
+  font-size: 20px;
 }
 .izq{
   font-family: Arial, Helvetica, sans-serif;
@@ -76,7 +108,7 @@ body {
 	height: auto;
 	text-align: center;
 	position:relative;
-	top:-90px;
+	top:90px;
 }
 .social a{
 	display: inline-block;
