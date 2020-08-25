@@ -65,7 +65,7 @@ export default function Login (){
          </div>
         </form>
        </header>
-         	<section class="social">
+         	<section className="social">
 
             			<a href="">
             				<i className="fas fa-at"></i>
