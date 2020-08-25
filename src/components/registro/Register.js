@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import "./App.css";
-import {CredentialsList} from "./CredentialsList";
-import logo from './logo.png';
+import "../../App.css";
+import {CredentialsList} from "../../CredentialsList";
+import logo from '../../logo.png';
 
 
 export class Register extends React.Component {

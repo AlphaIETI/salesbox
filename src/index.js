@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './Login.css';
-import {Login} from './Login';
-import {Register} from './Register';
 import * as serviceWorker from './serviceWorker';
+import App from './App';
 
 ReactDOM.render(
 
-    <Login />,
+    <App />,
 
   document.getElementById('root')
 );

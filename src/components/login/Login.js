@@ -1,28 +1,29 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import "./App.css";
-import {CredentialsList} from "./CredentialsList";
-import logo from './logo.png';
-import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
-import {Register} from "./Register";
+import "../../App.css";
+import {CredentialsList} from "../../CredentialsList";
+import logo from '../../logo.png';
+import { Link } from 'react-router-dom';
+import { Register } from "../registro/Register";
 
 
-export class Login extends React.Component {
-  render() {
-    const RegisterView = () => (
-     <Register />
-    );
 
-
-    const LoginView = () => (
-     <Login />
-    );
+export default function Login (){
+  
 
     localStorage.setItem('usuario','prueba');
     localStorage.setItem('password','prueba');
+    const handleOnClick=(e) =>{
+      if(document.getElementById("usuario").value===localStorage.getItem("usuario") && document.getElementById("password").value===localStorage.getItem("password")){
+         alert("Puede iniciar sesión");
+      }else{
+         alert("No está registardo");
+      }
+   
+     };
 
     return (
-    <Router>
+    
       <div class="center">
          <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
@@ -47,18 +48,18 @@ export class Login extends React.Component {
             />
              <br />
              <br />
-          <button  class ="myButton" onClick={this.handleOnClick}>
+          <button  class ="myButton" onClick={handleOnClick}>
             Login
           </button>
             <br />
             <br />
-           <Link to="/register" >Registrate Ahora !</Link>
+           <Link to="/Register" >Registrate Ahora !</Link>
 
             <br />
             <p>
            </p>
           <div>
-          <Route path="/register" component={RegisterView}/>
+        
 
 
          </div>
@@ -77,19 +78,12 @@ export class Login extends React.Component {
             			</a>
             </section>
       </div>
-    </Router>
+  
 
 
     );
-  }
+  
 
-  handleOnClick(e){
-   if(document.getElementById("usuario").value===localStorage.getItem("usuario") && document.getElementById("password").value===localStorage.getItem("password")){
-      alert("Puede iniciar sesión");
-   }else{
-      alert("No está registardo");
-   }
-
-  }
+  
 }
 
