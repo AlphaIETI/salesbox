@@ -24,7 +24,7 @@ export default function Login (){
 
     return (
     
-      <div class="center">
+      <div className="center">
          <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
 
