@@ -33,7 +33,7 @@ export default function Login (){
            <input
               id="usuario"
               type="text"
-              class="form-control textbox-dg"
+              className="form-control textbox-dg"
               placeholder="Usuario"
 
             />
@@ -41,14 +41,14 @@ export default function Login (){
             <input
               id="password"
               type="Password"
-              class="form-control textbox-dg"
+              className="form-control textbox-dg"
               placeholder="Contraseña"
 
 
             />
              <br />
              <br />
-          <button  class ="myButton" onClick={handleOnClick}>
+          <button  className ="myButton" onClick={handleOnClick}>
             Login
           </button>
             <br />
@@ -68,13 +68,13 @@ export default function Login (){
          	<section class="social">
 
             			<a href="">
-            				<i class="fas fa-at"></i>
+            				<i className="fas fa-at"></i>
             			</a>
             			<a href="">
-            				<i class="fab fa-linkedin-in"></i>
+            				<i className="fab fa-linkedin-in"></i>
             			</a>
             			<a href="">
-            				<i class="fab fa-instagram"></i>
+            				<i className="fab fa-instagram"></i>
             			</a>
             </section>
       </div>
