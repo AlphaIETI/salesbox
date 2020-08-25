@@ -24,6 +24,13 @@ export class Carrito extends React.Component{
                     <TableCell>
                         <img src={dino} className="ima-dino"/>
                     </TableCell>
+                    <TableCell>
+                        <img src={dino} className="ima-dino"/>
+                    </TableCell>
+                    <TableCell>
+                        <img src={dino} className="ima-dino"/>
+                    </TableCell>
+
                 </TableRow>
             </TableHead>
         );
