@@ -8,6 +8,7 @@ import {
 import { Register } from './components/registro/Register';
 import Login from './components/login/Login';
 import Home from './components/home/Home';
+import Carrito from "./components/Carrito/Carrito";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route exact path="/Home">
             <Home />
+          </Route>
+          <Route exact path="/ShopCar">
+            <Carrito />
           </Route>
         </Switch>
       </div>
