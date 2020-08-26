@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { Register } from './components/registro/Register';
 import Login from './components/login/Login';
+import RegisterViews from './components/registro/RegisterViews';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <Route exact path="/Register">
             <Register />
+          </Route>
+          <Route exact path="/RegisterView">
+            <RegisterViews />
           </Route>
         </Switch>
       </div>

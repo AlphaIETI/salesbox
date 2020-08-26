@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "../../App.css";
-import {CredentialsList} from "../../CredentialsList";
+import {CredentialsList} from "../credential/CredentialsList";
 import logo from '../../logo.png';
 
 
