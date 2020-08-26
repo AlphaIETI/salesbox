@@ -1,6 +1,43 @@
 
+.tabla{
+    width:80%;
+    border: 10px;
+    valign:middle;
+    align:left;
+    table-layout: fixed;
+    border-color: rgba(54, 126, 52, 0.51);
+}
+
 
 .ima-dino{
+    height: 200px;
+    width: 90%;
+}
+
+.body{
+    padding: 30px 50px 10px;
+    margin: 30px;
+    border: 1px solid black;
+}
+
+.columnaCheckBox{
+    width: 2%;
     height: 20%;
+}
+.columnaImagen{
+    width: 17%;
+    height: 20%;
+    text-align: center;
+}
+.columnaTexto{
+    : white;
     width: 20%;
+    height: 20%;
+    text-align: justify;
+}
+
+.columnaPrecio{
+    width: 30%;
+    height: 20%;
+    text-align: justify;
 }
