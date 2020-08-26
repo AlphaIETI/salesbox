@@ -11,6 +11,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import Drawer from '@material-ui/core/Drawer';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import AccordionComponent from './accordion';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Badge from '@material-ui/core/Badge';
 
 const drawerWidth = 240;
 
@@ -69,6 +71,13 @@ export default function AppBarComponent() {
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                 Salesbox
             </Typography>
+            <Link to="/ShopCar">
+                <IconButton aria-label="cart">
+                    <Badge badgeContent={4} color="secondary">
+                        <ShoppingCartIcon fontSize="large"/>
+                    </Badge>
+                </IconButton> 
+            </Link>
             <Link to="/Login">
                 <IconButton >
                     <HomeIcon fontSize="large" />
@@ -88,7 +97,7 @@ export default function AppBarComponent() {
             <div className={classes.drawerHeader}>
                 <IconButton onClick={handleDrawerClose}>
                     <ChevronLeftIcon />
-                    Filters
+                    Filtros
                 </IconButton>
             </div>
             <AccordionComponent />
