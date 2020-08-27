@@ -1,12 +1,7 @@
 import React, { useState } from "react";
-import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "../../App.css";
-import {CredentialsList} from "../../CredentialsList";
 import logo from '../../logo.png';
 import { Link } from 'react-router-dom';
-import { Register } from "../registro/Register";
-
-
 
 export default function Login (){
   
@@ -21,7 +16,6 @@ export default function Login (){
       }
    
      };
-
     return (
     
       <div className="center">
@@ -43,25 +37,21 @@ export default function Login (){
               type="Password"
               className="form-control textbox-dg"
               placeholder="Contraseña"
-
-
             />
              <br />
              <br />
+         <Link to='/Home'>
           <button  className ="myButton" onClick={handleOnClick}>
             Login
           </button>
+          </Link>
             <br />
             <br />
-           <Link to="/Register" >Registrate Ahora !</Link>
-
+           <Link to="/Register"  style={{color:"grey"}}>Haz click para registrarte</Link>
             <br />
             <p>
            </p>
           <div>
-        
-
-
          </div>
         </form>
        </header>
