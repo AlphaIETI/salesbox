@@ -3,9 +3,6 @@ import "../../App.css";
 import logo from '../../logo.png';
 import { Link } from 'react-router-dom';
 
-
-
-
 export default function Login (){
   
 
@@ -19,7 +16,6 @@ export default function Login (){
       }
    
      };
-
     return (
     
       <div className="center">
@@ -44,20 +40,18 @@ export default function Login (){
             />
              <br />
              <br />
+         <Link to='/Home'>
           <button  className ="myButton" onClick={handleOnClick}>
             Login
           </button>
+          </Link>
             <br />
             <br />
-           <Link to="/RegisterView"  style={{color:"grey"}}>Haz click para registrarte</Link>
-
+           <Link to="/Register"  style={{color:"grey"}}>Haz click para registrarte</Link>
             <br />
             <p>
            </p>
           <div>
-        
-
-
          </div>
         </form>
        </header>

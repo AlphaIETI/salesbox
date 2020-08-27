@@ -5,9 +5,9 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { Register } from './components/registro/Register';
 import Login from './components/login/Login';
-import RegisterViews from './components/registro/RegisterViews';
+import Register from './components/registro/Register';
+
 
 function App() {
   return (
@@ -22,9 +22,6 @@ function App() {
           </Route>
           <Route exact path="/Register">
             <Register />
-          </Route>
-          <Route exact path="/RegisterView">
-            <RegisterViews />
           </Route>
         </Switch>
       </div>
