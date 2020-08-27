@@ -17,52 +17,40 @@ export class Carrito extends React.Component{
     render(){
 
         return(
-            <table className="tabla">
-                <tbody className="body">
-                    <tr>
-                        <td className="columnaCheckBox">
-                            <Checkbox/>
-                        </td>
-                        <td className="columnaImagen">
-                            <img src={dino} className="ima-dino"/>
-                        </td>
-                        <td className="columnaTexto">
-                            audifonos inalambricos para jugar los mejores juegos que existen dfgdfgdsf
-                        </td>
-                        <td className="columnaPrecio">
-                            $37.000
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="columnaCheckBox">
-                            <Checkbox/>
-                        </td>
-                        <td className="columnaImagen">
-                            <img src={dino2} className="ima-dino"/>
-                        </td>
-                        <td className="columnaTexto">
-                            audifonos inalambricos para jugar los mejores juegos que existen dfgdfgdsf
-                        </td>
-                        <td className="columnaPrecio">
-                            $317.000
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="columnaCheckBox">
-                            <Checkbox/>
-                        </td>
-                        <td className="columnaImagen">
-                            <img src={dino3} className="ima-dino"/>
-                        </td>
-                        <td className="columnaTexto">
-                            audifonos inalambricos para jugar los mejores juegos que existen dfgdfgdsf
-                        </td>
-                        <td className="columnaPrecio">
-                            $37.000
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div className="tabla">
+                <div className="main">
+                    <Checkbox color="default"></Checkbox>
+                </div>
+                <div className="ImageColumn">
+                    <img src={dino} className="ima-dino"/>
+                </div>
+                <div className="DescriptionColumn">
+                    <div className="DescriptionColumnText" >
+                        Buzo Buso Ancho Hoodie Mujer Stranger Things
+                    </div>
+                    <div className="DescriptionColumnText">
+                        hola como vas
+                    </div>
+                    <div className="DescriptionColumnText">
+                        no muy bien gracias
+                    </div>
+                    <div className="DescriptionColumnItems">
+                        <div className="ItemColumn">
+                            hola
+                        </div>
+                        <div className="ItemColumn">
+                            Como
+                        </div>
+                        <div className="ItemColumn">
+                            estas
+                        </div>
+                    </div>
+
+                </div>
+                <div className="PriceColumn">
+                    37.500
+                </div>
+            </div>
         );
     }
 }
