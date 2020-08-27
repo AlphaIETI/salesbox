@@ -5,11 +5,16 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { Register } from './components/registro/Register';
 import Login from './components/login/Login';
-import Home from './components/home/Home';
+import Register from './components/registro/Register';
+import AppHome from './components/home/AppHome';
 import Carrito from "./components/Carrito/Carrito";
+<<<<<<< HEAD
 import Perfil from "./components/perfil/Perfil";
+=======
+import Dashboard from './components/dashboard/Dashboard';
+
+>>>>>>> fc0a708a418dd1777ba9209384ad80e139546c5d
 
 function App() {
   return (
@@ -26,13 +31,18 @@ function App() {
             <Register />
           </Route>
           <Route exact path="/Home">
-            <Home />
+            <AppHome />
           </Route>
           <Route exact path="/ShopCar">
             <Carrito />
           </Route>
+<<<<<<< HEAD
           <Route exact path="/Perfil">
             <Perfil />
+=======
+          <Route exact path="/Dashboard">
+            <Dashboard />
+>>>>>>> fc0a708a418dd1777ba9209384ad80e139546c5d
           </Route>
         </Switch>
       </div>
