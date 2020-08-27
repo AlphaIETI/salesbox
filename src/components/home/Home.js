@@ -5,9 +5,10 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import tileData from './tileData';
 
-
+import Search from './Search';
+import './menu.css';
+/*
 const useStyles = makeStyles ((theme) => ({
     root: {
         display: 'flex',
@@ -58,3 +59,28 @@ export default function Home (){
         </div>
     );
 }
+*/
+
+class Home extends React.Component{
+
+    render(){
+        return (
+            <div className = "container">
+                <div className = "subcontainer">
+                    <div className = "logo">
+                        {this.props.title}
+                    </div>
+                    <div className = "search">
+                        <Search >
+
+                        </Search>
+                    </div>
+                </div>
+            </div>
+        );
+
+        }
+    }
+
+
+export default Home;
