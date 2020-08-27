@@ -1,169 +1,274 @@
-import React, { useState } from "react";
-import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import "../../App.css";
-import {CredentialsList} from "../../CredentialsList";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import logo from '../../logo.png';
+import { CredentialsList } from '../credential/CredentialsList';
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+     
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
+export default function Register() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  
+
+  const handleOnClick=(e) =>{
+    var correo= document.getElementById("emailEmpresa").value;
+    if(document.getElementById("nombreEmpresa").value==="" || document.getElementById("nit").value === "" || document.getElementById("emailEmpresa").value===""
+       || document.getElementById("direccionEmpresa").value==="" || document.getElementById("usuarioEmpresa").value === "" || 
+       document.getElementById("contrasenaEmpresa").value===""){ 
+         alert("Hay campos vacios");   
+    }
+     if(!correo.includes('@')){
+          alert("no es un correo válido");
+
+     }
+   };
 
 
-export class Register extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state={items:[{ nombre:"Juliana",  email:"Juliana@mail.com", direccion:"cra 1 #23-4",telefono :4234, fecha :new Date(2020,1,23), usuario:"julianagarzond" , password:"12345"}],
-                         nombre:"",  email:"", direccion:"",telefono :"", usuario:"", password:""};
-    this.handleChangeNombre = this.handleChangeNombre.bind(this);
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangeDireccion = this.handleChangeDireccion.bind(this);
-    this.handleChangeTelefono = this.handleChangeTelefono.bind(this);
-    this.handleChangeFecha = this.handleChangeFecha.bind(this);
-    this.handleChangeUsuario = this.handleChangeUsuario.bind(this);
-    this.handleChangeContrasena = this.handleChangeContrasena.bind(this);
+   const handleOnClickCliente=(e) =>{
+    var correo= document.getElementById("email").value;
+    if(document.getElementById("nombreCliente").value==="" || document.getElementById("direccionCliente").value === "" || document.getElementById("email").value===""
+       || document.getElementById("direccionCliente").value==="" || document.getElementById("telefonoCliente").value === "" || 
+       document.getElementById("fechaNacimiento").value==="" || document.getElementById("usuarioCliente").value==="" || document.getElementById("usuarioContrasena").value==="" ){ 
+         alert("Hay campos vacios");   
+    }
+     if(!correo.includes('@')){
+          alert("no es un correo válido");
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  render() {
-    return (
-      <div class="center">
-         <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-        <br />
-        <form onSubmit={this.handleSubmit}>
+     }
+   };
+
+  
+
+  
+
+  return (
+    
+  
+    <div className={classes.root} style={{ width:'480px', margin:'0 auto'}}>
+      <AppBar position="static"  style={{width:'480px', margin:'0 auto' , background: 'BLACK'}}>
+        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" >
+          <Tab label="Empresa" {...a11yProps(0)} />
+          <Tab label="Cliente" {...a11yProps(1)} />
+        </Tabs>
+      </AppBar>
+    
+      <TabPanel value={value} index={0} >
+
+      
+        <img src={logo}  alt="logo"   style={{ height:'150px',position: 'relative', top: '0px', right: '-100px'}} />
+      
+       
+  
           <input
+            id="nombreEmpresa"
+            style={{width:'400px', margin:'0 auto'}}
             type="text"
-            class="form-control textbox-dg"
-            placeholder="Nombre"
-            onChange={this.handleChangeNombre}
-            value={this.state.nombre}
+            className="form-control textbox-dg"
+            placeholder="Nombre Empresa"
+          
+            
            />
           <br />
-          <input
-            type="email"
-            class="form-control textbox-dg"
-            placeholder="Email"
-            onChange={this.handleChangeEmail}
-            value={this.state.email}
-          />
           <br />
           <input
+            id="nit"
+            style={{width:'400px', margin:'0 auto'}}
             type="text"
-            class="form-control textbox-dg"
-            placeholder="Dirección"
-            onChange={this.handleChangeDireccion}
-            value={this.state.direccion}
+            className="form-control textbox-dg"
+            placeholder="Nit"
+          
+     
           />
           <br />
+          <br />
           <input
-             type="number"
-             class="form-control textbox-dg"
-             placeholder="Telefono"
-             onChange={this.handleChangeTelefono}
-             value={this.state.telefono}
+            id="emailEmpresa"
+            style={{width:'400px', margin:'0 auto'}}
+            type="email"
+            className="form-control textbox-dg"
+            placeholder="Email"
+          
+     
           />
-           <br />
+          <br />
+          <br />
+          <input
+            id="direccionEmpresa"
+            style={{width:'400px', margin:'0 auto'}}
+            type="text"
+            className="form-control textbox-dg"
+            placeholder="Dirección"
+           
+          />
+          <br />
+          <br />
+    
            <input
-              type="date"
-              class="form-control textbox-dg"
-              placeholder="Fecha de nacimiento"
-              onChange={this.handleChangeFecha}
-              value={this.state.fecha}
-            />
-           <br />
-           <input
+              id="usuarioEmpresa"
+              style={{width:'400px', margin:'0 auto'}}
               type="text"
-              class="form-control textbox-dg"
+              className="form-control textbox-dg"
               placeholder="Usuario"
-              onChange={this.handleChangeUsuario}
-              value={this.state.usuario}
+            
             />
             <br />
+            <br />
             <input
+              id="contrasenaEmpresa"
+              style={{width:'400px', margin:'0 auto'}}
               type="Password"
-              class="form-control textbox-dg"
+              className="form-control textbox-dg"
               placeholder="Contraseña"
-              onChange={this.handleChangeContrasena}
-              value={this.state.contrasena}
+             
             />
              <br />
              <br />
-          <button  class ="myButton">
+          <button  class ="myButton2" onClick={handleOnClick} style={{position: 'relative', top: '0px', right: '-140px'}}> 
+            Registrarse
+          </button>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+      <img src={logo} style={{ height:'150px',position: 'relative', top: '0px', right: '-100px'}} />
+      
+          <input
+           id ="nombreCliente"
+           style={{width:'400px', margin:'0 auto'}}
+            type="text"
+            className="form-control textbox-dg"
+            placeholder="Nombre"
+           
+            
+           
+            
+           />
+          <br />
+          <br />
+          <input
+          id="email"
+          style={{width:'400px', margin:'0 auto'}}
+          type="email"
+          className="form-control textbox-dg"
+          placeholder="Email"
+          
+           
+     
+          />
+          <br />
+          <br />
+          <input
+            id="direccionCliente"
+            style={{width:'400px', margin:'0 auto'}}
+            type="text"
+            className="form-control textbox-dg"
+            placeholder="Dirección"
+          
+        
+           
+          />
+          <br />
+          <br />
+          <input
+             id="telefonoCliente"
+             style={{width:'400px', margin:'0 auto'}}
+             type="number"
+             className="form-control textbox-dg"
+             placeholder="Telefono"
+            
+       
+          />
+           <br />
+           <br />
+           <input
+              id="fechaNacimiento"
+              style={{width:'400px', margin:'0 auto'}}
+              type="date"
+              className="form-control textbox-dg"
+              placeholder="Fecha de nacimiento"
+            
+           
+            />
+           <br />
+           <br />
+           <input
+              id="usuarioCliente"
+              style={{width:'400px', margin:'0 auto'}}
+              type="text"
+              className="form-control textbox-dg"
+              placeholder="Usuario"
+             
+           
+            
+            />
+             <br />
+            <br />
+            <input
+              id="contrasenaCliente"
+              style={{width:'400px', margin:'0 auto'}}
+              type="Password"
+              className="form-control textbox-dg"
+              placeholder="Contraseña"
+         
+            
+             
+            />
+             <br />
+             <br />
+          <button  class ="myButton2" onClick={handleOnClickCliente} style={{position: 'relative', top: '0px', right: '-140px'}}>
             Registrarse
           </button>
 
-            <br />
-            <p>
-           <CredentialsList todoList={this.state.items} />
-           </p>
-
-        </form>
-       </header>
-         	<section class="social">
-
-            			<a href="">
-            				<i class="fas fa-at"></i>
-            			</a>
-            			<a href="">
-            				<i class="fab fa-linkedin-in"></i>
-            			</a>
-            			<a href="">
-            				<i class="fab fa-instagram"></i>
-            			</a>
-            </section>
-      </div>
-
-
-    );
-  }
-
-  handleChangeNombre(e) {
-    this.setState({ nombre: e.target.value });
-  }
-
-  handleChangeEmail(e) {
-      this.setState({ email: e.target.value });
-    }
-
-  handleChangeDireccion(e) {
-        this.setState({ direccion: e.target.value });
-   }
-  handleChangeTelefono(e) {
-         this.setState({ telefono: e.target.value });
-   }
-
-   handleChangeFecha(e) {
-            this.setState({ fecha: e.target.value });
-   }
-
-   handleChangeUsuario(e) {
-            this.setState({ usuario: e.target.value });
-   }
-
-   handleChangeContrasena(e) {
-            this.setState({ contrasena: e.target.value });
-      }
-
-
-
-  handleSubmit(e) {
-
-    e.preventDefault();
-    if (!this.state.nombre.length) {
-      return;
-    }
-    const newItem = {
-      nombre:this.state.nombre,
-      email: this.state.email,
-      direccion: this.state.direccion,
-      telefono: this.state.telefono,
-      fecha : this.state.fecha,
-      usuario: this.state.usuario,
-      password :this.state.password
-
-    };
-
-    alert('Nuevo usuario'+ newItem.usuario);
-
-    this.setState(prevState => ({
-      items: prevState.items.concat(newItem),
-      nombre: '', email:"", direccion:"", telefono: "" ,fecha:"", usuario:"",contrasena:""
-    }));
-  }
+        
+      </TabPanel>
+      
+    </div>
+    
+  );
 }

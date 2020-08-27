@@ -5,11 +5,12 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { Register } from './components/registro/Register';
 import Login from './components/login/Login';
+import Register from './components/registro/Register';
 import Home from './components/home/Home';
 import Carrito from "./components/Carrito/Carrito";
 import Dashboard from './components/dashboard/Dashboard';
+
 
 function App() {
   return (
