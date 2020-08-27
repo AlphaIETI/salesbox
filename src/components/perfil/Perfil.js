@@ -28,7 +28,27 @@ export default function Perfil (){
 			color: theme.palette.text.secondary,
 		},
 	}));
-
+	const useStyless = makeStyles((theme) => ({
+		root: {
+			display: 'flex',
+			'& > *': {
+				margin: theme.spacing(1),
+			},
+		},
+		small: {
+			width: theme.spacing(3),
+			height: theme.spacing(3),
+		},
+		medium: {
+			width: theme.spacing(5),
+			height: theme.spacing(5),
+		},
+		large: {
+			width: theme.spacing(12),
+			height: theme.spacing(12),
+		},
+	}));
+	const classess = useStyless();
 	const classes = useStyles();
 	const [expanded, setExpanded] = React.useState(false);
 
@@ -43,23 +63,19 @@ export default function Perfil (){
 			<div className={classes.root}>
 				<AppBar>
 					<Toolbar>
-						<IconButton>
-							<Accordion  >
-								<AccordionSummary
-									expandIcon={<ExpandMoreIcon />}
-									aria-controls="panel1a-content"
-									id="panel1a-header">
-
+						<IconButton >
+							<Accordion >
+								<AccordionSummary >
 									<Typography className={classes.heading}>
-										<Avatar className='avatar'>
+										<Avatar className={classess.medium}>
 											<img src={checho} className="imagen"/>
 										</Avatar>
 									</Typography>
 								</AccordionSummary>
-								<AccordionDetails>
+								<AccordionDetails className="imagenacordion">
 									<Typography>
 										<h3> NOMBRE </h3>
-										<Avatar className='avatar'>
+										<Avatar className={classess.large}>
 											<img src={checho} className="imagen"/>
 										</Avatar>
 										<h3> correo </h3>

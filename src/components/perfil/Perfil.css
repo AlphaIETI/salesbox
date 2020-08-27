@@ -4,7 +4,6 @@
     height : 40px ;
     max-width: 100px;
     max-height: 100px;
-
 }
 
 .imagen{
@@ -14,4 +13,8 @@
     object-fit: cover;
     text-align: center;
     text-indent: 1000px;
+}
+.imagenacordion{
+    color: black;
+    background-color: #515BD4 ;
 }
