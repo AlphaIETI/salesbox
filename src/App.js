@@ -27,7 +27,7 @@ function App() {
             <Register />
           </Route>
           <Route exact path="/Home">
-            <Home />
+            <AppHome />
           </Route>
           <Route exact path="/ShopCar">
             <Carrito />
