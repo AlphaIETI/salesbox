@@ -9,12 +9,9 @@ import Login from './components/login/Login';
 import Register from './components/registro/Register';
 import AppHome from './components/home/AppHome';
 import Carrito from "./components/Carrito/Carrito";
-<<<<<<< HEAD
 import Perfil from "./components/perfil/Perfil";
-=======
 import Dashboard from './components/dashboard/Dashboard';
 
->>>>>>> fc0a708a418dd1777ba9209384ad80e139546c5d
 
 function App() {
   return (
@@ -36,13 +33,11 @@ function App() {
           <Route exact path="/ShopCar">
             <Carrito />
           </Route>
-<<<<<<< HEAD
           <Route exact path="/Perfil">
             <Perfil />
-=======
+          </Route>
           <Route exact path="/Dashboard">
             <Dashboard />
->>>>>>> fc0a708a418dd1777ba9209384ad80e139546c5d
           </Route>
         </Switch>
       </div>
