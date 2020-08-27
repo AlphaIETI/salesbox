@@ -48,6 +48,30 @@ p{
  text-align: center;
  position: relative;
  top: -80px}
+
+ .myButton2 {
+	box-shadow: 3px 4px 0px 0px #0f0c0c;
+	background:linear-gradient(to bottom, #030303 5%, #0d0c0c 100%);
+	background-color:#030303;
+	border-radius:27px;
+	border:3px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#f7eaf7;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #0f0d0d;
+}
+.myButton2:hover {
+	background:linear-gradient(to bottom, #0d0c0c 5%, #030303 100%);
+	background-color:#0d0c0c;
+}
+.myButton2:active {
+	position:relative;
+	top:1px;
+}
 .myButton {
 	box-shadow:inset 0px 0px 14px -3px #f2fadc;
 	background:linear-gradient(to bottom, #dbe6c4 5%, #7f857b 100%);
