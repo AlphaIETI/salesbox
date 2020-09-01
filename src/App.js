@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -12,10 +12,16 @@ import Carrito from "./components/Carrito/Carrito";
 import Dashboard from './components/dashboard/Dashboard';
 
 
+
+
+
 function App() {
+ 
+
   return (
     <Router>
       <div>
+    
         <Switch>
           <Route exact path="/">
             <Login />
