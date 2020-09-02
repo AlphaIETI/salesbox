@@ -69,8 +69,7 @@
 }
 
 .PriceColumn{
-    display: flex;
-    width: 40%;
+    width: 20%;
     height: 200px;
     padding: 1em;
     align-items: center;
