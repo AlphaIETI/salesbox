@@ -7,7 +7,7 @@ import Container from '@material-ui/core/Container';
 
 //AppBar
 import AppBarComponent from './appBar';
-
+/*
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -18,7 +18,7 @@ function Copyright() {
         </Typography>
     );
 }
-
+*/
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -40,16 +40,9 @@ export default function Dashboard() {
 
     return (
         <div className={classes.root}>
-        <CssBaseline />
-        <AppBarComponent />
-        <main className={classes.content}>
-            <div className={classes.appBarSpacer} />
-            <Container maxWidth="lg" className={classes.container}>
-            <Box pt={4}>
-                <Copyright />
-            </Box>
-            </Container>
-        </main>
+            <CssBaseline />
+            <AppBarComponent />
+            <br></br><br></br><br></br>
         </div>
     );
 }

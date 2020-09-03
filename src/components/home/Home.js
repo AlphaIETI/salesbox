@@ -5,7 +5,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-
+import Dashboard from '../dashboard/Dashboard';
 import Search from './Search';
 import './menu.css';
 /*
@@ -65,17 +65,22 @@ class Home extends React.Component{
 
     render(){
         return (
+            
             <div className = "container">
+                <Dashboard />
                 <div className = "subcontainer">
+                    
                     <div className = "logo">
                         {this.props.title}
+                        
                     </div>
                     <div className = "search">
                         <Search >
-
                         </Search>
                     </div>
+                    
                 </div>
+                
             </div>
         );
 
