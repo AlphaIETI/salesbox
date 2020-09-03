@@ -5,7 +5,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import Dashboard from '../dashboard/Dashboard';
+import AppBarComponent from '../dashboard/appBar';
 import Search from './Search';
 import './menu.css';
 /*
@@ -67,7 +67,8 @@ class Home extends React.Component{
         return (
             
             <div className = "container">
-                <Dashboard />
+                <AppBarComponent />
+                <br/><br/>
                 <div className = "subcontainer">
                     
                     <div className = "logo">
