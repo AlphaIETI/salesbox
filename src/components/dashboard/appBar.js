@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles} from '@material-ui/core/styles';
@@ -13,6 +13,9 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import AccordionComponent from './accordion';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
+import Perfil from '../perfil/Perfil';
+import checho from "../../img/sergio.jpg";
+import Avatar from "@material-ui/core/Avatar";
 
 const drawerWidth = 240;
 
@@ -49,11 +52,15 @@ const useStyles = makeStyles((theme) => ({
 export default function AppBarComponent() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const [open2, setOpen2] = React.useState(false);
     const handleDrawerOpen = () => {
         setOpen(true);
     };
     const handleDrawerClose = () => {
         setOpen(false);
+    };
+    const handleDrawer2 = () => {
+        setOpen2(true);
     };
     return (
         <div>
@@ -81,10 +88,27 @@ export default function AppBarComponent() {
             <Link to="/Login">
                 <IconButton >
                     <HomeIcon fontSize="large" />
-                </IconButton>   
+                </IconButton>
             </Link>
+                <div>
+                    <IconButton onClick={handleDrawer2}>
+                        <Avatar >
+                            <img src={checho} className="imagen"/>
+                        </Avatar>
+                    </IconButton>
+                </div>
             </Toolbar>
+
         </AppBar>
+        <Drawer
+            anchor = "right"
+            open = {open2}
+            onClose={() => setOpen2(false)}>
+            <Perfil/>
+
+        </Drawer>
+
+
         <Drawer
             className={classes.drawer}
             variant="persistent"
@@ -102,6 +126,9 @@ export default function AppBarComponent() {
             </div>
             <AccordionComponent />
         </Drawer>
+
         </div>
+
+
     );
 }

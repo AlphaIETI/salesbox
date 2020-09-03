@@ -7,8 +7,9 @@ import {
 } from "react-router-dom";
 import Login from './components/login/Login';
 import Register from './components/registro/Register';
-import Home from './components/home/Home';
+import AppHome from './components/home/AppHome';
 import Carrito from "./components/Carrito/Carrito";
+import Perfil from "./components/perfil/Perfil";
 import Dashboard from './components/dashboard/Dashboard';
 
 
@@ -33,10 +34,13 @@ function App() {
             <Register />
           </Route>
           <Route exact path="/Home">
-            <Home />
+            <AppHome />
           </Route>
           <Route exact path="/ShopCar">
             <Carrito />
+          </Route>
+          <Route exact path="/Perfil">
+            <Perfil />
           </Route>
           <Route exact path="/Dashboard">
             <Dashboard />

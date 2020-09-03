@@ -1,0 +1,20 @@
+
+.avatar {
+    width: 60px;
+    height : 40px ;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.imagen{
+    color: transparent;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    text-align: center;
+    text-indent: 1000px;
+}
+.imagenacordion{
+    color: black;
+    background-color: #515BD4 ;
+}
