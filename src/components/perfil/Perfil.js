@@ -10,8 +10,6 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
 export default function Perfil (){
 
 	const useStyles = makeStyles((theme) => ({
@@ -55,45 +53,27 @@ export default function Perfil (){
 	const handleChange = (panel) => (event, isExpanded) => {
 		setExpanded(isExpanded ? panel : false);
 	};
-
-
-
-		return (
-
-			<div className={classes.root}>
-				<AppBar>
-					<Toolbar>
-						<IconButton >
-							<Accordion >
-								<AccordionSummary >
-									<Typography className={classes.heading}>
-										<Avatar className={classess.medium}>
-											<img src={checho} className="imagen"/>
-										</Avatar>
-									</Typography>
-								</AccordionSummary>
-								<AccordionDetails className="imagenacordion">
-									<Typography>
-										<h3> NOMBRE </h3>
-										<Avatar className={classess.large}>
-											<img src={checho} className="imagen"/>
-										</Avatar>
-										<h3> correo </h3>
-										<h3> Puntos </h3>
-										<h3> 0000 </h3>
-										<h3> INF </h3>
-										<h3> Tel: 00000 </h3>
-										<h3> Direccion </h3>
-									</Typography>
-								</AccordionDetails>
-							</Accordion>
-
-						</IconButton>
-
-					</Toolbar>
-				</AppBar>
-				<div className="offsett"></div>
-			</div>
-			);
+	const [open, setOpen] = React.useState(false);
+	const handleDrawerOpen = () => {
+		setOpen(true);
+	};
+	return (
+			<Accordion  >
+				<AccordionDetails className="imagenacordion">
+					<Typography>
+						<h3> NOMBRE </h3>
+						<Avatar className={classess.large}>
+							<img src={checho} className="imagen"/>
+						</Avatar>
+						<h3> correo </h3>
+						<h3> Puntos </h3>
+						<h3> 0000 </h3>
+						<h3> INF </h3>
+						<h3> Tel: 00000 </h3>
+						<h3> Direccion </h3>
+					</Typography>
+				</AccordionDetails>
+			</Accordion>
+	);
 }
 
