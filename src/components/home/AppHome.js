@@ -27,7 +27,6 @@ class AppHome extends React.Component{
         return(
             <div className="app">
                 <Home title="SalesBox"/>
-                <List items={this.state.marcas}/>
             </div>
         );
       }

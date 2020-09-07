@@ -2,7 +2,6 @@ import React from 'react';
 
 import './Perfil.css';
 import Avatar from '@material-ui/core/Avatar';
-import checho from "../../img/sergio.jpg";
 import {AppBar,Toolbar,Typography} from "@material-ui/core";
 import { IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -63,7 +62,6 @@ export default function Perfil (){
 					<Typography>
 						<h3> NOMBRE </h3>
 						<Avatar className={classess.large}>
-							<img src={checho} className="imagen"/>
 						</Avatar>
 						<h3> correo </h3>
 						<h3> Puntos </h3>

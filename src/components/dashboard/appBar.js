@@ -14,7 +14,6 @@ import AccordionComponent from './accordion';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
 import Perfil from '../perfil/Perfil';
-import checho from "../../img/sergio.jpg";
 import Avatar from "@material-ui/core/Avatar";
 
 const drawerWidth = 240;
@@ -93,7 +92,6 @@ export default function AppBarComponent() {
                 <div>
                     <IconButton onClick={handleDrawer2}>
                         <Avatar >
-                            <img src={checho} className="imagen"/>
                         </Avatar>
                     </IconButton>
                 </div>
