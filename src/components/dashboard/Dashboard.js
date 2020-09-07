@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import { makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
@@ -25,16 +26,35 @@ function Copyright() {
         </Typography>
     );
 }
+const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
     },
     appBarSpacer: theme.mixins.toolbar,
+
     content: {
+        // https://blog.prezi.com/wp-content/uploads/2019/03/jason-leung-479251-unsplash.jpg
+        // https://lh3.googleusercontent.com/proxy/MYi8OgbPoKSA2m-s4qX-GrCXhpSVYnvkYSdemCSRwWJu8FuxOxexRUA89DrxOGYw-iN8S_F9tGJOMIFazEGy3tfmycECOGQy2fJ9a9e7ZckgoJ39UjjNUgu-pxnTYHdefuj8M7048Kc
+        //https://grupobmt.com/wp-content/uploads/2014/06/background-pared-1.jpg
+        //backgroundImage: `url(${"https://grupobmt.com/wp-content/uploads/2014/06/background-pared-1.jpg"})`,
+        backgroundColor: '#D4E9EA',
         flexGrow: 1,
-        height: '100vh',
-        overflow: 'auto',
-    },
+        padding: theme.spacing(3),
+        transition: theme.transitions.create('margin', {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+        marginLeft: -drawerWidth,
+      },
+      contentShift: {
+        transition: theme.transitions.create('margin', {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginLeft: 0,
+      },
+
     container: {
         paddingTop: theme.spacing(4),
         paddingBottom: theme.spacing(4),
@@ -53,12 +73,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
     const classes = useStyles();
+    const [openDrawer,serOpenDrawer] = React.useState(false);
     const ids = [1,2,3,4,5,6,7,8,9,10];
+
+    const handleChangeStateDrawer = (ans) => {
+        serOpenDrawer(ans);
+      };
+
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBarComponent />
-            <main className={classes.content}>
+            <AppBarComponent fun={handleChangeStateDrawer}/>
+            <main
+                className={clsx(classes.content, {
+                [classes.contentShift]: openDrawer,
+                })}
+            >
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
                     <Typography
