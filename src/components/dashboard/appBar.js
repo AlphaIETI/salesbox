@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles} from '@material-ui/core/styles';
@@ -46,17 +46,31 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
     },
+    drawer: {
+        width: drawerWidth,
+        flexShrink: 0,
+      },
+      drawerPaper: {
+        width: drawerWidth,
+        //backgroundColor: 'primary',
+      },
 }));
 
-export default function AppBarComponent() {
+export default function AppBarComponent(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
     const handleDrawerOpen = () => {
         setOpen(true);
+        if(props.fun !== undefined){
+            props.fun(true);
+        }
     };
     const handleDrawerClose = () => {
         setOpen(false);
+        if(props.fun !== undefined){
+            props.fun(false);
+        }
     };
     const handleDrawer2 = () => {
         setOpen2(true);
@@ -84,7 +98,7 @@ export default function AppBarComponent() {
                     </Badge>
                 </IconButton> 
             </Link>
-            <Link to="/Login">
+            <Link to="/Home">
                 <IconButton >
                     <HomeIcon fontSize="large" />
                 </IconButton>
@@ -105,8 +119,6 @@ export default function AppBarComponent() {
             <Perfil/>
 
         </Drawer>
-
-
         <Drawer
             className={classes.drawer}
             variant="persistent"
@@ -124,9 +136,6 @@ export default function AppBarComponent() {
             </div>
             <AccordionComponent />
         </Drawer>
-
         </div>
-
-
     );
 }
