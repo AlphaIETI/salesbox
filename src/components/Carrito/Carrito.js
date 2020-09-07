@@ -32,18 +32,28 @@ export class Carrito extends React.Component{
                     <div className="DescriptionColumnText">
                         Solo quedan 5 unidades en Stock
                     </div>
-                    <div className="DescriptionColumnText">
-                        Cantidad: 5
+                    <div className="DescriptionColumnCant">
+                        <div className="ItemColumn">
+                            <button className='button'>-</button>
+                            <label>3</label>
+                            <button className='button'>+</button>
+                        </div>
+                        <div className="ItemColumn">
+
+                        </div>
+                        <div className="ItemColumn">
+
+                        </div>
                     </div>
                     <div className="DescriptionColumnItems">
                         <div className="ItemColumn">
-                            Eliminar
+                            <button className='button'>Eliminar</button>
                         </div>
                         <div className="ItemColumn">
-                            Mas informacion
+                            <button className='button'>Información</button>
                         </div>
                         <div className="ItemColumn">
-                            comparar
+                            <button className='button'>Comparar</button>
                         </div>
                     </div>
 
