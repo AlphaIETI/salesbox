@@ -4,8 +4,8 @@ import th from '@material-ui/core/TableHead';
 import tr from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Checkbox from '@material-ui/core/Checkbox';
-import dino from '../../img/dino.jpg';
-import dino2 from '../../img/dino2.jpg';
+import saco from '../../img/saco.jpg';
+import saco2 from '../../img/saco2.jpg';
 import dino3 from '../../img/dino3.jpg';
 import "./Carrito.css";
 export class Carrito extends React.Component{
@@ -16,39 +16,55 @@ export class Carrito extends React.Component{
 
     render(){
 
+
         return(
             <div className="tabla">
                 <div className="main">
                     <Checkbox color="default"></Checkbox>
                 </div>
                 <div className="ImageColumn">
-                    <img src={dino} className="ima-dino"/>
+                    <img src={saco} className="ima-dino"/>
                 </div>
                 <div className="DescriptionColumn">
                     <div className="DescriptionColumnText" >
                         Buzo Buso Ancho Hoodie Mujer Stranger Things
                     </div>
                     <div className="DescriptionColumnText">
-                        hola como vas
+                        Solo quedan 5 unidades en Stock
                     </div>
-                    <div className="DescriptionColumnText">
-                        no muy bien gracias
+                    <div className="DescriptionColumnCant">
+                        <div className="ItemColumn">
+                            <button className='button'>-</button>
+                            <label>3</label>
+                            <button className='button'>+</button>
+                        </div>
+                        <div className="ItemColumn">
+
+                        </div>
+                        <div className="ItemColumn">
+
+                        </div>
                     </div>
                     <div className="DescriptionColumnItems">
                         <div className="ItemColumn">
-                            hola
+                            <button className='button'>Eliminar</button>
                         </div>
                         <div className="ItemColumn">
-                            Como
+                            <button className='button'>Información</button>
                         </div>
                         <div className="ItemColumn">
-                            estas
+                            <button className='button'>Comparar</button>
                         </div>
                     </div>
 
                 </div>
                 <div className="PriceColumn">
-                    37.500
+                    <div>
+                        Precio
+                    </div>
+                    <div>
+                        37.500
+                    </div>
                 </div>
             </div>
         );
