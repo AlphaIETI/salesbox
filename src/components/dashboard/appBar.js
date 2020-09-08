@@ -52,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
       },
       drawerPaper: {
         width: drawerWidth,
-        //backgroundColor: 'primary',
       },
 }));
 
@@ -62,14 +61,14 @@ export default function AppBarComponent(props) {
     const [open2, setOpen2] = React.useState(false);
     const handleDrawerOpen = () => {
         setOpen(true);
-        if(props.fun !== undefined){
-            props.fun(true);
+        if(props.funStateDrawer !== undefined){
+            props.funStateDrawer(true);
         }
     };
     const handleDrawerClose = () => {
         setOpen(false);
-        if(props.fun !== undefined){
-            props.fun(false);
+        if(props.funStateDrawer !== undefined){
+            props.funStateDrawer(false);
         }
     };
     const handleDrawer2 = () => {
@@ -134,7 +133,7 @@ export default function AppBarComponent(props) {
                     Filtros
                 </IconButton>
             </div>
-            <AccordionComponent />
+            <AccordionComponent funFilMarca={props.funFilMarca} funDelFilMarca={props.funDelFilMarca}/>
         </Drawer>
         </div>
     );
