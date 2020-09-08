@@ -10,6 +10,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 
 const images = [
   {
@@ -68,6 +69,9 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     minWidth: 300,
     width: '100%',
+  },
+  content: {
+    backgroundColor: '#D4E9EA',
   },
   image: {
     position: 'relative',
@@ -166,111 +170,83 @@ export default function ButtonBases() {
   return (
     <div className={classes.root}>
       <AppBarComponent />
-      {images.map((image) => (
-            <ButtonBase
-                focusRipple
-                key={image.title}
-                className={classes.image}
-                onClick={redirect}
-                focusVisibleClassName={classes.focusVisible}
-                style={{
-                    width: image.width,
-                }}
-                >
-                <span
-                    className={classes.imageSrc}
-                    style={{
-                    backgroundImage: `url(${image.url})`,
-                    }}
-                />
-                <span className={classes.imageBackdrop} />
-                <span className={classes.imageButton}>
-                    <Typography
-                    component="span"
-                    variant="subtitle1"
-                    color="inherit"
-                    className={classes.imageTitle}
-                    >
-                    </Typography>
-                </span>
-            </ButtonBase>
-      ))}
-            <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-            <Grid xs={10} sm={2} md={4} lg={4} xl={2} item>
-                <Card className={classes.root}>
-                    <div className={classes.details}>
-                        <CardContent className={classes.content}>
-                            <Typography component="h5" variant="h5" color="error" >
-                                SOLO X POCAS HORAS
-                            </Typography>
-                            <Typography variant="subtitle1" color="textSecondary">
-                                Ropa al 30% DCTO
-                            </Typography>
-                            <Typography variant="subtitle2" color="textSecondary">
-                                Referencias seleccionadas
-                            </Typography>
-                        </CardContent>
-                    </div>
-                    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>       
-                    <CardMedia
-                        className={classes.cover}
-                        image="https://www.gef.com.co/wcsstore/CrystalCo_CAT_AS/2020/GEF/ES-CO/Imagenes/Mujeres/DEPORTIVO/Ooya_Protect_Fem/566x715/Chaqueta-Mujer-Ooya-Protect-Fem-Gris-Medio-37740-Frente-Gef.jpg"
-                        title="Ropa"
-                    />
-                </Card>
-                <br></br>
-                <Card className={classes.root}>
-                    <div className={classes.details}>
-                        <CardContent className={classes.content}>
-                            <Typography component="h5" variant="h5" color="error">
-                                2 X 99.000
-                            </Typography>
-                            <Typography variant="subtitle1" color="textSecondary">
-                                ZAPATOS 
-                            </Typography>
-                            <Typography variant="subtitle2" color="textSecondary">
-                                Referencias seleccionadas
-                            </Typography>
-                        </CardContent>
-                    </div>
-                    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>       
-                    <CardMedia
-                        className={classes.cover}
-                        image="https://arturocalle.vteximg.com.br/arquivos/ids/229935-800-1065/HOMBRE-ZAPATOS-10081812-MIEL_2.jpg?v=637045243901730000"
-                        title="Ropa"
-                    />
-                </Card>
-            </Grid>
+        <Container maxWidth="md">
+        {images.map((image) => (
+              <ButtonBase
+                  focusRipple
+                  key={image.title}
+                  className={classes.image}
+                  onClick={redirect}
+                  focusVisibleClassName={classes.focusVisible}
+                  style={{
+                      width: image.width,
+                  }}
+                  >
+                  <span
+                      className={classes.imageSrc}
+                      style={{
+                      backgroundImage: `url(${image.url})`,
+                      }}
+                  />
+                  <span className={classes.imageBackdrop} />
+                  <span className={classes.imageButton}>
+                      <Typography
+                      component="span"
+                      variant="subtitle1"
+                      color="inherit"
+                      className={classes.imageTitle}
+                      >
+                      </Typography>
+                  </span>
+              </ButtonBase>
+        ))}
+              <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+              <Grid xs={10} sm={2} md={4} lg={6} xl={2} item>
+                  <Card className={classes.root}>
+                      <div className={classes.details}>
+                          <CardContent className={classes.content}>
+                              <Typography component="h5" variant="h5" color="error" >
+                                  SOLO X POCAS HORAS
+                              </Typography>
+                              <Typography variant="subtitle1" color="textSecondary">
+                                  Ropa al 30% DCTO
+                              </Typography>
+                              <Typography variant="subtitle2" color="textSecondary">
+                                  Referencias seleccionadas
+                              </Typography>
+                          </CardContent>
+                      </div>
+                      <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>       
+                      <CardMedia
+                          className={classes.cover}
+                          image="https://www.gef.com.co/wcsstore/CrystalCo_CAT_AS/2020/GEF/ES-CO/Imagenes/Mujeres/DEPORTIVO/Ooya_Protect_Fem/566x715/Chaqueta-Mujer-Ooya-Protect-Fem-Gris-Medio-37740-Frente-Gef.jpg"
+                          title="Ropa"
+                      />
+                  </Card>
+                  <br></br>
+                  <Card className={classes.root}>
+                      <div className={classes.details}>
+                          <CardContent className={classes.content}>
+                              <Typography component="h5" variant="h5" color="error">
+                                  2 X 99.000
+                              </Typography>
+                              <Typography variant="subtitle1" color="textSecondary">
+                                  ZAPATOS 
+                              </Typography>
+                              <Typography variant="subtitle2" color="textSecondary">
+                                  Referencias seleccionadas
+                              </Typography>
+                          </CardContent>
+                      </div>
+                      <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>       
+                      <CardMedia
+                          className={classes.cover}
+                          image="https://arturocalle.vteximg.com.br/arquivos/ids/229935-800-1065/HOMBRE-ZAPATOS-10081812-MIEL_2.jpg?v=637045243901730000"
+                          title="Ropa"
+                      />
+                  </Card>
+              </Grid>
+        </Container>
     </div>
   );
 }
-
-/*
-
-    render(){
-
-
-        return (
-            
-            <div className = "container">
-                <AppBarComponent />
-                <br/><br/>
-                <div className = "subcontainer">
-                    
-                    <div className = "logo">
-                        {this.props.title}
-                        
-                    </div>
-                    <div className = "search">
-                        <Search >
-                        </Search>
-                    </div>
-                    
-                </div>
-                
-            </div>
-        );
-
-        }
-    }
-*/

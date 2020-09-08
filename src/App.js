@@ -7,14 +7,11 @@ import {
 } from "react-router-dom";
 import Login from './components/login/Login';
 import Register from './components/registro/Register';
-import AppHome from './components/home/AppHome';
+import Home from './components/home/Home';
 import Carrito from "./components/Carrito/Carrito";
 import Perfil from "./components/perfil/Perfil";
 import Dashboard from './components/dashboard/Dashboard';
-
-
-
-
+import Producto from './components/producto/Producto';
 
 function App() {
  
@@ -34,7 +31,7 @@ function App() {
             <Register />
           </Route>
           <Route exact path="/Home">
-            <AppHome />
+            <Home />
           </Route>
           <Route exact path="/ShopCar">
             <Carrito />
@@ -44,6 +41,9 @@ function App() {
           </Route>
           <Route exact path="/Dashboard">
             <Dashboard />
+          </Route>
+          <Route exact path="/Producto">
+            <Producto />
           </Route>
         </Switch>
       </div>
