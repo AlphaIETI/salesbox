@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 import ListaCarrito from "./ListaCarrito";
 import GeneralAppBar from "./GeneralAppBar";
 import Divider from '@material-ui/core/Divider';
+import PriceTotal from './PriceTotal';
 
 export default function Carrito(){
     return(
@@ -16,13 +17,18 @@ export default function Carrito(){
             <br/>
             <br/>
             <Container maxWidth="md">
-                <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100%' }}>
+                <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100hv' }}>
                     <ListaCarrito/>
                     <Divider />
-                    <ListaCarrito/>
-                    <Divider />
-                    <ListaCarrito/>
-                    <Divider />
+                </Typography>
+            </Container>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <Container maxWidth="sm">
+                <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100hv' }}>
+                    <PriceTotal/>
                 </Typography>
             </Container>
         </React.Fragment>
