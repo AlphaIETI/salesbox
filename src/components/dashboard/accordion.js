@@ -87,10 +87,10 @@ const StyledBadge = withStyles((theme) => ({
     );
   }
 
-export default function AccordionComponent() {
+export default function AccordionComponent(props) {
     const classes = useStyles();
     const [brands, setBrands] = React.useState([{name:"Tennis",cantProducts:"58"},
-                                                {name:"Naf Naf",cantProducts:"24"},
+                                                {name:"NafNaf",cantProducts:"24"},
                                                 {name:"Nike",cantProducts:"154"},
                                                 {name:"Adidas",cantProducts:"231"},
                                                 {name:"Americanino",cantProducts:"75"},
@@ -106,7 +106,7 @@ export default function AccordionComponent() {
                                         {nameCategory:"Calzado",items:["Color","Talla","Tipo"]},
                                         {nameCategory:"Accesorios",items:["Color","Estilo"]}]);
     const [expanded, setExpanded] = React.useState(false);
-    const [expanded2, setExpanded2] = React.useState(false);
+    const [expanded2, setExpanded2] = React.useState("panel1");
     const [expanded3, setExpanded3] = React.useState(false);
     const [expanded4, setExpanded4] = React.useState(false);
     const [expanded5, setExpanded5] = React.useState(false);
@@ -133,12 +133,29 @@ export default function AccordionComponent() {
     const handleChange6 = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
     };
+    
+    const [stateCheckBox, setStateCheckBox] = React.useState([]);
+
+    const handleChangeCheckBox = (event) => {
+        if(!stateCheckBox.includes(event.target.name)){
+            if(props.funFilMarca !== undefined){
+                setStateCheckBox(stateCheckBox.concat(event.target.name));
+                props.funFilMarca(event.target.name);
+            }
+        }else{
+            if(props.funDelFilMarca !== undefined){
+                setStateCheckBox(stateCheckBox.filter(item => item !== event.target.name));
+                props.funDelFilMarca(event.target.name);
+            }
+        }
+    };
+
     return (
         <div>
             <Divider />
                 <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        <Typography>Categorias</Typography>
+                        <Typography color="primary">Categorias</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div>
@@ -169,7 +186,7 @@ export default function AccordionComponent() {
             <Divider />
                 <Accordion square expanded={expanded2 === 'panel1'} onChange={handleChange2('panel1')}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        <Typography>Marcas</Typography>
+                        <Typography color="primary">Marcas</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className={classes.root1}>
@@ -177,7 +194,12 @@ export default function AccordionComponent() {
                                 <div>
                                 <StyledBadge badgeContent={brand.cantProducts} color="default">
                                     <FormControlLabel
-                                        control={<Checkbox color="primary"/>}
+                                        control={
+                                            <Checkbox 
+                                                color="primary"
+                                                onChange={handleChangeCheckBox}
+                                                name={brand.name}
+                                            />}
                                         label={brand.name}
                                     />
                                 </StyledBadge>
@@ -189,7 +211,7 @@ export default function AccordionComponent() {
             <Divider />
                 <Accordion square expanded={expanded3 === 'panel1'} onChange={handleChange3('panel1')}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        <Typography>Precios</Typography>
+                        <Typography color="primary">Precios</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className={classes.margin} />
@@ -203,7 +225,7 @@ export default function AccordionComponent() {
             <Divider />
                 <Accordion square expanded={expanded4 === 'panel1'} onChange={handleChange4('panel1')}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        <Typography>Redime Tus Cupones</Typography>
+                        <Typography color="primary">Redime Tus Cupones</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <FormControlLabel
@@ -221,7 +243,7 @@ export default function AccordionComponent() {
             <Divider />
                 <Accordion square expanded={expanded5 === 'panel1'} onChange={handleChange5('panel1')}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        <Typography>Favoritos</Typography>
+                        <Typography color="primary">Favoritos</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div>
