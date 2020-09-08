@@ -9,8 +9,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import Divider from '@material-ui/core/Divider';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -20,6 +18,7 @@ import Slider from '@material-ui/core/Slider';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import Switch from '@material-ui/core/Switch';
+import ColorLensIcon from '@material-ui/icons/ColorLens';
 
 const useStyles = makeStyles((theme) => ({
     root1: {
@@ -90,6 +89,22 @@ const StyledBadge = withStyles((theme) => ({
 
 export default function AccordionComponent() {
     const classes = useStyles();
+    const [brands, setBrands] = React.useState([{name:"Tennis",cantProducts:"58"},
+                                                {name:"Naf Naf",cantProducts:"24"},
+                                                {name:"Nike",cantProducts:"154"},
+                                                {name:"Adidas",cantProducts:"231"},
+                                                {name:"Americanino",cantProducts:"75"},
+                                                {name:"Zara",cantProducts:"12"},
+                                                {name:"Tommy",cantProducts:"54"},
+                                                {name:"H&M",cantProducts:"73"},
+                                                {name:"Bershka",cantProducts:"17"},
+                                                ]);
+    const [categories, setCategories] = React.useState([{nameCategory:"Camisetas",items:["Color","Talla","Mangas"]},
+                                        {nameCategory:"Camisas",items:["Color","Talla","Mangas"]},
+                                        {nameCategory:"Chaquetas",items:["Color","Talla","Estilo"]},
+                                        {nameCategory:"Pantalones",items:["Color","Talla","Estilo"]},
+                                        {nameCategory:"Calzado",items:["Color","Talla","Tipo"]},
+                                        {nameCategory:"Accesorios",items:["Color","Estilo"]}]);
     const [expanded, setExpanded] = React.useState(false);
     const [expanded2, setExpanded2] = React.useState(false);
     const [expanded3, setExpanded3] = React.useState(false);
@@ -127,37 +142,27 @@ export default function AccordionComponent() {
                     </AccordionSummary>
                     <AccordionDetails>
                         <div>
-                        <Accordion>
+                        {categories.map(category => (
+                            <Accordion>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"
                                 >
-                                <Typography className={classes.heading}>Camisas</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                                >
-                                <Typography className={classes.heading}>Zapatos</Typography>
+                                <Typography className={classes.heading}>{category.nameCategory}</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <List>
-                                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                                    {category.items.map((text, index) => (
                                         <ListItem button key={text}>
-                                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                                        <ListItemIcon>{text === "Color" ? <ColorLensIcon /> : null}</ListItemIcon>
                                         <ListItemText primary={text} />
                                         </ListItem>
                                     ))}
                                 </List>
                             </AccordionDetails>
                         </Accordion>
+                        ))}
                         </div>
                     </AccordionDetails>
                 </Accordion>
@@ -168,38 +173,16 @@ export default function AccordionComponent() {
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className={classes.root1}>
-                            <div>
-                            <StyledBadge badgeContent={45} color="default">
-                                <FormControlLabel
-                                    control={<Checkbox color="primary"/>}
-                                    label="Adidas"
-                                />
-                            </StyledBadge>
-                            </div>
-                            <div>
-                            <StyledBadge badgeContent={65} color="default">
-                                <FormControlLabel
-                                    control={<Checkbox color="primary"/>}
-                                    label="Levis"
-                                />
-                            </StyledBadge>
-                            </div>
-                            <div>
-                            <StyledBadge badgeContent={134} color="default">
-                                <FormControlLabel
-                                    control={<Checkbox color="primary"/>}
-                                    label="Nike"
-                                />
-                            </StyledBadge>
-                            </div>
-                            <div>
-                            <StyledBadge badgeContent={21} color="default">
-                                <FormControlLabel
-                                    control={<Checkbox color="primary"/>}
-                                    label="Tennis"
-                                />
-                            </StyledBadge>
-                            </div>
+                            {brands.map(brand => (
+                                <div>
+                                <StyledBadge badgeContent={brand.cantProducts} color="default">
+                                    <FormControlLabel
+                                        control={<Checkbox color="primary"/>}
+                                        label={brand.name}
+                                    />
+                                </StyledBadge>
+                                </div>    
+                            ))}
                         </div>
                     </AccordionDetails>
                 </Accordion>
@@ -232,7 +215,6 @@ export default function AccordionComponent() {
                                 color="primary"
                             />
                             }
-                            
                         />
                     </AccordionDetails>
                 </Accordion> 
