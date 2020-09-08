@@ -61,6 +61,7 @@ export default function ListaCarrito(){
                     37.500
                 </div>
             </div>
+
         </div>
     );
     }
