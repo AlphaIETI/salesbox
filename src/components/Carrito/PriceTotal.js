@@ -30,6 +30,10 @@ export default function PriceTotal(){
             marginBottom: 10,
             marginTop:10,
         },
+        pos2: {
+            marginBottom: 10,
+            marginTop:25,
+        },
 
     });
     const classes = useStyles();
@@ -38,26 +42,50 @@ export default function PriceTotal(){
         <Card className={classes.root}>
             <CardContent>
                 <Typography className={classes.title} gutterBottom  >
-                    TOTAL DEL CARRITO
+                    <label>TOTAL DEL CARRITO</label>
                 </Typography>
-                <Typography variant="h5" component="h2" color="textSecondary" >
-                    Subtotal
-                </Typography>
+                <div className='division'>
+                    <div className="leftColumn">
+                        <Typography className={classes.pos2} variant="h5" component="h2" color="textSecondary" >
+                            <label>Subtotal</label>
+                        </Typography>
+                    </div>
+                    <div className="rightColumn">
+                        <Typography className={classes.pos} color="textSecondary">
+                            <label>$30.000</label>
+                        </Typography>
+                    </div>
+                </div>
                 <Divider/>
-                <Typography className={classes.pos} color="textSecondary">
-                    Envío
-                </Typography>
+                <div className='division'>
+                    <div className="leftColumn">
+                        <Typography className={classes.pos} color="textSecondary" >
+                            <label>Envío</label>
+                        </Typography>
+                    </div>
+                    <div className="rightColumn">
+                        <Typography className={classes.pos} color="textSecondary">
+                            <label>$7.000</label>
+                        </Typography>
+                    </div>
+                </div>
                 <Divider/>
-                <CardContent>
-                    <Typography className={classes.pos} variant="h5" component="p">
-                        Total
-                    </Typography>
-                </CardContent>
-
+                <div className='division'>
+                    <div className="leftColumn">
+                        <Typography className={classes.pos} variant="h5" component="p" >
+                            <label>Total</label>
+                        </Typography>
+                    </div>
+                    <div className="rightColumn">
+                        <Typography className={classes.pos} variant="h5" component="p" >
+                            <label>$37.000</label>
+                        </Typography>
+                    </div>
+                </div>
                 <Divider/>
                 <Typography variant="body2" component="p">
                     <Button fullWidth='True' size="large" color="primary" variant="contained">
-                        PAGAR
+                        <label>PAGAR</label>
                         <PaymentIcon/>
                     </Button>
                 </Typography>
