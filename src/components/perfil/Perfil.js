@@ -9,6 +9,8 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import { Container } from 'react-layout-components';
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
 export default function Perfil (){
 
@@ -42,8 +44,8 @@ export default function Perfil (){
 			height: theme.spacing(5),
 		},
 		large: {
-			width: theme.spacing(15),
-			height: theme.spacing(15),
+			width: theme.spacing(14),
+			height: theme.spacing(14),
 		},
 	}));
 	const classess = useStyless();
@@ -59,12 +61,16 @@ export default function Perfil (){
 	};
 	return (
 			<Accordion >
+				<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
 				<AccordionDetails  className="imagenacordion">
-
-					<Typography >
+					<Typography align={"center"} >
 						<h3> Nombre: </h3>
 						<h3> Sergio A Nuñez M </h3>
-						<Avatar className={classess.large}></Avatar>
+						<br/>
+						<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
+							<Avatar className={classess.large}></Avatar>
+						</Grid>
+						<br/>
 						<h3> Correo: </h3>
 						<h3 > c.hecho.28@hotmail.com </h3>
 						<h3> Puntos: </h3>
@@ -75,8 +81,8 @@ export default function Perfil (){
 						<h3> Dirección: </h3>
 						<h3> Cra 36A # 63C - 70 </h3>
 					</Typography>
-
 				</AccordionDetails>
+				</Grid>
 			</Accordion>
 	);
 }
