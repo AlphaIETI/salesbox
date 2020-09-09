@@ -28,6 +28,12 @@ const useStyles = makeStyles((theme) => ({
         fontSize: theme.typography.pxToRem(15),
         fontWeight: theme.typography.fontWeightRegular,
     },
+    general:{
+        backgroundColor:'#E5E7E7',
+    },
+    accordion:{
+        backgroundColor:'#E5E7E7',
+    }
 }));
 
 const StyledBadge = withStyles((theme) => ({
@@ -77,14 +83,8 @@ const StyledBadge = withStyles((theme) => ({
     },
   })(Slider);
 
-  function AirbnbThumbComponent(props) {
-    return (
-      <span {...props}>
-        <span className="bar" />
-        <span className="bar" />
-        <span className="bar" />
-      </span>
-    );
+  function valuetext(valuePrice) {
+    return `${valuePrice}°C`;
   }
 
 export default function AccordionComponent(props) {
@@ -150,10 +150,15 @@ export default function AccordionComponent(props) {
         }
     };
 
+    const [valuePrice, setValuePrice] = React.useState([0, 500000]);
+
+    const handleChangeValuePrice = (event, newValue) => {
+        setValuePrice(newValue);
+    };
     return (
-        <div>
+        <div className={classes.general}>
             <Divider />
-                <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')} borderColor="primary.main">
+                <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <Typography color="primary">Categorias</Typography>
                     </AccordionSummary>
@@ -184,7 +189,7 @@ export default function AccordionComponent(props) {
                     </AccordionDetails>
                 </Accordion>
             <Divider />
-                <Accordion square expanded={expanded2 === 'panel1'} onChange={handleChange2('panel1')}>
+                <Accordion square expanded={expanded2 === 'panel1'} onChange={handleChange2('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <Typography color="primary">Marcas</Typography>
                     </AccordionSummary>
@@ -209,21 +214,22 @@ export default function AccordionComponent(props) {
                     </AccordionDetails>
                 </Accordion>
             <Divider />
-                <Accordion square expanded={expanded3 === 'panel1'} onChange={handleChange3('panel1')}>
+                <Accordion square expanded={expanded3 === 'panel1'} onChange={handleChange3('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <Typography color="primary">Precios</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <div className={classes.margin} />
-                            <AirbnbSlider
-                                ThumbComponent={AirbnbThumbComponent}
-                                getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
-                                defaultValue={[0, 100]}
-                            />
+                        <Slider
+                            value={valuePrice}
+                            onChange={handleChangeValuePrice}
+                            valueLabelDisplay="auto"
+                            aria-labelledby="range-slider"
+                            getAriaValueText={valuetext}
+                        />
                     </AccordionDetails>
                 </Accordion>
             <Divider />
-                <Accordion square expanded={expanded4 === 'panel1'} onChange={handleChange4('panel1')}>
+                <Accordion square expanded={expanded4 === 'panel1'} onChange={handleChange4('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <Typography color="primary">Redime Tus Cupones</Typography>
                     </AccordionSummary>
@@ -241,7 +247,7 @@ export default function AccordionComponent(props) {
                     </AccordionDetails>
                 </Accordion> 
             <Divider />
-                <Accordion square expanded={expanded5 === 'panel1'} onChange={handleChange5('panel1')}>
+                <Accordion square expanded={expanded5 === 'panel1'} onChange={handleChange5('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <Typography color="primary">Favoritos</Typography>
                     </AccordionSummary>
