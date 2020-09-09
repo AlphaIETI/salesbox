@@ -13,11 +13,8 @@ import Perfil from "./components/perfil/Perfil";
 import Dashboard from './components/dashboard/Dashboard';
 import Producto from './components/producto/Producto';
 import ListaCarrito from "./components/Carrito/ListaCarrito";
-<<<<<<< HEAD
-import EstadoPedido from './components/estadoPedido/EstadoPedido';
 
-=======
->>>>>>> 6bbfc915382c9dd826379443dcb5f9e16d2b8681
+import EstadoPedido from './components/estadoPedido/EstadoPedido';
 
 function App() {
  
@@ -53,12 +50,9 @@ function App() {
           <Route exact path="/Producto">
             <Producto />
           </Route>
-<<<<<<< HEAD
           <Route exact path="/EstadoPedido">
             <EstadoPedido />
           </Route>
-=======
->>>>>>> 6bbfc915382c9dd826379443dcb5f9e16d2b8681
         </Switch>
       </div>
     </Router>
