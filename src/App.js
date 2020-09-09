@@ -12,6 +12,7 @@ import ListaCarrito from "./components/Carrito/ListaCarrito";
 import Perfil from "./components/perfil/Perfil";
 import Dashboard from './components/dashboard/Dashboard';
 import Carrito from "./components/Carrito/Carrito";
+import EstadoPedido from "./components/estadoPedido/EstadoPedido";
 
 
 function App() {
@@ -44,6 +45,9 @@ function App() {
           </Route>
           <Route exact path="/Dashboard">
             <Dashboard />
+          </Route>
+          <Route exact path="/EstadoPedido">
+            <EstadoPedido />
           </Route>
         </Switch>
       </div>
