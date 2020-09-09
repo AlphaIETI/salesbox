@@ -51,10 +51,13 @@ const useStyles = makeStyles((theme) => ({
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
-      },
-      drawerPaper: {
+    },
+    drawerPaper: {
         width: drawerWidth,
-      },
+    },
+    drawerHeader: {
+        backgroundColor: '#E5E7E7',
+    },
 }));
 
 export default function AppBarComponent(props) {
