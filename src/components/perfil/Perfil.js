@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
+import { Container } from 'react-layout-components';
 
 export default function Perfil (){
 
@@ -41,8 +42,8 @@ export default function Perfil (){
 			height: theme.spacing(5),
 		},
 		large: {
-			width: theme.spacing(12),
-			height: theme.spacing(12),
+			width: theme.spacing(15),
+			height: theme.spacing(15),
 		},
 	}));
 	const classess = useStyless();
@@ -57,19 +58,24 @@ export default function Perfil (){
 		setOpen(true);
 	};
 	return (
-			<Accordion  >
-				<AccordionDetails className="imagenacordion">
-					<Typography>
-						<h3> NOMBRE </h3>
-						<Avatar className={classess.large}>
-						</Avatar>
-						<h3> correo </h3>
-						<h3> Puntos </h3>
-						<h3> 0000 </h3>
-						<h3> INF </h3>
-						<h3> Tel: 00000 </h3>
-						<h3> Direccion </h3>
+			<Accordion >
+				<AccordionDetails  className="imagenacordion">
+
+					<Typography >
+						<h3> Nombre: </h3>
+						<h3> Sergio A Nuñez M </h3>
+						<Avatar className={classess.large}></Avatar>
+						<h3> Correo: </h3>
+						<h3 > c.hecho.28@hotmail.com </h3>
+						<h3> Puntos: </h3>
+						<h3> 0250 </h3>
+						<h3> INFORMACIÓN </h3>
+						<h3>Tel:</h3>
+						<h3>310 5726007 </h3>
+						<h3> Dirección: </h3>
+						<h3> Cra 36A # 63C - 70 </h3>
 					</Typography>
+
 				</AccordionDetails>
 			</Accordion>
 	);
