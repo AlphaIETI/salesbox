@@ -1,17 +1,22 @@
-.tablaPago {
+
+
+.division{
     display: flex;
     align-items: center; /* Use another value to see the result */
     width: 100%;
-    height: 100px;
-    background-color: #1faadb;
-    padding: 1em;
+    height:20%;
 }
 
-.DescriptionColumn{
-    background-color: #1faadb;
-    width: 50%;
-    height: 100%;
-    padding: 1em;
+.leftColumn{
+    display: flex;
+    align-items: center; /* Use another value to see the result */
+    width: 80%;
+    height: 20%;
 }
 
-
+.rightColumn{
+    display: flex;
+    align-items: center; /* Use another value to see the result */
+    width: 20%;
+    height: 20%;
+}
