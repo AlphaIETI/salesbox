@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     appBarSpacer: theme.mixins.toolbar,
 
     content: {
-        backgroundColor: '#D4E9EA',
+        backgroundColor: '#a9d7ee',
         flexGrow: 1,
         padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
