@@ -7,14 +7,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
-import HomeIcon from '@material-ui/icons/Home';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import Drawer from '@material-ui/core/Drawer';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import AccordionComponent from './accordion';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import Badge from '@material-ui/core/Badge';
 import Perfil from '../perfil/Perfil';
 import Avatar from "@material-ui/core/Avatar";
+import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 
 const drawerWidth = 240;
 
@@ -90,17 +92,30 @@ export default function AppBarComponent(props) {
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                 Salesbox
             </Typography>
+
+            <Link to="/Home">
+                <IconButton >
+                    <HomeOutlinedIcon fontSize="large" />
+                </IconButton>
+            </Link>
+            <Link to="/ShopCar">
+                <IconButton >
+                    <FavoriteBorderOutlinedIcon fontSize="large" />
+                </IconButton>
+            </Link>
             <Link to="/ShopCar">
                 <IconButton aria-label="cart">
-                    <Badge badgeContent={4} color="secondary">
-                        <ShoppingCartIcon fontSize="large"/>
+                    <Badge badgeContent={5} color="secondary">
+                        <ShoppingCartOutlinedIcon fontSize="large"/>
                     </Badge>
                 </IconButton> 
             </Link>
-            <Link to="/Home">
-                <IconButton >
-                    <HomeIcon fontSize="large" />
-                </IconButton>
+            <Link to="/EstadoPedido">
+                <IconButton aria-label="cart">
+                    <Badge badgeContent={2} color="secondary">
+                        <AssignmentOutlinedIcon fontSize="large"/>
+                    </Badge>
+                </IconButton> 
             </Link>
                 <div>
                     <IconButton onClick={handleDrawer2}>

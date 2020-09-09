@@ -153,7 +153,7 @@ export default function AccordionComponent(props) {
     return (
         <div>
             <Divider />
-                <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')} borderColor="primary.main">
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <Typography color="primary">Categorias</Typography>
                     </AccordionSummary>
