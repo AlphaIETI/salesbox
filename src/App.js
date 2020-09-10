@@ -12,7 +12,7 @@ import Carrito from "./components/Carrito/Carrito";
 import Perfil from "./components/perfil/Perfil";
 import Dashboard from './components/dashboard/Dashboard';
 import Producto from './components/producto/Producto';
-import ListaCarrito from "./components/Carrito/ListaCarrito";
+import Favorites from "./components/Favorites/Favorites";
 
 function App() {
  
@@ -33,11 +33,11 @@ function App() {
           <Route exact path="/Home">
             <Home />
           </Route>
-          <Route exact path="/shopcar">
+          <Route exact path="/Shopcar">
             <Carrito />
           </Route>
-          <Route exact path="/carlist">
-            <ListaCarrito />
+          <Route exact path="/Favorites">
+            <Favorites />
           </Route>
           <Route exact path="/Perfil">
             <Perfil />

@@ -3,14 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import {AccountCircle} from "@material-ui/icons";
 import {Link} from "react-router-dom";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import HomeIcon from "@material-ui/icons/Home";
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,9 +39,14 @@ export default function ButtonAppBar() {
                             </Badge>
                         </IconButton>
                     </Link>
-                    <Link to="/Login">
+                    <Link to="/Home">
                         <IconButton >
                             <HomeIcon fontSize="large" />
+                        </IconButton>
+                    </Link>
+                    <Link to="/Favorites">
+                        <IconButton >
+                            <FavoriteIcon fontSize="large" />
                         </IconButton>
                     </Link>
                 </Toolbar>
