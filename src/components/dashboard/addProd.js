@@ -50,65 +50,61 @@ export default function NewTask(props) {
             <QueueOutlinedIcon fontSize="large" />
         </IconButton>
         <Dialog open={openForm} onClose={handleClose} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title">New Task</DialogTitle>
+            <DialogTitle id="form-dialog-title">Agregar Producto Nuevo</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                Complete the data of the new task.
+                Complete los datos del producto.
                 </DialogContentText>
                 <TextField
                     required
                     autoFocus
                     margin="dense"
-                    id="desc"
-                    label="Description"
+                    id="nomb"
+                    label="Nombre"
                     variant="outlined"
                     type="text"
                     fullWidth
                 />
-                <InputLabel id="demo-mutiple-name-label">State</InputLabel>
+                <TextField
+                    required
+                    autoFocus
+                    margin="dense"
+                    id="desc"
+                    label="Descripción"
+                    variant="outlined"
+                    type="text"
+                    fullWidth
+                />
+                <TextField
+                    required
+                    autoFocus
+                    margin="dense"
+                    id="prec"
+                    label="Precio"
+                    variant="outlined"
+                    type="text"
+                    fullWidth
+                />
+                <InputLabel id="demo-mutiple-name-label">Tipo</InputLabel>
                 <Select
                     required
                     id="stateForm"
-                    onChange={handleChangeState}
                     labelId="demo-mutiple-name-label"
                     margin="dense"
                     displayEmpty
                     variant="outlined"
                     fullWidth
                 >
-                    <MenuItem value="In Progress">In Progress</MenuItem>
-                    <MenuItem value="Ready">Ready</MenuItem>
-                    <MenuItem value="Completed">Completed</MenuItem>
+                    <MenuItem value="In Progress">Tenis</MenuItem>
+                    <MenuItem value="Ready">Camisas</MenuItem>
+                    <MenuItem value="Completed">Accesorios</MenuItem>
                 </Select>
-                <TextField
-                    required
-                    autoFocus
-                    margin="dense"
-                    id="date"
-                    label="Date"
-                    type="date"
-                    defaultValue="2020-09-04"
-                    fullWidth
-                    InputLabelProps={{
-                    shrink: true,
-                    }}
-                />
-                <TextField
-                    required
-                    autoFocus
-                    margin="dense"
-                    id="resp"
-                    label="Responsible"
-                    variant="outlined"
-                    type="text"
-                    fullWidth
-                />
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose} color="primary">
                 Cancel
                 </Button>
-                <Button onClick={handleAdd} color="primary">
+                <Button onClick={handleClose} color="primary">
                 Add
                 </Button>
             </DialogActions>

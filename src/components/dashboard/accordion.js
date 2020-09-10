@@ -197,6 +197,8 @@ export default function AccordionComponent(props) {
                     </AccordionDetails>
                 </Accordion>
             <Divider />
+            {!localStorage.getItem('isAdmin') ?
+            <div>  
                 <Accordion square expanded={expanded4 === 'panel1'} onChange={handleChange4('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <Typography color="primary">Redime Tus Cupones</Typography>
@@ -232,7 +234,11 @@ export default function AccordionComponent(props) {
                         </Box>
                         </div>
                     </AccordionDetails>
-                </Accordion>                          
+                </Accordion>
+            </div>
+            :
+            null
+            }                        
         </div>
     );
 }
