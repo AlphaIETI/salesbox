@@ -1,5 +1,5 @@
 
-.App {
+.Appj {
   text-align: center;
 
 
@@ -7,18 +7,19 @@
 
 
 body {
-    background-image: linear-gradient(to right top, #0d2a39, #142f40, #1b3448, #22394f, #2a3e56, #294158, #27435b, #26465d, #1e4759, #1a4853, #1c484d, #214846);
+    background-image: linear-gradient(to right top, #a9d7ee, #a9d7ee, #a9d7ee);
   }
+
 p{
  font-size:0pt;
 }
 
-.App-logo {
+.App-logoj {
   height: 28vmin;
   pointer-events: none;
 }
 
-.textbox-dg
+.textbox-dgj
 {
     height:30px;
     width :270px;
@@ -35,7 +36,7 @@ p{
 
 
 
-.form-control:focus
+.form-controlj:focus
 {
 
     border: 1px solid #344d2e;
@@ -45,7 +46,7 @@ p{
     border-radius: 10px;
     box-shadow: 10px 10px 36px rgb(0,0,0,0.5), -13px -13px 23px rgba(255,255,255, 0.03);
 }
-.center{
+.centerj{
  text-align: center;
  position: relative;
  top: -80px}
@@ -73,7 +74,7 @@ p{
 	position:relative;
 	top:1px;
 }
-.myButton {
+.myButtonj {
 	box-shadow:inset 0px 0px 14px -3px #f2fadc;
 	background:linear-gradient(to bottom, #dbe6c4 5%, #7f857b 100%);
 	background-color:#dbe6c4;
@@ -89,16 +90,16 @@ p{
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ced9bf;
 }
-.myButton:hover {
+.myButtonj:hover {
 	background:linear-gradient(to bottom, #7f857b 5%, #dbe6c4 100%);
 	background-color:#7f857b;
 }
-.myButton:active {
+.myButtonj:active {
 	position:relative;
 	top:1px;
 }
 
-.underlineHover:after {
+.underlineHoverj:after {
   display: block;
   left: 0;
   bottom: -10px;
@@ -109,11 +110,11 @@ p{
   transition: width 0.2s;
 }
 
-.underlineHover:hover {
+.underlineHoverj:hover {
   color: #56baed;
 }
 
-.underlineHover:hover:after{
+.underlineHoverj:hover:after{
   width: 100%;
 }
 
@@ -123,7 +124,7 @@ Link {
   text-decoration: none;
   font-size: 20px;
 }
-.izq{
+.izqj{
   font-family: Arial, Helvetica, sans-serif;
    font-size: 20px;
 }
@@ -144,7 +145,7 @@ Link {
 
 }
 .social a i{
-	color: ##92a8d1;
+	color: #92a8d1;
     width: 55px;
     height: 55px;
     font-size: 25px;
@@ -191,7 +192,7 @@ transform: rotate(360deg);
 
 }
 
-.App-header {
+.App-headerj {
 
   min-height: 100vh;
   display: flex;

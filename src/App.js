@@ -16,8 +16,9 @@ import ListaCarrito from "./components/Carrito/ListaCarrito";
 import Coupons from './components/Coupons/Coupons';
 
 
+import EstadoPedido from './components/estadoPedido/EstadoPedido';
+
 function App() {
- 
 
   return (
     <Router>
@@ -52,6 +53,9 @@ function App() {
           </Route>
           <Route exact path="/Coupons">
             <Coupons />
+          </Route>
+          <Route exact path="/EstadoPedido">
+            <EstadoPedido />
           </Route>
         </Switch>
       </div>

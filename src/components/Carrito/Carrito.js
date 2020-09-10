@@ -16,7 +16,7 @@ export default function Carrito(){
             <br/>
             <br/>
             <br/>
-            <Container maxWidth="md">
+            <Container maxWidth="lg">
                 <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100hv' }}>
                     <ListaCarrito/>
                     <Divider />
@@ -31,6 +31,9 @@ export default function Carrito(){
                     <PriceTotal/>
                 </Typography>
             </Container>
+            <br/>
+            <br/>
+            <br/>
         </React.Fragment>
     );
 }

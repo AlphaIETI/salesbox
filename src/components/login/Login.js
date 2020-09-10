@@ -35,16 +35,16 @@ export default function Login (){
      };
     return (
     
-      <div className="center">
-         <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
+      <div className="centerj">
+         <header className="App-headerj">
+                <img src={logo} className="App-logoj" alt="logo" />
 
         <form >
 
            <input
               id="usuario"
               type="text"
-              className="form-control textbox-dg"
+              className="form-controlj textbox-dgj"
               placeholder="Usuario"
 
             />
@@ -52,13 +52,13 @@ export default function Login (){
             <input
               id="password"
               type="Password"
-              className="form-control textbox-dg"
+              className="form-controlj textbox-dgj"
               placeholder="Contraseña"
             />
              <br />
              <br />
          <Link to='/Home'>
-          <button  className ="myButton" onClick={handleOnClick}>
+          <button  className ="myButtonj" onClick={handleOnClick}>
             Login
           </button>
           </Link>
