@@ -111,7 +111,7 @@ export default function Register() {
             id="nombreEmpresa"
             style={{width:'400px', margin:'0 auto'}}
             type="text"
-            className="form-control textbox-dg"
+            className="form-controlj textbox-dgj"
             placeholder="Nombre Empresa"
           
             
@@ -122,7 +122,7 @@ export default function Register() {
             id="nit"
             style={{width:'400px', margin:'0 auto'}}
             type="text"
-            className="form-control textbox-dg"
+            className="form-controlj textbox-dgj"
             placeholder="Nit"
           
      
@@ -133,7 +133,7 @@ export default function Register() {
             id="emailEmpresa"
             style={{width:'400px', margin:'0 auto'}}
             type="email"
-            className="form-control textbox-dg"
+            className="form-controlj textbox-dgj"
             placeholder="Email"
           
      
@@ -144,7 +144,7 @@ export default function Register() {
             id="direccionEmpresa"
             style={{width:'400px', margin:'0 auto'}}
             type="text"
-            className="form-control textbox-dg"
+            className="form-controlj textbox-dgj"
             placeholder="Dirección"
            
           />
@@ -155,7 +155,7 @@ export default function Register() {
               id="usuarioEmpresa"
               style={{width:'400px', margin:'0 auto'}}
               type="text"
-              className="form-control textbox-dg"
+              className="form-controlj textbox-dgj"
               placeholder="Usuario"
             
             />
@@ -165,7 +165,7 @@ export default function Register() {
               id="contrasenaEmpresa"
               style={{width:'400px', margin:'0 auto'}}
               type="Password"
-              className="form-control textbox-dg"
+              className="form-controlj textbox-dgj"
               placeholder="Contraseña"
              
             />
@@ -182,7 +182,7 @@ export default function Register() {
            id ="nombreCliente"
            style={{width:'400px', margin:'0 auto'}}
             type="text"
-            className="form-control textbox-dg"
+            className="form-controlj textbox-dgj"
             placeholder="Nombre"
            
             
@@ -195,7 +195,7 @@ export default function Register() {
           id="email"
           style={{width:'400px', margin:'0 auto'}}
           type="email"
-          className="form-control textbox-dg"
+          className="form-controlj textbox-dgj"
           placeholder="Email"
           
            
@@ -207,7 +207,7 @@ export default function Register() {
             id="direccionCliente"
             style={{width:'400px', margin:'0 auto'}}
             type="text"
-            className="form-control textbox-dg"
+            className="form-controlj textbox-dgj"
             placeholder="Dirección"
           
         
@@ -219,7 +219,7 @@ export default function Register() {
              id="telefonoCliente"
              style={{width:'400px', margin:'0 auto'}}
              type="number"
-             className="form-control textbox-dg"
+             className="form-controlj textbox-dgj"
              placeholder="Telefono"
             
        
@@ -230,7 +230,7 @@ export default function Register() {
               id="fechaNacimiento"
               style={{width:'400px', margin:'0 auto'}}
               type="date"
-              className="form-control textbox-dg"
+              className="form-controlj textbox-dgj"
               placeholder="Fecha de nacimiento"
             
            
@@ -241,7 +241,7 @@ export default function Register() {
               id="usuarioCliente"
               style={{width:'400px', margin:'0 auto'}}
               type="text"
-              className="form-control textbox-dg"
+              className="form-controlj textbox-dgj"
               placeholder="Usuario"
              
            
@@ -253,7 +253,7 @@ export default function Register() {
               id="contrasenaCliente"
               style={{width:'400px', margin:'0 auto'}}
               type="Password"
-              className="form-control textbox-dg"
+              className="form-controlj textbox-dgj"
               placeholder="Contraseña"
          
             
@@ -261,7 +261,7 @@ export default function Register() {
             />
              <br />
              <br />
-          <button  class ="myButton2" onClick={handleOnClickCliente} style={{position: 'relative', top: '0px', right: '-140px'}}>
+          <button  class="myButton2" onClick={handleOnClickCliente} style={{position: 'relative', top: '0px', right: '-140px'}}>
             Registrarse
           </button>
 

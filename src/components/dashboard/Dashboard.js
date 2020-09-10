@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import clsx from 'clsx';
 import { makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +13,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardActions from '@material-ui/core/CardActions'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import IconButton from '@material-ui/core/IconButton';
+import Carousel from 'react-bootstrap/Carousel';
 
 //AppBar
 import AppBarComponent from './appBar';
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     appBarSpacer: theme.mixins.toolbar,
 
     content: {
-        backgroundColor: '#D4E9EA',
+        backgroundColor: '#a9d7ee',
         flexGrow: 1,
         padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
@@ -125,35 +127,79 @@ export default function Dashboard() {
                         {products.map(pr => { 
                             return (filMarca.length === 0 || filMarca.includes(pr.marca)) ?
                                 <Grid xs={12} sm={6} md={4} lg={3} xl={2} item>
-                                <Card>
-                                    <CardMedia
-                                        image={pr.img}
-                                        className={classes.media}
-                                    />
-                                    <CardContent className={classes.title}>
-                                        <Typography
-                                            variant="h5"
-                                            component="h5"
-                                            align="center"
+                                    <Card>
+                                        <div>
+                                            <CardMedia
+                                                image={pr.img}
+                                                className={classes.media}
+                                            >
+                                            </CardMedia>
+                                        </div>
+                                        <CardContent className={classes.title}>
+                                            <Typography
+                                                variant="h5"
+                                                component="h5"
+                                                align="center"
+                                            >
+                                                {pr.marca}
+                                                {pr.desc}
+                                                {pr.color}
+                                                {pr.talla}
+                                            </Typography>
+                                        </CardContent>
+                                        <CardActions
+                                            classes={{ spacing: classes.actionSpacer }}
                                         >
-                                            {pr.marca}
-                                            {pr.desc}
-                                            {pr.color}
-                                            {pr.talla}
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions
-                                        classes={{ spacing: classes.actionSpacer }}
-                                    >
-                                        <IconButton color="secondary">
-                                            Añadir  <AddShoppingCartIcon /> 
-                                        </IconButton>
-                                    </CardActions>
-                                </Card>
+                                            <IconButton color="secondary">
+                                                Añadir  <AddShoppingCartIcon /> 
+                                            </IconButton>
+                                        </CardActions>
+                                    </Card>
                                 </Grid>
                                 :
                                 null
                         })}
+                        {/*
+                        <div>
+                        <Carousel>
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src="https://static.nike.com/a/images/c_limit,w_318,f_auto/t_product_v1/6e60d68e-7aad-4a83-81f9-763ad9d1dbfd/nikecourt-air-max-wildcard-zapatillas-de-tenis-195lsm.jpg"
+                            alt="First slide"
+                            />
+                            <Carousel.Caption>
+                            <h3>First slide label</h3>
+                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src="https://dafitistaticco-a.akamaihd.net/p/naf-naf-5270-72895-1-product.jpg"
+                            alt="Third slide"
+                            />
+
+                            <Carousel.Caption>
+                            <h3>Second slide label</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src="https://i.pinimg.com/originals/84/5d/cf/845dcf73265e82d57f609a65c58955e8.jpg"
+                            alt="Third slide"
+                            />
+
+                            <Carousel.Caption>
+                            <h3>Third slide label</h3>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        </Carousel>
+                        </div>
+                         */}
                     </Grid>
                     <Box pt={4}>
                         <Copyright />
