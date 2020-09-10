@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import './font.css';
+import { Link } from 'react-router-dom';
 import { makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
@@ -124,19 +125,21 @@ export default function Dashboard(props) {
                         component="h2"
                         align="center"
                     >
-                        {view !== undefined ? view: ""}
+                        {view !== undefined ? view: "Nike"}
                     </Typography>
                     <Grid container spacing={2} className={classes.actionSpacer}>
                         {products.map(pr => { 
-                            return ((view === "#" && (filMarca.includes(pr.marca) || filMarca.length === 0)) || view === pr.marca ) ?
+                            return ((view === "#" && (filMarca.includes(pr.marca) || filMarca.length === 0)) || view === pr.marca ) || (localStorage.getItem('isAdmin') && pr.marca === "Nike") ?
                                 <Grid xs={12} sm={6} md={4} lg={4} xl={2} item>
                                     <Card>
                                         <div>
-                                            <CardMedia
-                                                image={pr.img}
-                                                className={classes.media}
-                                            >
-                                            </CardMedia>
+                                            <Link to="/Carrusel">
+                                                <CardMedia
+                                                    image={pr.img}
+                                                    className={classes.media}
+                                                >
+                                                </CardMedia>
+                                            </Link>
                                         </div>
                                         <CardContent className={classes.title}>
                                             <Typography
@@ -175,9 +178,11 @@ export default function Dashboard(props) {
                                         >
                                             {localStorage.getItem('isAdmin') ? 
                                                 <div>
-                                                <IconButton color="secondary" onClick={<AddProd/>}>
-                                                    Edit  <EditOutlinedIcon fontSize="small"/> 
-                                                </IconButton>
+                                                <Link to="/Carrusel">
+                                                    <IconButton color="secondary" onClick={<AddProd/>}>
+                                                        Edit  <EditOutlinedIcon fontSize="small"/> 
+                                                    </IconButton>
+                                                </Link>
                                                 </div>
                                                 :
                                                 <div>

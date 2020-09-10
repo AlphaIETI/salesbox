@@ -97,6 +97,7 @@ export default function AppBarComponent(props) {
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                 Salesbox
             </Typography>
+            {!localStorage.getItem('isAdmin') ?
             <div>
                 <Link to="/Home">
                     <IconButton >
@@ -104,6 +105,9 @@ export default function AppBarComponent(props) {
                     </IconButton>
                 </Link>
             </div>
+            :
+            null
+            }
             {localStorage.getItem('isLoggedIn') && !localStorage.getItem('isAdmin') && true ?
                 <div>
                     <Link to="/Favorites">
@@ -160,7 +164,7 @@ export default function AppBarComponent(props) {
                 <Perfil/>
                 :
                 <Route>
-                    <Redirect to='/Register'>
+                    <Redirect to='/Login'>
                     </Redirect>
                 </Route>
             }

@@ -13,12 +13,21 @@ export default function Login (){
   const[url,setUrl]= useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   
-   const responseGoogle = (response) =>{
+   const responseGoogleTrue = (response) =>{
     setName(response.profileObj.name);
     setEmail(response.profileObj.email);
     setUrl(response.profileObj.imageUrl);
+    alert("Puede iniciar sesión");
+    setIsLoggedIn(true);
+    localStorage.setItem('isLoggedIn',true);
     window.location='/Home';
-    
+  };
+
+  const responseGoogleFalse = (response) =>{
+    setName(response.profileObj.name);
+    setEmail(response.profileObj.email);
+    setUrl(response.profileObj.imageUrl);
+    alert("No está registrado");
   };
  
   
@@ -31,13 +40,13 @@ export default function Login (){
          alert("Puede iniciar sesión");
          setIsLoggedIn(true);
          localStorage.setItem('isLoggedIn',true);
-      }else if(document.getElementById("usuario").value==="admin" && document.getElementById("password").value==="admin"){
+      }else if(document.getElementById("usuario").value==="nike" && document.getElementById("password").value==="nike"){
         alert("Puede iniciar sesión");
         setIsLoggedIn(true);
         localStorage.setItem('isLoggedIn',true);
         localStorage.setItem('isAdmin',true);
       }else{
-         alert("No está registardo");
+         alert("No está registrado");
       }
      };
     return (
@@ -70,10 +79,20 @@ export default function Login (){
           <br></br>
           <br></br>
 
-          {isLoggedIn ?
+          {isLoggedIn && !localStorage.getItem('isAdmin')?
             <div>
             <Route>
               <Redirect to='/Home'>
+              </Redirect>
+            </Route>
+            </div>
+            :
+            null
+          }
+          {localStorage.getItem('isAdmin') && isLoggedIn ? 
+            <div>
+            <Route>
+              <Redirect to='/Dashboard'>
               </Redirect>
             </Route>
             </div>
@@ -86,8 +105,8 @@ export default function Login (){
           <GoogleLogin 
             
             clientId="262410189500-9m36t0v9h1fuat5chk5ft7ttdlp9quk8.apps.googleusercontent.com"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
+            onSuccess={responseGoogleTrue}
+            onFailure={responseGoogleFalse}
             cookiePolicy={'single_host_origin'}
           
            
