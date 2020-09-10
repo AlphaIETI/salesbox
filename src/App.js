@@ -11,17 +11,11 @@ import Home from './components/home/Home';
 import Carrito from "./components/Carrito/Carrito";
 import Perfil from "./components/perfil/Perfil";
 import Dashboard from './components/dashboard/Dashboard';
-<<<<<<< HEAD
-import Producto from './components/producto/Producto';
 import Favorites from "./components/Favorites/Favorites";
-=======
 import Carrusel from './components/producto/Carrusel';
-import ListaCarrito from "./components/Carrito/ListaCarrito";
 import Coupons from './components/Coupons/Coupons';
-
-
 import EstadoPedido from './components/estadoPedido/EstadoPedido';
->>>>>>> 29845aca49a7258a6c66021dcdb16d376765a945
+
 
 function App() {
 

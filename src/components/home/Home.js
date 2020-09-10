@@ -70,13 +70,10 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 300,
     width: '100%',
   },
-<<<<<<< HEAD
   content: {
     backgroundColor: '#D4E9EA',
       flex: '1 0 auto',
   },
-=======
->>>>>>> 29845aca49a7258a6c66021dcdb16d376765a945
   image: {
     position: 'relative',
     top: '50px',
