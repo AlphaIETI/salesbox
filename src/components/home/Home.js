@@ -70,9 +70,6 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 300,
     width: '100%',
   },
-  content: {
-    backgroundColor: '#D4E9EA',
-  },
   image: {
     position: 'relative',
     top: '50px',
@@ -127,7 +124,7 @@ const useStyles = makeStyles((theme) => ({
   },
   imageTitle: {
     position: 'relative',
-    padding: `${theme.spacing(17)}px ${theme.spacing(25)}px ${theme.spacing(1) + 6}px`,
+    padding: `${theme.spacing(17)}px ${theme.spacing(22.5)}px ${theme.spacing(1) + 6}px`,
   },
   imageMarked: {
     height: 3,
@@ -170,7 +167,7 @@ export default function ButtonBases() {
   return (
     <div className={classes.root}>
       <AppBarComponent />
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
         {images.map((image) => (
               <ButtonBase
                   focusRipple

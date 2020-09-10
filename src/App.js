@@ -11,7 +11,7 @@ import Home from './components/home/Home';
 import Carrito from "./components/Carrito/Carrito";
 import Perfil from "./components/perfil/Perfil";
 import Dashboard from './components/dashboard/Dashboard';
-import Producto from './components/producto/Producto';
+import Carrusel from './components/producto/Carrusel';
 import ListaCarrito from "./components/Carrito/ListaCarrito";
 
 import EstadoPedido from './components/estadoPedido/EstadoPedido';
@@ -46,8 +46,8 @@ function App() {
           <Route exact path="/Dashboard">
             <Dashboard />
           </Route>
-          <Route exact path="/Producto">
-            <Producto />
+          <Route exact path="/Carrusel">
+            <Carrusel />
           </Route>
           <Route exact path="/EstadoPedido">
             <EstadoPedido />
