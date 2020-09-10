@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../App.css";
 import logo from '../../logo.png';
-import { Link ,Redirect} from 'react-router-dom';
+import { Link ,Redirect,Route} from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import Home from "../home/Home";
 
@@ -11,6 +11,7 @@ export default function Login (){
   const [name,setName] = useState("");
   const [email,setEmail] = useState("");
   const[url,setUrl]= useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   
    const responseGoogle = (response) =>{
     setName(response.profileObj.name);
@@ -28,10 +29,16 @@ export default function Login (){
     const handleOnClick=(e) =>{
       if(document.getElementById("usuario").value===localStorage.getItem("usuario") && document.getElementById("password").value===localStorage.getItem("password")){
          alert("Puede iniciar sesión");
+         setIsLoggedIn(true);
+         localStorage.setItem('isLoggedIn',true);
+      }else if(document.getElementById("usuario").value==="admin" && document.getElementById("password").value==="admin"){
+        alert("Puede iniciar sesión");
+        setIsLoggedIn(true);
+        localStorage.setItem('isLoggedIn',true);
+        localStorage.setItem('isAdmin',true);
       }else{
          alert("No está registardo");
       }
-   
      };
     return (
     
@@ -57,13 +64,23 @@ export default function Login (){
             />
              <br />
              <br />
-         <Link to='/Home'>
           <button  className ="myButtonj" onClick={handleOnClick}>
             Login
           </button>
-          </Link>
           <br></br>
           <br></br>
+
+          {isLoggedIn ?
+            <div>
+            <Route>
+              <Redirect to='/Home'>
+              </Redirect>
+            </Route>
+            </div>
+            :
+            null
+          }
+          
 
        
           <GoogleLogin 
@@ -78,7 +95,7 @@ export default function Login (){
 
         />
         
-         
+                 
 
       
           <br />

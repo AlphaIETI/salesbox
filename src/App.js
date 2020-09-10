@@ -24,7 +24,7 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/">
-            <Login />
+            <Home />
           </Route>
           <Route exact path="/Login">
             <Login />
