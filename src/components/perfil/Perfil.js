@@ -64,22 +64,22 @@ export default function Perfil (){
 				<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
 				<AccordionDetails  className="imagenacordion">
 					<Typography align={"center"} >
-						<h3> Nombre: </h3>
-						<h3> Sergio A Nuñez M </h3>
+						<h4> Nombre </h4>
+						<h6> Sergio A Nuñez M </h6>
 						<br/>
 						<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
 							<Avatar className={classess.large}></Avatar>
 						</Grid>
 						<br/>
-						<h3> Correo: </h3>
-						<h3 > c.hecho.28@hotmail.com </h3>
-						<h3> Puntos: </h3>
-						<h3> 0250 </h3>
+						<h4> Correo </h4>
+						<h6> c.hecho.28@hotmail.com </h6>
+						<h4> Puntos </h4>
+						<h6> 0250 </h6>
 						<h3> INFORMACIÓN </h3>
-						<h3>Tel:</h3>
-						<h3>310 5726007 </h3>
-						<h3> Dirección: </h3>
-						<h3> Cra 36A # 63C - 70 </h3>
+						<h4>Tel</h4>
+						<h6>310 5726007 </h6>
+						<h4> Dirección </h4>
+						<h6> Cra 36A # 63C - 70 </h6>
 					</Typography>
 				</AccordionDetails>
 				</Grid>
