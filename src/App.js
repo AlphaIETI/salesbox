@@ -11,12 +11,11 @@ import Home from './components/home/Home';
 import Carrito from "./components/Carrito/Carrito";
 import Perfil from "./components/perfil/Perfil";
 import Dashboard from './components/dashboard/Dashboard';
+import Favorites from "./components/Favorites/Favorites";
 import Carrusel from './components/producto/Carrusel';
-import ListaCarrito from "./components/Carrito/ListaCarrito";
 import Coupons from './components/Coupons/Coupons';
-
-
 import EstadoPedido from './components/estadoPedido/EstadoPedido';
+
 
 function App() {
 
@@ -36,11 +35,11 @@ function App() {
           <Route exact path="/Home">
             <Home />
           </Route>
-          <Route exact path="/shopcar">
+          <Route exact path="/Shopcar">
             <Carrito />
           </Route>
-          <Route exact path="/carlist">
-            <ListaCarrito />
+          <Route exact path="/Favorites">
+            <Favorites />
           </Route>
           <Route exact path="/Perfil">
             <Perfil />

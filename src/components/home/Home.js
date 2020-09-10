@@ -70,6 +70,10 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 300,
     width: '100%',
   },
+  content: {
+    backgroundColor: '#D4E9EA',
+      flex: '1 0 auto',
+  },
   image: {
     position: 'relative',
     top: '50px',
@@ -141,9 +145,6 @@ const useStyles = makeStyles((theme) => ({
     details: {
         display: 'flex',
         flexDirection: 'column',
-    },
-    content: {
-        flex: '1 0 auto',
     },
     cover: {
         width: 151,
