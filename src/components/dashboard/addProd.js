@@ -13,6 +13,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import QueueOutlinedIcon from '@material-ui/icons/QueueOutlined';
 import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { OutlinedInput } from '@material-ui/core';
+import FormControl from '@material-ui/core/FormControl';
 
 const useStyles = makeStyles(() => ({
     add: {
@@ -29,6 +32,8 @@ export default function NewTask(props) {
     const [previewSource, setPreviewSource] = React.useState();
     const [file, setFile]= React.useState();
     const [urlImg, setUrlImg] = React.useState("");
+    const [typeProd, setTypeProd] = React.useState("");
+    const [colorProd, setColorProd] = React.useState("");
 
     const CLOUDINARY_URL_PREVIEW = 'https://res.cloudinary.com/dja8smkgx/image/upload/v';
     const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dja8smkgx/image/upload';
@@ -65,10 +70,37 @@ export default function NewTask(props) {
     };
 
     const handleAddProd = () => {
-        const pr = {marca:"Nike",desc:document.getElementById("desc").value,color:"Negro",talla:"40",img:urlImg};
-        props.editProducts(pr);
-        setPreviewSource();
-        setOpenForm(false);
+        //console.log(document.getElementById("descripcion").value);
+        //console.log(document.getElementById("precio").value);
+        //console.log(document.getElementById("descuento").value);
+        //console.log(typeProd);
+        //console.log(colorProd);
+        //console.log(document.getElementById("tallaProducto").value);
+        //console.log(urlImg);
+
+        if(typeProd === "Tenis"){
+            if(document.getElementById("descripcion").value !== "" && document.getElementById("precio").value !== "" && document.getElementById("descuento").value !== "" && colorProd !== "" && document.getElementById("tallaProducto").value !== "" && urlImg !== ""){
+                const pr = {marca:"Nike",desc:document.getElementById("descripcion").value,precio:document.getElementById("precio").value,descuento:document.getElementById("descuento").value,color:colorProd,talla:document.getElementById("tallaProducto").value,img:urlImg};
+                props.editProducts(pr);
+                setPreviewSource();
+                setTypeProd("");
+                setColorProd("");
+                setUrlImg("");
+                setOpenForm(false);
+            } else {
+                alert("No se completaron todos los datos del Producto.")
+            }
+        } else {
+            alert("No se selecciono el tipo del producto 'Solo funciona el tipo TENIS'")
+        }
+    }
+
+    const handleChangeTypeProd = (e) => {
+        setTypeProd(e.target.value);
+    }
+
+    const handleChangeColorProd = (e) => {
+        setColorProd(e.target.value);
     }
 
     const handleClickOpen = () => {
@@ -76,6 +108,7 @@ export default function NewTask(props) {
     };
 
     const handleClose = () => {
+        setPreviewSource();
         setOpenForm(false);
     };
 
@@ -90,74 +123,117 @@ export default function NewTask(props) {
                     <DialogContentText>
                     Complete los datos del producto.
                     </DialogContentText>
-
                     <TextField
                         required
                         autoFocus
                         margin="dense"
-                        id="nomb"
-                        label="Nombre"
-                        variant="outlined"
-                        type="text"
-                        fullWidth
-                    />
-                    <TextField
-                        required
-                        autoFocus
-                        margin="dense"
-                        id="desc"
+                        id="descripcion"
                         label="Descripción"
                         variant="outlined"
                         type="text"
+                        inputProps={{
+                            maxLength: 50,
+                          }}
                         fullWidth
                     />
+                    <FormControl fullWidth className={classes.margin} variant="outlined">
+                        <InputLabel htmlFor="precio">Precio</InputLabel>
+                        <OutlinedInput
+                            required
+                            fullWidth
+                            id="precio"
+                            type="number"
+                            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                            labelWidth={60}
+                        />
+                    </FormControl>
                     <TextField
                         required
                         autoFocus
                         margin="dense"
-                        id="prec"
-                        label="Precio"
+                        id="descuento"
+                        label=" % de descuento"
                         variant="outlined"
-                        type="text"
+                        type="number"
+                        InputProps={{ inputProps: { max: 100, min: 0 } }}
                         fullWidth
                     />
                     <InputLabel id="demo-mutiple-name-label">Tipo</InputLabel>
                     <Select
                         required
-                        id="stateForm"
+                        id="tipoProducto"
                         labelId="demo-mutiple-name-label"
                         margin="dense"
                         displayEmpty
                         variant="outlined"
+                        onChange={handleChangeTypeProd}
                         fullWidth
                     >
-                        <MenuItem value="In Progress">Tenis</MenuItem>
-                        <MenuItem value="Ready">Camisas</MenuItem>
-                        <MenuItem value="Completed">Accesorios</MenuItem>
+                        <MenuItem value="Tenis">Tenis</MenuItem>
+                        <MenuItem value="Camisas">Camisas</MenuItem>
+                        <MenuItem value="Accesorios">Accesorios</MenuItem>
                     </Select>
+
+                    {typeProd === "Tenis" ? 
+                        <div>
+                            <InputLabel id="demo-mutiple-name-label-color">Color</InputLabel>
+                            <Select
+                                required
+                                id="productoColor"
+                                labelId="demo-mutiple-name-label-color"
+                                margin="dense"
+                                displayEmpty
+                                variant="outlined"
+                                onChange={handleChangeColorProd}
+                                fullWidth
+                            >
+                                <MenuItem value="Negro">Negro</MenuItem>
+                                <MenuItem value="Blanco">Blanco</MenuItem>
+                                <MenuItem value="Rojo">Rojo</MenuItem>
+                                <MenuItem value="Azul">Azul</MenuItem>
+                                <MenuItem value="Gris">Gris</MenuItem>
+                                <MenuItem value="Verde">Verde</MenuItem>
+                            </Select>
+                            <TextField
+                                required
+                                autoFocus
+                                margin="dense"
+                                id="tallaProducto"
+                                label="Talla"
+                                variant="outlined"
+                                type="number"
+                                fullWidth
+                            />
+                        </div>
+                        :
+                        null
+                    }
 
                     <div>
                         <input 
+                            required
                             type="file" 
                             name="image" 
                             onChange={handleFileImg} 
                             value={fileInputState} 
                         />
                         {previewSource && (
-                            <img src={previewSource} alt="chosen" style={{height: '300px'}}/>
+                            <div>
+                                <img src={previewSource} alt="chosen" style={{height: '300px'}}/>
+                                <Button onClick={handleSubmit} color="primary">
+                                    Subir Imagen
+                                </Button>
+                            </div>
                         )}
-                        <Button onClick={handleSubmit} color="primary">
-                            Upload
-                        </Button>
                     </div>
 
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                    Cancel
+                    Cancelar
                     </Button>
                     <Button onClick={handleAddProd} color="primary">
-                    Add
+                    Agregar
                     </Button>
                 </DialogActions>
             </Dialog>
