@@ -13,9 +13,8 @@ import CardMedia from '@material-ui/core/CardMedia'
 import CardContent from '@material-ui/core/CardContent'
 import CardActions from '@material-ui/core/CardActions'
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import AddProd from './addProd';
 
 //AppBar
 import AppBarComponent from './appBar';
@@ -74,24 +73,24 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard(props) {
     const classes = useStyles();
     const [openDrawer,serOpenDrawer] = React.useState(false);
-    const products = [{marca:"Adidas",desc:"Descripción del producto",color:"Blanco",talla:"40",img:"https://assets.adidas.com/images/w_600,f_auto,q_auto/127dee93a5a64100865eaa4300b2edb1_9366/Tenis_Advantage_Base_Blanco_EE7692_01_standard.jpg"},
-                        {marca:"Adidas",desc:"Descripción del producto",color:"Rojo",talla:"40",img:"https://assets.adidas.com/images/w_600,f_auto,q_auto/e555117ecfcd47b3b991a97f00d44963_9366/Tenis_Runfalcon_Rojo_F36202_01_standard.jpg"},
-                        {marca:"Adidas",desc:"Descripción del producto",color:"Negro",talla:"40",img:"https://resources.sears.com.mx/medios-plazavip/fotos/productos_sears1/original/2997010.jpg"},
-                        {marca:"Nike",desc:"Descripción del producto",color:"Blanco",talla:"40",img:"https://static.nike.com/a/images/c_limit,w_318,f_auto/t_product_v1/6e60d68e-7aad-4a83-81f9-763ad9d1dbfd/nikecourt-air-max-wildcard-zapatillas-de-tenis-195lsm.jpg"},
-                        {marca:"Nike",desc:"Descripción del producto",color:"Rojo",talla:"40",img:"https://static.netshoes.com.mx/produtos/tenis-nike-downshifter-9/48/200-1230-048/200-1230-048_zoom1.jpg"},
-                        {marca:"Nike",desc:"Descripción del producto",color:"Azul",talla:"40",img:"https://static.netshoes.com.ar/produtos/zapatillas-nike-nightgaze/29/001-1397-029/001-1397-029_zoom1.jpg?ims=544x"},
-                        {marca:"Nike",desc:"Descripción del producto",color:"Azul",talla:"40",img:"https://shoesandmorebdn.com/1906-large_default/nike-air-jordan-1-one-mid-azules.jpg"},
-                        {marca:"Tommy",desc:"Descripción del producto",color:"Negro",talla:"40",img:"https://www.gamepals.co/1468-thickbox_default/camiseta-tommy-hilfiger-color-negro.jpg"},
-                        {marca:"Tommy",desc:"Descripción del producto",color:"Azul",talla:"40",img:"https://images-na.ssl-images-amazon.com/images/I/91p%2B900rABL._AC_UY500_.jpg"},
-                        {marca:"H&M",desc:"Descripción del producto",color:"Blanco",talla:"40",img:"https://i.pinimg.com/originals/84/5d/cf/845dcf73265e82d57f609a65c58955e8.jpg"},
-                        {marca:"H&M",desc:"Descripción del producto",color:"Verde",talla:"40",img:"https://lp2.hm.com/hmgoepprod?set=quality[79],source[/4f/d6/4fd6adeba7794c8a83cf10f40db63c25c8481c4f.jpg],origin[dam],category[men_hoodiessweatshirts_hoodies],type[DESCRIPTIVESTILLLIFE],res[m],hmver[2]&call=url[file:/product/main]"},
-                        {marca:"Americanino",desc:"Descripción del producto",color:"Verde",talla:"40",img:"https://dafitistaticco-a.akamaihd.net/p/americanino-0306-72327-1-product.jpg"},
-                        {marca:"Americanino",desc:"Descripción del producto",color:"Blanco",talla:"40",img:"https://i.pinimg.com/originals/0c/ca/13/0cca13c81a2d95f61f6d0b932f10db05.jpg"},
-                        {marca:"Zara",desc:"Descripción del producto",color:"Negro",talla:"40",img:"https://static.zara.net/photos///2020/V/1/2/p/5085/002/040/2/w/615/5085002040_2_2_1.jpg?ts=1580307759304"},
-                        {marca:"Bershka",desc:"Descripción del producto",color:"Blanco",talla:"40",img:"https://aws.glamour.es/prod/designs/v1/assets/666x1000/496022.jpg"},
-                        {marca:"Naf Naf",desc:"Descripción del producto",color:"Blanco",talla:"40",img:"https://dafitistaticco-a.akamaihd.net/p/naf-naf-7591-87795-1-product.jpg"},
-                        {marca:"Naf Naf",desc:"Descripción del producto",color:"Negro",talla:"40",img:"https://dafitistaticco-a.akamaihd.net/p/naf-naf-5270-72895-1-product.jpg"},
-                        {marca:"Tennis",desc:"Descripción del producto",color:"Rojo",talla:"40",img:"https://tennis.vteximg.com.br/arquivos/ids/736802-275-420/CAM0000753_ROJO-2.jpg?v=636989117405670000"},];
+    const [products, setProducts] = React.useState([{marca:"Adidas",desc:"Descripción del producto",precio:"134000",descuento:"30",color:"Blanco",talla:"40",img:"https://assets.adidas.com/images/w_600,f_auto,q_auto/127dee93a5a64100865eaa4300b2edb1_9366/Tenis_Advantage_Base_Blanco_EE7692_01_standard.jpg"},
+                        {marca:"Adidas",desc:"Descripción del producto",precio:"150000",descuento:"20",color:"Rojo",talla:"40",img:"https://assets.adidas.com/images/w_600,f_auto,q_auto/e555117ecfcd47b3b991a97f00d44963_9366/Tenis_Runfalcon_Rojo_F36202_01_standard.jpg"},
+                        {marca:"Adidas",desc:"Descripción del producto",precio:"250000",descuento:"25",color:"Negro",talla:"40",img:"https://resources.sears.com.mx/medios-plazavip/fotos/productos_sears1/original/2997010.jpg"},
+                        {marca:"Nike",desc:"Descripción del producto",precio:"100000",descuento:"5",color:"Blanco",talla:"40",img:"https://static.nike.com/a/images/c_limit,w_318,f_auto/t_product_v1/6e60d68e-7aad-4a83-81f9-763ad9d1dbfd/nikecourt-air-max-wildcard-zapatillas-de-tenis-195lsm.jpg"},
+                        {marca:"Nike",desc:"Descripción del producto",precio:"210000",descuento:"50",color:"Rojo",talla:"40",img:"https://static.netshoes.com.mx/produtos/tenis-nike-downshifter-9/48/200-1230-048/200-1230-048_zoom1.jpg"},
+                        {marca:"Nike",desc:"Descripción del producto",precio:"350000",descuento:"12",color:"Azul",talla:"40",img:"https://static.netshoes.com.ar/produtos/zapatillas-nike-nightgaze/29/001-1397-029/001-1397-029_zoom1.jpg?ims=544x"},
+                        {marca:"Nike",desc:"Descripción del producto",precio:"120000",descuento:"14",color:"Azul",talla:"40",img:"https://shoesandmorebdn.com/1906-large_default/nike-air-jordan-1-one-mid-azules.jpg"},
+                        {marca:"Tommy",desc:"Descripción del producto",precio:"140000",descuento:"20",color:"Negro",talla:"40",img:"https://www.gamepals.co/1468-thickbox_default/camiseta-tommy-hilfiger-color-negro.jpg"},
+                        {marca:"Tommy",desc:"Descripción del producto",precio:"150000",descuento:"35",color:"Azul",talla:"40",img:"https://images-na.ssl-images-amazon.com/images/I/91p%2B900rABL._AC_UY500_.jpg"},
+                        {marca:"H&M",desc:"Descripción del producto",precio:"150000",descuento:"20",color:"Blanco",talla:"40",img:"https://i.pinimg.com/originals/84/5d/cf/845dcf73265e82d57f609a65c58955e8.jpg"},
+                        {marca:"H&M",desc:"Descripción del producto",precio:"240000",descuento:"40",color:"Verde",talla:"40",img:"https://lp2.hm.com/hmgoepprod?set=quality[79],source[/4f/d6/4fd6adeba7794c8a83cf10f40db63c25c8481c4f.jpg],origin[dam],category[men_hoodiessweatshirts_hoodies],type[DESCRIPTIVESTILLLIFE],res[m],hmver[2]&call=url[file:/product/main]"},
+                        {marca:"Americanino",desc:"Descripción del producto",precio:"150000",descuento:"20",color:"Verde",talla:"40",img:"https://dafitistaticco-a.akamaihd.net/p/americanino-0306-72327-1-product.jpg"},
+                        {marca:"Americanino",desc:"Descripción del producto",precio:"280000",descuento:"10",color:"Blanco",talla:"40",img:"https://i.pinimg.com/originals/0c/ca/13/0cca13c81a2d95f61f6d0b932f10db05.jpg"},
+                        {marca:"Zara",desc:"Descripción del producto",precio:"220000",descuento:"25",color:"Negro",talla:"40",img:"https://static.zara.net/photos///2020/V/1/2/p/5085/002/040/2/w/615/5085002040_2_2_1.jpg?ts=1580307759304"},
+                        {marca:"Bershka",desc:"Descripción del producto",precio:"240000",descuento:"25",color:"Blanco",talla:"40",img:"https://aws.glamour.es/prod/designs/v1/assets/666x1000/496022.jpg"},
+                        {marca:"Naf Naf",desc:"Descripción del producto",precio:"150000",descuento:"35",color:"Blanco",talla:"40",img:"https://dafitistaticco-a.akamaihd.net/p/naf-naf-7591-87795-1-product.jpg"},
+                        {marca:"Naf Naf",desc:"Descripción del producto",precio:"310000",descuento:"55",color:"Negro",talla:"40",img:"https://dafitistaticco-a.akamaihd.net/p/naf-naf-5270-72895-1-product.jpg"},
+                        {marca:"Tennis",desc:"Descripción del producto",precio:"520000",descuento:"70",color:"Rojo",talla:"40",img:"https://tennis.vteximg.com.br/arquivos/ids/736802-275-420/CAM0000753_ROJO-2.jpg?v=636989117405670000"},]);
 
     const [filMarca,setFilMarca] = React.useState([]);
 
@@ -109,10 +108,14 @@ export default function Dashboard(props) {
         serOpenDrawer(ans);
     };
 
+    const editProducts = (pr) => {
+        setProducts(products.concat(pr));
+    }
+
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBarComponent funStateDrawer={handleChangeStateDrawer} funFilMarca={handleChangeFilMarca} funDelFilMarca={handleChangeDeleteFilMarca} view={view}/>
+            <AppBarComponent funStateDrawer={handleChangeStateDrawer} funFilMarca={handleChangeFilMarca} funDelFilMarca={handleChangeDeleteFilMarca} view={view} editProducts={editProducts}/>
             <main
                 className={clsx(classes.content, {
                 [classes.contentShift]: openDrawer,
@@ -130,7 +133,7 @@ export default function Dashboard(props) {
                     <Grid container spacing={2} className={classes.actionSpacer}>
                         {products.map(pr => { 
                             return ((view === "#" && (filMarca.includes(pr.marca) || filMarca.length === 0)) || view === pr.marca ) || (localStorage.getItem('isAdmin') && pr.marca === "Nike") ?
-                                <Grid xs={12} sm={6} md={4} lg={4} xl={2} item>
+                                <Grid key={products.indexOf(pr)} xs={12} sm={6} md={4} lg={4} xl={2} item>
                                     <Card>
                                         <div>
                                             <Link to="/Carrusel">
@@ -148,9 +151,15 @@ export default function Dashboard(props) {
                                                 align="center"
                                             >
                                                 {pr.marca}
-                                                {pr.desc}
-                                                {pr.color}
-                                                {pr.talla}
+                                                <br/>
+                                                Descripción: {pr.desc}
+                                                <br/>
+                                                Color: {pr.color}
+                                                Talla: {pr.talla}
+                                                <br/>
+                                                Precio: {pr.precio}
+                                                Descuento: {pr.descuento}%
+                                                Precio total: {pr.precio - (pr.precio * (pr.descuento/100))}
                                             </Typography>
                                             {/*
                                             <div className="descProd">
@@ -179,16 +188,16 @@ export default function Dashboard(props) {
                                             {localStorage.getItem('isAdmin') ? 
                                                 <div>
                                                 <Link to="/Carrusel">
-                                                    <IconButton color="secondary" onClick={<AddProd/>}>
+                                                    <Button color="secondary" >
                                                         Edit  <EditOutlinedIcon fontSize="small"/> 
-                                                    </IconButton>
+                                                    </Button>
                                                 </Link>
                                                 </div>
                                                 :
                                                 <div>
-                                                <IconButton color="secondary" >
+                                                <Button color="secondary" >
                                                     Añadir  <AddShoppingCartOutlinedIcon fontSize="small"/> 
-                                                </IconButton>
+                                                </Button>
                                                 </div>
                                             }
                                         </CardActions>

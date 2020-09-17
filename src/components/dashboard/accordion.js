@@ -129,25 +129,25 @@ export default function AccordionComponent(props) {
                     <AccordionDetails>
                         <div>
                         {categories.map(category => (
-                            <Accordion>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                                >
-                                <Typography className={classes.heading}>{category.nameCategory}</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <List>
-                                    {category.items.map((text, index) => (
-                                        <ListItem button key={text}>
-                                        <ListItemIcon>{text === "Color" ? <ColorLensIcon /> : null}</ListItemIcon>
-                                        <ListItemText primary={text} />
-                                        </ListItem>
-                                    ))}
-                                </List>
-                            </AccordionDetails>
-                        </Accordion>
+                            <Accordion key={categories.indexOf(category)}>
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel1a-content"
+                                    id="panel1a-header"
+                                    >
+                                    <Typography className={classes.heading}>{category.nameCategory}</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <List>
+                                        {category.items.map((text, index) => (
+                                            <ListItem button key={text}>
+                                            <ListItemIcon>{text === "Color" ? <ColorLensIcon /> : null}</ListItemIcon>
+                                            <ListItemText primary={text} />
+                                            </ListItem>
+                                        ))}
+                                    </List>
+                                </AccordionDetails>
+                            </Accordion>
                         ))}
                         </div>
                     </AccordionDetails>
@@ -161,7 +161,7 @@ export default function AccordionComponent(props) {
                     <AccordionDetails>
                         <div className={classes.root1}>
                             {brands.map(brand => (
-                                <div>
+                                <div key={brands.indexOf(brand)}>
                                 <StyledBadge badgeContent={brand.cantProducts} color="default">
                                     <FormControlLabel
                                         control={
