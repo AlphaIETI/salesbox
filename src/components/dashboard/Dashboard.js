@@ -13,9 +13,8 @@ import CardMedia from '@material-ui/core/CardMedia'
 import CardContent from '@material-ui/core/CardContent'
 import CardActions from '@material-ui/core/CardActions'
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import AddProd from './addProd';
 
 //AppBar
 import AppBarComponent from './appBar';
@@ -74,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard(props) {
     const classes = useStyles();
     const [openDrawer,serOpenDrawer] = React.useState(false);
-    const products = [{marca:"Adidas",desc:"Descripción del producto",color:"Blanco",talla:"40",img:"https://assets.adidas.com/images/w_600,f_auto,q_auto/127dee93a5a64100865eaa4300b2edb1_9366/Tenis_Advantage_Base_Blanco_EE7692_01_standard.jpg"},
+    const [products, setProducts] = React.useState([{marca:"Adidas",desc:"Descripción del producto",color:"Blanco",talla:"40",img:"https://assets.adidas.com/images/w_600,f_auto,q_auto/127dee93a5a64100865eaa4300b2edb1_9366/Tenis_Advantage_Base_Blanco_EE7692_01_standard.jpg"},
                         {marca:"Adidas",desc:"Descripción del producto",color:"Rojo",talla:"40",img:"https://assets.adidas.com/images/w_600,f_auto,q_auto/e555117ecfcd47b3b991a97f00d44963_9366/Tenis_Runfalcon_Rojo_F36202_01_standard.jpg"},
                         {marca:"Adidas",desc:"Descripción del producto",color:"Negro",talla:"40",img:"https://resources.sears.com.mx/medios-plazavip/fotos/productos_sears1/original/2997010.jpg"},
                         {marca:"Nike",desc:"Descripción del producto",color:"Blanco",talla:"40",img:"https://static.nike.com/a/images/c_limit,w_318,f_auto/t_product_v1/6e60d68e-7aad-4a83-81f9-763ad9d1dbfd/nikecourt-air-max-wildcard-zapatillas-de-tenis-195lsm.jpg"},
@@ -91,7 +90,7 @@ export default function Dashboard(props) {
                         {marca:"Bershka",desc:"Descripción del producto",color:"Blanco",talla:"40",img:"https://aws.glamour.es/prod/designs/v1/assets/666x1000/496022.jpg"},
                         {marca:"Naf Naf",desc:"Descripción del producto",color:"Blanco",talla:"40",img:"https://dafitistaticco-a.akamaihd.net/p/naf-naf-7591-87795-1-product.jpg"},
                         {marca:"Naf Naf",desc:"Descripción del producto",color:"Negro",talla:"40",img:"https://dafitistaticco-a.akamaihd.net/p/naf-naf-5270-72895-1-product.jpg"},
-                        {marca:"Tennis",desc:"Descripción del producto",color:"Rojo",talla:"40",img:"https://tennis.vteximg.com.br/arquivos/ids/736802-275-420/CAM0000753_ROJO-2.jpg?v=636989117405670000"},];
+                        {marca:"Tennis",desc:"Descripción del producto",color:"Rojo",talla:"40",img:"https://tennis.vteximg.com.br/arquivos/ids/736802-275-420/CAM0000753_ROJO-2.jpg?v=636989117405670000"},]);
 
     const [filMarca,setFilMarca] = React.useState([]);
 
@@ -109,10 +108,14 @@ export default function Dashboard(props) {
         serOpenDrawer(ans);
     };
 
+    const editProducts = (pr) => {
+        setProducts(products.concat(pr));
+    }
+
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBarComponent funStateDrawer={handleChangeStateDrawer} funFilMarca={handleChangeFilMarca} funDelFilMarca={handleChangeDeleteFilMarca} view={view}/>
+            <AppBarComponent funStateDrawer={handleChangeStateDrawer} funFilMarca={handleChangeFilMarca} funDelFilMarca={handleChangeDeleteFilMarca} view={view} editProducts={editProducts}/>
             <main
                 className={clsx(classes.content, {
                 [classes.contentShift]: openDrawer,
@@ -130,7 +133,7 @@ export default function Dashboard(props) {
                     <Grid container spacing={2} className={classes.actionSpacer}>
                         {products.map(pr => { 
                             return ((view === "#" && (filMarca.includes(pr.marca) || filMarca.length === 0)) || view === pr.marca ) || (localStorage.getItem('isAdmin') && pr.marca === "Nike") ?
-                                <Grid xs={12} sm={6} md={4} lg={4} xl={2} item>
+                                <Grid key={products.indexOf(pr)} xs={12} sm={6} md={4} lg={4} xl={2} item>
                                     <Card>
                                         <div>
                                             <Link to="/Carrusel">
@@ -179,16 +182,16 @@ export default function Dashboard(props) {
                                             {localStorage.getItem('isAdmin') ? 
                                                 <div>
                                                 <Link to="/Carrusel">
-                                                    <IconButton color="secondary" onClick={<AddProd/>}>
+                                                    <Button color="secondary" >
                                                         Edit  <EditOutlinedIcon fontSize="small"/> 
-                                                    </IconButton>
+                                                    </Button>
                                                 </Link>
                                                 </div>
                                                 :
                                                 <div>
-                                                <IconButton color="secondary" >
+                                                <Button color="secondary" >
                                                     Añadir  <AddShoppingCartOutlinedIcon fontSize="small"/> 
-                                                </IconButton>
+                                                </Button>
                                                 </div>
                                             }
                                         </CardActions>

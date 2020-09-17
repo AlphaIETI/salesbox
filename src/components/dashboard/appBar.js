@@ -142,7 +142,7 @@ export default function AppBarComponent(props) {
             }
             {localStorage.getItem('isAdmin') ? 
                 <div>
-                    <AddProd/>
+                    <AddProd editProducts={props.editProducts}/>
                 </div>
                 :
                 null
