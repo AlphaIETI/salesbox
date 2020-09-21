@@ -42,3 +42,45 @@
     font-size:2em;
     color:black;
 }
+.precioOrigi {
+    font-family: AdihausDIN,Helvetica,Arial,sans-serif;
+    color: #767677;
+    text-decoration: line-through;
+    font-weight: 500;
+}
+.precioTotal {
+    font-family: AdihausDIN,Helvetica,Arial,sans-serif;
+    color: #e32b2b;
+    margin-right: 10px;
+    font-weight: 700;
+}
+.porDescuento {
+    display: inline-block;
+    font-size: 12px;
+    max-width: 90%;
+    padding: 1px 2px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    transform: translate(-100%) rotate(270deg);
+    transform-origin: right top;
+    white-space: nowrap;
+    background-color: #fff;
+    color: #e32b2b;
+    font-weight: 700;
+    transition: transform .6s;
+}
+.nombreMarca {
+    line-height: 38px;
+    letter-spacing: 1.5px;
+    color: black;
+}
+.descriptionText {
+    font-family: AdihausDIN,Helvetica,Arial,sans-serif;
+    color: #767677;
+    font-weight: 500;
+}
+.centerText {
+    align-content: center;
+    
+}
