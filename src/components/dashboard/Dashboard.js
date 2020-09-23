@@ -124,6 +124,7 @@ export default function Dashboard(props) {
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="md" className={classes.container}>
                     <Typography
+                        className="descProd6"
                         variant="h3"
                         component="h2"
                         align="center"
