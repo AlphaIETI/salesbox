@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -17,16 +16,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { OutlinedInput } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 
-const useStyles = makeStyles(() => ({
-    add: {
-      position: 'relative',
-      bottom: '5%',
-      left: '47%',
-    },
-}));
-
-export default function NewTask(props) {
-    const classes = useStyles();
+export default function NewProd(props) {
     const [openForm, setOpenForm] = React.useState(false);
     const [fileInputState, setFileInputState] = React.useState('');
     const [previewSource, setPreviewSource] = React.useState();
@@ -136,7 +126,7 @@ export default function NewTask(props) {
                           }}
                         fullWidth
                     />
-                    <FormControl fullWidth className={classes.margin} variant="outlined">
+                    <FormControl fullWidth variant="outlined">
                         <InputLabel htmlFor="precio">Precio</InputLabel>
                         <OutlinedInput
                             required

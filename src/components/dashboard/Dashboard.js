@@ -124,11 +124,12 @@ export default function Dashboard(props) {
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="md" className={classes.container}>
                     <Typography
+                        className="descProd6"
                         variant="h3"
                         component="h2"
                         align="center"
                     >
-                        {view !== undefined ? view: "Nike"}
+                        {view !== undefined && view !== "#" ? view: ""}
                     </Typography>
                     <Grid container spacing={2} className={classes.actionSpacer}>
                         {products.map(pr => { 
@@ -141,26 +142,31 @@ export default function Dashboard(props) {
                                                     image={pr.img}
                                                     className={classes.media}
                                                 >
+                                                    <span className='porDescuento'>
+                                                        - {pr.descuento} %
+                                                    </span>
                                                 </CardMedia>
                                             </Link>
                                         </div>
                                         <CardContent className={classes.title}>
-                                            <Typography
-                                                variant="h5"
-                                                component="h5"
-                                                align="center"
-                                            >
-                                                {pr.marca}
-                                                <br/>
-                                                Descripción: {pr.desc}
-                                                <br/>
-                                                Color: {pr.color}
-                                                Talla: {pr.talla}
-                                                <br/>
-                                                Precio: {pr.precio}
-                                                Descuento: {pr.descuento}%
-                                                Precio total: {pr.precio - (pr.precio * (pr.descuento/100))}
-                                            </Typography>
+                                            {view === "#" ? 
+                                                <div className="nombreMarca">
+                                                    <h3>{pr.marca}</h3> 
+                                                </div>
+                                                :
+                                                null
+                                            }
+                                            <div className="descriptionText">
+                                                {pr.desc}
+                                            </div>
+                                            <div className="centerText" >
+                                                <span className="precioTotal" >
+                                                    ${pr.precio - (pr.precio * (pr.descuento/100))}
+                                                </span>
+                                                <span className="precioOrigi">
+                                                    ${pr.precio}
+                                                </span>                                                                                                        
+                                            </div>
                                             {/*
                                             <div className="descProd">
                                                 {pr.desc}
