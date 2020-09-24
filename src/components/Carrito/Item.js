@@ -1,10 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Card,CardImg, CardText, CardBody,CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import saco from '../../img/saco.jpg';
 
 export default function Item(){
 
+    const [cantidad, setcantidad] = useState(1);
+
+    function restaCantidad(){
+        if(cantidad)
+        setcantidad(cantidad-1);
+    }
+
+    function sumaCantidad(){
+        setcantidad(cantidad+1);
+    }
     const imageItem = {
         padding:'10px'
     }
@@ -39,11 +49,10 @@ export default function Item(){
                 <Col style={imageItem}>
                     <CardBody >
                         <ButtonGroup>
-                            <Button>-</Button>
-                            
-                            <Button>+</Button>
-                        </ButtonGroup>
-                        
+                            <Button onClick={restaCantidad}>-</Button>
+                                <span style={{color:"black", fontSize:'25px', width:'25px', textAlign:'center'}}>{cantidad}</span>
+                            <Button onClick={sumaCantidad}>+</Button>
+                        </ButtonGroup> 
                     </CardBody>
                 </Col>
             </Row>
