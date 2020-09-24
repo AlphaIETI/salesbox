@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Grid, Container} from '@material-ui/core';
 import GeneralAppBar from '../Carrito/GeneralAppBar';
+import CouponsInfo from "./CouponsInfo";
 
 
 
@@ -70,6 +71,7 @@ export default function Coupons() {
           <Typography variant="subtitle" color="textSecondary">
            {c.duracion}
           </Typography>
+          <CouponsInfo></CouponsInfo>
         </CardContent>
       </CardActionArea>
      
