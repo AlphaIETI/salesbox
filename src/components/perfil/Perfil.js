@@ -11,6 +11,8 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import { Container } from 'react-layout-components';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Button from '@material-ui/core/Button';
 
 export default function Perfil (){
 
@@ -59,6 +61,9 @@ export default function Perfil (){
 	const handleDrawerOpen = () => {
 		setOpen(true);
 	};
+	const handleLogout = () => {
+		localStorage.clear();
+	};
 	return (
 			<Accordion >
 				<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
@@ -82,6 +87,17 @@ export default function Perfil (){
 						<h6> Cra 36A # 63C - 70 </h6>
 					</Typography>
 				</AccordionDetails>
+					<Button
+						onClick={handleLogout}
+						variant="contained"
+						fullWidth
+						color="primary"
+						startIcon={<ExitToAppIcon />}
+					>
+						<Typography variant="h9">
+							Logout
+						</Typography>
+					</Button>
 				</Grid>
 			</Accordion>
 	);

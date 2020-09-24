@@ -11,6 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
 
 const images = [
   {
@@ -45,7 +46,7 @@ const images = [
   },
   {
     url: "https://www.sibaritissimo.com/wp-content/uploads/2010/06/Tommy-Hilfiger-Logo.jpg",
-    title: "Tommy Hilfiger",
+    title: "Tommy",
     width: "30%",
   },
   {
@@ -55,7 +56,7 @@ const images = [
   },
   {
     url: "https://www.roundabouthomeless.org/wp-content/uploads/2020/01/HM-Share-Image.jpg",
-    title: "Bershka",
+    title: "H&M",
     width: "30%",
   },
   
@@ -72,6 +73,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     backgroundColor: '#D4E9EA',
+      flex: '1 0 auto',
   },
   image: {
     position: 'relative',
@@ -127,7 +129,7 @@ const useStyles = makeStyles((theme) => ({
   },
   imageTitle: {
     position: 'relative',
-    padding: `${theme.spacing(17)}px ${theme.spacing(25)}px ${theme.spacing(1) + 6}px`,
+    padding: `${theme.spacing(17)}px ${theme.spacing(22.5)}px ${theme.spacing(1) + 6}px`,
   },
   imageMarked: {
     height: 3,
@@ -144,9 +146,6 @@ const useStyles = makeStyles((theme) => ({
     details: {
         display: 'flex',
         flexDirection: 'column',
-    },
-    content: {
-        flex: '1 0 auto',
     },
     cover: {
         width: 151,
@@ -166,17 +165,24 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonBases() {
   const classes = useStyles();
   const arrowStyles = useArrowDarkButtonStyles();
-  const redirect = ()=>{window.location='/Dashboard'}
+  const redirect = (td)=>{
+    localStorage.setItem('tienda', td);
+    window.location='/Dashboard'
+  };
+  const handleViewAll = () => {
+    localStorage.setItem('tienda', "#");
+    window.location='/Dashboard'
+  };
   return (
     <div className={classes.root}>
       <AppBarComponent />
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
         {images.map((image) => (
               <ButtonBase
                   focusRipple
                   key={image.title}
                   className={classes.image}
-                  onClick={redirect}
+                  onClick={() => redirect(image.title)}
                   focusVisibleClassName={classes.focusVisible}
                   style={{
                       width: image.width,
@@ -200,7 +206,23 @@ export default function ButtonBases() {
                   </span>
               </ButtonBase>
         ))}
-              <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+              <br></br><br></br><br></br>
+              {!localStorage.getItem('isAdmin') ?
+              <div>
+              <Button
+                  onClick={handleViewAll}
+                  variant="contained"
+                  color="primary"
+                >
+                  <Typography variant="h9">
+                    Ver todos los productos
+                  </Typography>
+              </Button>
+              </div>
+              :
+              null
+              }
+              <br></br><br></br><br></br>
               <Grid xs={10} sm={2} md={4} lg={6} xl={2} item>
                   <Card className={classes.root}>
                       <div className={classes.details}>

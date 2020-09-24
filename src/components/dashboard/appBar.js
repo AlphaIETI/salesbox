@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route, Redirect } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -17,6 +17,8 @@ import Perfil from '../perfil/Perfil';
 import Avatar from "@material-ui/core/Avatar";
 import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumberOutlined';
+import AddProd from './addProd';
 
 const drawerWidth = 240;
 
@@ -95,31 +97,56 @@ export default function AppBarComponent(props) {
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                 Salesbox
             </Typography>
-
-            <Link to="/Home">
-                <IconButton >
-                    <HomeOutlinedIcon fontSize="large" />
-                </IconButton>
-            </Link>
-            <Link to="/ShopCar">
-                <IconButton >
-                    <FavoriteBorderOutlinedIcon fontSize="large" />
-                </IconButton>
-            </Link>
-            <Link to="/ShopCar">
-                <IconButton aria-label="cart">
-                    <Badge badgeContent={5} color="secondary">
-                        <ShoppingCartOutlinedIcon fontSize="large"/>
-                    </Badge>
-                </IconButton> 
-            </Link>
-            <Link to="/EstadoPedido">
-                <IconButton aria-label="cart">
-                    <Badge badgeContent={2} color="secondary">
-                        <AssignmentOutlinedIcon fontSize="large"/>
-                    </Badge>
-                </IconButton> 
-            </Link>
+            {!localStorage.getItem('isAdmin') ?
+            <div>
+                <Link to="/Home">
+                    <IconButton >
+                        <HomeOutlinedIcon fontSize="large" />
+                    </IconButton>
+                </Link>
+            </div>
+            :
+            null
+            }
+            {localStorage.getItem('isLoggedIn') && !localStorage.getItem('isAdmin') && true ?
+                <div>
+                    <Link to="/Favorites">
+                        <IconButton >
+                            <FavoriteBorderOutlinedIcon fontSize="large" />
+                        </IconButton>
+                    </Link>
+                    <Link to="/ShopCar">
+                        <IconButton aria-label="cart">
+                            <Badge badgeContent={5} color="secondary">
+                                <ShoppingCartOutlinedIcon fontSize="large"/>
+                            </Badge>
+                        </IconButton> 
+                    </Link>
+                    <Link to="/EstadoPedido">
+                        <IconButton aria-label="cart">
+                            <Badge badgeContent={2} color="secondary">
+                                <AssignmentOutlinedIcon fontSize="large"/>
+                            </Badge>
+                        </IconButton> 
+                    </Link>
+                    <Link to="/Coupons">
+                        <IconButton aria-label="cart">
+                            <Badge badgeContent={2} color="secondary">
+                                <ConfirmationNumberOutlinedIcon fontSize="large"/>
+                            </Badge>
+                        </IconButton> 
+                    </Link>
+                </div>
+                :
+                null
+            }
+            {localStorage.getItem('isAdmin') ? 
+                <div>
+                    <AddProd editProducts={props.editProducts}/>
+                </div>
+                :
+                null
+            }
                 <div>
                     <IconButton onClick={handleDrawer2}>
                         <Avatar >
@@ -133,7 +160,14 @@ export default function AppBarComponent(props) {
             anchor = "right"
             open = {open2}
             onClose={() => setOpen2(false)}>
-            <Perfil/>
+            {localStorage.getItem('isLoggedIn') ? 
+                <Perfil/>
+                :
+                <Route>
+                    <Redirect to='/Login'>
+                    </Redirect>
+                </Route>
+            }
 
         </Drawer>
         <Drawer
@@ -151,7 +185,7 @@ export default function AppBarComponent(props) {
                     Filtros
                 </IconButton>
             </div>
-            <AccordionComponent funFilMarca={props.funFilMarca} funDelFilMarca={props.funDelFilMarca}/>
+            <AccordionComponent funFilMarca={props.funFilMarca} funDelFilMarca={props.funDelFilMarca} view={props.view} isComp={props.isComp} isLog={props.isLog}/>
         </Drawer>
         </div>
     );

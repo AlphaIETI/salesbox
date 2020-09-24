@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../App.css";
 import logo from '../../logo.png';
-import { Link ,Redirect} from 'react-router-dom';
+import { Link ,Redirect,Route} from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import Home from "../home/Home";
 
@@ -11,13 +11,23 @@ export default function Login (){
   const [name,setName] = useState("");
   const [email,setEmail] = useState("");
   const[url,setUrl]= useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   
-   const responseGoogle = (response) =>{
+   const responseGoogleTrue = (response) =>{
     setName(response.profileObj.name);
     setEmail(response.profileObj.email);
     setUrl(response.profileObj.imageUrl);
+    alert("Puede iniciar sesión");
+    setIsLoggedIn(true);
+    localStorage.setItem('isLoggedIn',true);
     window.location='/Home';
-    
+  };
+
+  const responseGoogleFalse = (response) =>{
+    setName(response.profileObj.name);
+    setEmail(response.profileObj.email);
+    setUrl(response.profileObj.imageUrl);
+    alert("No está registrado");
   };
  
   
@@ -28,10 +38,16 @@ export default function Login (){
     const handleOnClick=(e) =>{
       if(document.getElementById("usuario").value===localStorage.getItem("usuario") && document.getElementById("password").value===localStorage.getItem("password")){
          alert("Puede iniciar sesión");
+         setIsLoggedIn(true);
+         localStorage.setItem('isLoggedIn',true);
+      }else if(document.getElementById("usuario").value==="nike" && document.getElementById("password").value==="nike"){
+        alert("Puede iniciar sesión");
+        setIsLoggedIn(true);
+        localStorage.setItem('isLoggedIn',true);
+        localStorage.setItem('isAdmin',true);
       }else{
-         alert("No está registardo");
+         alert("No está registrado");
       }
-   
      };
     return (
     
@@ -57,20 +73,40 @@ export default function Login (){
             />
              <br />
              <br />
-         <Link to='/Home'>
           <button  className ="myButtonj" onClick={handleOnClick}>
             Login
           </button>
-          </Link>
           <br></br>
           <br></br>
+
+          {isLoggedIn && !localStorage.getItem('isAdmin')?
+            <div>
+            <Route>
+              <Redirect to='/Home'>
+              </Redirect>
+            </Route>
+            </div>
+            :
+            null
+          }
+          {localStorage.getItem('isAdmin') && isLoggedIn ? 
+            <div>
+            <Route>
+              <Redirect to='/Dashboard'>
+              </Redirect>
+            </Route>
+            </div>
+            :
+            null
+          }
+          
 
        
           <GoogleLogin 
             
             clientId="262410189500-9m36t0v9h1fuat5chk5ft7ttdlp9quk8.apps.googleusercontent.com"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
+            onSuccess={responseGoogleTrue}
+            onFailure={responseGoogleFalse}
             cookiePolicy={'single_host_origin'}
           
            
@@ -78,7 +114,7 @@ export default function Login (){
 
         />
         
-         
+                 
 
       
           <br />

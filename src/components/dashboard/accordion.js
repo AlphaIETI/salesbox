@@ -46,43 +46,6 @@ const StyledBadge = withStyles((theme) => ({
     },
   }))(Badge);
 
-  const AirbnbSlider = withStyles({
-    root: {
-      color: '#3a8589',
-      height: 3,
-      padding: '13px 0',
-    },
-    thumb: {
-      height: 27,
-      width: 27,
-      backgroundColor: '#fff',
-      border: '1px solid currentColor',
-      marginTop: -12,
-      marginLeft: -13,
-      boxShadow: '#ebebeb 0 2px 2px',
-      '&:focus, &:hover, &$active': {
-        boxShadow: '#ccc 0 2px 3px 1px',
-      },
-      '& .bar': {
-        // display: inline-block !important;
-        height: 9,
-        width: 1,
-        backgroundColor: 'currentColor',
-        marginLeft: 1,
-        marginRight: 1,
-      },
-    },
-    active: {},
-    track: {
-      height: 3,
-    },
-    rail: {
-      color: '#d8d8d8',
-      opacity: 1,
-      height: 3,
-    },
-  })(Slider);
-
   function valuetext(valuePrice) {
     return `${valuePrice}°C`;
   }
@@ -90,7 +53,7 @@ const StyledBadge = withStyles((theme) => ({
 export default function AccordionComponent(props) {
     const classes = useStyles();
     const [brands, setBrands] = React.useState([{name:"Tennis",cantProducts:"58"},
-                                                {name:"NafNaf",cantProducts:"24"},
+                                                {name:"Naf Naf",cantProducts:"24"},
                                                 {name:"Nike",cantProducts:"154"},
                                                 {name:"Adidas",cantProducts:"231"},
                                                 {name:"Americanino",cantProducts:"75"},
@@ -110,6 +73,7 @@ export default function AccordionComponent(props) {
     const [expanded3, setExpanded3] = React.useState(false);
     const [expanded4, setExpanded4] = React.useState(false);
     const [expanded5, setExpanded5] = React.useState(false);
+    const [view, setView] = React.useState(props.view);
     const [value, setValue] = React.useState(4);
     const [state, setState] = React.useState({
         checkedA: true,
@@ -165,30 +129,31 @@ export default function AccordionComponent(props) {
                     <AccordionDetails>
                         <div>
                         {categories.map(category => (
-                            <Accordion>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                                >
-                                <Typography className={classes.heading}>{category.nameCategory}</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <List>
-                                    {category.items.map((text, index) => (
-                                        <ListItem button key={text}>
-                                        <ListItemIcon>{text === "Color" ? <ColorLensIcon /> : null}</ListItemIcon>
-                                        <ListItemText primary={text} />
-                                        </ListItem>
-                                    ))}
-                                </List>
-                            </AccordionDetails>
-                        </Accordion>
+                            <Accordion key={categories.indexOf(category)}>
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel1a-content"
+                                    id="panel1a-header"
+                                    >
+                                    <Typography className={classes.heading}>{category.nameCategory}</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <List>
+                                        {category.items.map((text, index) => (
+                                            <ListItem button key={text}>
+                                            <ListItemIcon>{text === "Color" ? <ColorLensIcon /> : null}</ListItemIcon>
+                                            <ListItemText primary={text} />
+                                            </ListItem>
+                                        ))}
+                                    </List>
+                                </AccordionDetails>
+                            </Accordion>
                         ))}
                         </div>
                     </AccordionDetails>
                 </Accordion>
             <Divider />
+            {view === "#" ? 
                 <Accordion square expanded={expanded2 === 'panel1'} onChange={handleChange2('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <Typography color="primary">Marcas</Typography>
@@ -196,7 +161,7 @@ export default function AccordionComponent(props) {
                     <AccordionDetails>
                         <div className={classes.root1}>
                             {brands.map(brand => (
-                                <div>
+                                <div key={brands.indexOf(brand)}>
                                 <StyledBadge badgeContent={brand.cantProducts} color="default">
                                     <FormControlLabel
                                         control={
@@ -213,6 +178,9 @@ export default function AccordionComponent(props) {
                         </div>
                     </AccordionDetails>
                 </Accordion>
+            :
+            null
+            }
             <Divider />
                 <Accordion square expanded={expanded3 === 'panel1'} onChange={handleChange3('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
@@ -229,6 +197,8 @@ export default function AccordionComponent(props) {
                     </AccordionDetails>
                 </Accordion>
             <Divider />
+            {!localStorage.getItem('isAdmin') ?
+            <div>  
                 <Accordion square expanded={expanded4 === 'panel1'} onChange={handleChange4('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <Typography color="primary">Redime Tus Cupones</Typography>
@@ -264,7 +234,11 @@ export default function AccordionComponent(props) {
                         </Box>
                         </div>
                     </AccordionDetails>
-                </Accordion>                          
+                </Accordion>
+            </div>
+            :
+            null
+            }                        
         </div>
     );
 }

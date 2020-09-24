@@ -11,13 +11,12 @@ import Home from './components/home/Home';
 import Carrito from "./components/Carrito/Carrito";
 import Perfil from "./components/perfil/Perfil";
 import Dashboard from './components/dashboard/Dashboard';
-import Producto from './components/producto/Producto';
-import ListaCarrito from "./components/Carrito/ListaCarrito";
+import Favorites from "./components/Favorites/Favorites";
+import Carrusel from './components/producto/Carrusel';
 import Coupons from './components/Coupons/Coupons';
 import CouponsInfo from './components/Coupons/CouponsInfo';
-
-
 import EstadoPedido from './components/estadoPedido/EstadoPedido';
+
 
 function App() {
 
@@ -26,7 +25,7 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/">
-            <Login />
+            <Home />
           </Route>
           <Route exact path="/Login">
             <Login />
@@ -37,11 +36,11 @@ function App() {
           <Route exact path="/Home">
             <Home />
           </Route>
-          <Route exact path="/shopcar">
+          <Route exact path="/Shopcar">
             <Carrito />
           </Route>
-          <Route exact path="/carlist">
-            <ListaCarrito />
+          <Route exact path="/Favorites">
+            <Favorites />
           </Route>
           <Route exact path="/Perfil">
             <Perfil />
@@ -49,8 +48,8 @@ function App() {
           <Route exact path="/Dashboard">
             <Dashboard />
           </Route>
-          <Route exact path="/Producto">
-            <Producto />
+          <Route exact path="/Carrusel">
+            <Carrusel />
           </Route>
           <Route exact path="/Coupons">
             <Coupons />
