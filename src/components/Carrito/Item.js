@@ -8,12 +8,16 @@ export default function Item(){
     const [cantidad, setcantidad] = useState(1);
 
     function restaCantidad(){
-        if(cantidad)
-        setcantidad(cantidad-1);
+        if(cantidad>1){
+            setcantidad(cantidad-1);
+        }
     }
 
     function sumaCantidad(){
-        setcantidad(cantidad+1);
+        if(cantidad<99){
+            setcantidad(cantidad+1);
+        }
+        
     }
     const imageItem = {
         padding:'10px'
@@ -50,7 +54,7 @@ export default function Item(){
                     <CardBody >
                         <ButtonGroup>
                             <Button onClick={restaCantidad}>-</Button>
-                                <span style={{color:"black", fontSize:'25px', width:'25px', textAlign:'center'}}>{cantidad}</span>
+                                <span style={{color:"black", fontSize:'25px', width:'30px', textAlign:'center'}}>{cantidad}</span>
                             <Button onClick={sumaCantidad}>+</Button>
                         </ButtonGroup> 
                     </CardBody>
