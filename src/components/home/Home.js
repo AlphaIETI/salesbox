@@ -3,8 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 import AppBarComponent from '../dashboard/appBar';
-import { Link ,Redirect,Router,Route} from 'react-router-dom';
-import Dashboard from '../dashboard/Dashboard';
 import { useArrowDarkButtonStyles } from '@mui-treasury/styles/button/arrowDark';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -238,7 +236,7 @@ export default function ButtonBases() {
                               </Typography>
                           </CardContent>
                       </div>
-                      <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>       
+                      <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                       <CardMedia
                           className={classes.cover}
                           image="https://www.gef.com.co/wcsstore/CrystalCo_CAT_AS/2020/GEF/ES-CO/Imagenes/Mujeres/DEPORTIVO/Ooya_Protect_Fem/566x715/Chaqueta-Mujer-Ooya-Protect-Fem-Gris-Medio-37740-Frente-Gef.jpg"
