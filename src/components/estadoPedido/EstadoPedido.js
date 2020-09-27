@@ -5,14 +5,11 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import {blue} from "@material-ui/core/colors";
-import {colors} from "@material-ui/core";
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import saco from "../../img/saco.jpg";
 import "./estadoPedido.css";
 import GeneralAppBar from "../Carrito/GeneralAppBar";
-import CssBaseline from '@material-ui/core/CssBaseline';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -86,7 +83,7 @@ export default function HorizontalLinearStepper() {
                     <Paper className={classes.paper}>
                         <h3> Pedido</h3>
                         <h3> Numero de Pedido </h3>
-                        <Grid justify={"center"} alignItems={"center"} item xs={2}>
+                        <Grid justify={"center"} alignItems={"center"} item xs={12}>
                             <Paper className={classes.paper}>
                                 <img src={saco} className="ima-dino"/>
                             </Paper>

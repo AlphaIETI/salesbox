@@ -42,37 +42,45 @@ export default function Carrusel() {
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
-                            src="https://tennis.vteximg.com.br/arquivos/ids/1121245-1048-1600/tshirt-para-mujer-tennis-gris.jpg?v=637340939150070000"
+                            src="https://www.thesneakerone.com/31251-large_default/NIKE-WOMEN-AIR-FORCE-1-SHADOW-PALE-IVORY-CELESTIAL-CI0919-101.jpg"
                             alt="First slide"
                         />
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
-                            src="https://tennis.vteximg.com.br/arquivos/ids/1121246-1048-1600/tshirt-para-mujer-tennis-gris.jpg?v=637340939168930000"
-                            alt="Third slide"
+                            src="https://www.thesneakerone.com/31252-large_default/NIKE-WOMEN-AIR-FORCE-1-SHADOW-PALE-IVORY-CELESTIAL-CI0919-101.jpg"
+                            alt="Second slide"
                         />
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
-                            src="https://tennis.vteximg.com.br/arquivos/ids/1121247-1048-1600/tshirt-para-mujer-tennis-gris.jpg?v=637340939178770000"
+                            src="https://www.thesneakerone.com/31256-large_default/NIKE-WOMEN-AIR-FORCE-1-SHADOW-PALE-IVORY-CELESTIAL-CI0919-101.jpg"
                             alt="Third slide"
                         />
 
                     </Carousel.Item>    
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src="https://www.thesneakerone.com/31432-large_default/NIKE-WOMEN-AIR-FORCE-1-SHADOW-PALE-IVORY-CELESTIAL-CI0919-101.jpg"
+                            alt="Fourth slide"
+                        />
+
+                    </Carousel.Item>   
                 </Carousel>
                 <br></br>
                 <Card className={classes.alinear}>
                     <CardContent className={classes.content}>  
                         <Typography variant="h5" color="textSecondary">
-                            Tshirt para mujer tennis, fondo entero con estampado 
+                            NIKE WOMEN AIR FORCE 1 SHADOW PALE IVORY CELESTIAL
                         </Typography>
                         <Typography variant="subtitle2">
-                            Ref: TSH-ENT-0002836
+                            Ref: CI0919-101:39
                         </Typography>
                         <Typography variant="subtitle2" color="textSecondary" color="error">
-                            $ 39.900
+                            $ 196.000
                         </Typography>
                     </CardContent>
                 </Card>

@@ -3,13 +3,9 @@ import React from 'react';
 import './Perfil.css';
 import Avatar from '@material-ui/core/Avatar';
 import {AppBar,Toolbar,Typography} from "@material-ui/core";
-import { IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-import { Container } from 'react-layout-components';
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from '@material-ui/core/Button';
@@ -78,9 +74,9 @@ export default function Perfil (){
 						<br/>
 						<h4> Correo </h4>
 						<h6> c.hecho.28@hotmail.com </h6>
-						<h4> Puntos </h4>
-						<h6> 0250 </h6>
-						<h3> INFORMACIÓN </h3>
+						<h4> Mis Cupones </h4>
+						<h6> 0010 </h6>
+						<h4> INFORMACIÓN </h4>
 						<h4>Tel</h4>
 						<h6>310 5726007 </h6>
 						<h4> Dirección </h4>

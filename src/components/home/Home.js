@@ -12,6 +12,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
+import Color from 'color';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import { useFourThreeCardMediaStyles } from '@mui-treasury/styles/cardMedia/fourThree';
 
 const images = [
   {
@@ -160,6 +163,69 @@ const useStyles = makeStyles((theme) => ({
         height: 38,
         width: 38,
     },
+    actionArea:{
+      borderRadius: 16,
+      transition: '0.2s',
+      '&:hover':{
+        transform:'scale(1.1)',
+      },
+    card:({color}) => ({
+      minWidth: 256,
+      borderRadius: 16,
+      boxShadow: 'none',
+      '&:hover':{
+        boxShadow: `0 6px 12px 0 ${Color(color)
+          .rotate(-12)
+          .darken(0.2)
+          .fade(0.5)}`,
+        },
+    }),
+    content: ({ color }) => {
+      return {
+        backgroundColor: color,
+        padding: '1rem 1.5rem 1.5rem',
+      };
+    },
+      title: {
+        fontFamily: 'Keania One',
+        fontSize: '2rem',
+        color: '#fff',
+        textTransform: 'uppercase',
+      },
+      subtitle: {
+        fontFamily: 'Montserrat',
+        color: '#fff',
+        opacity: 0.87,
+        marginTop: '2rem',
+        fontWeight: 500,
+        fontSize: 14,
+      },
+  }}));
+
+  const CustomCard = ({classes, image,title,subtitle}) => {
+    const mediaStyles=useFourThreeCardMediaStyles();
+    return (
+      <CardActionArea className={classes.actionArea}>
+        <Card className={classes.card}>
+          <CardMedia classes={mediaStyles} image={image}/>
+          <CardContent className={classes.content}>
+            <Typography className={classes.title} variant={'h2'}>
+              {title}
+            </Typography>
+            <Typography className={classes.subtitle}>{subtitle}</Typography>
+          </CardContent>
+        </Card>
+      </CardActionArea>
+    );
+  };
+
+
+const useGridStyles=makeStyles(({breakpoints}) =>  ({
+    root:{
+      [breakpoints.up('md')]:{
+        justifyContent:'center',
+      },
+    },
   }));
 
 export default function ButtonBases() {
@@ -173,6 +239,8 @@ export default function ButtonBases() {
     localStorage.setItem('tienda', "#");
     window.location='/Dashboard'
   };
+  const gridStyles = useGridStyles();
+  const styles= useStyles({color: '#ff0000'})
   return (
     <div className={classes.root}>
       <AppBarComponent />
@@ -223,52 +291,36 @@ export default function ButtonBases() {
               null
               }
               <br></br><br></br><br></br>
-              <Grid xs={10} sm={2} md={4} lg={6} xl={2} item>
-                  <Card className={classes.root}>
-                      <div className={classes.details}>
-                          <CardContent className={classes.content}>
-                              <Typography component="h5" variant="h5" color="error" >
-                                  SOLO X POCAS HORAS
-                              </Typography>
-                              <Typography variant="subtitle1" color="textSecondary">
-                                  Ropa al 30% DCTO
-                              </Typography>
-                              <Typography variant="subtitle2" color="textSecondary">
-                                  Referencias seleccionadas
-                              </Typography>
-                          </CardContent>
-                      </div>
-                      <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>       
-                      <CardMedia
-                          className={classes.cover}
-                          image="https://www.gef.com.co/wcsstore/CrystalCo_CAT_AS/2020/GEF/ES-CO/Imagenes/Mujeres/DEPORTIVO/Ooya_Protect_Fem/566x715/Chaqueta-Mujer-Ooya-Protect-Fem-Gris-Medio-37740-Frente-Gef.jpg"
-                          title="Ropa"
-                      />
-                  </Card>
-                  <br></br>
-                  <Card className={classes.root}>
-                      <div className={classes.details}>
-                          <CardContent className={classes.content}>
-                              <Typography component="h5" variant="h5" color="error">
-                                  2 X 99.000
-                              </Typography>
-                              <Typography variant="subtitle1" color="textSecondary">
-                                  ZAPATOS 
-                              </Typography>
-                              <Typography variant="subtitle2" color="textSecondary">
-                                  Referencias seleccionadas
-                              </Typography>
-                          </CardContent>
-                      </div>
-                      <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>       
-                      <CardMedia
-                          className={classes.cover}
-                          image="https://arturocalle.vteximg.com.br/arquivos/ids/229935-800-1065/HOMBRE-ZAPATOS-10081812-MIEL_2.jpg?v=637045243901730000"
-                          title="Ropa"
-                      />
-                  </Card>
+            <Grid classes={gridStyles} container spacing={4} wrap={'nowrap'}>
+              <Grid item>
+                <CustomCard
+                  classes={styles}
+                  title={'H & M'}
+                  subtitle={'70% en referencias seleccionadas'}
+                  image={'https://www.manilaonsale.com/wp-content/uploads/2019/08/68959572_618393225233211_8150003905074298880_n.png'}
+                />
               </Grid>
+                <Grid item>
+                  <CustomCard
+                    classes={styles}
+                    title={'Nike'}
+                    subtitle={'30% en referencias seleccionadas'}
+                    image={'https://theplaybook.asia/wp-content/uploads/sites/27/2019/06/cropped-sale_malaysia_nike_com.png'}
+                  />
+                </Grid>
+                <Grid item>
+                  <CustomCard
+                    classes={styles}
+                    title={'Adidas'}
+                    subtitle={'50% en referencias seleccionadas'}
+                    image={'https://cdn.jamja.vn/blog/wp-content/uploads/2018/10/black-friday-adidas-1.jpg'}
+                  />
+                </Grid>
+            </Grid>
         </Container>
     </div>
   );
 }
+
+
+
