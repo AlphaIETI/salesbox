@@ -4,15 +4,12 @@ import "./CardList.css";
 import {Card } from 'reactstrap';
 import Item from './Item.js';
 
-
-
-export default function CardList(){
-
+export default function CardList(props){
 
     return(
         <div>
             <Card>
-                <Item/>
+                <Item tarea={props.tarea}/>
             </Card>
         </div>
     );

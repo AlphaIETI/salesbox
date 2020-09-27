@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
-import {Card,CardImg, CardText, CardBody,CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
+import {CardImg, CardBody,CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
-import saco from '../../img/saco.jpg';
+import Saco from '../../img/saco.jpg';
+import Saco2 from '../../img/saco2.jpg';
+import CamisetaBlanca from '../../img/camisetaBlanca.jpg';
+import CamisetaNegra from '../../img/camisetaNegra.jpg';
 
-export default function Item(){
 
-    const [cantidad, setcantidad] = useState(1);
+export default function Item(props){
+
+    const [cantidad, setcantidad] = useState(props.tarea.cantidad);
 
     function restaCantidad(){
         if(cantidad>1){
@@ -27,8 +31,10 @@ export default function Item(){
         fontSize: '24px',
         textAlign: 'center',
         color: 'black'
-
     }
+
+    const icons = { Saco, Saco2, CamisetaBlanca, CamisetaNegra };
+
     return(
         <Container style={{background:'white'}}>
             <Row>
@@ -36,18 +42,18 @@ export default function Item(){
                     <input type='checkbox'></input>
                 </Col>
                 <Col >
-                    <CardImg style={imageItem} src={saco} alt="Missing Pic"/>
+                    <CardImg style={imageItem} src={icons[props.tarea.imagen]} alt="Missing Pic"/>
                 </Col>
                 <Col xs='6' style={imageItem}>
                     <CardBody >
                         <CardTitle></CardTitle>
-                        <CardSubtitle style={textStyle}>Saco Gris Hoodie para Hombre</CardSubtitle>
+                        <CardSubtitle style={textStyle}>{props.tarea.descripcion}</CardSubtitle>
                     </CardBody>
                 </Col>
                 <Col style={imageItem}>
-                    <CardBody >
+                    <CardBody>
                         <CardTitle></CardTitle>
-                        <CardSubtitle style={textStyle}>37.500</CardSubtitle>
+                        <CardSubtitle style={textStyle}>${props.tarea.precio}</CardSubtitle>
                     </CardBody>
                 </Col>
                 <Col style={imageItem}>
