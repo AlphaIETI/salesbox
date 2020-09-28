@@ -82,7 +82,7 @@ export default function HorizontalLinearStepper() {
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
                         <h3> Pedido</h3>
-                        <h3> Numero de Pedido </h3>
+                        <h5> 00001 </h5>
                         <Grid justify={"center"} alignItems={"center"} item xs={12}>
                             <Paper className={classes.paper}>
                                 <img src={saco} className="ima-dino"/>
@@ -106,26 +106,42 @@ export default function HorizontalLinearStepper() {
                                 })}
                             </Stepper>
                             <div>
-                                {activeStep === steps.length ? (
-                                    <div >
-                                        <Typography align={"center"}  variant="h3" className={classes.instructions}>
-                                            Fin
-                                        </Typography>
-                                        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
-                                            <Button variant= "contained" color="secondary" onClick={handleReset} className={classes.button}>
-                                                Reset
-                                            </Button>
+                                {localStorage.getItem('isAdmin') ?
+                                    <div>
+                                    {activeStep === steps.length ? (
+                                        <div>
+                                            <Typography align={"center"} variant="h3" className={classes.instructions}>
+                                                Fin
+                                            </Typography>
+                                            <div style={{
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                height: '10vh'
+                                            }}>
+                                                <Button variant="contained" color="secondary" onClick={handleReset}
+                                                        className={classes.button}>
+                                                    Reset
+                                                </Button>
+                                            </div>
                                         </div>
-                                    </div>
-                                ) : (
-                                    <div  >
-                                        <Typography align={"center"} variant="h4" color={'white'} className={classes.instructions}>
-                                            {getStepContent(activeStep)}
+                                    ) : (
+                                        <div>
+                                            <Typography align={"center"} variant="h4" color={'white'}
+                                                        className={classes.instructions}>
+                                                {getStepContent(activeStep)}
 
-                                        </Typography>
-                                        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
-                                            <span >
-                                                <Button variant="contained" color="secondary" disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+                                            </Typography>
+                                            <div style={{
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                height: '10vh'
+                                            }}>
+                                            <span>
+                                                <Button variant="contained" color="secondary"
+                                                        disabled={activeStep === 0} onClick={handleBack}
+                                                        className={classes.button}>
                                                     Atras
                                                 </Button>
                                                 <Button
@@ -137,9 +153,24 @@ export default function HorizontalLinearStepper() {
                                                     {activeStep === steps.length - 1 ? 'Fin' : 'Siguiente'}
                                                 </Button>
                                             </span>
+                                            </div>
                                         </div>
+                                    )}
                                     </div>
-                                )}
+                                    :
+                                    null
+                                }
+                                {localStorage.getItem('isLoggedIn') && !localStorage.getItem('isAdmin') && true ?
+
+                                    <Typography align={"center"} variant="h4" color={'white'}
+                                                className={classes.instructions}>
+                                        {getStepContent(activeStep)}
+
+                                    </Typography>
+
+                                    :
+                                    null
+                                }
                             </div>
                         </div>
                     </Paper>
