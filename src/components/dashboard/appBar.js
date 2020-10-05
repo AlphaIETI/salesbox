@@ -140,8 +140,17 @@ export default function AppBarComponent(props) {
                 :
                 null
             }
-            {localStorage.getItem('isAdmin') ? 
+            {localStorage.getItem('isAdmin') ?
+
                 <div>
+                    <Link to="/EstadoPedido">
+                        <IconButton aria-label="cart">
+                            <Badge badgeContent={2} color="secondary">
+                                <AssignmentOutlinedIcon fontSize="large"/>
+                            </Badge>
+                        </IconButton>
+                    </Link>
+
                     <AddProd editProducts={props.editProducts}/>
                 </div>
                 :
