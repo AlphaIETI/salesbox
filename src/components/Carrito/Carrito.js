@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import CardList from "./CardList";
@@ -12,18 +12,40 @@ export default function Carrito(){
         [
             {
                 id: 2021,
-                imagen:'imagen de saco',
-                descripcion: 'Saco',
-                precio: 37000
+                imagen:'Saco',
+                descripcion: 'Saco para hombre, hoddie gris',
+                precio:80000,
+                cantidad: 2
             },
             {
                 id: 2204,
-                imagen:'imagen de camisa',
-                descripcion: 'camisa basica blanca',
-                precio: 20000
+                imagen:'Saco2',
+                descripcion: 'Saco para hombre, hoddie vinotinto',
+                precio: 85000,
+                cantidad: 3
+            },
+            {
+                id: 2203,
+                imagen:'CamisetaBlanca',
+                descripcion: 'Camiseta basica blanca',
+                precio: 20000,
+                cantidad: 1
+            },
+            {
+                id: 2313,
+                imagen:'CamisetaNegra',
+                descripcion: 'Camiseta basica negra',
+                precio: 20000,
+                cantidad: 1
             }
         ]
     )
+
+    const [TotalPrice, setTotalPrice] = useState(0);
+
+
+
+
 
 
     return(
@@ -35,7 +57,9 @@ export default function Carrito(){
             <br/>
             <br/>
             <Container maxWidth="md">
-                <CardList/>
+                {SelectedItems.map(item =>{
+                    return(<CardList tarea={item}/>)
+                })}
                 <Divider />
             </Container>
             <br/>
@@ -44,7 +68,7 @@ export default function Carrito(){
             <br/>
             <Container maxWidth="sm">
                 <PriceTotal/>
-            </Container>
+            </Container> 
             <br/>
             <br/>
             <br/>

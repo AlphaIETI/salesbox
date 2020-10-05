@@ -83,7 +83,7 @@ export default function PriceTotal(){
                 </div>
                 <Divider/>
                 <Typography variant="body2" component="p">
-                    <Button fullWidth='True' size="large" color="primary" variant="contained">
+                    <Button size="large" color="primary" variant="contained">
                         <label>PAGAR</label>
                         <PaymentIcon/>
                     </Button>
