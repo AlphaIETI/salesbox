@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect }  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
@@ -15,7 +15,7 @@ import Button from '@material-ui/core/Button';
 import Color from 'color';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { useFourThreeCardMediaStyles } from '@mui-treasury/styles/cardMedia/fourThree';
-
+import Promotions from '../promotion/promotions'
 const images = [
   {
     url: "https://www.centrocomercialfundadores.com/wp-content/uploads/2017/09/TENNIS.jpg",
@@ -241,9 +241,31 @@ export default function ButtonBases() {
   };
   const gridStyles = useGridStyles();
   const styles= useStyles({color: '#ff0000'})
+
+  //Promotions
+  const [cantPromo,setCantPromo] = React.useState(0);
+  const handleCantPromo = (cant) => {
+    setCantPromo(cantPromo + cant);
+  }
+  const[promotions, setPromotions] = React.useState([]);
+  useEffect (() => {
+      //http://localhost:8080/api/promotions
+      fetch('https://salesbox-alpha-backend.herokuapp.com/api/promotions', {
+          method: 'GET'
+      }).then(response => response.json())
+          .then(data => {
+              console.log(data)
+              data.map(pr => {
+                  setPromotions(data);
+              })
+              setCantPromo(data.length);
+          }).catch(error => {
+              console.log(error)
+          });
+      },[cantPromo]);
   return (
     <div className={classes.root}>
-      <AppBarComponent />
+      <AppBarComponent cantPromo={handleCantPromo}/>
         <Container maxWidth="lg">
         {images.map((image) => (
               <ButtonBase
@@ -291,36 +313,8 @@ export default function ButtonBases() {
               null
               }
               <br></br><br></br><br></br>
-            <Grid classes={gridStyles} container spacing={4} wrap={'nowrap'}>
-              <Grid item>
-                <CustomCard
-                  classes={styles}
-                  title={'H & M'}
-                  subtitle={'70% en referencias seleccionadas'}
-                  image={'https://www.manilaonsale.com/wp-content/uploads/2019/08/68959572_618393225233211_8150003905074298880_n.png'}
-                />
-              </Grid>
-                <Grid item>
-                  <CustomCard
-                    classes={styles}
-                    title={'Nike'}
-                    subtitle={'30% en referencias seleccionadas'}
-                    image={'https://theplaybook.asia/wp-content/uploads/sites/27/2019/06/cropped-sale_malaysia_nike_com.png'}
-                  />
-                </Grid>
-                <Grid item>
-                  <CustomCard
-                    classes={styles}
-                    title={'Adidas'}
-                    subtitle={'50% en referencias seleccionadas'}
-                    image={'https://cdn.jamja.vn/blog/wp-content/uploads/2018/10/black-friday-adidas-1.jpg'}
-                  />
-                </Grid>
-            </Grid>
+              <Promotions promotions={promotions}/>
         </Container>
     </div>
   );
 }
-
-
-

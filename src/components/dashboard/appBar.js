@@ -19,6 +19,7 @@ import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumberOutlined';
 import AddProd from './addProd';
+import AddPromotion from '../promotion/addPromotion';
 
 const drawerWidth = 240;
 
@@ -141,18 +142,23 @@ export default function AppBarComponent(props) {
                 null
             }
             {localStorage.getItem('isAdmin') ?
-
-                <div>
-                    <Link to="/EstadoPedido">
-                        <IconButton aria-label="cart">
-                            <Badge badgeContent={2} color="secondary">
-                                <AssignmentOutlinedIcon fontSize="large"/>
-                            </Badge>
-                        </IconButton>
-                    </Link>
-
-                    <AddProd editProducts={props.editProducts}/>
-                </div>
+                <Link to="/EstadoPedido">
+                    <IconButton aria-label="cart">
+                        <Badge badgeContent={2} color="secondary">
+                            <AssignmentOutlinedIcon fontSize="large"/>
+                        </Badge>
+                    </IconButton>
+                </Link>
+                :
+                null
+            }
+            {localStorage.getItem('isAdmin') ?
+                <AddProd editProducts={props.editProducts}/>
+                :
+                null
+            }
+            {localStorage.getItem('isAdmin') ?
+                <AddPromotion cantPromo={props.cantPromo}/>
                 :
                 null
             }
