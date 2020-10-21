@@ -1,4 +1,4 @@
-import React from 'react';
+import React,  { Component,useState} from 'react';
 
 import './Perfil.css';
 import Avatar from '@material-ui/core/Avatar';
@@ -9,8 +9,10 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Grid from "@material-ui/core/Grid";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from '@material-ui/core/Button';
+import {useEffect} from "react";
+import axios from 'axios';
 
-export default function Perfil (){
+export default function Perfil (props){
 
 	const useStyles = makeStyles((theme) => ({
 		root: {
@@ -60,20 +62,33 @@ export default function Perfil (){
 	const handleLogout = () => {
 		localStorage.clear();
 	};
+	const [jsonFull, setJSON] = useState({"id":99999,"name":"","lastname":"","mail":"","password":""});
+
+	useEffect( () => {
+		//axios.get('http://localhost:8080/clients/id/1')
+		axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/id/1')
+			.then(res => {
+				//console.log("name");
+				//console.log(res.data);
+				setJSON(res.data)
+				})
+		}, []);
+		//console.log(jsonFull);
 	return (
 			<Accordion >
 				<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
 				<AccordionDetails  className="imagenacordion">
 					<Typography align={"center"} >
 						<h4> Nombre </h4>
-						<h6> Sergio A Nuñez M </h6>
+						{jsonFull.name.toString()+"  "+ jsonFull.lastname.toString()}
+						<br/>
 						<br/>
 						<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
 							<Avatar className={classess.large}></Avatar>
 						</Grid>
 						<br/>
 						<h4> Correo </h4>
-						<h6> c.hecho.28@hotmail.com </h6>
+						{jsonFull.mail.toString()}
 						<h4> Mis Cupones </h4>
 						<h6> 0010 </h6>
 						<h4> INFORMACIÓN </h4>
