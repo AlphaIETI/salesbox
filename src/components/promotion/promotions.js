@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Color from 'color';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { useFourThreeCardMediaStyles } from '@mui-treasury/styles/cardMedia/fourThree';
+import Carousel from 'react-bootstrap/Carousel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
   content: {
     backgroundColor: '#D4E9EA',
       flex: '1 0 auto',
+  },
+  image2:{
+    display:'block',
+    margin: 'auto'
   },
   image: {
     position: 'relative',
@@ -172,20 +177,23 @@ const useGridStyles=makeStyles(({breakpoints}) =>  ({
 export default function Promotions(props) {
     const gridStyles = useGridStyles();
     const styles= useStyles({color: '#ff0000'})
+    const classes1 = useStyles();
     return (
         <div>
-            <Grid classes={gridStyles} container spacing={4} wrap={'nowrap'} justify="center" alignItems="center">
-                {props.promotions.map(pr => 
-                    <Grid key={pr.id} container item xs={12}>
-                        <CustomCard
-                            classes={styles}
-                            title={pr.brand}
-                            subtitle={pr.discount + '% en referencias seleccionadas'}
-                            image={pr.image}
-                        />
-                    </Grid>
-                )}
-            </Grid>
+          <Carousel>
+            {props.promotions.map(pr => 
+            <Carousel.Item> 
+                  <Grid key={pr.id} lg={7} item spacing={4} className={classes1.image2}>
+                      <CustomCard
+                          classes={styles}
+                          title={pr.brand}
+                          subtitle={pr.discount + '% en referencias seleccionadas'}
+                          image={pr.image}
+                      />
+                  </Grid>
+              </Carousel.Item>
+              )}
+          </Carousel>
         </div>
     );
 }
