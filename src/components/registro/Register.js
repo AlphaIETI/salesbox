@@ -15,7 +15,7 @@ function TabPanel(props) {
   return (
     <div
       role="tabpanel"
-     
+
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
@@ -56,219 +56,266 @@ export default function Register() {
     setValue(newValue);
   };
 
-  
 
-  const handleOnClick=(e) =>{
-    var correo= document.getElementById("emailEmpresa").value;
-    if(document.getElementById("nombreEmpresa").value==="" || document.getElementById("nit").value === "" || document.getElementById("emailEmpresa").value===""
-       || document.getElementById("direccionEmpresa").value==="" || document.getElementById("usuarioEmpresa").value === "" || 
-       document.getElementById("contrasenaEmpresa").value===""){ 
-         alert("Hay campos vacios");   
+
+  const handleOnClick = (e) => {
+    var correo = document.getElementById("emailEmpresa").value;
+    if (document.getElementById("nombreEmpresa").value === "" || document.getElementById("nit").value === "" || document.getElementById("emailEmpresa").value === ""
+      || document.getElementById("direccionEmpresa").value === "" || document.getElementById("ciudadEmpresa").value === "" ||
+      document.getElementById("contrasenaEmpresa").value === "") {
+      alert("Hay campos vacios");
+    } else {
+      let entity = {
+        _id: "",
+        name: document.getElementById("nombreEmpresa").value, 
+        nit: document.getElementById("nit").value, 
+        email: document.getElementById("emailEmpresa").value, 
+        password: document.getElementById("contrasenaEmpresa").value, 
+        phone: document.getElementById("telefonoEmpresa").value,
+        city: document.getElementById("ciudadEmpresa").value, 
+        address: document.getElementById("direccionEmpresa").value
+      }
+      registerEntity(entity);
+      alert("Registrado")
     }
-     if(!correo.includes('@')){
-          alert("no es un correo válido");
+    if (!correo.includes('@')) {
+      alert("no es un correo válido");
 
-     }
-   };
-
-
-   const handleOnClickCliente=(e) =>{
-    var correo= document.getElementById("email").value;
-    if(document.getElementById("nombreCliente").value==="" || document.getElementById("direccionCliente").value === "" || document.getElementById("email").value===""
-       || document.getElementById("direccionCliente").value==="" || document.getElementById("telefonoCliente").value === "" || 
-       document.getElementById("fechaNacimiento").value==="" || document.getElementById("usuarioCliente").value==="" || document.getElementById("usuarioContrasena").value==="" ){ 
-         alert("Hay campos vacios");   
     }
-     if(!correo.includes('@')){
-          alert("no es un correo válido");
+  };
 
-     }
-   };
 
-  
+  const handleOnClickCliente = (e) => {
+    var correo = document.getElementById("email").value;
+    if (document.getElementById("nombreCliente").value === "" || document.getElementById("direccionCliente").value === "" || document.getElementById("email").value === ""
+      || document.getElementById("direccionCliente").value === "" || document.getElementById("telefonoCliente").value === "" ||
+      document.getElementById("fechaNacimiento").value === "" || document.getElementById("usuarioCliente").value === "" || document.getElementById("usuarioContrasena").value === "") {
+      alert("Hay campos vacios");
+    }
+    if (!correo.includes('@')) {
+      alert("no es un correo válido");
 
-  
+    }
+  };
+
+  const registerEntity = (entity) => {
+    fetch('https://salesbox-alpha-backend.herokuapp.com/api/entities', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', 'Accept': 'application/json',
+      },
+      body: JSON.stringify(entity)
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (res) {
+          console.log(res);
+        })
+      } else {
+        console.log("")
+      }
+    }).catch(function (error) {
+      console.log("Bad petition:" + error.message);
+    });
+
+  }
+
+
+
+
+
+
 
   return (
-    
-  
-    <div className={classes.root} style={{ width:'480px', margin:'0 auto'}}>
-      <AppBar position="static"  style={{width:'480px', margin:'0 auto' , background: 'BLACK'}}>
+
+
+    <div className={classes.root} style={{ width: '480px', margin: '0 auto' }}>
+      <AppBar position="static" style={{ width: '480px', margin: '0 auto', background: 'BLACK' }}>
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" >
           <Tab label="Empresa" {...a11yProps(0)} />
           <Tab label="Cliente" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
-    
+
       <TabPanel value={value} index={0} >
 
-      
-        <img src={logo}  alt="logo"   style={{ height:'150px',position: 'relative', top: '0px', right: '-100px'}} />
-      
-       
-  
-          <input
-            id="nombreEmpresa"
-            style={{width:'400px', margin:'0 auto'}}
-            type="text"
-            className="form-controlj textbox-dgj"
-            placeholder="Nombre Empresa"
-          
-            
-           />
-          <br />
-          <br />
-          <input
-            id="nit"
-            style={{width:'400px', margin:'0 auto'}}
-            type="text"
-            className="form-controlj textbox-dgj"
-            placeholder="Nit"
-          
-     
-          />
-          <br />
-          <br />
-          <input
-            id="emailEmpresa"
-            style={{width:'400px', margin:'0 auto'}}
-            type="email"
-            className="form-controlj textbox-dgj"
-            placeholder="Email"
-          
-     
-          />
-          <br />
-          <br />
-          <input
-            id="direccionEmpresa"
-            style={{width:'400px', margin:'0 auto'}}
-            type="text"
-            className="form-controlj textbox-dgj"
-            placeholder="Dirección"
-           
-          />
-          <br />
-          <br />
-    
-           <input
-              id="usuarioEmpresa"
-              style={{width:'400px', margin:'0 auto'}}
-              type="text"
-              className="form-controlj textbox-dgj"
-              placeholder="Usuario"
-            
-            />
-            <br />
-            <br />
-            <input
-              id="contrasenaEmpresa"
-              style={{width:'400px', margin:'0 auto'}}
-              type="Password"
-              className="form-controlj textbox-dgj"
-              placeholder="Contraseña"
-             
-            />
-             <br />
-             <br />
-          <button  class ="myButton2" onClick={handleOnClick} style={{position: 'relative', top: '0px', right: '-140px'}}> 
-            Registrarse
-          </button>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-      <img src={logo} style={{ height:'150px',position: 'relative', top: '0px', right: '-100px'}} />
-      
-          <input
-           id ="nombreCliente"
-           style={{width:'400px', margin:'0 auto'}}
-            type="text"
-            className="form-controlj textbox-dgj"
-            placeholder="Nombre"
-           
-            
-           
-            
-           />
-          <br />
-          <br />
-          <input
-          id="email"
-          style={{width:'400px', margin:'0 auto'}}
+
+        <img src={logo} alt="logo" style={{ height: '150px', position: 'relative', top: '0px', right: '-100px' }} />
+
+
+
+        <input
+          id="nombreEmpresa"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="text"
+          className="form-controlj textbox-dgj"
+          placeholder="Nombre Empresa"
+
+
+        />
+        <br />
+        <br />
+        <input
+          id="nit"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="text"
+          className="form-controlj textbox-dgj"
+          placeholder="Nit"
+
+
+        />
+        <br />
+        <br />
+        <input
+          id="emailEmpresa"
+          style={{ width: '400px', margin: '0 auto' }}
           type="email"
           className="form-controlj textbox-dgj"
           placeholder="Email"
-          
-           
-     
-          />
-          <br />
-          <br />
-          <input
-            id="direccionCliente"
-            style={{width:'400px', margin:'0 auto'}}
-            type="text"
-            className="form-controlj textbox-dgj"
-            placeholder="Dirección"
-          
-        
-           
-          />
-          <br />
-          <br />
-          <input
-             id="telefonoCliente"
-             style={{width:'400px', margin:'0 auto'}}
-             type="number"
-             className="form-controlj textbox-dgj"
-             placeholder="Telefono"
-            
-       
-          />
-           <br />
-           <br />
-           <input
-              id="fechaNacimiento"
-              style={{width:'400px', margin:'0 auto'}}
-              type="date"
-              className="form-controlj textbox-dgj"
-              placeholder="Fecha de nacimiento"
-            
-           
-            />
-           <br />
-           <br />
-           <input
-              id="usuarioCliente"
-              style={{width:'400px', margin:'0 auto'}}
-              type="text"
-              className="form-controlj textbox-dgj"
-              placeholder="Usuario"
-             
-           
-            
-            />
-             <br />
-            <br />
-            <input
-              id="contrasenaCliente"
-              style={{width:'400px', margin:'0 auto'}}
-              type="Password"
-              className="form-controlj textbox-dgj"
-              placeholder="Contraseña"
-         
-            
-             
-            />
-             <br />
-             <br />
-          <button  class="myButton2" onClick={handleOnClickCliente} style={{position: 'relative', top: '0px', right: '-140px'}}>
-            Registrarse
+
+
+        />
+        <br />
+        <br />
+        <input
+          id="direccionEmpresa"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="text"
+          className="form-controlj textbox-dgj"
+          placeholder="Dirección"
+
+        />
+        <br />
+        <br />
+
+        <input
+          id="ciudadEmpresa"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="text"
+          className="form-controlj textbox-dgj"
+          placeholder="Ciudad"
+
+        />
+        <br />
+        <br />
+
+        <input
+          id="telefonoEmpresa"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="text"
+          className="form-controlj textbox-dgj"
+          placeholder="Telefono"
+
+        />
+        <br />
+        <br />
+        <input
+          id="contrasenaEmpresa"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="Password"
+          className="form-controlj textbox-dgj"
+          placeholder="Contraseña"
+
+        />
+        <br />
+        <br />
+        <button class="myButton2" onClick={handleOnClick} style={{ position: 'relative', top: '0px', right: '-140px' }}>
+          Registrarse
+          </button>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <img src={logo} style={{ height: '150px', position: 'relative', top: '0px', right: '-100px' }} />
+
+        <input
+          id="nombreCliente"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="text"
+          className="form-controlj textbox-dgj"
+          placeholder="Nombre"
+
+
+
+
+        />
+        <br />
+        <br />
+        <input
+          id="email"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="email"
+          className="form-controlj textbox-dgj"
+          placeholder="Email"
+
+
+
+        />
+        <br />
+        <br />
+        <input
+          id="direccionCliente"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="text"
+          className="form-controlj textbox-dgj"
+          placeholder="Dirección"
+
+
+
+        />
+        <br />
+        <br />
+        <input
+          id="telefonoCliente"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="number"
+          className="form-controlj textbox-dgj"
+          placeholder="Telefono"
+
+
+        />
+        <br />
+        <br />
+        <input
+          id="fechaNacimiento"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="date"
+          className="form-controlj textbox-dgj"
+          placeholder="Fecha de nacimiento"
+
+
+        />
+        <br />
+        <br />
+        <input
+          id="usuarioCliente"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="text"
+          className="form-controlj textbox-dgj"
+          placeholder="Usuario"
+
+
+
+        />
+        <br />
+        <br />
+        <input
+          id="contrasenaCliente"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="Password"
+          className="form-controlj textbox-dgj"
+          placeholder="Contraseña"
+
+
+
+        />
+        <br />
+        <br />
+        <button class="myButton2" onClick={handleOnClickCliente} style={{ position: 'relative', top: '0px', right: '-140px' }}>
+          Registrarse
           </button>
 
-        
+
       </TabPanel>
-      
+
     </div>
-    
+
   );
 }
