@@ -1,15 +1,14 @@
 import React from 'react';
 
-import "./CardList.css";
 import {Card } from 'reactstrap';
-import CartItem from './CartItem.js';
+import FavItem from './FavItem.js';
 
 export default function CardList(props){
 
     return(
         <div>
             <Card>
-                <CartItem tarea={props.tarea}/>
+                <FavItem favoritos={props.favoritos}/>
             </Card>
         </div>
     );
