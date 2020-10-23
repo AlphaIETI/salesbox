@@ -62,7 +62,7 @@ export default function Perfil (props){
 	const handleLogout = () => {
 		localStorage.clear();
 	};
-	const [jsonFull, setJSON] = useState({"id":99999,"name":"","lastname":"","mail":"","password":""});
+	const [jsonFull, setJSON] = useState({"id":99999,"name":"","lastname":"","mail":"","password":"","coupons":"","phon":"","adress":""});
 
 	useEffect( () => {
 		//axios.get('http://localhost:8080/clients/id/1')
@@ -80,22 +80,21 @@ export default function Perfil (props){
 				<AccordionDetails  className="imagenacordion">
 					<Typography align={"center"} >
 						<h4> Nombre </h4>
-						{jsonFull.name.toString()+"  "+ jsonFull.lastname.toString()}
-						<br/>
+						<h6>{jsonFull.name.toString()+"  "+ jsonFull.lastname.toString()}</h6>
 						<br/>
 						<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
 							<Avatar className={classess.large}></Avatar>
 						</Grid>
 						<br/>
 						<h4> Correo </h4>
-						{jsonFull.mail.toString()}
+						<h6>{jsonFull.mail.toString()}</h6>
 						<h4> Mis Cupones </h4>
-						<h6> 0010 </h6>
+						<h6> {jsonFull.coupons.toString()} </h6>
 						<h4> INFORMACIÓN </h4>
 						<h4>Tel</h4>
-						<h6>310 5726007 </h6>
+						<h6>{jsonFull.phon.toString()} </h6>
 						<h4> Dirección </h4>
-						<h6> Cra 36A # 63C - 70 </h6>
+						<h6> {jsonFull.adress.toString()}</h6>
 					</Typography>
 				</AccordionDetails>
 					<Button
