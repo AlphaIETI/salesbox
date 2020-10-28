@@ -87,16 +87,65 @@ export default function Register() {
 
   const handleOnClickCliente = (e) => {
     var correo = document.getElementById("email").value;
-    if (document.getElementById("nombreCliente").value === "" || document.getElementById("direccionCliente").value === "" || document.getElementById("email").value === ""
-      || document.getElementById("direccionCliente").value === "" || document.getElementById("telefonoCliente").value === "" ||
-      document.getElementById("fechaNacimiento").value === "" || document.getElementById("usuarioCliente").value === "" || document.getElementById("usuarioContrasena").value === "") {
+    console.log(document.getElementById("nombreCliente").value);
+    console.log(document.getElementById("apellidoCliente").value);
+    console.log(document.getElementById("email").value);
+    console.log(document.getElementById("direccionCliente").value);
+    console.log(document.getElementById("telefonoCliente").value);
+    console.log(document.getElementById("contrasenaCliente").value);
+
+    if (document.getElementById("nombreCliente").value === ""
+        || document.getElementById("apellidoCliente").value === ""
+        || document.getElementById("email").value === ""
+        || document.getElementById("direccionCliente").value === ""
+        || document.getElementById("telefonoCliente").value === ""
+        || document.getElementById("contrasenaCliente").value === ""
+    ){
       alert("Hay campos vacios");
     }
+    else{
+
+      let client = {
+
+        _ide: "",
+        name: document.getElementById("nombreCliente").value,
+        lastname: document.getElementById("apellidoCliente").value,
+        mail: document.getElementById("email").value,
+        password: document.getElementById("contrasenaCliente").value,
+        coupons:"0",
+        phon: document.getElementById("telefonoCliente").value.toString(),
+        adress: document.getElementById("direccionCliente").value,
+      }
+      console.log(client.name);
+      registerClient(client);
+      alert("Registraste correctamente un cliente")
+    }
+
     if (!correo.includes('@')) {
       alert("no es un correo válido");
 
     }
   };
+
+  const registerClient = (client) => {
+    fetch('https://salesbox-alpha-backend.herokuapp.com/addClient', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', 'Accept': 'application/json',
+      },
+      body: JSON.stringify(client)
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (res) {
+          console.log(res);
+        })
+      } else {
+        console.log("")
+      }
+    }).catch(function (error) {
+      console.log("Bad petition:" + error.message);
+    });
+  }
 
   const registerEntity = (entity) => {
     fetch('https://salesbox-alpha-backend.herokuapp.com/api/entities', {
@@ -236,8 +285,24 @@ export default function Register() {
 
 
         />
+
         <br />
         <br />
+
+        <input
+            id="apellidoCliente"
+            style={{ width: '400px', margin: '0 auto' }}
+            type="text"
+            className="form-controlj textbox-dgj"
+            placeholder="Apellido"
+
+
+
+        />
+
+        <br />
+        <br />
+
         <input
           id="email"
           style={{ width: '400px', margin: '0 auto' }}
@@ -284,18 +349,7 @@ export default function Register() {
         />
         <br />
         <br />
-        <input
-          id="usuarioCliente"
-          style={{ width: '400px', margin: '0 auto' }}
-          type="text"
-          className="form-controlj textbox-dgj"
-          placeholder="Usuario"
 
-
-
-        />
-        <br />
-        <br />
         <input
           id="contrasenaCliente"
           style={{ width: '400px', margin: '0 auto' }}
