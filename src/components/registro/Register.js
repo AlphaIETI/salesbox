@@ -87,13 +87,6 @@ export default function Register() {
 
   const handleOnClickCliente = (e) => {
     var correo = document.getElementById("email").value;
-    console.log(document.getElementById("nombreCliente").value);
-    console.log(document.getElementById("apellidoCliente").value);
-    console.log(document.getElementById("email").value);
-    console.log(document.getElementById("direccionCliente").value);
-    console.log(document.getElementById("telefonoCliente").value);
-    console.log(document.getElementById("contrasenaCliente").value);
-
     if (document.getElementById("nombreCliente").value === ""
         || document.getElementById("apellidoCliente").value === ""
         || document.getElementById("email").value === ""
