@@ -12,9 +12,10 @@ import Card from '@material-ui/core/Card'
 import CardMedia from '@material-ui/core/CardMedia'
 import CardContent from '@material-ui/core/CardContent'
 import CardActions from '@material-ui/core/CardActions'
-import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 import Button from '@material-ui/core/Button';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import ButtonProductToCar from '../Carrito/addProductToCart';
+import ButtonProductToFav from '../Favorites/addProductToFavs';
 
 //AppBar
 import AppBarComponent from './appBar';
@@ -181,9 +182,8 @@ export default function Dashboard(props) {
                                                 </div>
                                                 :
                                                 <div>
-                                                <Button color="secondary" >
-                                                    {pr.id}  <AddShoppingCartOutlinedIcon fontSize="small"/> 
-                                                </Button>
+                                                    <ButtonProductToCar idProduct={pr.id}/>
+                                                    <ButtonProductToFav idProduct={pr.id}/>
                                                 </div>
                                             }
                                         </CardActions>

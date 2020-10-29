@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 
 export default function addProductToCart(props){
@@ -59,8 +60,8 @@ export default function addProductToCart(props){
     }
 
     return(
-        <div>
-            {localStorage.getItem.isLoggedIn ? 
+        <div style={{float:'left'}}>
+            {localStorage.getItem('isLoggedIn') ? 
             <Button color="secondary" onClick={handleAddProductCarrito}>
                 Añadir  <AddShoppingCartOutlinedIcon fontSize="small"/> 
             </Button>
