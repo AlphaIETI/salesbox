@@ -203,7 +203,7 @@ export default function Dashboard(props) {
                                                 </div>
                                                 :
                                                 <div>
-                                                <Button color="secondary" >
+                                                <Button color="secondary" /**onClick={handleAddProductCarrito}*/>
                                                     Añadir  <AddShoppingCartOutlinedIcon fontSize="small"/> 
                                                 </Button>
                                                 </div>
