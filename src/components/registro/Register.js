@@ -103,11 +103,11 @@ export default function Register() {
         _ide: "",
         name: document.getElementById("nombreCliente").value,
         lastname: document.getElementById("apellidoCliente").value,
-        mail: document.getElementById("email").value,
+        email: document.getElementById("email").value,
         password: document.getElementById("contrasenaCliente").value,
         coupons:"0",
-        phon: document.getElementById("telefonoCliente").value.toString(),
-        adress: document.getElementById("direccionCliente").value,
+        phone: document.getElementById("telefonoCliente").value.toString(),
+        address: document.getElementById("direccionCliente").value,
       }
       console.log(client.name);
       registerClient(client);

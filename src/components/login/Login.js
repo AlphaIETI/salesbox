@@ -7,7 +7,6 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import logo from '../../logo.png';
-import { CredentialsList } from '../credential/CredentialsList';
 import { Redirect, Route } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 
@@ -82,6 +81,19 @@ export default function Login() {
     alert("No está registrado");
   };
 
+  const handleOnClickClient = () => {
+    if (document.getElementById("email").value === ""
+    || document.getElementById("contrasenaCliente").value === ""
+    ){
+      alert("Alguno de los campos esta vacio")
+    }
+    else{
+      let client =
+          {email:document.getElementById("email").value, password:document.getElementById("contrasenaCliente").value}
+      loginClient(client);
+
+    }
+    };
 
   const handleOnClickEntity=() =>{
     let entity={email:document.getElementById("emailEmpresa").value, password:document.getElementById("contrasenaEmpresa").value}
@@ -112,10 +124,9 @@ export default function Login() {
         response.json().then(function (res) {
           console.log(res);
           localStorage.setItem('isAdmin',true);
-          localStorage.setItem('nameEntity', res.name);
+          localStorage.setItem('nameEntity',res.name);
           localStorage.setItem('isLoggedIn',true);
           setIsLoggedIn(true);
-        
         })
       } else {
         console.log("");
@@ -128,9 +139,36 @@ export default function Login() {
 
   }
 
+  const loginClient = (client)=>{
+    fetch('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+client.email,{
+    //fetch('http://localhost:8080/clients/email/'+client.email,{
+      method: 'GET'
+    }).then(function(response){
+      //console.log(response.ok)
+     if (response.ok){
 
+       response.json().then(function (res) {
 
+         //localStorage.setItem(,true);
+         if(client.email === res.email && client.password === res.password){
+           
+           localStorage.setItem('isLoggedIn',true);
+           window.location='/Home';
+           setIsLoggedIn(true);
+         }
+     });
+     }
+     else{
+       console.log("");
 
+       alert("Usuario o Contraseña Incorrecto");
+     }
+    }).catch(function (error) {
+
+      console.log("Bad petition:" + error.message);
+
+    });
+  }
 
 
 
@@ -216,7 +254,7 @@ export default function Login() {
         />
         <br />
         <br />
-        <button className="myButton2"  style={{ position: 'relative', top: '0px', right: '-140px' }}>
+        <button className="myButton2" onClick={handleOnClickClient} style={{ position: 'relative', top: '0px', right: '-140px' }}>
           Iniciar Sesión
           </button>
         <br>
