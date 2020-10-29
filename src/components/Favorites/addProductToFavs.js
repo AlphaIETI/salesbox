@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 
@@ -60,8 +61,8 @@ export default function addProductToFavs(props){
     }
 
     return(
-        <div>
-            {localStorage.getItem.isLoggedIn ? 
+        <div style={{float:'left'}}>
+            {localStorage.getItem('isLoggedIn') ?
                 <Button color="secondary" onClick={handleAddProductFavorites}>
                     <FavoriteBorderIcon fontSize="small"/>
                 </Button>
