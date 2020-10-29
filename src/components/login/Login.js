@@ -9,6 +9,7 @@ import Box from '@material-ui/core/Box';
 import logo from '../../logo.png';
 import { Redirect, Route } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
+import { Link } from 'react-router-dom';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -178,8 +179,8 @@ export default function Login() {
     <div className={classes.root} style={{ width: '480px', margin: '0 auto' }}>
       <AppBar position="static" style={{ width: '480px', margin: '0 auto', background: 'transparent' }}>
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" >
-          <Tab label={<span style={{ color: 'black' }}>"Empresa"</span>} {...a11yProps(0)} />
-          <Tab label={<span style={{ color: 'black' }}>"Cliente"</span>} {...a11yProps(1)} />
+          <Tab label={<span style={{ color: 'black' }}>Empresa</span>} {...a11yProps(0)} />
+          <Tab label={<span style={{ color: 'black' }}>Cliente</span>} {...a11yProps(1)} />
         </Tabs>
       </AppBar>
 
@@ -225,6 +226,11 @@ export default function Login() {
         <button className="myButton2" onClick={handleOnClickEntity} style={{ position: 'relative', top: '0px', right: '-140px' }}>
          Iniciar  Sesión
           </button>
+        <br>
+        </br>
+        <br></br>
+
+          <Link to="/Register"  style={{color:"grey" ,position: 'relative', top: '0px', right: '-130px' }}>Haz click para registrarte</Link>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <img src={logo} style={{ height: '150px', position: 'relative', top: '0px', right: '-100px' }} />
@@ -259,6 +265,9 @@ export default function Login() {
           </button>
         <br>
         </br>
+        <br>
+        </br>
+        <Link to="/Register"  style={{color:"grey" ,position: 'relative', top: '0px', right: '-130px' }}>Haz click para registrarte</Link>
         <br>
         </br>
         <br>
