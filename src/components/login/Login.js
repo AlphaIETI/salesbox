@@ -104,7 +104,7 @@ export default function Login() {
 
   const loginEntity = (entity) => {
   
-   
+
     fetch('https://salesbox-alpha-backend.herokuapp.com/api/entity/user/'+entity.email+'/'+entity.password,{
       method: 'GET'
     }).then(function (response) {
@@ -112,6 +112,8 @@ export default function Login() {
         response.json().then(function (res) {
           console.log(res);
           localStorage.setItem('isAdmin',true);
+          localStorage.setItem('nameEntity', res.name);
+          localStorage.setItem('isLoggedIn',true);
           setIsLoggedIn(true);
         
         })

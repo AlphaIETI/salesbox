@@ -182,8 +182,8 @@ export default function Promotions(props) {
         <div>
           <Carousel>
             {props.promotions.map(pr => 
-            <Carousel.Item> 
-                  <Grid key={pr.id} lg={7} item spacing={4} className={classes1.image2}>
+            <Carousel.Item key={pr.id}> 
+                  <Grid key={pr.id} lg={7} item className={classes1.image2}>
                       <CustomCard
                           classes={styles}
                           title={pr.brand}

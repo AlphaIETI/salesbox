@@ -63,7 +63,6 @@ export default function NewPromotion(props) {
     }
 
     const addPromotionDB = (promotion) => {
-        //http://localhost:8080/api/promotions
         fetch('https://salesbox-alpha-backend.herokuapp.com/api/promotions' , { 
             method:'POST',
             headers:{
