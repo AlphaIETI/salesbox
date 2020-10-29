@@ -1,9 +1,10 @@
 import React from 'react';
-import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
-export default function addProductToCart(props){
 
-    const handleAddProductCarrito = () => {
+export default function addProductToFavs(props){
+
+    const handleAddProductFavorites = () => {
 
         const user = {
             id: "4",
@@ -20,8 +21,8 @@ export default function addProductToCart(props){
 
         //let currentUser = localStorage.getItem(user);
 
-        //let newCart = user.carrito.push(props.idProduct);
-        let newCart = user.carrito.push("5f9a1fc03dd3f81a6156ad1f"); //cambiar idProduct
+        //let newFavs= user.carrito.push(props.idProduct);
+        let newFavs = user.favoritos.push("5f9a1fc03dd3f81a6156ad1f"); //cambiar idProduct
 
         let newUser = {
             id: user.id,
@@ -32,8 +33,8 @@ export default function addProductToCart(props){
             coupons: user.coupons,
             phone: user.phone,
             address: user.address,
-            carrito: newCart,
-            favoritos: user.favoritos,
+            carrito: user.carrito,
+            favoritos: newFavs,
         }
 
         
@@ -61,9 +62,9 @@ export default function addProductToCart(props){
     return(
         <div>
             {localStorage.getItem.isLoggedIn ? 
-            <Button color="secondary" onClick={handleAddProductCarrito}>
-                Añadir  <AddShoppingCartOutlinedIcon fontSize="small"/> 
-            </Button>
+                <Button color="secondary" onClick={handleAddProductFavorites}>
+                    <FavoriteBorderIcon fontSize="small"/>
+                </Button>
             :null}
             
         </div>
