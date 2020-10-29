@@ -62,7 +62,7 @@ export default function Perfil (props){
 	const handleLogout = () => {
 		localStorage.clear();
 	};
-	const [jsonFull, setJSON] = useState({"id":99999,"name":"","lastname":"","mail":"","password":"","coupons":"","phon":"","adress":""});
+	const [jsonFull, setJSON] = useState({"id":"99999","name":"","lastname":"","email":"","password":"","coupons":"","phone":"","address":""});
 
 	useEffect( () => {
 		//axios.get('http://localhost:8080/clients/id/1')
@@ -87,14 +87,14 @@ export default function Perfil (props){
 						</Grid>
 						<br/>
 						<h4> Correo </h4>
-						<h6>{jsonFull.mail.toString()}</h6>
+						<h6>{jsonFull.email.toString()}</h6>
 						<h4> Mis Cupones </h4>
 						<h6> {jsonFull.coupons.toString()} </h6>
 						<h4> INFORMACIÓN </h4>
 						<h4>Tel</h4>
-						<h6>{jsonFull.phon.toString()} </h6>
+						<h6>{jsonFull.phone.toString()} </h6>
 						<h4> Dirección </h4>
-						<h6> {jsonFull.adress.toString()}</h6>
+						<h6> {jsonFull.address.toString()}</h6>
 					</Typography>
 				</AccordionDetails>
 					<Button
