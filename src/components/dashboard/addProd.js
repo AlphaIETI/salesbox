@@ -59,19 +59,33 @@ export default function NewProd(props) {
         }
     };
 
-    const handleAddProd = () => {
-        //console.log(document.getElementById("descripcion").value);
-        //console.log(document.getElementById("precio").value);
-        //console.log(document.getElementById("descuento").value);
-        //console.log(typeProd);
-        //console.log(colorProd);
-        //console.log(document.getElementById("tallaProducto").value);
-        //console.log(urlImg);
+    const addProductDB = (product) => {
+        fetch('https://salesbox-alpha-backend.herokuapp.com/products' , { 
+            method:'POST',
+            headers:{
+              'Content-Type': 'application/json ',
+              'Accept': 'application/json',
+            },
+            body:JSON.stringify(product)
+          }).then(function(response) {
+                if(response.ok){
+                    response.json().then(function(res) {
+                        console.log(res);
+                    })
+                    props.editProducts(1);
+                }else{
+                    console.log('Respuesta de red OK pero respuesta HTTP no OK');
+                }
+            }).catch(function(error) {
+                console.log('Hubo un problema con la petición Fetch:' + error.message);
+            });
+    }
 
+    const handleAddProd = () => {
         if(typeProd === "Tenis"){
             if(document.getElementById("descripcion").value !== "" && document.getElementById("precio").value !== "" && document.getElementById("descuento").value !== "" && colorProd !== "" && document.getElementById("tallaProducto").value !== "" && urlImg !== ""){
-                const pr = {marca:"Nike",desc:document.getElementById("descripcion").value,precio:document.getElementById("precio").value,descuento:document.getElementById("descuento").value,color:colorProd,talla:document.getElementById("tallaProducto").value,img:urlImg};
-                props.editProducts(pr);
+                const pr = {id:"",brand:localStorage.getItem('nameEntity'),description:document.getElementById("descripcion").value,color:colorProd,price:document.getElementById("precio").value,discount:document.getElementById("descuento").value,image:urlImg,size:[document.getElementById("tallaProducto").value]};
+                addProductDB(pr);
                 setPreviewSource();
                 setTypeProd("");
                 setColorProd("");

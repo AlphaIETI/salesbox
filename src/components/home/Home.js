@@ -232,11 +232,11 @@ export default function ButtonBases() {
   const classes = useStyles();
   const arrowStyles = useArrowDarkButtonStyles();
   const redirect = (td)=>{
-    localStorage.setItem('tienda', td);
+    localStorage.setItem('nameEntity', td);
     window.location='/Dashboard'
   };
   const handleViewAll = () => {
-    localStorage.setItem('tienda', "#");
+    localStorage.setItem('nameEntity', "#");
     window.location='/Dashboard'
   };
   const gridStyles = useGridStyles();
@@ -249,7 +249,6 @@ export default function ButtonBases() {
   }
   const[promotions, setPromotions] = React.useState([]);
   useEffect (() => {
-      //http://localhost:8080/api/promotions
       fetch('https://salesbox-alpha-backend.herokuapp.com/api/promotions', {
           method: 'GET'
       }).then(response => response.json())
@@ -304,7 +303,7 @@ export default function ButtonBases() {
                   variant="contained"
                   color="primary"
                 >
-                  <Typography variant="h9">
+                  <Typography variant="body2">
                     Ver todos los productos
                   </Typography>
               </Button>
