@@ -27,7 +27,7 @@ export default function FavItem(props){
             <Row>
                 <Col xs='auto' padding='30px 40px'>
                     <Link>
-                        <AddShoppingCartIcon ></AddShoppingCartIcon>
+                        <AddShoppingCartIcon/>
                     </Link>
                 </Col>
                 <Col >

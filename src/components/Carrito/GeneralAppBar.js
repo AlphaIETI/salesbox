@@ -10,6 +10,7 @@ import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumberOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,6 +33,11 @@ export default function ButtonAppBar() {
                     <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                         Salesbox
                     </Typography>
+                    <Link to="/Home">
+                        <IconButton >
+                            <HomeOutlinedIcon fontSize="large" />
+                        </IconButton>
+                    </Link>
                     <Link to="/Favorites">
                         <IconButton >
                             <FavoriteBorderOutlinedIcon fontSize="large" />
