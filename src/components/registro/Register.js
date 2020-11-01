@@ -7,11 +7,18 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import logo from '../../logo.png';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 import { CredentialsList } from '../credential/CredentialsList';
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
+  const { children, value, index, ...other } = props; 
   return (
     <div
       role="tabpanel"
@@ -50,14 +57,137 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Register() {
+  const edades = [
+    {
+      value: '16-20',
+      label: '16-20',
+    },
+    {
+      value: '21-30',
+      label: '21-30',
+    },
+    {
+      value: '31-40',
+      label: '31-40',
+    },
+    {
+      value: '41-50',
+      label: '41-50',
+    },
+    {
+      value: '51-60',
+      label: '51-60',
+    },
+    {
+      value: '+60',
+      label: '+60',
+    }
+  ];
+
+  const tallaSuperior = [
+    {
+      value: 'XS',
+      label: 'XS',
+    },
+    {
+      value: 'S',
+      label: 'S',
+    },
+    {
+      value: 'M',
+      label: 'M',
+    },
+    {
+      value: 'L',
+      label: 'L',
+    },
+    {
+      value: 'XL',
+      label: 'XL',
+    },
+    {
+      value: 'XXL',
+      label: 'XXL',
+    }
+  ];
+  
+  const tallaInferior = [
+    {
+      value: '10',
+      label: '10',
+    },
+    {
+      value: '12',
+      label: '12',
+    },
+    {
+      value: '14',
+      label: '14',
+    },
+    {
+      value: '16',
+      label: '16',
+    },
+    {
+      value: '18',
+      label: '18',
+    }
+  ];
+
+  const calzado = [
+    {
+      value: '28-31',
+      label: '28-31',
+    },
+    {
+      value: '32-35',
+      label: '32-35',
+    },
+    {
+      value: '36-39',
+      label: '36-39',
+    },
+    {
+      value: '+39',
+      label: '+39',
+    }
+  ];
   const classes = useStyles();
+  const[open,setOpen]=React.useState(false);
   const [value, setValue] = React.useState(0);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const [edad, setEdad] = React.useState('');
+  const [tallaA, setTallaA] = React.useState('');
+  const [tallaB, setTallaB] = React.useState('');
+  const [tallaC, setTallaC] = React.useState('');
+
+  const handleChangeEdad = (event) => {
+    setEdad(event.target.value);
+  };
+
+  const handleChangeTallaA = (event) => {
+    setTallaA(event.target.value);
+  };
+
+  const handleChangeTallaB = (event) => {
+    setTallaB(event.target.value);
+  };
+
+  const handleChangeTallaC = (event) => {
+    setTallaC(event.target.value);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
 
-
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   const handleOnClick = (e) => {
     var correo = document.getElementById("emailEmpresa").value;
     if (document.getElementById("nombreEmpresa").value === "" || document.getElementById("nit").value === "" || document.getElementById("emailEmpresa").value === ""
@@ -100,7 +230,7 @@ export default function Register() {
 
       let client = {
 
-        _ide: "",
+        _id: "",
         name: document.getElementById("nombreCliente").value,
         lastname: document.getElementById("apellidoCliente").value,
         email: document.getElementById("email").value,
@@ -108,6 +238,10 @@ export default function Register() {
         coupons:"0",
         phone: document.getElementById("telefonoCliente").value.toString(),
         address: document.getElementById("direccionCliente").value,
+        age:edad,
+        sizeUp:tallaA,
+        sizeDown:tallaB,
+        shoeSize:tallaC
       }
       console.log(client.name);
       registerClient(client);
@@ -355,10 +489,82 @@ export default function Register() {
         />
         <br />
         <br />
-        <button class="myButton2" onClick={handleOnClickCliente} style={{ position: 'relative', top: '0px', right: '-140px' }}>
+        <Button class="myButton2"  style={{ position: 'relative'}} onClick={handleClickOpen}> 
+        Siguiente
+        </Button>
+        
+        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Nos gustaría conocerte un poco más</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Ayudanos a diligenciar el siguiente formulario para que tengas una experiencia personalizada con SalesBox
+          </DialogContentText>
+          <TextField
+          id="edadCliente"
+          select
+          label="Edad"
+          value={edad}
+          onChange={handleChangeEdad}
+          helperText="Selecciona el rango de edad en el que te encuentras"
+        >
+           {edades.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <br></br>
+        <TextField
+          id="tallaACliente"
+          select
+          label="Talla"
+          value={tallaA}
+          onChange={handleChangeTallaA}
+          helperText="Selecciona tu talla para la parte superior de tu cuerpo"
+        >
+           {tallaSuperior.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <br></br>
+        <TextField
+          id="tallaBCliente"
+          select
+          label="Talla"
+          value={tallaB}
+          onChange={handleChangeTallaB}
+          helperText="Selecciona tu talla para la parte inferior de tu cuerpo"
+        >
+           {tallaInferior.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <br></br>
+        <TextField
+          id="tallaCCliente"
+          select
+          label="Talla"
+          value={tallaC}
+          onChange={handleChangeTallaC}
+          helperText="Selecciona tu talla para productos de calzado"
+        >
+           {calzado.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        </DialogContent>
+        <DialogActions>
+          <button class="myButton2" onClick={handleOnClickCliente} style={{ position: 'relative'}}>
           Registrarse
           </button>
-
+        </DialogActions>
+      </Dialog>
 
       </TabPanel>
 
