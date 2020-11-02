@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard(props) {
     
     const classes = useStyles();
-    const [openDrawer,serOpenDrawer] = React.useState(false);
+    const [openDrawer,setOpenDrawer] = React.useState(false);
     const[products, setProducts] = React.useState([]);
 
     const [cantPr, setCantPr] = React.useState(0);
@@ -109,14 +109,24 @@ export default function Dashboard(props) {
         setFilMarca(filMarca.filter(item => item !== ans));
     }
 
+    const [filColor,setFilColor] = React.useState([]);
+
+    const handleChangeFilColor = (ans) => {
+        setFilColor(filColor.concat(ans));
+    }
+
+    const handleChangeDeleteFilColor = (ans) => {
+        setFilColor(filColor.filter(item => item !== ans));
+    }
+
     const handleChangeStateDrawer = (ans) => {
-        serOpenDrawer(ans);
+        setOpenDrawer(ans);
     };
 
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBarComponent funStateDrawer={handleChangeStateDrawer} funFilMarca={handleChangeFilMarca} funDelFilMarca={handleChangeDeleteFilMarca} view={view} editProducts={editProducts}/>
+            <AppBarComponent funStateDrawer={handleChangeStateDrawer} funFilMarca={handleChangeFilMarca} funDelFilMarca={handleChangeDeleteFilMarca} view={view} editProducts={editProducts} products={products} funFilColor={handleChangeFilColor} funDelFilColor={handleChangeDeleteFilColor}/>
             <main
                 className={clsx(classes.content, {
                 [classes.contentShift]: openDrawer,
@@ -134,7 +144,7 @@ export default function Dashboard(props) {
                     </Typography>
                     <Grid container spacing={2} className={classes.actionSpacer}>
                         {products.map(pr => { 
-                            return ((view === "#" && (filMarca.includes(pr.brand) || filMarca.length === 0)) || view === pr.brand ) || (localStorage.getItem('isAdmin') && pr.brand === view) ?
+                            return ((view === "#" && ((filMarca.includes(pr.brand) || filMarca.length === 0) && (filColor.includes(pr.color) || filColor.length === 0))) || view === pr.brand ) || (localStorage.getItem('isAdmin') && pr.brand === view) ?
                                 <Grid key={products.indexOf(pr)} xs={12} sm={6} md={4} lg={4} xl={2} item>
                                     <Card>
                                         <div>
