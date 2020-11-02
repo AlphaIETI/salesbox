@@ -66,14 +66,15 @@ export default function Perfil (props){
 
 	useEffect( () => {
 		//axios.get('http://localhost:8080/clients/id/1')
-		axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/id/1')
+		axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
 			.then(res => {
 				//console.log("name");
 				//console.log(res.data);
 				setJSON(res.data)
 				})
 		}, []);
-		//console.log(jsonFull);
+	//console.log(localStorage.getItem('emailClient'));
+	console.log(JSON.stringify(jsonFull));
 	return (
 			<Accordion >
 				<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>

@@ -154,6 +154,7 @@ export default function Login() {
          if(client.email === res.email && client.password === res.password){
            
            localStorage.setItem('isLoggedIn',true);
+           localStorage.setItem('emailClient',res.email);
            window.location='/Home';
            setIsLoggedIn(true);
          }
