@@ -51,17 +51,35 @@ const StyledBadge = withStyles((theme) => ({
   }
 
 export default function AccordionComponent(props) {
+    //CantidadProductosPorMarca
+    let brands = [];
+    let countBrands = [];
+    let propsBrands = [];
+    let brand;
+    if(props.products !== undefined){
+        props.products.map(function(pr){
+            brands.push(pr.brand)
+        });
+        brands.forEach(function(i) { countBrands[i] = (countBrands[i]||0) + 1;});
+        for (brand in countBrands) {
+            propsBrands.push({name:brand,cantProducts:countBrands[brand]});
+        }
+    }
+    //CantidadDeColoresDisponibles
+    let colors = [];
+    let countColors = [];
+    let propsColors = [];
+    let color;
+    if(props.products !== undefined){
+        props.products.map(function(pr){
+            colors.push(pr.color)
+        });
+        colors.forEach(function(i) { countColors[i] = (countColors[i]||0) + 1;});
+        for (color in countColors) {
+            propsColors.push({name:color,cantColors:countColors[color]});
+        }
+    }
     const classes = useStyles();
-    const [brands, setBrands] = React.useState([{name:"Tennis",cantProducts:"58"},
-                                                {name:"Naf Naf",cantProducts:"24"},
-                                                {name:"Nike",cantProducts:"154"},
-                                                {name:"Adidas",cantProducts:"231"},
-                                                {name:"Americanino",cantProducts:"75"},
-                                                {name:"Zara",cantProducts:"12"},
-                                                {name:"Tommy",cantProducts:"54"},
-                                                {name:"H&M",cantProducts:"73"},
-                                                {name:"Bershka",cantProducts:"17"},
-                                                ]);
     const [categories, setCategories] = React.useState([{nameCategory:"Camisetas",items:["Color","Talla","Mangas"]},
                                         {nameCategory:"Camisas",items:["Color","Talla","Mangas"]},
                                         {nameCategory:"Chaquetas",items:["Color","Talla","Estilo"]},
@@ -73,6 +91,7 @@ export default function AccordionComponent(props) {
     const [expanded3, setExpanded3] = React.useState(false);
     const [expanded4, setExpanded4] = React.useState(false);
     const [expanded5, setExpanded5] = React.useState(false);
+    const [expanded7, setExpanded7] = React.useState(false);
     const [view, setView] = React.useState(props.view);
     const [value, setValue] = React.useState(4);
     const [state, setState] = React.useState({
@@ -97,19 +116,38 @@ export default function AccordionComponent(props) {
     const handleChange6 = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
     };
+    const handleChange7 = (panel) => (event, newExpanded) => {
+        setExpanded7(newExpanded ? panel : false);
+    };
     
-    const [stateCheckBox, setStateCheckBox] = React.useState([]);
+    const [stateCheckBoxBrand, setStateCheckBoxBrand] = React.useState([]);
 
-    const handleChangeCheckBox = (event) => {
-        if(!stateCheckBox.includes(event.target.name)){
+    const handleChangeCheckBoxBrand = (event) => {
+        if(!stateCheckBoxBrand.includes(event.target.name)){
             if(props.funFilMarca !== undefined){
-                setStateCheckBox(stateCheckBox.concat(event.target.name));
+                setStateCheckBoxBrand(stateCheckBoxBrand.concat(event.target.name));
                 props.funFilMarca(event.target.name);
             }
         }else{
             if(props.funDelFilMarca !== undefined){
-                setStateCheckBox(stateCheckBox.filter(item => item !== event.target.name));
+                setStateCheckBoxBrand(stateCheckBoxBrand.filter(item => item !== event.target.name));
                 props.funDelFilMarca(event.target.name);
+            }
+        }
+    };
+
+    const [stateCheckBoxColors, setStateCheckBoxColors] = React.useState([]);
+
+    const handleChangeCheckBoxColors = (event) => {
+        if(!stateCheckBoxColors.includes(event.target.name)){
+            if(props.funFilColor !== undefined){
+                setStateCheckBoxColors(stateCheckBoxColors.concat(event.target.name));
+                props.funFilColor(event.target.name);
+            }
+        }else{
+            if(props.funDelFilColor !== undefined){
+                setStateCheckBoxColors(stateCheckBoxColors.filter(item => item !== event.target.name));
+                props.funDelFilColor(event.target.name);
             }
         }
     };
@@ -160,14 +198,14 @@ export default function AccordionComponent(props) {
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className={classes.root1}>
-                            {brands.map(brand => (
-                                <div key={brands.indexOf(brand)}>
+                            {propsBrands.map(brand => (
+                                <div key={propsBrands.indexOf(brand)}>
                                 <StyledBadge badgeContent={brand.cantProducts} color="default">
                                     <FormControlLabel
                                         control={
                                             <Checkbox 
                                                 color="primary"
-                                                onChange={handleChangeCheckBox}
+                                                onChange={handleChangeCheckBoxBrand}
                                                 name={brand.name}
                                             />}
                                         label={brand.name}
@@ -181,6 +219,31 @@ export default function AccordionComponent(props) {
             :
             null
             }
+            <Divider />
+                <Accordion square expanded={expanded7 === 'panel1'} onChange={handleChange7('panel1')} className={classes.accordion}>
+                    <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                        <Typography color="primary">Colores</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <div className={classes.root1}>
+                            {propsColors.map(color => (
+                                <div key={propsColors.indexOf(color)}>
+                                <StyledBadge badgeContent={color.cantColors} color="default">
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox 
+                                                color="primary"
+                                                onChange={handleChangeCheckBoxColors}
+                                                name={color.name}
+                                            />}
+                                        label={color.name}
+                                    />
+                                </StyledBadge>
+                                </div>    
+                            ))}
+                        </div>
+                    </AccordionDetails>
+                </Accordion>
             <Divider />
                 <Accordion square expanded={expanded3 === 'panel1'} onChange={handleChange3('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
