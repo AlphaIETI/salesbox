@@ -43,11 +43,6 @@ export default function Carrito(){
 
     const [TotalPrice, setTotalPrice] = useState(0);
 
-
-
-
-
-
     return(
         <React.Fragment>
             <CssBaseline />
@@ -58,7 +53,7 @@ export default function Carrito(){
             <br/>
             <Container maxWidth="md">
                 {SelectedItems.map(item =>{
-                    return(<CardList tarea={item}/>)
+                    return(<CardList tarea={item} key={SelectedItems.id}/>)
                 })}
                 <Divider />
             </Container>
