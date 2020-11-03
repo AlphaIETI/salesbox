@@ -23,6 +23,7 @@ export default function NewProd(props) {
     const [file, setFile]= React.useState();
     const [urlImg, setUrlImg] = React.useState("");
     const [typeProd, setTypeProd] = React.useState("");
+    const [typeGen, setTypeGen] = React.useState("");
     const [colorProd, setColorProd] = React.useState("");
 
     const CLOUDINARY_URL_PREVIEW = 'https://res.cloudinary.com/dja8smkgx/image/upload/v';
@@ -82,25 +83,25 @@ export default function NewProd(props) {
     }
 
     const handleAddProd = () => {
-        if(typeProd === "Tenis"){
-            if(document.getElementById("descripcion").value !== "" && document.getElementById("precio").value !== "" && document.getElementById("descuento").value !== "" && colorProd !== "" && document.getElementById("tallaProducto").value !== "" && urlImg !== ""){
-                const pr = {id:"",brand:localStorage.getItem('nameEntity'),description:document.getElementById("descripcion").value,color:colorProd,price:document.getElementById("precio").value,discount:document.getElementById("descuento").value,image:urlImg,size:[document.getElementById("tallaProducto").value]};
-                addProductDB(pr);
-                setPreviewSource();
-                setTypeProd("");
-                setColorProd("");
-                setUrlImg("");
-                setOpenForm(false);
-            } else {
-                alert("No se completaron todos los datos del Producto.")
-            }
+        if(document.getElementById("descripcion").value !== "" && document.getElementById("precio").value !== "" && document.getElementById("descuento").value !== "" && typeProd !== "" && typeGen !== "" && colorProd !== "" && document.getElementById("tallaProducto").value !== "" && document.getElementById("cantidadDisponible").value !== "" && urlImg !== ""){
+            const pr = {id:"",brand:localStorage.getItem('nameEntity'),description:document.getElementById("descripcion").value,color:colorProd,price:document.getElementById("precio").value,discount:document.getElementById("descuento").value,image:urlImg,size:[document.getElementById("tallaProducto").value],category:typeProd,gender:typeGen,stockAvailable:document.getElementById("cantidadDisponible").value};
+            addProductDB(pr);
+            setPreviewSource();
+            setTypeProd("");
+            setTypeGen("");
+            setColorProd("");
+            setUrlImg("");
+            setOpenForm(false);
         } else {
-            alert("No se selecciono el tipo del producto 'Solo funciona el tipo TENIS'")
+            alert("No se completaron todos los datos del Producto.")
         }
     }
-
     const handleChangeTypeProd = (e) => {
         setTypeProd(e.target.value);
+    }
+
+    const handleChangeTypeGen = (e) => {
+        setTypeGen(e.target.value);
     }
 
     const handleChangeColorProd = (e) => {
@@ -125,10 +126,9 @@ export default function NewProd(props) {
                 <DialogTitle id="form-dialog-title">Agregar Producto Nuevo</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                    Complete los datos del producto.
+                    Complete todos los datos del producto.
                     </DialogContentText>
                     <TextField
-                        required
                         autoFocus
                         margin="dense"
                         id="descripcion"
@@ -143,7 +143,6 @@ export default function NewProd(props) {
                     <FormControl fullWidth variant="outlined">
                         <InputLabel htmlFor="precio">Precio</InputLabel>
                         <OutlinedInput
-                            required
                             fullWidth
                             id="precio"
                             type="number"
@@ -152,8 +151,6 @@ export default function NewProd(props) {
                         />
                     </FormControl>
                     <TextField
-                        required
-                        autoFocus
                         margin="dense"
                         id="descuento"
                         label=" % de descuento"
@@ -162,9 +159,8 @@ export default function NewProd(props) {
                         InputProps={{ inputProps: { max: 100, min: 0 } }}
                         fullWidth
                     />
-                    <InputLabel id="demo-mutiple-name-label">Tipo</InputLabel>
+                    <InputLabel id="demo-mutiple-name-label">Categoria</InputLabel>
                     <Select
-                        required
                         id="tipoProducto"
                         labelId="demo-mutiple-name-label"
                         margin="dense"
@@ -173,49 +169,61 @@ export default function NewProd(props) {
                         onChange={handleChangeTypeProd}
                         fullWidth
                     >
-                        <MenuItem value="Tenis">Tenis</MenuItem>
-                        <MenuItem value="Camisas">Camisas</MenuItem>
+                        <MenuItem value="Tenis">Zapatos</MenuItem>
+                        <MenuItem value="Ropa">Ropa</MenuItem>
                         <MenuItem value="Accesorios">Accesorios</MenuItem>
+                        <MenuItem value="Deportes">Deportes</MenuItem>
                     </Select>
-
-                    {typeProd === "Tenis" ? 
-                        <div>
-                            <InputLabel id="demo-mutiple-name-label-color">Color</InputLabel>
-                            <Select
-                                required
-                                id="productoColor"
-                                labelId="demo-mutiple-name-label-color"
-                                margin="dense"
-                                displayEmpty
-                                variant="outlined"
-                                onChange={handleChangeColorProd}
-                                fullWidth
-                            >
-                                <MenuItem value="Negro">Negro</MenuItem>
-                                <MenuItem value="Blanco">Blanco</MenuItem>
-                                <MenuItem value="Rojo">Rojo</MenuItem>
-                                <MenuItem value="Azul">Azul</MenuItem>
-                                <MenuItem value="Gris">Gris</MenuItem>
-                                <MenuItem value="Verde">Verde</MenuItem>
-                            </Select>
-                            <TextField
-                                required
-                                autoFocus
-                                margin="dense"
-                                id="tallaProducto"
-                                label="Talla"
-                                variant="outlined"
-                                type="number"
-                                fullWidth
-                            />
-                        </div>
-                        :
-                        null
-                    }
-
+                    <InputLabel id="demo-mutiple-name-label">Género</InputLabel>
+                    <Select
+                        id="generoProducto"
+                        labelId="demo-mutiple-name-label"
+                        margin="dense"
+                        displayEmpty
+                        variant="outlined"
+                        onChange={handleChangeTypeGen}
+                        fullWidth
+                    >
+                        <MenuItem value="Hombres">Hombres</MenuItem>
+                        <MenuItem value="Mujeres">Mujeres</MenuItem>
+                        <MenuItem value="Niños">Niños</MenuItem>
+                        <MenuItem value="Unisex">Unisex</MenuItem>
+                    </Select>
+                    <InputLabel id="demo-mutiple-name-label-color">Color</InputLabel>
+                    <Select
+                        id="productoColor"
+                        labelId="demo-mutiple-name-label-color"
+                        margin="dense"
+                        displayEmpty
+                        variant="outlined"
+                        onChange={handleChangeColorProd}
+                        fullWidth
+                    >
+                        <MenuItem value="Negro">Negro</MenuItem>
+                        <MenuItem value="Blanco">Blanco</MenuItem>
+                        <MenuItem value="Rojo">Rojo</MenuItem>
+                        <MenuItem value="Azul">Azul</MenuItem>
+                        <MenuItem value="Gris">Gris</MenuItem>
+                        <MenuItem value="Verde">Verde</MenuItem>
+                    </Select>
+                    <TextField
+                        margin="dense"
+                        id="tallaProducto"
+                        label="Talla"
+                        variant="outlined"
+                        type="number"
+                        fullWidth
+                    />
+                    <TextField
+                        margin="dense"
+                        id="cantidadDisponible"
+                        label="Cantidad Disponible"
+                        variant="outlined"
+                        type="number"
+                        fullWidth
+                    />
                     <div>
                         <input 
-                            required
                             type="file" 
                             name="image" 
                             onChange={handleFileImg} 
