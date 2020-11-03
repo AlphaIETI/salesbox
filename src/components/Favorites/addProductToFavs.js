@@ -1,41 +1,39 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import axios from 'axios';
 
 
 export default function addProductToFavs(props){
 
-    const handleAddProductFavorites = () => {
+    const handleAddProductFavorites = async () => {
 
-        const user = {
-            id: "4",
-            name: "Juliana",
-            lastname: "Garzon",
-            mail: "Juliana@hotmail.com",
-            password: "4444",
-            coupons: "3",
-            phone: "3105845162",
-            address: "cra 36c # 85 - 75",
-            carrito:["5f9a0db53dd3f81a6156ad16","5f9a16ef3dd3f81a6156ad1b"],
-            favoritos:["5f9a0db53dd3f81a6156ad16","5f9a16ef3dd3f81a6156ad1b"],
-            }
+        let user = {};
+        
 
-        //let currentUser = localStorage.getItem(user);
+        await axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
+			.then(res => {
+				user = res.data
+				})
 
-        //let newFavs= user.carrito.push(props.idProduct);
-        let newFavs = user.favoritos.push("5f9a1fc03dd3f81a6156ad1f"); //cambiar idProduct
 
-        let newUser = {
+        user.favorites.push(props.idProduct);
+
+        const newUser = {
             id: user.id,
             name: user.name,
             lastname: user.lastname,
-            mail: user.mail,
+            email: user.email,
             password: user.password,
             coupons: user.coupons,
             phone: user.phone,
             address: user.address,
-            carrito: user.carrito,
-            favoritos: newFavs,
+            age:user.age,
+            sizeUp: user.sizeUp,
+            sizeDown:user.sizeDown,
+            shoeSize:user.shoeSize,
+            cart: user.cart,
+            favorites: user.favorites
         }
 
         
@@ -43,11 +41,12 @@ export default function addProductToFavs(props){
         fetch('https://salesbox-alpha-backend.herokuapp.com/clients', { 
             method:'PUT',
             headers:{
-              'Content-Type': 'application/json ',
-              'Accept': 'application/json',
-            },
-            body:JSON.stringify(newUser)
+                'Content-Type': 'application/json ',
+                'Accept': 'application/json',
+              },
+            body:JSON.stringify(newUser),
           }).then(function(response) {
+              
                 if(response.ok){
                     response.json().then(function(res) {
                         console.log(res);
