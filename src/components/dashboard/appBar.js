@@ -200,7 +200,7 @@ export default function AppBarComponent(props) {
                     Filtros
                 </IconButton>
             </div>
-            <AccordionComponent funFilMarca={props.funFilMarca} funDelFilMarca={props.funDelFilMarca} view={props.view} isComp={props.isComp} isLog={props.isLog} products={props.products} funFilColor={props.funFilColor} funDelFilColor={props.funDelFilColor}/>
+            <AccordionComponent funFilMarca={props.funFilMarca} funDelFilMarca={props.funDelFilMarca} view={props.view} isComp={props.isComp} isLog={props.isLog} products={props.products} funFilColor={props.funFilColor} funDelFilColor={props.funDelFilColor} funMinMaxPrice={props.funMinMaxPrice} minMaxPrice={props.minMaxPrice} flagPrice={props.flagPrice}/>
         </Drawer>
         </div>
     );
