@@ -148,7 +148,7 @@ export default function Dashboard(props) {
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBarComponent funStateDrawer={handleChangeStateDrawer} funFilMarca={handleChangeFilMarca} funDelFilMarca={handleChangeDeleteFilMarca} view={view} editProducts={editProducts} products={products} funFilColor={handleChangeFilColor} funDelFilColor={handleChangeDeleteFilColor} funMinMaxPrice={handleMinMaxPrice} minMaxPrice={[minPrice,maxPrice]} flagPrice={flagPrice}/>
+            <AppBarComponent flagProducts={true}funStateDrawer={handleChangeStateDrawer} funFilMarca={handleChangeFilMarca} funDelFilMarca={handleChangeDeleteFilMarca} view={view} editProducts={editProducts} products={products} funFilColor={handleChangeFilColor} funDelFilColor={handleChangeDeleteFilColor} funMinMaxPrice={handleMinMaxPrice} minMaxPrice={[minPrice,maxPrice]} flagPrice={flagPrice}/>
             <main
                 className={clsx(classes.content, {
                 [classes.contentShift]: openDrawer,

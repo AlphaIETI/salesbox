@@ -14,7 +14,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
-import Slider from '@material-ui/core/Slider';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import Switch from '@material-ui/core/Switch';
