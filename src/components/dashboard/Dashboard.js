@@ -123,10 +123,32 @@ export default function Dashboard(props) {
         setOpenDrawer(ans);
     };
 
+    const [flagPrice,setFlagPrice] = React.useState(false);
+    
+    //PrecioMinimo&Maximo
+    const [minPrice,setMinPrice] = React.useState(1000000000000);
+    const [maxPrice,setMaxPrice] = React.useState(-1000000000000);
+    if(products !== undefined){
+        products.map(function(pr){
+            if(pr.price - (pr.price * (pr.discount/100)) < minPrice){
+                setMinPrice(pr.price - (pr.price * (pr.discount/100)));
+            }
+            if(pr.price - (pr.price * (pr.discount/100)) > maxPrice){
+                setMaxPrice(pr.price - (pr.price * (pr.discount/100)));
+            }
+        });
+    }
+
+    const [minMax,setMinMax] = React.useState([0,100000000]);
+    const handleMinMaxPrice = (e) => {
+        setFlagPrice(true);
+        setMinMax(e);
+    }
+
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBarComponent funStateDrawer={handleChangeStateDrawer} funFilMarca={handleChangeFilMarca} funDelFilMarca={handleChangeDeleteFilMarca} view={view} editProducts={editProducts} products={products} funFilColor={handleChangeFilColor} funDelFilColor={handleChangeDeleteFilColor}/>
+            <AppBarComponent flagProducts={true}funStateDrawer={handleChangeStateDrawer} funFilMarca={handleChangeFilMarca} funDelFilMarca={handleChangeDeleteFilMarca} view={view} editProducts={editProducts} products={products} funFilColor={handleChangeFilColor} funDelFilColor={handleChangeDeleteFilColor} funMinMaxPrice={handleMinMaxPrice} minMaxPrice={[minPrice,maxPrice]} flagPrice={flagPrice}/>
             <main
                 className={clsx(classes.content, {
                 [classes.contentShift]: openDrawer,
@@ -144,7 +166,7 @@ export default function Dashboard(props) {
                     </Typography>
                     <Grid container spacing={2} className={classes.actionSpacer}>
                         {products.map(pr => { 
-                            return ((view === "#" && ((filMarca.includes(pr.brand) || filMarca.length === 0) && (filColor.includes(pr.color) || filColor.length === 0))) || view === pr.brand ) || (localStorage.getItem('isAdmin') && pr.brand === view) ?
+                            return ((view === "#" && (((pr.price - (pr.price * (pr.discount/100))>=minMax[0]) && (pr.price - (pr.price * (pr.discount/100))<= minMax[1])) && (filMarca.includes(pr.brand) || filMarca.length === 0) && (filColor.includes(pr.color) || filColor.length === 0))) || view === pr.brand ) || (localStorage.getItem('isAdmin') && pr.brand === view) ?
                                 <Grid key={products.indexOf(pr)} xs={12} sm={6} md={4} lg={4} xl={2} item>
                                     <Card>
                                         <div>

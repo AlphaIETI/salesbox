@@ -14,11 +14,11 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
-import Slider from '@material-ui/core/Slider';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import Switch from '@material-ui/core/Switch';
 import ColorLensIcon from '@material-ui/icons/ColorLens';
+import Pricing from './sliderPrice';
 
 const useStyles = makeStyles((theme) => ({
     root1: {
@@ -250,13 +250,7 @@ export default function AccordionComponent(props) {
                         <Typography color="primary">Precios</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Slider
-                            value={valuePrice}
-                            onChange={handleChangeValuePrice}
-                            valueLabelDisplay="auto"
-                            aria-labelledby="range-slider"
-                            getAriaValueText={valuetext}
-                        />
+                        <Pricing funMinMaxPrice={props.funMinMaxPrice} minMaxPrice={props.minMaxPrice} flagPrice={props.flagPrice}/>
                     </AccordionDetails>
                 </Accordion>
             <Divider />
