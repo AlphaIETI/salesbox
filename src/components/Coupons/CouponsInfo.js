@@ -48,20 +48,18 @@ export default function CouponsInfo() {
         <DialogTitle id="alert-dialog-title">{"Redime tu cupon ahora !"}</DialogTitle>
         <DialogContent>
          
-          <TextField
-          disabled
-          id="filled-disabled"
-          label="Copia este código "
-          defaultValue="CXS20"
-          variant="filled"
           
-        />
-                       
+          
+         
+         
+         <img src="https://www.vanguardia.com/binrepository/716x477/0c0/0d0/none/12204/WTSC/DATA_ART_325251_BIG_CE_VL216321_MG21568226.jpg" alt="chosen" style={{height:'300px'}}/>
+ 
+         
          
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Ir ahora 
+            Redimir
           </Button>
          
         </DialogActions>
