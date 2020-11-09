@@ -96,10 +96,19 @@ export default function Dashboard(props) {
             });
         },[cantPr]);
 
+    const [view, setView] = React.useState(localStorage.getItem('nameEntity'));
+
+    const [filCategory,setFilCategory] = React.useState([]);
+
+    const handleChangeFilCategory = (ans) => {
+        setFilCategory(filCategory.concat(ans));
+    }
+
+    const handleChangeDeleteFilCategory = (ans) => {
+        setFilCategory(filCategory.filter(item => item !== ans));
+    }
     
     const [filMarca,setFilMarca] = React.useState([]);
-
-    const [view, setView] = React.useState(localStorage.getItem('nameEntity'));
 
     const handleChangeFilMarca = (ans) => {
         setFilMarca(filMarca.concat(ans));
@@ -117,6 +126,16 @@ export default function Dashboard(props) {
 
     const handleChangeDeleteFilColor = (ans) => {
         setFilColor(filColor.filter(item => item !== ans));
+    }
+
+    const [filGender,setFilGender] = React.useState([]);
+
+    const handleChangeFilGender = (ans) => {
+        setFilGender(filGender.concat(ans));
+    }
+
+    const handleChangeDeleteFilGender = (ans) => {
+        setFilGender(filGender.filter(item => item !== ans));
     }
 
     const handleChangeStateDrawer = (ans) => {
@@ -148,7 +167,7 @@ export default function Dashboard(props) {
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBarComponent flagProducts={true}funStateDrawer={handleChangeStateDrawer} funFilMarca={handleChangeFilMarca} funDelFilMarca={handleChangeDeleteFilMarca} view={view} editProducts={editProducts} products={products} funFilColor={handleChangeFilColor} funDelFilColor={handleChangeDeleteFilColor} funMinMaxPrice={handleMinMaxPrice} minMaxPrice={[minPrice,maxPrice]} flagPrice={flagPrice}/>
+            <AppBarComponent flagProducts={true} funStateDrawer={handleChangeStateDrawer} funFilGender={handleChangeFilGender} funDelFilGender={handleChangeDeleteFilGender} funFilCategory={handleChangeFilCategory} funDelFilCategory={handleChangeDeleteFilCategory} funFilMarca={handleChangeFilMarca} funDelFilMarca={handleChangeDeleteFilMarca} view={view} editProducts={editProducts} products={products} funFilColor={handleChangeFilColor} funDelFilColor={handleChangeDeleteFilColor} funMinMaxPrice={handleMinMaxPrice} minMaxPrice={[minPrice,maxPrice]} flagPrice={flagPrice}/>
             <main
                 className={clsx(classes.content, {
                 [classes.contentShift]: openDrawer,
@@ -166,7 +185,7 @@ export default function Dashboard(props) {
                     </Typography>
                     <Grid container spacing={2} className={classes.actionSpacer}>
                         {products.map(pr => { 
-                            return ((view === "#" && (((pr.price - (pr.price * (pr.discount/100))>=minMax[0]) && (pr.price - (pr.price * (pr.discount/100))<= minMax[1])) && (filMarca.includes(pr.brand) || filMarca.length === 0) && (filColor.includes(pr.color) || filColor.length === 0))) || view === pr.brand ) || (localStorage.getItem('isAdmin') && pr.brand === view) ?
+                            return ((view === "#" && (((pr.price - (pr.price * (pr.discount/100))>=minMax[0]) && (pr.price - (pr.price * (pr.discount/100))<= minMax[1])) && (filCategory.includes(pr.category) || filCategory.length === 0) && (filGender.includes(pr.gender) || filGender.length === 0) && (filMarca.includes(pr.brand) || filMarca.length === 0) && (filColor.includes(pr.color) || filColor.length === 0))) || view === pr.brand ) || (localStorage.getItem('isAdmin') && pr.brand === view) ?
                                 <Grid key={products.indexOf(pr)} xs={12} sm={6} md={4} lg={4} xl={2} item>
                                     <Card>
                                         <div>

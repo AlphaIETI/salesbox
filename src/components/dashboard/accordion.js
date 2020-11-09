@@ -3,12 +3,7 @@ import { makeStyles} from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -79,19 +74,43 @@ export default function AccordionComponent(props) {
             propsColors.push({name:color,cantColors:countColors[color]});
         }
     }
+    //CatidadDeCategoriasDisponibles
+    let categories = [];
+    let countCategories = [];
+    let propsCategories = [];
+    let category;
+    if(props.products !== undefined){
+        props.products.map(function(pr){
+            categories.push(pr.category)
+        });
+        categories.forEach(function(i) { countCategories[i] = (countCategories[i]||0) + 1;});
+        for (category in countCategories) {
+            propsCategories.push({name:category,cantCategories:countCategories[category]});
+        }
+    }
+    //CantidadGeneroDisponibles
+    let genres = [];
+    let countGenres = [];
+    let propsGenres = [];
+    let gender;
+    if(props.products !== undefined){
+        props.products.map(function(pr){
+            genres.push(pr.gender)
+        });
+        genres.forEach(function(i) { countGenres[i] = (countGenres[i]||0) + 1;});
+        for (gender in countGenres) {
+            propsGenres.push({name:gender,cantGenres:countGenres[gender]});
+        }
+    }
+
     const classes = useStyles();
-    const [categories, setCategories] = React.useState([{nameCategory:"Camisetas",items:["Color","Talla","Mangas"]},
-                                        {nameCategory:"Camisas",items:["Color","Talla","Mangas"]},
-                                        {nameCategory:"Chaquetas",items:["Color","Talla","Estilo"]},
-                                        {nameCategory:"Pantalones",items:["Color","Talla","Estilo"]},
-                                        {nameCategory:"Calzado",items:["Color","Talla","Tipo"]},
-                                        {nameCategory:"Accesorios",items:["Color","Estilo"]}]);
     const [expanded, setExpanded] = React.useState(false);
     const [expanded2, setExpanded2] = React.useState("panel1");
     const [expanded3, setExpanded3] = React.useState(false);
     const [expanded4, setExpanded4] = React.useState(false);
     const [expanded5, setExpanded5] = React.useState(false);
     const [expanded7, setExpanded7] = React.useState(false);
+    const [expanded8, setExpanded8] = React.useState(false);
     const [view, setView] = React.useState(props.view);
     const [value, setValue] = React.useState(4);
     const [state, setState] = React.useState({
@@ -119,7 +138,26 @@ export default function AccordionComponent(props) {
     const handleChange7 = (panel) => (event, newExpanded) => {
         setExpanded7(newExpanded ? panel : false);
     };
+    const handleChange8 = (panel) => (event, newExpanded) => {
+        setExpanded8(newExpanded ? panel : false);
+    };
     
+    const [stateCheckBoxCategory, setStateCheckBoxCategory] = React.useState([]);
+
+    const handleChangeCheckBoxCategory = (event) => {
+        if(!stateCheckBoxCategory.includes(event.target.name)){
+            if(props.funFilCategory !== undefined){
+                setStateCheckBoxCategory(stateCheckBoxCategory.concat(event.target.name));
+                props.funFilCategory(event.target.name);
+            }
+        }else{
+            if(props.funDelFilCategory !== undefined){
+                setStateCheckBoxCategory(stateCheckBoxCategory.filter(item => item !== event.target.name));
+                props.funDelFilCategory(event.target.name);
+            }
+        }
+    };
+
     const [stateCheckBoxBrand, setStateCheckBoxBrand] = React.useState([]);
 
     const handleChangeCheckBoxBrand = (event) => {
@@ -152,6 +190,22 @@ export default function AccordionComponent(props) {
         }
     };
 
+    const [stateCheckBoxGender, setStateCheckBoxGender] = React.useState([]);
+
+    const handleChangeCheckBoxGender = (event) => {
+        if(!stateCheckBoxGender.includes(event.target.name)){
+            if(props.funFilGender !== undefined){
+                setStateCheckBoxGender(stateCheckBoxGender.concat(event.target.name));
+                props.funFilGender(event.target.name);
+            }
+        }else{
+            if(props.funDelFilGender !== undefined){
+                setStateCheckBoxGender(stateCheckBoxGender.filter(item => item !== event.target.name));
+                props.funDelFilGender(event.target.name);
+            }
+        }
+    };
+
     const [valuePrice, setValuePrice] = React.useState([0, 500000]);
 
     const handleChangeValuePrice = (event, newValue) => {
@@ -166,26 +220,20 @@ export default function AccordionComponent(props) {
                     </AccordionSummary>
                     <AccordionDetails>
                         <div>
-                        {categories.map(category => (
-                            <Accordion key={categories.indexOf(category)}>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                    >
-                                    <Typography className={classes.heading}>{category.nameCategory}</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <List>
-                                        {category.items.map((text, index) => (
-                                            <ListItem button key={text}>
-                                            <ListItemIcon>{text === "Color" ? <ColorLensIcon /> : null}</ListItemIcon>
-                                            <ListItemText primary={text} />
-                                            </ListItem>
-                                        ))}
-                                    </List>
-                                </AccordionDetails>
-                            </Accordion>
+                        {propsCategories.map(category => (
+                            <div key={propsCategories.indexOf(category)}>
+                            <StyledBadge badgeContent={category.cantCategories} color="default">
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox 
+                                            color="primary"
+                                            onChange={handleChangeCheckBoxCategory}
+                                            name={category.name}
+                                        />}
+                                    label={category.name}
+                                />
+                            </StyledBadge>
+                            </div>
                         ))}
                         </div>
                     </AccordionDetails>
@@ -221,6 +269,32 @@ export default function AccordionComponent(props) {
             }
             <Divider />
                 <Accordion square expanded={expanded7 === 'panel1'} onChange={handleChange7('panel1')} className={classes.accordion}>
+                    <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                        <Typography color="primary">Géneros</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <div className={classes.root1}>
+                            {propsGenres.map(gender => (
+                                <div key={propsGenres.indexOf(gender)}>
+                                <StyledBadge badgeContent={gender.cantGenres} color="default">
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox 
+                                                color="primary"
+                                                onChange={handleChangeCheckBoxGender}
+                                                name={gender.name}
+                                            />}
+                                        label={gender.name}
+                                    />
+                                </StyledBadge>
+                                </div>    
+                            ))}
+                        </div>
+                    </AccordionDetails>
+                </Accordion>
+            <Divider />
+            <Divider />
+                <Accordion square expanded={expanded8 === 'panel1'} onChange={handleChange8('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                         <Typography color="primary">Colores</Typography>
                     </AccordionSummary>
