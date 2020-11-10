@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 import {useEffect} from "react";
 import axios from 'axios';
 
+
 export default function Perfil (props){
 
 	const useStyles = makeStyles((theme) => ({
@@ -74,29 +75,66 @@ export default function Perfil (props){
 				})
 		}, []);
 	//console.log(localStorage.getItem('emailClient'));
-	console.log(JSON.stringify(jsonFull));
+	//console.log(JSON.stringify(jsonFull));
 	return (
 			<Accordion >
 				<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
-				<AccordionDetails  className="imagenacordion">
-					<Typography align={"center"} >
-						<h4> Nombre </h4>
-						<h6>{jsonFull.name.toString()+"  "+ jsonFull.lastname.toString()}</h6>
+				<AccordionDetails className="imagenacordion">
+					<div>
+
+						<Typography align={"center"} variant="h4">
+							Nombre
+						</Typography>
+
+						<Typography align={"center"} variant="h6">
+							{jsonFull.name.toString()+"  "+ jsonFull.lastname.toString()}
+						</Typography>
+
 						<br/>
+
 						<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
 							<Avatar className={classess.large}></Avatar>
 						</Grid>
+
 						<br/>
-						<h4> Correo </h4>
-						<h6>{jsonFull.email.toString()}</h6>
-						<h4> Mis Cupones </h4>
-						<h6> {jsonFull.coupons.toString()} </h6>
-						<h4> INFORMACIÓN </h4>
-						<h4>Tel</h4>
-						<h6>{jsonFull.phone.toString()} </h6>
-						<h4> Dirección </h4>
-						<h6> {jsonFull.address.toString()}</h6>
-					</Typography>
+
+						<Typography align={"center"} variant="h4">
+							Correo
+						</Typography>
+
+						<Typography align={"center"} variant="h6">
+							{jsonFull.email.toString()}
+						</Typography>
+
+						<Typography align={"center"} variant="h4">
+							Mis Cupones
+						</Typography>
+
+						<Typography align={"center"} variant="h6">
+							{jsonFull.coupons.toString()}
+						</Typography>
+
+						<Typography align={"center"} variant="h4">
+							INFORMACIÓN
+						</Typography>
+
+						<Typography align={"center"} variant="h4">
+							Tel
+						</Typography>
+
+						<Typography align={"center"} variant="h6">
+							{jsonFull.phone.toString()}
+						</Typography>
+
+						<Typography align={"center"} variant="h4">
+							Dirección
+						</Typography>
+
+						<Typography align={"center"} variant="h6">
+							{jsonFull.address.toString()}
+						</Typography>
+
+					</div>
 				</AccordionDetails>
 					<Button
 						onClick={handleLogout}
@@ -105,7 +143,7 @@ export default function Perfil (props){
 						color="primary"
 						startIcon={<ExitToAppIcon />}
 					>
-						<Typography variant="h9">
+						<Typography variant="h6">
 							Logout
 						</Typography>
 					</Button>
