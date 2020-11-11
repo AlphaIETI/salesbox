@@ -26,26 +26,19 @@ export default function NewProd(props) {
     const [typeGen, setTypeGen] = React.useState("");
     const [colorProd, setColorProd] = React.useState("");
 
-    const CLOUDINARY_URL_PREVIEW = 'https://res.cloudinary.com/dja8smkgx/image/upload/v';
-    const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dja8smkgx/image/upload';
-
-    const CLOUDINARY_PRESETS = 'b059hpk6';
-
-    const CLOUDINARY_PRESETS_2 = 'ml_default';
-
-    
+    const CLOUDINARY_URL_PREVIEW = 'https://res.cloudinary.com/deavblstk/image/upload/v';
+    const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/deavblstk/image/upload';
+    const CLOUDINARY_PRESETS = 'qc96w20m';
 
     const handleSubmit = async (e) => {
         const formData = new FormData();
         formData.append('file', file);
         formData.append('upload_preset', CLOUDINARY_PRESETS);
-        
         const res = await axios.post(CLOUDINARY_URL, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         });
-
         setUrlImg(CLOUDINARY_URL_PREVIEW+res.data.version+"/"+res.data.public_id+"."+res.data.format);
 
     };
