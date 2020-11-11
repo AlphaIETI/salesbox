@@ -1,36 +1,43 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import GeneralAppBar from "../Carrito/GeneralAppBar";
 import Divider from '@material-ui/core/Divider';
 import FavoriteList from './FavoriteList.js';
+import axios from 'axios';
+
 
 
 export default function Favorites(){
 
-    const [favItemsSelected, modifySelectedItems] = useState(
-        [
-            {
-                id: 2021,
-                imagen:'Blusa',
-                descripcion: 'Blusa negra para mujer',
-                precio:20000
-            },
-            {
-                id: 2204,
-                imagen:'CamisetaCK',
-                descripcion: 'Camiseta CK para hombre',
-                precio: 69000
-            },
-            {
-                id: 2203,
-                imagen:'Zapatos',
-                descripcion: 'Zapatos para hombre',
-                precio: 74000
-            }
-        ]
-    )
+    const [clientCart, setClientCart] = useState(
+        {"id":"99999",
+        "name":"",
+        "lastname":"",
+        "email":"",
+        "password":"",
+        "coupons":"",
+        "phone":"",
+        "address":"",
+        "age":"",
+        "sizeUp":"",
+        "sizeDown":"",
+        "shoeSize":"",
+        "cart":"",
+        "favorites":""
+    });
+
+    useEffect( () => {
+
+		axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
+			.then(res => {
+                setClientCart(res.data)
+				})
+        }, []);
+
+    const favoritos = Object.values(clientCart.favorites)
+
 
     return(
         <React.Fragment>
@@ -42,8 +49,8 @@ export default function Favorites(){
             <br/>
             <Container maxWidth="md">
                 <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100hv' }}>
-                    {favItemsSelected.map(item =>{
-                    return(<FavoriteList favoritos={item}/>)
+                    {favoritos.map(item =>{
+                    return(<FavoriteList favoritos={item} key={item}/>)
                 })}
                     <Divider />
                 </Typography>

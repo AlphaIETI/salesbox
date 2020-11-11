@@ -1,10 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {CardImg, CardBody,CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
-import Saco from '../../img/saco.jpg';
-import Saco2 from '../../img/saco2.jpg';
-import CamisetaBlanca from '../../img/camisetaBlanca.jpg';
-import CamisetaNegra from '../../img/camisetaNegra.jpg';
 import axios from 'axios';
 
 
@@ -50,7 +46,7 @@ export default function Item(props){
 
     useEffect( () => {
 
-		axios.get('https://salesbox-alpha-backend.herokuapp.com/products/'+props.tarea)
+		axios.get('https://salesbox-alpha-backend.herokuapp.com/products/'+props.currentItem)
 			.then(res => {
                 setItemData(res.data)
 				})
