@@ -1,12 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {CardImg, CardBody,CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
-import Blusa from '../../img/Blusa.jpg';
-import CamisetaCK from '../../img/CamisetaCK.jpg';
-import Zapatos from '../../img/Zapatos.jpg';
 import { Link } from 'react-router-dom';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import axios from 'axios';
 
 export default function FavItem(props){
 
@@ -20,7 +18,27 @@ export default function FavItem(props){
         color: 'black'
     }
 
-    const icons = { Blusa, CamisetaCK, Zapatos };
+    const [itemData, setItemData] = useState(
+        {"id":"99999",
+        "brand":"",
+        "description":"",
+        "color":"",
+        "price":"",
+        "discount":"",
+        "image":"",
+        "size":"",
+        "category":"",
+        "gender":"",
+        "stockAvailable":""
+    });
+
+    useEffect( () => {
+
+		axios.get('https://salesbox-alpha-backend.herokuapp.com/products/'+props.favoritos)
+			.then(res => {
+                setItemData(res.data)
+				})
+        }, []);
 
     return(
         <Container style={{background:'white'}}>
@@ -31,18 +49,18 @@ export default function FavItem(props){
                     </Link>
                 </Col>
                 <Col >
-                    <CardImg style={imageItem} src={icons[props.favoritos.imagen]} alt="Missing Pic"/>
+                    <CardImg style={imageItem} src={itemData.image} alt="Missing Pic"/>
                 </Col>
                 <Col xs='6' style={imageItem}>
                     <CardBody >
                         <CardTitle></CardTitle>
-                        <CardSubtitle style={textStyle}>{props.favoritos.descripcion}</CardSubtitle>
+                        <CardSubtitle style={textStyle}>{itemData.description}</CardSubtitle>
                     </CardBody>
                 </Col>
                 <Col style={imageItem}>
                     <CardBody>
                         <CardTitle></CardTitle>
-                        <CardSubtitle style={textStyle}>${props.favoritos.precio}</CardSubtitle>
+                        <CardSubtitle style={textStyle}>${itemData.price}</CardSubtitle>
                     </CardBody>
                 </Col>
                 <Col>

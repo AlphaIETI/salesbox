@@ -8,7 +8,6 @@ import PriceTotal from './PriceTotal';
 import axios from 'axios';
 
 export default function Carrito(){
-    
     const [clientCart, setClientCart] = useState(
         {"id":"99999",
         "name":"",
@@ -46,7 +45,7 @@ export default function Carrito(){
             <br/>
             <Container maxWidth="md">
                 {carrito.map(item =>{
-                    return(<CardList tarea={item} key={item}/>)
+                    return(<CardList currentItem={item} key={item}/>)
                 })}
                 <Divider />
             </Container>
