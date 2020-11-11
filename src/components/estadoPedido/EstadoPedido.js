@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -10,6 +10,12 @@ import Paper from '@material-ui/core/Paper';
 import saco from "../../img/saco.jpg";
 import "./estadoPedido.css";
 import GeneralAppBar from "../Carrito/GeneralAppBar";
+import Container from '@material-ui/core/Container';
+import axios from "axios";
+import CardList from "../Carrito/CardList";
+import Divider from "@material-ui/core/Divider";
+import {Card, CardImg, Col} from "reactstrap";
+import OrderList from "./OrderList";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,6 +34,11 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         //color: theme.palette.text.secondary,
     },
+    ImagePedido: {
+        width: '10 %',
+        height: '41 %',
+        padding: '1em',
+    }
 }));
 
 function getSteps() {
@@ -73,6 +84,33 @@ export default function HorizontalLinearStepper() {
         setActiveStep(0);
     };
 
+    const [clientOrder, setClientOrder] = useState(
+        {"id":"999999",
+            "name":"",
+            "lastname":"",
+            "email":"",
+            "password":"",
+            "coupons":"",
+            "phone":"",
+            "address":"",
+            "age":"",
+            "sizeUp":"",
+            "sizeDown":"",
+            "shoeSize":"",
+            "cart":"",
+            "favorites":""
+        });
+
+    useEffect( () => {
+
+        axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
+            .then(res => {
+                setClientOrder(res.data)
+            })
+    }, []);
+
+    const order = Object.values(clientOrder.cart)
+
     return (
         <div>
         <GeneralAppBar/>
@@ -81,13 +119,14 @@ export default function HorizontalLinearStepper() {
             <Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
-                        <h3> Pedido</h3>
-                        <h5> 00001 </h5>
-                        <Grid justify={"center"} alignItems={"center"} item xs={12}>
-                            <Paper className={classes.paper}>
-                                <img src={saco} className="ima-dino"/>
-                            </Paper>
-                        </Grid>
+                        <Container maxWidth="md">
+                            <h3> Pedido</h3>
+                            <h5> 00001 </h5>
+                            {order.map(item =>{
+                                return(<OrderList currentItem={item} key={item}/>)
+                            })}
+                            <Divider />
+                        </Container>
                     </Paper>
                 </Grid>
                 <Grid item xs={12}>
@@ -162,7 +201,7 @@ export default function HorizontalLinearStepper() {
                                 }
                                 {localStorage.getItem('isLoggedIn') && !localStorage.getItem('isAdmin') && true ?
 
-                                    <Typography align={"center"} variant="h4" color={'white'}
+                                    <Typography align={"center"} variant="h4" color={'initial'}
                                                 className={classes.instructions}>
                                         {getStepContent(activeStep)}
 
