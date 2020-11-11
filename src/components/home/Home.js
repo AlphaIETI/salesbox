@@ -262,25 +262,44 @@ export default function ButtonBases() {
               console.log(error)
           });
       },[cantPromo]);
+
+  //Home images
+
+  const[brands,setBrands]=React.useState([]);
+  useEffect(() => {
+    fetch('https://salesbox-alpha-backend.herokuapp.com/api/entities', {
+      method: 'GET'
+    }).then(response => response.json())
+      .then(data => {
+        console.log(data)
+        data.map(pr => {
+          setBrands(data);
+        })
+      }).catch(error => {
+        console.log(error)
+      });
+  }, []);
+  
+
   return (
     <div className={classes.root}>
       <AppBarComponent cantPromo={handleCantPromo}/>
         <Container maxWidth="lg">
-        {images.map((image) => (
+        {brands.map((brand) => (
               <ButtonBase
                   focusRipple
-                  key={image.title}
+                  key={brand.name}
                   className={classes.image}
-                  onClick={() => redirect(image.title)}
+                  onClick={() => redirect(brand.name)}
                   focusVisibleClassName={classes.focusVisible}
                   style={{
-                      width: image.width,
+                      width: "30%",
                   }}
                   >
                   <span
                       className={classes.imageSrc}
                       style={{
-                      backgroundImage: `url(${image.url})`,
+                      backgroundImage: `url(${brand.image})`,
                       }}
                   />
                   <span className={classes.imageBackdrop} />
