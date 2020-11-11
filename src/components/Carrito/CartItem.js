@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {CardImg, CardBody,CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import Saco from '../../img/saco.jpg';
 import Saco2 from '../../img/saco2.jpg';
 import CamisetaBlanca from '../../img/camisetaBlanca.jpg';
 import CamisetaNegra from '../../img/camisetaNegra.jpg';
+import axios from 'axios';
 
 
 export default function Item(props){
 
-    const [cantidad, setcantidad] = useState(props.tarea.cantidad);
+    const [cantidad, setcantidad] = useState(1);
 
     function restaCantidad(){
         if(cantidad>1){
@@ -33,7 +34,27 @@ export default function Item(props){
         color: 'black'
     }
 
-    const icons = { Saco, Saco2, CamisetaBlanca, CamisetaNegra };
+    const [itemData, setItemData] = useState(
+        {"id":"99999",
+        "brand":"",
+        "description":"",
+        "color":"",
+        "price":"",
+        "discount":"",
+        "image":"",
+        "size":"",
+        "category":"",
+        "gender":"",
+        "stockAvailable":""
+    });
+
+    useEffect( () => {
+
+		axios.get('https://salesbox-alpha-backend.herokuapp.com/products/'+props.tarea)
+			.then(res => {
+                setItemData(res.data)
+				})
+        }, []);
 
     return(
         <Container style={{background:'white'}}>
@@ -42,18 +63,18 @@ export default function Item(props){
                     <input type='checkbox'></input>
                 </Col>
                 <Col >
-                    <CardImg style={imageItem} src={icons[props.tarea.imagen]} alt="Missing Pic"/>
+                    <CardImg style={imageItem} src={itemData.image} alt="Missing Pic"/>
                 </Col>
                 <Col xs='6' style={imageItem}>
                     <CardBody >
                         <CardTitle></CardTitle>
-                        <CardSubtitle style={textStyle}>{props.tarea.descripcion}</CardSubtitle>
+                        <CardSubtitle style={textStyle}>{itemData.description}</CardSubtitle>
                     </CardBody>
                 </Col>
                 <Col style={imageItem}>
                     <CardBody>
                         <CardTitle></CardTitle>
-                        <CardSubtitle style={textStyle}>${props.tarea.precio}</CardSubtitle>
+                        <CardSubtitle style={textStyle}>${itemData.price}</CardSubtitle>
                     </CardBody>
                 </Col>
                 <Col style={imageItem}>

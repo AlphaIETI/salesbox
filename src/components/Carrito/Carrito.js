@@ -5,44 +5,37 @@ import CardList from "./CardList";
 import GeneralAppBar from "./GeneralAppBar";
 import Divider from '@material-ui/core/Divider';
 import PriceTotal from './PriceTotal';
+import axios from 'axios';
 
 export default function Carrito(){
+    
+    const [clientCart, setClientCart] = useState(
+        {"id":"99999",
+        "name":"",
+        "lastname":"",
+        "email":"",
+        "password":"",
+        "coupons":"",
+        "phone":"",
+        "address":"",
+        "age":"",
+        "sizeUp":"",
+        "sizeDown":"",
+        "shoeSize":"",
+        "cart":"",
+        "favorites":""
+    });
 
-    const [SelectedItems, modifySelectedItems] = useState(
-        [
-            {
-                id: 2021,
-                imagen:'Saco',
-                descripcion: 'Saco para hombre, hoddie gris',
-                precio:80000,
-                cantidad: 2
-            },
-            {
-                id: 2204,
-                imagen:'Saco2',
-                descripcion: 'Saco para hombre, hoddie vinotinto',
-                precio: 85000,
-                cantidad: 3
-            },
-            {
-                id: 2203,
-                imagen:'CamisetaBlanca',
-                descripcion: 'Camiseta basica blanca',
-                precio: 20000,
-                cantidad: 1
-            },
-            {
-                id: 2313,
-                imagen:'CamisetaNegra',
-                descripcion: 'Camiseta basica negra',
-                precio: 20000,
-                cantidad: 1
-            }
-        ]
-    )
+    useEffect( () => {
 
-    const [TotalPrice, setTotalPrice] = useState(0);
+		axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
+			.then(res => {
+                setClientCart(res.data)
+				})
+        }, []);
+        
 
+    const carrito = Object.values(clientCart.cart)
     return(
         <React.Fragment>
             <CssBaseline />
@@ -52,8 +45,8 @@ export default function Carrito(){
             <br/>
             <br/>
             <Container maxWidth="md">
-                {SelectedItems.map(item =>{
-                    return(<CardList tarea={item} key={SelectedItems.id}/>)
+                {carrito.map(item =>{
+                    return(<CardList tarea={item} key={item}/>)
                 })}
                 <Divider />
             </Container>
