@@ -76,14 +76,14 @@ export default function Dashboard(props) {
     const classes = useStyles();
     const [openDrawer,setOpenDrawer] = React.useState(false);
     const[products, setProducts] = React.useState([]);
-
+    const BACKENDAPI = 'https://salesbox-alpha-backend.herokuapp.com/';
     const [cantPr, setCantPr] = React.useState(0);
     const editProducts = (pr) => {
         setCantPr(cantPr + pr);
     }
 
     useEffect (() => {
-        fetch('https://salesbox-alpha-backend.herokuapp.com/products', {
+        fetch(BACKENDAPI+'products', {
             method: 'GET'
         }).then(response => response.json())
             .then(data => {
@@ -147,13 +147,23 @@ export default function Dashboard(props) {
     //PrecioMinimo&Maximo
     const [minPrice,setMinPrice] = React.useState(1000000000000);
     const [maxPrice,setMaxPrice] = React.useState(-1000000000000);
+    console.log(view)
     if(products !== undefined){
         products.map(function(pr){
-            if(pr.price - (pr.price * (pr.discount/100)) < minPrice){
-                setMinPrice(pr.price - (pr.price * (pr.discount/100)));
-            }
-            if(pr.price - (pr.price * (pr.discount/100)) > maxPrice){
-                setMaxPrice(pr.price - (pr.price * (pr.discount/100)));
+            if(view === '#'){
+                if(pr.price - (pr.price * (pr.discount/100)) < minPrice){
+                    setMinPrice(pr.price - (pr.price * (pr.discount/100)));
+                }
+                if(pr.price - (pr.price * (pr.discount/100)) > maxPrice){
+                    setMaxPrice(pr.price - (pr.price * (pr.discount/100)));
+                }
+            }else{
+                if((pr.price - (pr.price * (pr.discount/100)) < minPrice) && pr.brand === view){
+                    setMinPrice(pr.price - (pr.price * (pr.discount/100)));
+                }
+                if((pr.price - (pr.price * (pr.discount/100)) > maxPrice) && pr.brand === view){
+                    setMaxPrice(pr.price - (pr.price * (pr.discount/100)));
+                }
             }
         });
     }
@@ -162,6 +172,10 @@ export default function Dashboard(props) {
     const handleMinMaxPrice = (e) => {
         setFlagPrice(true);
         setMinMax(e);
+    }
+
+    const filters = (pr) => {
+        return (((pr.price - (pr.price * (pr.discount/100))>=minMax[0]) && (pr.price - (pr.price * (pr.discount/100))<= minMax[1])) && (filCategory.includes(pr.category) || filCategory.length === 0) && (filGender.includes(pr.gender) || filGender.length === 0) && (filMarca.includes(pr.brand) || filMarca.length === 0) && (filColor.includes(pr.color) || filColor.length === 0))
     }
 
     return (
@@ -185,7 +199,7 @@ export default function Dashboard(props) {
                     </Typography>
                     <Grid container spacing={2} className={classes.actionSpacer}>
                         {products.map(pr => { 
-                            return ((view === "#" && (((pr.price - (pr.price * (pr.discount/100))>=minMax[0]) && (pr.price - (pr.price * (pr.discount/100))<= minMax[1])) && (filCategory.includes(pr.category) || filCategory.length === 0) && (filGender.includes(pr.gender) || filGender.length === 0) && (filMarca.includes(pr.brand) || filMarca.length === 0) && (filColor.includes(pr.color) || filColor.length === 0))) || view === pr.brand ) || (localStorage.getItem('isAdmin') && pr.brand === view) ?
+                            return (((view === "#"  || view === pr.brand ) || (localStorage.getItem('isAdmin') && pr.brand === view)) && filters(pr)) ?
                                 <Grid key={products.indexOf(pr)} xs={12} sm={6} md={4} lg={4} xl={2} item>
                                     <Card>
                                         <div>

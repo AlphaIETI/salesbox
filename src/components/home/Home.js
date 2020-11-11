@@ -231,6 +231,7 @@ const useGridStyles=makeStyles(({breakpoints}) =>  ({
 export default function ButtonBases() {
   const classes = useStyles();
   const arrowStyles = useArrowDarkButtonStyles();
+  const BACKENDAPI = 'https://salesbox-alpha-backend.herokuapp.com/';
   const redirect = (td)=>{
     localStorage.setItem('nameEntity', td);
     window.location='/Dashboard'
@@ -249,7 +250,7 @@ export default function ButtonBases() {
   }
   const[promotions, setPromotions] = React.useState([]);
   useEffect (() => {
-      fetch('https://salesbox-alpha-backend.herokuapp.com/api/promotions', {
+      fetch(BACKENDAPI+'api/promotions', {
           method: 'GET'
       }).then(response => response.json())
           .then(data => {
@@ -267,7 +268,7 @@ export default function ButtonBases() {
 
   const[brands,setBrands]=React.useState([]);
   useEffect(() => {
-    fetch('https://salesbox-alpha-backend.herokuapp.com/api/entities', {
+    fetch(BACKENDAPI+'api/entities', {
       method: 'GET'
     }).then(response => response.json())
       .then(data => {

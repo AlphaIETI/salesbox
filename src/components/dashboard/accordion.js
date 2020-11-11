@@ -12,7 +12,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import Switch from '@material-ui/core/Switch';
-import ColorLensIcon from '@material-ui/icons/ColorLens';
 import Pricing from './sliderPrice';
 
 const useStyles = makeStyles((theme) => ({
@@ -52,9 +51,18 @@ export default function AccordionComponent(props) {
     let propsBrands = [];
     let brand;
     if(props.products !== undefined){
-        props.products.map(function(pr){
-            brands.push(pr.brand)
-        });
+        console.log(props.view)
+        if(props.view === "#"){
+            props.products.map(function(pr){
+                brands.push(pr.brand)
+            });
+        }else{
+            props.products.map(function(pr){
+                if(pr.brand === props.view){
+                    brands.push(pr.brand)
+                }
+            });
+        }
         brands.forEach(function(i) { countBrands[i] = (countBrands[i]||0) + 1;});
         for (brand in countBrands) {
             propsBrands.push({name:brand,cantProducts:countBrands[brand]});
@@ -66,9 +74,17 @@ export default function AccordionComponent(props) {
     let propsColors = [];
     let color;
     if(props.products !== undefined){
-        props.products.map(function(pr){
-            colors.push(pr.color)
-        });
+        if(props.view === "#"){
+            props.products.map(function(pr){
+                colors.push(pr.color)
+            });
+        }else{
+            props.products.map(function(pr){
+                if(pr.brand === props.view){
+                    colors.push(pr.color)
+                }
+            });
+        }
         colors.forEach(function(i) { countColors[i] = (countColors[i]||0) + 1;});
         for (color in countColors) {
             propsColors.push({name:color,cantColors:countColors[color]});
@@ -80,9 +96,17 @@ export default function AccordionComponent(props) {
     let propsCategories = [];
     let category;
     if(props.products !== undefined){
-        props.products.map(function(pr){
-            categories.push(pr.category)
-        });
+        if(props.view === "#"){
+            props.products.map(function(pr){
+                categories.push(pr.category)
+            });
+        }else{
+            props.products.map(function(pr){
+                if(pr.brand === props.view){
+                    categories.push(pr.category)
+                }
+            });
+        }
         categories.forEach(function(i) { countCategories[i] = (countCategories[i]||0) + 1;});
         for (category in countCategories) {
             propsCategories.push({name:category,cantCategories:countCategories[category]});
@@ -94,9 +118,17 @@ export default function AccordionComponent(props) {
     let propsGenres = [];
     let gender;
     if(props.products !== undefined){
-        props.products.map(function(pr){
-            genres.push(pr.gender)
-        });
+        if(props.view === "#"){
+            props.products.map(function(pr){
+                if(pr.brand === props.view){
+                    genres.push(pr.gender)
+                }
+            });
+        }else{
+            props.products.map(function(pr){
+                genres.push(pr.gender)
+            });  
+        }
         genres.forEach(function(i) { countGenres[i] = (countGenres[i]||0) + 1;});
         for (gender in countGenres) {
             propsGenres.push({name:gender,cantGenres:countGenres[gender]});

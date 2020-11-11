@@ -29,6 +29,7 @@ export default function NewProd(props) {
     const CLOUDINARY_URL_PREVIEW = 'https://res.cloudinary.com/deavblstk/image/upload/v';
     const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/deavblstk/image/upload';
     const CLOUDINARY_PRESETS = 'qc96w20m';
+    const BACKENDAPI = 'https://salesbox-alpha-backend.herokuapp.com/';
 
     const handleSubmit = async (e) => {
         const formData = new FormData();
@@ -54,7 +55,7 @@ export default function NewProd(props) {
     };
 
     const addProductDB = (product) => {
-        fetch('https://salesbox-alpha-backend.herokuapp.com/products' , { 
+        fetch(BACKENDAPI+'products' , { 
             method:'POST',
             headers:{
               'Content-Type': 'application/json ',

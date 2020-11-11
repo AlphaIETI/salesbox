@@ -24,6 +24,7 @@ export default function NewPromotion(props) {
     const CLOUDINARY_URL_PREVIEW = 'https://res.cloudinary.com/deavblstk/image/upload/v';
     const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/deavblstk/image/upload';
     const CLOUDINARY_PRESETS = 'qc96w20m';
+    const BACKENDAPI = 'https://salesbox-alpha-backend.herokuapp.com/';
 
     const handleSubmit = async (e) => {
         const formData = new FormData();
@@ -60,7 +61,7 @@ export default function NewPromotion(props) {
     }
 
     const addPromotionDB = (promotion) => {
-        fetch('https://salesbox-alpha-backend.herokuapp.com/api/promotions' , { 
+        fetch(BACKENDAPI+'api/promotions' , { 
             method:'POST',
             headers:{
               'Content-Type': 'application/json ',
