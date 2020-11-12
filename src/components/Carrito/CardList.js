@@ -9,7 +9,7 @@ export default function CardList(props){
     return(
         <div>
             <Card>
-                <CartItem currentItem={props.currentItem}/>
+                <CartItem currentItem={props.currentItem} efecinco={props.efecinco}/>
             </Card>
         </div>
     );

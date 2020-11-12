@@ -25,13 +25,19 @@ export default function Carrito(){
         "favorites":""
     });
 
+    const [recargo, setRecarga] = useState(1);
+
+    const efecinco = (change) => {
+        setRecarga(recargo + change)
+    }
+
     useEffect( () => {
 
 		axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
 			.then(res => {
                 setClientCart(res.data)
 				})
-        }, []);
+        }, [recargo]);
         
 
     const carrito = Object.values(clientCart.cart)
@@ -45,7 +51,7 @@ export default function Carrito(){
             <br/>
             <Container maxWidth="md">
                 {carrito.map(item =>{
-                    return(<CardList currentItem={item} key={item}/>)
+                    return(<CardList currentItem={item} efecinco={efecinco} key={item}/>)
                 })}
                 <Divider />
             </Container>
