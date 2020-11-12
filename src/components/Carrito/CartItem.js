@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {CardImg, CardBody,CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import axios from 'axios';
-
+import DeleteButton from '../Carrito/deleteProductFromCart.js';
+import { Link } from 'react-router-dom';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 export default function Item(props){
 
@@ -52,11 +54,12 @@ export default function Item(props){
 				})
         }, []);
 
+    
     return(
         <Container style={{background:'white'}}>
             <Row>
-                <Col xs='auto'>
-                    <input type='checkbox'></input>
+                <Col xs='auto'>                 
+                    <DeleteButton efecinco={props.efecinco}></DeleteButton>
                 </Col>
                 <Col >
                     <CardImg style={imageItem} src={itemData.image} alt="Missing Pic"/>

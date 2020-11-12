@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import Button from '@material-ui/core/Button';
-import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
-import { ContactSupportOutlined } from '@material-ui/icons';
 import axios from 'axios';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import {Button } from 'reactstrap';
 
-export default function addProductToCart(props){
+export default function deleteProductFromCart(props){
 
-    const handleAddProductCarrito = async() => {
+    const handleDeleteItem = async() => {
 
         let user = {};
         
@@ -16,7 +15,8 @@ export default function addProductToCart(props){
 				user = res.data
 				})
 
-        user.cart.push(props.idProduct);
+        //user.cart.push(props.idProduct); // buscar como eliminar producto de la lista
+        user.cart.pop();
 
         const newUser = {
             id: user.id,
@@ -43,29 +43,29 @@ export default function addProductToCart(props){
                 'Accept': 'application/json',
               },
             body:JSON.stringify(newUser),
-          }).then(function(response) {
-              
-                if(response.ok){
-                    response.json().then(function(res) {
-                        console.log(res);
-                    })
-                }else{
-                    console.log('Respuesta de red OK pero respuesta HTTP no OK');
-                }
-            }).catch(function(error) {
-                console.log('Hubo un problema con la petición Fetch:' + error.message);
-            });
+        }).then(function(response) {              
+            if(response.ok){
+                response.json().then(function(res) {
+                    console.log(res);
+                })
+            }else{
+                console.log('Respuesta de red OK pero respuesta HTTP no OK');
+            }
+            props.efecinco(1);
+        }).catch(function(error) {
+            console.log('Hubo un problema con la petición Fetch:' + error.message);
+        });
     }
 
     return(
         <div style={{float:'left'}}>
-            {localStorage.getItem('isLoggedIn') ? 
-            <Button color="secondary" onClick={handleAddProductCarrito}>
-                Añadir  <AddShoppingCartOutlinedIcon fontSize="small"/> 
+            <Button onClick={handleDeleteItem}>
+                <DeleteForeverIcon ></DeleteForeverIcon>
             </Button>
-            :null}
-            
         </div>
     );
 
 }
+
+
+
