@@ -16,7 +16,19 @@ export default function deleteProductFromCart(props){
 				})
 
         //user.cart.push(props.idProduct); // buscar como eliminar producto de la lista
-        user.cart.pop();
+        let valor = -1;
+        for (var i=0; i<user.cart.length;i++){
+            if(user.cart[i] == (props.idproduct)){
+                valor = i
+            }
+        }
+        if(valor == -1){
+            console.log("no hay item encontrado");
+        }else{
+            console.log(valor)
+            user.cart.splice(valor,1);
+        }
+        
 
         const newUser = {
             id: user.id,
