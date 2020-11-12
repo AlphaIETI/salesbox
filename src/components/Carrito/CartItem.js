@@ -59,7 +59,7 @@ export default function Item(props){
         <Container style={{background:'white'}}>
             <Row>
                 <Col xs='auto'>                 
-                    <DeleteButton efecinco={props.efecinco}></DeleteButton>
+                    <DeleteButton idproduct={props.currentItem} efecinco={props.efecinco}></DeleteButton>
                 </Col>
                 <Col >
                     <CardImg style={imageItem} src={itemData.image} alt="Missing Pic"/>
