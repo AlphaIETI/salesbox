@@ -15,7 +15,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { CredentialsList } from '../credential/CredentialsList';
+import { Fab } from '@material-ui/core';
+import axios from 'axios';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props; 
@@ -57,6 +61,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Register() {
+  const CLOUDINARY_URL_PREVIEW = 'https://res.cloudinary.com/deavblstk/image/upload/v';
+  const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/deavblstk/image/upload';
+  const CLOUDINARY_PRESETS = 'qc96w20m';
+
   const edades = [
     {
       value: '16-20',
@@ -159,6 +167,10 @@ export default function Register() {
   const [tallaA, setTallaA] = React.useState('');
   const [tallaB, setTallaB] = React.useState('');
   const [tallaC, setTallaC] = React.useState('');
+  const [fileInputState, setFileInputState] = React.useState('');
+  const [previewSource, setPreviewSource] = React.useState();
+  const [file, setFile]= React.useState();
+  const [url, setUrl] = React.useState("");
 
   const handleChangeEdad = (event) => {
     setEdad(event.target.value);
@@ -188,6 +200,28 @@ export default function Register() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const handleSubmit = async (e) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', CLOUDINARY_PRESETS);
+    const res = await axios.post(CLOUDINARY_URL, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    });
+    setUrl(CLOUDINARY_URL_PREVIEW+res.data.version+"/"+res.data.public_id+"."+res.data.format);
+};
+
+const handleFileImg = (e) => {
+  const file1 = e.target.files[0];
+  setFile(file1);
+  const reader = new FileReader();
+  reader.readAsDataURL(file1);
+  reader.onloadend = () =>{
+      setPreviewSource(reader.result);
+  }
+};
   const handleOnClick = (e) => {
     var correo = document.getElementById("emailEmpresa").value;
     if (document.getElementById("nombreEmpresa").value === "" || document.getElementById("nit").value === "" || document.getElementById("emailEmpresa").value === ""
@@ -203,9 +237,12 @@ export default function Register() {
         password: document.getElementById("contrasenaEmpresa").value, 
         phone: document.getElementById("telefonoEmpresa").value,
         city: document.getElementById("ciudadEmpresa").value, 
-        address: document.getElementById("direccionEmpresa").value
+        address: document.getElementById("direccionEmpresa").value,
+        image:url
       }
       registerEntity(entity);
+      setPreviewSource();
+      setUrl("");
       alert("Registrado")
     }
     if (!correo.includes('@')) {
@@ -394,6 +431,46 @@ export default function Register() {
         />
         <br />
         <br />
+        <div>
+        <label htmlFor="upload-photo" >
+  <input
+    style={{ display: 'none' }}
+    id="upload-photo"
+    name="upload-photo"
+    type="file"
+    onChange={handleFileImg}
+    value={fileInputState}
+  />
+   
+
+  <Fab
+    style={{ width: '400px', margin: '0 auto' }}
+    size="small"
+    component="span"
+    aria-label="add"
+    variant="extended"
+    class="myButton2"
+  >
+    <CloudUploadIcon  /> 
+       Selecciona la imagen(logo)
+  </Fab>
+  <br />
+  <br />
+  {previewSource && (
+                            <div>
+                                <img src={previewSource} alt="chosen" style={{height: '300px'}}/>
+                                <Button class="myButton2" onClick={handleSubmit} >
+                                    Subir Imagen
+                                </Button>
+                            </div>
+                        )}
+
+</label>
+</div>
+<br />
+  <br />
+   
+
         <button class="myButton2" onClick={handleOnClick} style={{ position: 'relative', top: '0px', right: '-140px' }}>
           Registrarse
           </button>
@@ -487,6 +564,7 @@ export default function Register() {
 
 
         />
+     
         <br />
         <br />
         <Button class="myButton2"  style={{ position: 'relative'}} onClick={handleClickOpen}> 
