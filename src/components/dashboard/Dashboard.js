@@ -147,7 +147,6 @@ export default function Dashboard(props) {
     //PrecioMinimo&Maximo
     const [minPrice,setMinPrice] = React.useState(1000000000000);
     const [maxPrice,setMaxPrice] = React.useState(-1000000000000);
-    console.log(view)
     if(products !== undefined){
         products.map(function(pr){
             if(view === '#'){

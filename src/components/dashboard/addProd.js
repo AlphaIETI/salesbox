@@ -15,6 +15,9 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { OutlinedInput } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { Fab } from '@material-ui/core';
+import LinearProgressWithLabel from './progressUpload';
 
 export default function NewProd(props) {
     const [openForm, setOpenForm] = React.useState(false);
@@ -25,6 +28,7 @@ export default function NewProd(props) {
     const [typeProd, setTypeProd] = React.useState("");
     const [typeGen, setTypeGen] = React.useState("");
     const [colorProd, setColorProd] = React.useState("");
+    const [upload, setUpload] = React.useState(false);
 
     const CLOUDINARY_URL_PREVIEW = 'https://res.cloudinary.com/deavblstk/image/upload/v';
     const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/deavblstk/image/upload';
@@ -41,7 +45,9 @@ export default function NewProd(props) {
             }
         });
         setUrlImg(CLOUDINARY_URL_PREVIEW+res.data.version+"/"+res.data.public_id+"."+res.data.format);
-
+        if(res.statusText==="OK"){
+            setUpload(true);
+        }
     };
 
     const handleFileImg = (e) => {
@@ -217,20 +223,40 @@ export default function NewProd(props) {
                         fullWidth
                     />
                     <div>
+                    <label htmlFor="upload-photo" >
                         <input 
+                            style={{ display: 'none' }}
+                            id="upload-photo" 
                             type="file" 
                             name="image" 
                             onChange={handleFileImg} 
                             value={fileInputState} 
                         />
+                        <Fab
+                            style={{ width: '400px', margin: '0 auto' }}
+                            size="small"
+                            component="span"
+                            aria-label="add"
+                            variant="extended"
+                        >
+                            <CloudUploadIcon />
+                            . Selecciona las imagenes del producto
+                        </Fab>
                         {previewSource && (
                             <div>
                                 <img src={previewSource} alt="chosen" style={{height: '300px'}}/>
                                 <Button onClick={handleSubmit} color="primary">
                                     Subir Imagen
                                 </Button>
+                                {console.log(upload)}
+                                {upload ? 
+                                    <LinearProgressWithLabel state={10}/>
+                                    :
+                                    <LinearProgressWithLabel state={0}/>
+                                }
                             </div>
                         )}
+                    </label>
                     </div>
 
                 </DialogContent>
