@@ -51,7 +51,6 @@ export default function AccordionComponent(props) {
     let propsBrands = [];
     let brand;
     if(props.products !== undefined){
-        console.log(props.view)
         if(props.view === "#"){
             props.products.map(function(pr){
                 brands.push(pr.brand)
@@ -120,13 +119,13 @@ export default function AccordionComponent(props) {
     if(props.products !== undefined){
         if(props.view === "#"){
             props.products.map(function(pr){
-                if(pr.brand === props.view){
-                    genres.push(pr.gender)
-                }
+                genres.push(pr.gender)
             });
         }else{
             props.products.map(function(pr){
-                genres.push(pr.gender)
+                if(pr.brand === props.view){
+                    genres.push(pr.gender)
+                }
             });  
         }
         genres.forEach(function(i) { countGenres[i] = (countGenres[i]||0) + 1;});
