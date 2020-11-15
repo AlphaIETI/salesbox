@@ -68,6 +68,9 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: theme.spacing(5),
         paddingRight: theme.spacing(5),
     },
+    actionSpacerCard: {
+        justifyContent: 'space-around',
+    }
 }));
 
 export default function Dashboard(props) {
@@ -233,7 +236,7 @@ export default function Dashboard(props) {
                                             </div>
                                         </CardContent>
                                         <CardActions
-                                            classes={{ spacing: classes.actionSpacer }}
+                                            classes={{ spacing: classes.actionSpacerCard }}
                                         >
                                             {localStorage.getItem('isAdmin') ? 
                                                 <div>
