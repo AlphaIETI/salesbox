@@ -54,13 +54,8 @@ const useStyles = makeStyles((theme) => ({
         }),
         marginLeft: 0,
       },
-
-    container: {
-        paddingTop: theme.spacing(4),
-        paddingBottom: theme.spacing(4),
-    },
     media: {
-        height: 140,
+        height: 200,
     },
     title: {
         paddingBottom: '0.5em',
@@ -68,6 +63,10 @@ const useStyles = makeStyles((theme) => ({
     actionSpacer: {
         display: 'flex',
         justifyContent: 'space-around',
+        paddingTop: theme.spacing(4),
+        paddingBottom: theme.spacing(4),
+        paddingLeft: theme.spacing(5),
+        paddingRight: theme.spacing(5),
     },
 }));
 
@@ -187,7 +186,7 @@ export default function Dashboard(props) {
                 })}
             >
                 <div className={classes.appBarSpacer} />
-                <Container maxWidth="md" className={classes.container}>
+                <div>
                     <Typography
                         className="descProd6"
                         variant="h3"
@@ -196,10 +195,10 @@ export default function Dashboard(props) {
                     >
                         {view !== undefined && view !== "#" ? view: ""}
                     </Typography>
-                    <Grid container spacing={2} className={classes.actionSpacer}>
+                    <Grid container spacing={1} className={classes.actionSpacer}>
                         {products.map(pr => { 
                             return (((view === "#"  || view === pr.brand ) || (localStorage.getItem('isAdmin') && pr.brand === view)) && filters(pr)) ?
-                                <Grid key={products.indexOf(pr)} xs={12} sm={6} md={4} lg={4} xl={2} item>
+                                <Grid key={products.indexOf(pr)} item xs={12} sm={6} lg={4} xl={3}>
                                     <Card>
                                         <div>
                                             <Link to="/Carrusel">
@@ -260,7 +259,7 @@ export default function Dashboard(props) {
                     <Box pt={4}>
                         <Copyright />
                     </Box>
-                </Container>
+                </div>
             </main>
         </div>
     );
