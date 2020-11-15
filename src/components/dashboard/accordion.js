@@ -146,7 +146,7 @@ export default function AccordionComponent(props) {
     const [value, setValue] = React.useState(4);
     const [state, setState] = React.useState({
         checkedA: true,
-        checkedB: true,
+        checkedB: false,
     });
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
@@ -363,7 +363,7 @@ export default function AccordionComponent(props) {
             <div>  
                 <Accordion square expanded={expanded4 === 'panel1'} onChange={handleChange4('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        <Typography color="primary">Redime Tus Cupones</Typography>
+                        <Typography color="primary">Búsqueda Personalizada</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <FormControlLabel
