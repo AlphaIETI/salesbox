@@ -6,10 +6,13 @@ import GeneralAppBar from "./GeneralAppBar";
 import Divider from '@material-ui/core/Divider';
 import PriceTotal from './PriceTotal';
 import axios from 'axios';
+import Typography from '@material-ui/core/Typography';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+
 
 export default function Carrito(){
     const [clientCart, setClientCart] = useState(
-        {"id":"99999",
+        {"id":"",
         "name":"",
         "lastname":"",
         "email":"",
@@ -31,13 +34,19 @@ export default function Carrito(){
         setRecarga(recargo + change)
     }
 
+    const [precioTotal, setPrecioTotal] = useState(0);
+
+    const changePrecio = (valor) => {
+        setPrecioTotal(precioTotal + valor)
+    }
     useEffect( () => {
 
 		axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
 			.then(res => {
                 setClientCart(res.data)
+
 				})
-        }, [recargo]);
+        }, [recargo,precioTotal]);
         
 
     const carrito = Object.values(clientCart.cart)
@@ -50,9 +59,7 @@ export default function Carrito(){
             <br/>
             <br/>
             <Container maxWidth="md">
-                {carrito.map(item =>{
-                    return(<CardList currentItem={item} efecinco={efecinco} key={item}/>)
-                })}
+                {carrito.length > 0 ? carrito.map(item =>{return(<CardList currentItem={item} efecinco={efecinco} changePrecio={changePrecio} key={item}/>)}) : <Typography variant="h2" component="h2" align="center">Tu carrito esta vacío <ShoppingCartIcon fontSize="large"/></Typography>}
                 <Divider />
             </Container>
             <br/>
@@ -60,7 +67,7 @@ export default function Carrito(){
             <br/>
             <br/>
             <Container maxWidth="sm">
-                <PriceTotal/>
+                <PriceTotal precioTotal={precioTotal} />
             </Container> 
             <br/>
             <br/>

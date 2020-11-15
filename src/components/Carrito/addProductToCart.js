@@ -16,7 +16,16 @@ export default function addProductToCart(props){
 				user = res.data
 				})
 
-        user.cart.push(props.idProduct);
+        let flag = false;
+        user.cart.map(item => {
+            if(item == props.idProduct){
+                flag = true;
+            }
+        });
+        if(!flag){
+            user.cart.push(props.idProduct);
+        }
+        
 
         const newUser = {
             id: user.id,

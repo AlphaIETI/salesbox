@@ -9,7 +9,7 @@ export default function CardList(props){
     return(
         <div>
             <Card>
-                <CartItem currentItem={props.currentItem} efecinco={props.efecinco}/>
+                <CartItem currentItem={props.currentItem} changePrecio={props.changePrecio} efecinco={props.efecinco}/>
             </Card>
         </div>
     );

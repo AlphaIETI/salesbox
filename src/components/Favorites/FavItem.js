@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {CardImg, CardBody,CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import axios from 'axios';
+import DeleteButton from '../Favorites/deleteProductFromFavs.js';
 
 export default function FavItem(props){
 
@@ -19,7 +19,7 @@ export default function FavItem(props){
     }
 
     const [itemData, setItemData] = useState(
-        {"id":"99999",
+        {"id":"",
         "brand":"",
         "description":"",
         "color":"",
@@ -51,13 +51,13 @@ export default function FavItem(props){
                 <Col >
                     <CardImg style={imageItem} src={itemData.image} alt="Missing Pic"/>
                 </Col>
-                <Col xs='6' style={imageItem}>
+                <Col xs='auto' style={imageItem}>
                     <CardBody >
                         <CardTitle></CardTitle>
                         <CardSubtitle style={textStyle}>{itemData.description}</CardSubtitle>
                     </CardBody>
                 </Col>
-                <Col style={imageItem}>
+                <Col>
                     <CardBody>
                         <CardTitle></CardTitle>
                         <CardSubtitle style={textStyle}>${itemData.price}</CardSubtitle>
@@ -65,9 +65,7 @@ export default function FavItem(props){
                 </Col>
                 <Col>
                     <Row>
-                        <Link>
-                            <DeleteOutlineIcon fontSize='large' ></DeleteOutlineIcon>
-                        </Link>
+                        <DeleteButton idproduct={props.favoritos} efecinco={props.efecinco}></DeleteButton>
                     </Row>
                 </Col>
             </Row>

@@ -10,7 +10,7 @@ import {Divider} from "@material-ui/core";
 import PaymentIcon from '@material-ui/icons/Payment';
 
 
-export default function PriceTotal(){
+export default function PriceTotal(props){
 
     const useStyles = makeStyles({
         root: {
@@ -35,6 +35,15 @@ export default function PriceTotal(){
         },
 
     });
+
+    const valor = props.precioTotal;
+
+    const options1 = { style: 'currency', currency: 'USD' };
+    const numberFormat1 = new Intl.NumberFormat('en-US', options1);
+
+    const valorFormato = numberFormat1.format(valor)
+
+
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
     return(
@@ -51,7 +60,8 @@ export default function PriceTotal(){
                     </div>
                     <div className="rightColumn">
                         <Typography className={classes.pos} color="textSecondary">
-                            <label>$30.000</label>
+                            
+                            <label>{valorFormato}</label>
                         </Typography>
                     </div>
                 </div>
@@ -64,7 +74,7 @@ export default function PriceTotal(){
                     </div>
                     <div className="rightColumn">
                         <Typography className={classes.pos} color="textSecondary">
-                            <label>$7.000</label>
+                            <label>$0</label>
                         </Typography>
                     </div>
                 </div>
@@ -77,7 +87,7 @@ export default function PriceTotal(){
                     </div>
                     <div className="rightColumn">
                         <Typography className={classes.pos} variant="h5" component="p" >
-                            <label>$37.000</label>
+                            <label>{valorFormato}</label>
                         </Typography>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import {Button } from 'reactstrap';
 
-export default function deleteProductFromCart(props){
+export default function deleteProductFromFavs(props){
 
     const handleDeleteItem = async() => {
 
@@ -16,8 +16,8 @@ export default function deleteProductFromCart(props){
 				})
 
         let valor = -1;
-        for (var i=0; i<user.cart.length;i++){
-            if(user.cart[i] == (props.idproduct)){
+        for (var i=0; i<user.favorites.length;i++){
+            if(user.favorites[i] == (props.idproduct)){
                 valor = i
             }
         }
@@ -25,8 +25,7 @@ export default function deleteProductFromCart(props){
             console.log("no hay item encontrado");
         }else{
             console.log(valor)
-            user.cart.splice(valor,1);
-            props.changePrecio(-props.precioItem*props.cantidadItem);
+            user.favorites.splice(valor,1);
         }
         
 
