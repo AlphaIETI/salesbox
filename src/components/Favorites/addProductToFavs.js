@@ -14,10 +14,18 @@ export default function addProductToFavs(props){
         await axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
 			.then(res => {
 				user = res.data
-				})
+                })
+                
 
-
-        user.favorites.push(props.idProduct);
+        let flag = false;
+        user.favorites.map(item => {
+            if(item == props.idProduct){
+                flag = true;
+            }
+        });
+        if(!flag){
+            user.favorites.push(props.idProduct);
+        }
 
         const newUser = {
             id: user.id,

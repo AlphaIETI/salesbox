@@ -6,13 +6,13 @@ import GeneralAppBar from "../Carrito/GeneralAppBar";
 import Divider from '@material-ui/core/Divider';
 import FavoriteList from './FavoriteList.js';
 import axios from 'axios';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 
 
 export default function Favorites(){
-
-    const [clientCart, setClientCart] = useState(
-        {"id":"99999",
+    const [clientCart, setClientFavs] = useState(
+        {"id":"",
         "name":"",
         "lastname":"",
         "email":"",
@@ -28,13 +28,19 @@ export default function Favorites(){
         "favorites":""
     });
 
+    const [recargo, setRecarga] = useState(1);
+
+    const efecinco = (change) => {
+        setRecarga(recargo + change)
+    }
+
     useEffect( () => {
 
 		axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
 			.then(res => {
-                setClientCart(res.data)
+                setClientFavs(res.data)
 				})
-        }, []);
+        }, [recargo]);
 
     const favoritos = Object.values(clientCart.favorites)
 
@@ -48,12 +54,8 @@ export default function Favorites(){
             <br/>
             <br/>
             <Container maxWidth="md">
-                <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100hv' }}>
-                    {favoritos.map(item =>{
-                    return(<FavoriteList favoritos={item} key={item}/>)
-                })}
-                    <Divider />
-                </Typography>
+                {favoritos.length > 0 ? favoritos.map(item =>{return(<FavoriteList favoritos={item} efecinco={efecinco} key={item}/>)}) : <Typography variant="h2" component="h2" align="center">No has guardado productos <FavoriteIcon fontSize="large"/></Typography>}
+                <Divider />
             </Container>
             <br/>
         </React.Fragment>
