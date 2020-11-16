@@ -99,7 +99,6 @@ export default function Login() {
   const handleOnClickEntity=() =>{
     let entity={email:document.getElementById("emailEmpresa").value, password:document.getElementById("contrasenaEmpresa").value}
     loginEntity(entity);
-    alert("");
     /*if(document.getElementById("usuario").value===localStorage.getItem("usuario") && document.getElementById("password").value===localStorage.getItem("password")){
        alert("Puede iniciar sesión");
        setIsLoggedIn(true);
