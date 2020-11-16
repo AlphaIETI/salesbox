@@ -186,6 +186,8 @@ export default function Register() {
   const [previewSource, setPreviewSource] = React.useState();
   const [file, setFile]= React.useState();
   const [url, setUrl] = React.useState("");
+  const[register,setRegister]=React.useState(false);
+ 
 
   const handleChangeEdad = (event) => {
     setEdad(event.target.value);
@@ -260,10 +262,10 @@ const handleFileImg = (e) => {
         image:url,
         priority:0
       }
-      registerEntity(entity);
+      verifyUserEntity(entity);
       setPreviewSource();
       setUrl("");
-      alert("Registrado")
+  
     }
     if (!correo.includes('@')) {
       alert("no es un correo válido");
@@ -343,12 +345,36 @@ const handleFileImg = (e) => {
       if (response.ok) {
         response.json().then(function (res) {
           console.log(res);
+          setRegister(true);
+          alert("usuario registrado")
         })
       } else {
         console.log("")
       }
     }).catch(function (error) {
       console.log("Bad petition:" + error.message);
+    });
+
+  }
+
+  const verifyUserEntity = (entity) => {
+  
+
+    fetch('https://salesbox-alpha-backend.herokuapp.com/api/entity/user/'+entity.email,{
+      method: 'GET'
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (res) {
+          console.log(res);
+          alert("Este usuario ya existe")
+        })
+      } else {
+        console.log("");
+        registerEntity(entity);
+      }
+    }).catch(function (error) {
+      console.log("Bad petition:" + error.message);
+     
     });
 
   }
@@ -369,7 +395,7 @@ const handleFileImg = (e) => {
           <Tab label="Cliente" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
-
+       
       <TabPanel value={value} index={0} >
 
 
