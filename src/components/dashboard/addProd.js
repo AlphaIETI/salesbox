@@ -114,6 +114,7 @@ export default function NewProd(props) {
 
     const handleClose = () => {
         setPreviewSource();
+        setUpload(false)
         setOpenForm(false);
     };
 
@@ -161,6 +162,7 @@ export default function NewProd(props) {
                     />
                     <InputLabel id="demo-mutiple-name-label">Categoria</InputLabel>
                     <Select
+                        value={typeProd}
                         id="tipoProducto"
                         labelId="demo-mutiple-name-label"
                         margin="dense"
@@ -176,6 +178,7 @@ export default function NewProd(props) {
                     </Select>
                     <InputLabel id="demo-mutiple-name-label">Género</InputLabel>
                     <Select
+                        value={typeGen}
                         id="generoProducto"
                         labelId="demo-mutiple-name-label"
                         margin="dense"
@@ -191,6 +194,7 @@ export default function NewProd(props) {
                     </Select>
                     <InputLabel id="demo-mutiple-name-label-color">Color</InputLabel>
                     <Select
+                        value={colorProd}
                         id="productoColor"
                         labelId="demo-mutiple-name-label-color"
                         margin="dense"
@@ -248,7 +252,6 @@ export default function NewProd(props) {
                                 <Button onClick={handleSubmit} color="primary">
                                     Subir Imagen
                                 </Button>
-                                {console.log(upload)}
                                 {upload ? 
                                     <LinearProgressWithLabel state={10}/>
                                     :

@@ -152,19 +152,24 @@ const useStyles = makeStyles((theme) => ({
   const CustomCard = ({classes, image,title,subtitle}) => {
     const mediaStyles=useFourThreeCardMediaStyles();
     return (
-      <CardActionArea className={classes.actionArea}>
-        <Card className={classes.card}>
-          <CardMedia classes={mediaStyles} image={image}/>
-          <CardContent className={classes.content}>
-            <Typography className={classes.title} variant={'h2'}>
-              {title}
-            </Typography>
-            <Typography className={classes.subtitle}>{subtitle}</Typography>
-          </CardContent>
+        <Card className={classes.card} onClick={event => {handleClickCard(title)}}>
+          <CardActionArea className={classes.actionArea}>
+            <CardMedia classes={mediaStyles} image={image}/>
+            <CardContent className={classes.content}>
+              <Typography className={classes.title} variant={'h2'}>
+                {title}
+              </Typography>
+              <Typography className={classes.subtitle}>{subtitle}</Typography>
+            </CardContent>
+          </CardActionArea>
         </Card>
-      </CardActionArea>
     );
   };
+
+const handleClickCard = (title) =>{
+  localStorage.setItem('nameEntity', title);
+  window.location='/Dashboard'
+};
 
 const useGridStyles=makeStyles(({breakpoints}) =>  ({
     root:{
@@ -187,7 +192,7 @@ export default function Promotions(props) {
                       <CustomCard
                           classes={styles}
                           title={pr.brand}
-                          subtitle={pr.discount + '% en referencias seleccionadas'}
+                          subtitle={pr.description}
                           image={pr.image}
                       />
                   </Grid>

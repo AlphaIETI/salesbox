@@ -22,8 +22,9 @@ export default function NewPromotion(props) {
     const [previewSource, setPreviewSource] = React.useState();
     const [file, setFile]= React.useState();
     const [urlImg, setUrlImg] = React.useState("");
-    const [typeProd, setTypeProd] = React.useState("");
+    const [typePlan, setTypePlan] = React.useState("");
     const [upload, setUpload] = React.useState(false);
+    const [costPlan, setCostPlan]= React.useState(0);
 
     const CLOUDINARY_URL_PREVIEW = 'https://res.cloudinary.com/deavblstk/image/upload/v';
     const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/deavblstk/image/upload';
@@ -56,14 +57,23 @@ export default function NewPromotion(props) {
     };
 
     const handleAddProd = () => {
-        if(document.getElementById("descripcion").value !== "" && document.getElementById("descuento").value !== "" && document.getElementById("date").value !== "" && urlImg !== ""){
-            let promotion = {id:"frontEnd",brand:"Nike",endDate:document.getElementById("date").value,discount:document.getElementById("descuento").value,image:urlImg,description:document.getElementById("descripcion").value}
-            addPromotionDB(promotion);
-            setPreviewSource();
-            setUrlImg("");
-            setOpenForm(false);
-        } else {
-            alert("No se completaron todos los datos del Producto.")
+        if(typePlan !== "" && document.getElementById("descripcion").value !== ""){
+            if(typePlan === "Enterprise"){
+                if(urlImg !== ""){
+                    let promotion = {id:"",brand:localStorage.getItem('nameEntity'),image:urlImg,description:document.getElementById("descripcion").value}
+                    addPromotionDB(promotion);
+                    setPreviewSource();
+                    setUrlImg("");
+                    setOpenForm(false);
+                }
+                else{
+                    alert("No se selecciono la imagen de la publicidad")
+                }
+            }else{
+                //Sumar cantidad de promociones en productos.
+            }
+        }else{
+            alert("No se completaron todos los datos de la publicidad.")
         }
     }
 
@@ -89,8 +99,15 @@ export default function NewPromotion(props) {
             });
     }
 
-    const handleChangeTypeProd = (e) => {
-        setTypeProd(e.target.value);
+    const handleChangeTypePlan = (e) => {
+        if(e.target.value === "Enterprise"){
+            setCostPlan(20000);
+        }else if(e.target.value === "Basic"){
+            setCostPlan(25000);
+        }else{
+            setCostPlan(50000);
+        }
+        setTypePlan(e.target.value);
     }
 
     const handleClickOpen = () => {
@@ -99,6 +116,7 @@ export default function NewPromotion(props) {
 
     const handleClose = () => {
         setPreviewSource();
+        setUpload(false);
         setOpenForm(false);
     };
 
@@ -108,11 +126,27 @@ export default function NewPromotion(props) {
                 <NoteAddOutlinedIcon fontSize="large" />
             </IconButton>
             <Dialog open={openForm} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Agregar Promoción Nueva</DialogTitle>
+                <DialogTitle id="form-dialog-title">Agregar Publicidad Nueva</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Complete los datos de la promoción.
+                        Complete los datos de la publiciadad.
                     </DialogContentText>
+                    <InputLabel id="demo-mutiple-name-label">Planes de publicidad</InputLabel>
+                    <Select
+                        required
+                        value={typePlan}
+                        id="tipoPlan"
+                        labelId="demo-mutiple-name-label"
+                        margin="dense"
+                        displayEmpty
+                        variant="outlined"
+                        onChange={handleChangeTypePlan}
+                        fullWidth
+                    >
+                        <MenuItem value="Enterprise">Publicidad de Marca</MenuItem>
+                        <MenuItem value="Basic">Publicidad de 2 Productos</MenuItem>
+                        <MenuItem value="Premium">Publicidad de 5 Productos</MenuItem>
+                    </Select>
                     <TextField
                         required
                         autoFocus
@@ -125,91 +159,56 @@ export default function NewPromotion(props) {
                             maxLength: 50,
                           }}
                         fullWidth
-                    />
-                    <TextField
-                        required
-                        autoFocus
-                        margin="dense"
-                        id="descuento"
-                        label=" % de descuento"
-                        variant="outlined"
-                        type="number"
-                        InputProps={{ inputProps: { max: 100, min: 0 } }}
-                        fullWidth
-                    />
-                    <InputLabel id="demo-mutiple-name-label">Tipo</InputLabel>
-                    <Select
-                        required
-                        id="tipoProducto"
-                        labelId="demo-mutiple-name-label"
-                        margin="dense"
-                        displayEmpty
-                        variant="outlined"
-                        onChange={handleChangeTypeProd}
-                        fullWidth
-                    >
-                        <MenuItem value="Tenis">Tenis</MenuItem>
-                        <MenuItem value="Camisas">Camisas</MenuItem>
-                        <MenuItem value="Accesorios">Accesorios</MenuItem>
-                    </Select>
-
-                    <TextField
-                        required
-                        autoFocus
-                        margin="dense"
-                        id="date"
-                        label="Fecha fin de la Promoción"
-                        type="date"
-                        fullWidth
-                        InputLabelProps={{
-                        shrink: true,
-                        }}
-                    />
-                        
+                    /> 
+                    {typePlan === "Enterprise" ?                  
                         <div>
-                    <label htmlFor="upload-photo" >
-                        <input 
-                            style={{ display: 'none' }}
-                            id="upload-photo" 
-                            type="file" 
-                            name="image" 
-                            onChange={handleFileImg} 
-                            value={fileInputState} 
-                        />
-                        <Fab
-                            style={{ width: '400px', margin: '0 auto' }}
-                            size="small"
-                            component="span"
-                            aria-label="add"
-                            variant="extended"
-                        >
-                            <CloudUploadIcon />
-                            . Selecciona las imagenes del producto
-                        </Fab>
-                        {previewSource && (
-                            <div>
-                                <img src={previewSource} alt="chosen" style={{height: '300px'}}/>
-                                <Button onClick={handleSubmit} color="primary">
-                                    Subir Imagen
-                                </Button>
-                                {console.log(upload)}
-                                {upload ? 
-                                    <LinearProgressWithLabel state={10}/>
-                                    :
-                                    <LinearProgressWithLabel state={0}/>
-                                }
-                            </div>
-                        )}
-                    </label>
-                    </div>
-
+                        <label htmlFor="upload-photo" >
+                            <input 
+                                style={{ display: 'none' }}
+                                id="upload-photo" 
+                                type="file" 
+                                name="image" 
+                                onChange={handleFileImg} 
+                                value={fileInputState} 
+                            />
+                            <Fab
+                                style={{ width: '400px', margin: '0 auto' }}
+                                size="small"
+                                component="span"
+                                aria-label="add"
+                                variant="extended"
+                            >
+                                <CloudUploadIcon />
+                                . Selecciona la imagen de la publicidad
+                            </Fab>
+                            {previewSource && (
+                                <div>
+                                    <img src={previewSource} alt="chosen" style={{height: '300px'}}/>
+                                    <Button onClick={handleSubmit} color="primary">
+                                        Subir Imagen
+                                    </Button>
+                                    {upload ? 
+                                        <LinearProgressWithLabel state={10}/>
+                                        :
+                                        <LinearProgressWithLabel state={0}/>
+                                    }
+                                </div>
+                            )}
+                        </label>
+                        </div>
+                        :
+                        null
+                    }
+                    <DialogContentText>
+                        Valor publicidad: ${costPlan}
+                    </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                     Cancelar
                     </Button>
                     <Button onClick={handleAddProd} color="primary">
-                    Agregar
+                    Comprar
                     </Button>
                 </DialogActions>
             </Dialog>

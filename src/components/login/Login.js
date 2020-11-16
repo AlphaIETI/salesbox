@@ -126,6 +126,7 @@ export default function Login() {
           console.log(res);
           localStorage.setItem('isAdmin',true);
           localStorage.setItem('nameEntity',res.name);
+          localStorage.setItem('entity', JSON.stringify(res));
           localStorage.setItem('isLoggedIn',true);
           setIsLoggedIn(true);
         })
