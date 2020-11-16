@@ -160,6 +160,20 @@ export default function Register() {
       label: '+39',
     }
   ];
+
+  const generos = [
+
+    {
+      value :"Femenino",
+      label: "Femenino"
+
+    },
+    {
+      value:"Masculino",
+      label:"Masculino"
+
+    }
+  ]
   const classes = useStyles();
   const[open,setOpen]=React.useState(false);
   const [value, setValue] = React.useState(0);
@@ -167,6 +181,7 @@ export default function Register() {
   const [tallaA, setTallaA] = React.useState('');
   const [tallaB, setTallaB] = React.useState('');
   const [tallaC, setTallaC] = React.useState('');
+  const [genero, setGenero]= React.useState('')
   const [fileInputState, setFileInputState] = React.useState('');
   const [previewSource, setPreviewSource] = React.useState();
   const [file, setFile]= React.useState();
@@ -186,6 +201,10 @@ export default function Register() {
 
   const handleChangeTallaC = (event) => {
     setTallaC(event.target.value);
+  };
+
+  const handleChangeGenero = (event) => {
+    setGenero(event.target.value);
   };
 
   const handleClickOpen = () => {
@@ -278,7 +297,8 @@ const handleFileImg = (e) => {
         age:edad,
         sizeUp:tallaA,
         sizeDown:tallaB,
-        shoeSize:tallaC
+        shoeSize:tallaC,
+        gender:genero
       }
       console.log(client.name);
       registerClient(client);
@@ -452,7 +472,7 @@ const handleFileImg = (e) => {
     class="myButton2"
   >
     <CloudUploadIcon  /> 
-       Selecciona la imagen(logo)
+       . Selecciona la imagen(logo)
   </Fab>
   <br />
   <br />
@@ -578,6 +598,21 @@ const handleFileImg = (e) => {
             Ayudanos a diligenciar el siguiente formulario para que tengas una experiencia personalizada con SalesBox
           </DialogContentText>
           <TextField
+          id="generoCliente"
+          select
+          label="Genero"
+          value={genero}
+          onChange={handleChangeGenero}
+          helperText="Selecciona el genero"
+        >
+           {generos.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <br></br>
+          <TextField
           id="edadCliente"
           select
           label="Edad"
@@ -639,7 +674,8 @@ const handleFileImg = (e) => {
         </DialogContent>
         <DialogActions>
           <button class="myButton2" onClick={handleOnClickCliente} style={{ position: 'relative'}}>
-          Registrarse
+            
+         Registrarme
           </button>
         </DialogActions>
       </Dialog>
