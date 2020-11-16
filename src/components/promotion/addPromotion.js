@@ -15,6 +15,9 @@ import IconButton from '@material-ui/core/IconButton';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { Fab } from '@material-ui/core';
 import LinearProgressWithLabel from '../dashboard/progressUpload';
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import PayForm from '../dashboard/pay';
 
 export default function NewPromotion(props) {
     const [openForm, setOpenForm] = React.useState(false);
@@ -30,6 +33,7 @@ export default function NewPromotion(props) {
     const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/deavblstk/image/upload';
     const CLOUDINARY_PRESETS = 'qc96w20m';
     const BACKENDAPI = 'https://salesbox-alpha-backend.herokuapp.com/';
+    const stripePromise = loadStripe("pk_test_51Ho9rpF1htJOe8dSfeVP7oQevfWZKOImQEq6UWbTqSOAzed0dqRwjr0Ulot7DewnIZ526BDimuZ01cjM3TGy1QPW00enKhFo7q");
 
     const handleSubmit = async (e) => {
         const formData = new FormData();
@@ -56,24 +60,26 @@ export default function NewPromotion(props) {
         }
     };
 
-    const handleAddProd = () => {
-        if(typePlan !== "" && document.getElementById("descripcion").value !== ""){
-            if(typePlan === "Enterprise"){
-                if(urlImg !== ""){
-                    let promotion = {id:"",brand:localStorage.getItem('nameEntity'),image:urlImg,description:document.getElementById("descripcion").value}
-                    addPromotionDB(promotion);
-                    setPreviewSource();
-                    setUrlImg("");
-                    setOpenForm(false);
-                }
-                else{
-                    alert("No se selecciono la imagen de la publicidad")
+    const handleAddProd = (pay) => {
+        if(pay){
+            if(typePlan !== "" && document.getElementById("descripcion").value !== ""){
+                if(typePlan === "Enterprise"){
+                    if(urlImg !== ""){
+                        let promotion = {id:"",brand:localStorage.getItem('nameEntity'),image:urlImg,description:document.getElementById("descripcion").value}
+                        addPromotionDB(promotion);
+                        setPreviewSource();
+                        setUrlImg("");
+                        setOpenForm(false);
+                    }
+                    else{
+                        alert("No se selecciono la imagen de la publicidad")
+                    }
+                }else{
+                    //Sumar cantidad de promociones en productos.
                 }
             }else{
-                //Sumar cantidad de promociones en productos.
+                alert("No se completaron todos los datos de la publicidad.")
             }
-        }else{
-            alert("No se completaron todos los datos de la publicidad.")
         }
     }
 
@@ -205,11 +211,11 @@ export default function NewPromotion(props) {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                    Cancelar
+                        Cancelar
                     </Button>
-                    <Button onClick={handleAddProd} color="primary">
-                    Comprar
-                    </Button>
+                    <Elements stripe={stripePromise}>
+                        <PayForm addProd={handleAddProd} />
+                    </Elements>
                 </DialogActions>
             </Dialog>
         </div>
