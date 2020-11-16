@@ -90,27 +90,22 @@ export default function Login() {
     }
     else{
       let client =
-          {email:document.getElementById("email").value, password:document.getElementById("contrasenaCliente").value}
+          {email:document.getElementById("email").value.toLowerCase(), password:document.getElementById("contrasenaCliente").value}
       loginClient(client);
+
 
     }
     };
 
   const handleOnClickEntity=() =>{
-    let entity={email:document.getElementById("emailEmpresa").value, password:document.getElementById("contrasenaEmpresa").value}
-    loginEntity(entity);
-    /*if(document.getElementById("usuario").value===localStorage.getItem("usuario") && document.getElementById("password").value===localStorage.getItem("password")){
-       alert("Puede iniciar sesión");
-       setIsLoggedIn(true);
-       localStorage.setItem('isLoggedIn',true);
-    }else if(document.getElementById("usuario").value==="nike" && document.getElementById("password").value==="nike"){
-      alert("Puede iniciar sesión");
-      setIsLoggedIn(true);
-      localStorage.setItem('isLoggedIn',true);
-      localStorage.setItem('isAdmin',true);
+    if (document.getElementById("emailEmpresa").value === ""
+    || document.getElementById("contrasenaEmpresa").value === ""
+    ){
+      alert("Alguno de los campos esta vacio")
     }else{
-       alert("No está registrado");
-    }*/
+    let entity={email:document.getElementById("emailEmpresa").value.toLowerCase(), password:document.getElementById("contrasenaEmpresa").value}
+    loginEntity(entity);
+    }
    };
 
 
