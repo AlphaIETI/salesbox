@@ -6,7 +6,6 @@ import { makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 import CardMedia from '@material-ui/core/CardMedia'
@@ -16,6 +15,8 @@ import Button from '@material-ui/core/Button';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import ButtonProductToCar from '../Carrito/addProductToCart';
 import ButtonProductToFav from '../Favorites/addProductToFavs';
+import FilterCenterFocusOutlinedIcon from '@material-ui/icons/FilterCenterFocusOutlined';
+import AddPromotion from '../promotion/addPromotion';
 
 //AppBar
 import AppBarComponent from './appBar';
@@ -74,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard(props) {
-    
+
     const classes = useStyles();
     const [openDrawer,setOpenDrawer] = React.useState(false);
     const[products, setProducts] = React.useState([]);
@@ -179,6 +180,20 @@ export default function Dashboard(props) {
         return (((pr.price - (pr.price * (pr.discount/100))>=minMax[0]) && (pr.price - (pr.price * (pr.discount/100))<= minMax[1])) && (filCategory.includes(pr.category) || filCategory.length === 0) && (filGender.includes(pr.gender) || filGender.length === 0) && (filMarca.includes(pr.brand) || filMarca.length === 0) && (filColor.includes(pr.color) || filColor.length === 0))
     }
 
+    const handlePromote = () => {
+        //Verificar cantidad de promociones disponibles de productos
+        let cantAdvertising = 1;
+        console.log("ENtro")
+        if(cantAdvertising > 0){
+            console.log("ENtro1")
+            return (
+                <AddPromotion/>
+            );
+        }else {
+            console.log("ENtro2")
+            return null
+        }
+    }
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -226,7 +241,7 @@ export default function Dashboard(props) {
                                             <div className="descriptionText">
                                                 {pr.description}
                                             </div>
-                                            <div className="centerText" >
+                                            <div>
                                                 <span className="precioTotal" >
                                                     ${pr.price - (pr.price * (pr.discount/100))}
                                                 </span>
@@ -238,13 +253,16 @@ export default function Dashboard(props) {
                                         <CardActions
                                             classes={{ spacing: classes.actionSpacerCard }}
                                         >
-                                            {localStorage.getItem('isAdmin') ? 
+                                            {localStorage.getItem('isAdmin') && JSON.parse(localStorage.getItem('entity')).name === view ? 
                                                 <div>
                                                 <Link to={{ pathname: '/Carrusel', state: {idProduct: '12s'} }}>
                                                     <Button color="secondary" >
-                                                        Edit  <EditOutlinedIcon fontSize="small"/> 
+                                                        Editar  <EditOutlinedIcon fontSize="small"/> 
                                                     </Button>
                                                 </Link>
+                                                    <Button color="secondary">
+                                                        Promocionar  <FilterCenterFocusOutlinedIcon fontSize="small"/> 
+                                                    </Button>
                                                 </div>
                                                 :
                                                 <div>
