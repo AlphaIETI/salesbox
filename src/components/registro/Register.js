@@ -252,12 +252,13 @@ const handleFileImg = (e) => {
         _id: "",
         name: document.getElementById("nombreEmpresa").value, 
         nit: document.getElementById("nit").value, 
-        email: document.getElementById("emailEmpresa").value, 
+        email: document.getElementById("emailEmpresa").value.toLowerCase(), 
         password: document.getElementById("contrasenaEmpresa").value, 
         phone: document.getElementById("telefonoEmpresa").value,
         city: document.getElementById("ciudadEmpresa").value, 
         address: document.getElementById("direccionEmpresa").value,
-        image:url
+        image:url,
+        priority:0
       }
       registerEntity(entity);
       setPreviewSource();
@@ -289,7 +290,7 @@ const handleFileImg = (e) => {
         _id: "",
         name: document.getElementById("nombreCliente").value,
         lastname: document.getElementById("apellidoCliente").value,
-        email: document.getElementById("email").value,
+        email: document.getElementById("email").value.toLowerCase(),
         password: document.getElementById("contrasenaCliente").value,
         coupons:"0",
         phone: document.getElementById("telefonoCliente").value.toString(),
