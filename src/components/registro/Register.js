@@ -304,8 +304,8 @@ const handleFileImg = (e) => {
         gender:genero
       }
       console.log(client.name);
-      registerClient(client);
-      alert("Registraste correctamente un cliente")
+      verifyUserClient(client);
+      //alert("Registraste correctamente un cliente")
     }
 
     if (!correo.includes('@')) {
@@ -371,6 +371,29 @@ const handleFileImg = (e) => {
       } else {
         console.log("");
         registerEntity(entity);
+      }
+    }).catch(function (error) {
+      console.log("Bad petition:" + error.message);
+     
+    });
+
+  }
+
+  const verifyUserClient = (client) => {
+  
+
+    fetch('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+client.email,{
+      method: 'GET'
+    }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (res) {
+          console.log(res);
+          alert("Este usuario ya existe")
+        })
+      } else {
+        console.log("");
+        alert("entre al else")
+        registerClient(client);
       }
     }).catch(function (error) {
       console.log("Bad petition:" + error.message);
