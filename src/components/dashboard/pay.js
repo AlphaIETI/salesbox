@@ -84,18 +84,6 @@ const PayForm = (props) => {
                 </DialogContentText>
                     <CardElement
                         options={options}
-                        onReady={() => {
-                            console.log("CardElement [ready]");
-                        }}
-                        onChange={event => {
-                            console.log("CardElement [change]", event);
-                        }}
-                        onBlur={() => {
-                            console.log("CardElement [blur]");
-                        }}
-                        onFocus={() => {
-                            console.log("CardElement [focus]");
-                        }}
                     />
             </DialogContent>
                 <DialogActions>
