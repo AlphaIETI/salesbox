@@ -10,7 +10,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
-import NoteAddOutlinedIcon from '@material-ui/icons/NoteAddOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { Fab } from '@material-ui/core';
@@ -18,6 +17,8 @@ import LinearProgressWithLabel from '../dashboard/progressUpload';
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import PayForm from '../dashboard/pay';
+import FilterCenterFocusOutlinedIcon from '@material-ui/icons/FilterCenterFocusOutlined';
+import Badge from '@material-ui/core/Badge';
 
 export default function NewPromotion(props) {
     const [openForm, setOpenForm] = React.useState(false);
@@ -28,6 +29,7 @@ export default function NewPromotion(props) {
     const [typePlan, setTypePlan] = React.useState("");
     const [upload, setUpload] = React.useState(false);
     const [costPlan, setCostPlan]= React.useState(0);
+    const [cantPublicity, setCantPublicity] = React.useState(JSON.parse(localStorage.getItem('entity')).publicity);
 
     const CLOUDINARY_URL_PREVIEW = 'https://res.cloudinary.com/deavblstk/image/upload/v';
     const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/deavblstk/image/upload';
@@ -62,8 +64,8 @@ export default function NewPromotion(props) {
 
     const handleAddProd = (pay) => {
         if(pay){
-            if(typePlan !== "" && document.getElementById("descripcion").value !== ""){
-                if(typePlan === "Enterprise"){
+            if(typePlan !== ""){
+                if(typePlan === "Enterprise" && document.getElementById("descripcion").value !== ""){
                     if(urlImg !== ""){
                         let promotion = {id:"",brand:localStorage.getItem('nameEntity'),image:urlImg,description:document.getElementById("descripcion").value}
                         addPromotionDB(promotion);
@@ -72,11 +74,41 @@ export default function NewPromotion(props) {
                         setOpenForm(false);
                     }
                     else{
-                        alert("No se selecciono la imagen de la publicidad")
+                        alert("No se completaron los datos de la publicidad.")
                     }
                 }else{
                     //Sumar cantidad de promociones en productos.
-                }
+                    let putEntity = JSON.parse(localStorage.getItem('entity'));
+                    let cantPubAct = JSON.parse(localStorage.getItem('entity')).publicity;
+                    if(typePlan === "Basic"){
+                        putEntity.publicity = putEntity.publicity + 2;
+                        setCantPublicity(cantPubAct + 2);
+                    }else{
+                        putEntity.publicity = putEntity.publicity + 5;
+                        setCantPublicity(cantPubAct + 5);
+                    }
+                    fetch(BACKENDAPI + 'api/entities', { 
+                        method:'PUT',
+                        headers:{
+                            'Content-Type': 'application/json ',
+                            'Accept': 'application/json',
+                        },
+                        body:JSON.stringify(putEntity),
+                    }).then(function(response) {
+                        
+                            if(response.ok){
+                                response.json().then(function(res) {
+                                    console.log(res);
+                                    localStorage.setItem("entity",JSON.stringify(res));
+                                })
+                            }else{
+                                console.log('Respuesta de red OK pero respuesta HTTP no OK');
+                            }
+                        }).catch(function(error) {
+                            console.log('Hubo un problema con la petición Fetch:' + error.message);
+                        });
+                    setOpenForm(false);
+                    }
             }else{
                 alert("No se completaron todos los datos de la publicidad.")
             }
@@ -129,7 +161,9 @@ export default function NewPromotion(props) {
     return (
         <div>
             <IconButton onClick={handleClickOpen}>
-                <NoteAddOutlinedIcon fontSize="large" />
+                <Badge badgeContent={cantPublicity} color="secondary">      
+                    <FilterCenterFocusOutlinedIcon fontSize="large" />
+                </Badge>
             </IconButton>
             <Dialog open={openForm} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Agregar Publicidad Nueva</DialogTitle>
@@ -153,54 +187,56 @@ export default function NewPromotion(props) {
                         <MenuItem value="Basic">Publicidad de 2 Productos</MenuItem>
                         <MenuItem value="Premium">Publicidad de 5 Productos</MenuItem>
                     </Select>
-                    <TextField
-                        required
-                        autoFocus
-                        margin="dense"
-                        id="descripcion"
-                        label="Descripción"
-                        variant="outlined"
-                        type="text"
-                        inputProps={{
-                            maxLength: 50,
-                          }}
-                        fullWidth
-                    /> 
-                    {typePlan === "Enterprise" ?                  
+                    {typePlan === "Enterprise" ?
                         <div>
-                        <label htmlFor="upload-photo" >
-                            <input 
-                                style={{ display: 'none' }}
-                                id="upload-photo" 
-                                type="file" 
-                                name="image" 
-                                onChange={handleFileImg} 
-                                value={fileInputState} 
-                            />
-                            <Fab
-                                style={{ width: '400px', margin: '0 auto' }}
-                                size="small"
-                                component="span"
-                                aria-label="add"
-                                variant="extended"
-                            >
-                                <CloudUploadIcon />
-                                . Selecciona la imagen de la publicidad
-                            </Fab>
-                            {previewSource && (
-                                <div>
-                                    <img src={previewSource} alt="chosen" style={{height: '300px'}}/>
-                                    <Button onClick={handleSubmit} color="primary">
-                                        Subir Imagen
-                                    </Button>
-                                    {upload ? 
-                                        <LinearProgressWithLabel state={10}/>
-                                        :
-                                        <LinearProgressWithLabel state={0}/>
-                                    }
-                                </div>
-                            )}
-                        </label>
+                            <TextField
+                                required
+                                autoFocus
+                                margin="dense"
+                                id="descripcion"
+                                label="Descripción"
+                                variant="outlined"
+                                type="text"
+                                inputProps={{
+                                    maxLength: 50,
+                                }}
+                                fullWidth
+                            />                   
+                            <div>
+                            <label htmlFor="upload-photo" >
+                                <input 
+                                    style={{ display: 'none' }}
+                                    id="upload-photo" 
+                                    type="file" 
+                                    name="image" 
+                                    onChange={handleFileImg} 
+                                    value={fileInputState} 
+                                />
+                                <Fab
+                                    style={{ width: '400px', margin: '0 auto' }}
+                                    size="small"
+                                    component="span"
+                                    aria-label="add"
+                                    variant="extended"
+                                >
+                                    <CloudUploadIcon />
+                                    . Selecciona la imagen de la publicidad
+                                </Fab>
+                                {previewSource && (
+                                    <div>
+                                        <img src={previewSource} alt="chosen" style={{height: '300px'}}/>
+                                        <Button onClick={handleSubmit} color="primary">
+                                            Subir Imagen
+                                        </Button>
+                                        {upload ? 
+                                            <LinearProgressWithLabel state={10}/>
+                                            :
+                                            <LinearProgressWithLabel state={0}/>
+                                        }
+                                    </div>
+                                )}
+                            </label>
+                            </div>
                         </div>
                         :
                         null
