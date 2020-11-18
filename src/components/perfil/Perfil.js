@@ -28,6 +28,10 @@ export default function Perfil (props){
 			fontSize: theme.typography.pxToRem(15),
 			color: theme.palette.text.secondary,
 		},
+		accordion:{
+			backgroundColor:'#E5E7E7',
+			backgroundcolor: '#E5E7E7',
+		},
 	}));
 	const useStyless = makeStyles((theme) => ({
 		root: {
@@ -64,8 +68,9 @@ export default function Perfil (props){
 		localStorage.clear();
 	};
 	const [jsonFull, setJSON] = useState({"id":"99999","name":"","lastname":"","email":"","password":"","coupons":"","phone":"","address":""});
+	const [jsonEntity,setJSONentity] = useState({"id":"99999999","name":"","nit":"","email":"","password":"","phone":"","city":"","address":"","image":"","publicity":0});
 
-	useEffect( () => {
+	useEffect(  () => {
 		//axios.get('http://localhost:8080/clients/id/1')
 		axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
 			.then(res => {
@@ -74,67 +79,121 @@ export default function Perfil (props){
 				setJSON(res.data)
 				})
 		}, []);
-	//console.log(localStorage.getItem('emailClient'));
-	//console.log(JSON.stringify(jsonFull));
+
+	useEffect( () => {
+		axios.get('https://salesbox-alpha-backend.herokuapp.com/api/entity/name/'+localStorage.getItem('nameEntity'))
+			.then(res => {
+				//console.log("name");
+				setJSONentity(res.data)
+			})
+	}, []);
 	return (
-			<Accordion >
+		<Accordion className="imagenacordion">
 				<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
 				<AccordionDetails className="imagenacordion">
-					<div>
+						{ localStorage.getItem('isLoggedIn') && !localStorage.getItem('isAdmin') && true ?
+							<div>
+								<br/>
 
-						<Typography align={"center"} variant="h4">
-							Nombre
-						</Typography>
+								<Typography align={"center"} variant="h5">
+									{jsonFull.name.toString()+"  "+ jsonFull.lastname.toString()}
+								</Typography>
 
-						<Typography align={"center"} variant="h6">
-							{jsonFull.name.toString()+"  "+ jsonFull.lastname.toString()}
-						</Typography>
+								<br/>
 
-						<br/>
+								<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
+								<Avatar className={classess.large}></Avatar>
+								</Grid>
 
-						<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
-							<Avatar className={classess.large}></Avatar>
-						</Grid>
+								<br/>
+								<br/>
 
-						<br/>
+								<Typography align={"center"} variant="h5">
+								{jsonFull.email.toString()}
+								</Typography>
 
-						<Typography align={"center"} variant="h4">
-							Correo
-						</Typography>
+								<br/>
 
-						<Typography align={"center"} variant="h6">
-							{jsonFull.email.toString()}
-						</Typography>
+								<Typography align={"center"} variant="h5">
+								Mis Cupones:
+								</Typography>
 
-						<Typography align={"center"} variant="h4">
-							Mis Cupones
-						</Typography>
+								<Typography align={"center"} variant="h5">
+								{jsonFull.coupons.toString()}
+								</Typography>
 
-						<Typography align={"center"} variant="h6">
-							{jsonFull.coupons.toString()}
-						</Typography>
+								<br/>
 
-						<Typography align={"center"} variant="h4">
-							INFORMACIÓN
-						</Typography>
+								<Typography align={"center"} variant="h5">
+									{'TEL: '+ jsonFull.phone.toString()}
+								</Typography>
 
-						<Typography align={"center"} variant="h4">
-							Tel
-						</Typography>
+								<br/>
 
-						<Typography align={"center"} variant="h6">
-							{jsonFull.phone.toString()}
-						</Typography>
+								<Typography align={"center"} variant="h5">
+								Dirección:
+								</Typography>
 
-						<Typography align={"center"} variant="h4">
-							Dirección
-						</Typography>
+								<Typography align={"center"} variant="h5">
+								{jsonFull.address.toString()}
+								</Typography>
 
-						<Typography align={"center"} variant="h6">
-							{jsonFull.address.toString()}
-						</Typography>
+							</div>
+							:
+							null
+						}
+						{localStorage.getItem('isAdmin') ?
+							<div>
+								<br/>
 
-					</div>
+								<Typography align={"center"} variant="h4">
+									{jsonEntity.name.toString()}
+								</Typography>
+
+								<br/>
+
+								<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
+								<Avatar className={classess.large}>
+									<img src={jsonEntity.image} alt="chosen" style={{height:'100px'}}/>
+								</Avatar>
+								</Grid>
+
+								<br/>
+
+								<Typography align={"center"} variant="h6">
+									{'NIT: '+jsonEntity.nit.toString()}
+								</Typography>
+
+								<br/>
+
+								<Typography align={"center"} variant="h6">
+									{jsonEntity.email.toString()}
+								</Typography>
+
+								<br/>
+
+								<Typography align={"center"} variant="h6">
+									{'TEL: '+jsonEntity.phone.toString()}
+								</Typography>
+
+								<br/>
+
+								<Typography align={"center"} variant="h6">
+									{jsonEntity.city.toString()}
+								</Typography>
+
+								<br/>
+
+								<Typography align={"center"} variant="h6">
+									{jsonEntity.address.toString()}
+								</Typography>
+
+								<br/>
+
+							</div>
+							:
+							null
+						}
 				</AccordionDetails>
 					<Button
 						onClick={handleLogout}
