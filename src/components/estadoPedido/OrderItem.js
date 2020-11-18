@@ -44,7 +44,6 @@ export default function Item(props){
     return(
         <Container style={{background:'white'}}>
             <Row>
-
                 <Col >
                     <CardImg style={imageItem} src={itemData.image} alt="Missing Pic"/>
                 </Col>
