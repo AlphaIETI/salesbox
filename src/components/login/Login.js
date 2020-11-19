@@ -150,6 +150,7 @@ export default function Login() {
            
            localStorage.setItem('isLoggedIn',true);
            localStorage.setItem('emailClient',res.email);
+           localStorage.setItem('client', JSON.stringify(res));
            window.location='/Home';
            setIsLoggedIn(true);
          }

@@ -67,10 +67,12 @@ export default function Perfil (props){
 	const handleLogout = () => {
 		localStorage.clear();
 	};
+	/*
 	const [jsonFull, setJSON] = useState({"id":"99999","name":"","lastname":"","email":"","password":"","coupons":"","phone":"","address":""});
 	const [jsonEntity,setJSONentity] = useState({"id":"99999999","name":"","nit":"","email":"","password":"","phone":"","city":"","address":"","image":"","publicity":0});
 
-	useEffect(  () => {
+	 */
+	/*useEffect(  () => {
 		//axios.get('http://localhost:8080/clients/id/1')
 		axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
 			.then(res => {
@@ -87,6 +89,7 @@ export default function Perfil (props){
 				setJSONentity(res.data)
 			})
 	}, []);
+	*/
 	return (
 		<Accordion className="imagenacordion">
 				<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
@@ -96,7 +99,8 @@ export default function Perfil (props){
 								<br/>
 
 								<Typography align={"center"} variant="h5">
-									{jsonFull.name.toString()+"  "+ jsonFull.lastname.toString()}
+									{JSON.parse(localStorage.getItem('client')).name.toString()+"  "
+									+JSON.parse(localStorage.getItem('client')).lastname.toString()}
 								</Typography>
 
 								<br/>
@@ -109,7 +113,7 @@ export default function Perfil (props){
 								<br/>
 
 								<Typography align={"center"} variant="h5">
-								{jsonFull.email.toString()}
+								{JSON.parse(localStorage.getItem('client')).email.toString()}
 								</Typography>
 
 								<br/>
@@ -119,13 +123,13 @@ export default function Perfil (props){
 								</Typography>
 
 								<Typography align={"center"} variant="h5">
-								{jsonFull.coupons.toString()}
+								{JSON.parse(localStorage.getItem('client')).coupons.toString()}
 								</Typography>
 
 								<br/>
 
 								<Typography align={"center"} variant="h5">
-									{'TEL: '+ jsonFull.phone.toString()}
+									{'TEL: '+ JSON.parse(localStorage.getItem('client')).phone.toString()}
 								</Typography>
 
 								<br/>
@@ -135,7 +139,7 @@ export default function Perfil (props){
 								</Typography>
 
 								<Typography align={"center"} variant="h5">
-								{jsonFull.address.toString()}
+								{JSON.parse(localStorage.getItem('client')).address.toString()}
 								</Typography>
 
 							</div>
@@ -147,45 +151,45 @@ export default function Perfil (props){
 								<br/>
 
 								<Typography align={"center"} variant="h4">
-									{jsonEntity.name.toString()}
+									{JSON.parse(localStorage.getItem('entity')).name.toString()}
 								</Typography>
 
 								<br/>
 
 								<Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
 								<Avatar className={classess.large}>
-									<img src={jsonEntity.image} alt="chosen" style={{height:'100px'}}/>
+									<img src={JSON.parse(localStorage.getItem('entity')).image} alt="chosen" style={{height:'100px'}}/>
 								</Avatar>
 								</Grid>
 
 								<br/>
 
 								<Typography align={"center"} variant="h6">
-									{'NIT: '+jsonEntity.nit.toString()}
+									{'NIT: '+JSON.parse(localStorage.getItem('entity')).nit.toString()}
 								</Typography>
 
 								<br/>
 
 								<Typography align={"center"} variant="h6">
-									{jsonEntity.email.toString()}
+									{JSON.parse(localStorage.getItem('entity')).email.toString()}
 								</Typography>
 
 								<br/>
 
 								<Typography align={"center"} variant="h6">
-									{'TEL: '+jsonEntity.phone.toString()}
+									{'TEL: '+JSON.parse(localStorage.getItem('entity')).phone.toString()}
 								</Typography>
 
 								<br/>
 
 								<Typography align={"center"} variant="h6">
-									{jsonEntity.city.toString()}
+									{JSON.parse(localStorage.getItem('entity')).city.toString()}
 								</Typography>
 
 								<br/>
 
 								<Typography align={"center"} variant="h6">
-									{jsonEntity.address.toString()}
+									{JSON.parse(localStorage.getItem('entity')).address.toString()}
 								</Typography>
 
 								<br/>
