@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
   },
   container: {
-    paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(10),
     paddingBottom: theme.spacing(4),
   },
 }));
@@ -54,30 +54,35 @@ export default function Coupons() {
       <main>
         <GeneralAppBar ></GeneralAppBar>
         <Container maxWidth="md" className={classes.container}>
-          <Grid container spacing={1} className={classes.actionSpacer}>
+          <Grid container spacing={1} className={classes.actionSpacer}> 
             {coupons.map(c => (
               <Grid xs={12} sm={6} md={4} lg={4} xl={2} item>
                 <Card className={classes.root}>
                   <CardActionArea>
+
                     <CardMedia
                       className={classes.media}
                       image={c.image}
                       title="Contemplative Reptile"
+                      
                     />
+                    
                     <CardContent>
                       <Typography gutterBottom variant="h7" component="h2">
                         Coupon
-          </Typography>
+                      </Typography>
                       <Typography variant="body2" color="textSecondary" component="p">
                         {c.percentage}
                       </Typography>
                       <Typography variant="subtitle" color="textSecondary">
                         {c.endDate}
                       </Typography>
+                      
                       <CouponsInfo></CouponsInfo>
+                
                     </CardContent>
                   </CardActionArea>
-
+                  
                 </Card>
               </Grid>
             ))}

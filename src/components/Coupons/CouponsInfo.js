@@ -9,7 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import FilterNoneIcon from '@material-ui/icons/FilterNone';
 import IconButton from '@material-ui/core/IconButton';
 import PermDeviceInformationIcon from '@material-ui/icons/PermDeviceInformation';
-
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 
 export default function CouponsInfo() {
@@ -39,29 +39,23 @@ export default function CouponsInfo() {
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
       <PermDeviceInformationIcon></PermDeviceInformationIcon>
       </Button>
+      <Button onClick={handleClose} color="primary">
+        Redimir
+      </Button> 
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Redime tu cupon ahora !"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{"Términos y condiciones"}</DialogTitle>
         <DialogContent>
-         
-          
-          
-         
-         
-         <img src="https://www.vanguardia.com/binrepository/716x477/0c0/0d0/none/12204/WTSC/DATA_ART_325251_BIG_CE_VL216321_MG21568226.jpg" alt="chosen" style={{height:'300px'}}/>
- 
-         
-         
+          Los cupones no son reembolsables, pueden utilizarse en una sola compra de uno o más articulos adquiridos a través de www.salesbox.com.co y no pueden ser canjeados por dinero en efectivo. Aplica Términos y Condiciones del Servicio disponibles en www.salesbox.com.co
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Redimir
+            Aceptar 
           </Button>
-         
         </DialogActions>
       </Dialog>
     </div>
