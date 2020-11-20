@@ -16,6 +16,7 @@ import Color from 'color';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { useFourThreeCardMediaStyles } from '@mui-treasury/styles/cardMedia/fourThree';
 import Promotions from '../promotion/promotions'
+import CarouselComponent from '../promotion/carousel';
 const images = [
   {
     url: "https://www.centrocomercialfundadores.com/wp-content/uploads/2017/09/TENNIS.jpg",
@@ -332,7 +333,9 @@ export default function ButtonBases() {
               null
               }
               <br></br><br></br><br></br>
-              <Promotions promotions={promotions}/>
+              <CarouselComponent promotions={promotions} tipo={"Publicidad Marcas"}/>
+              <br></br><br></br><br></br>
+              <CarouselComponent promotions={promotions} tipo={"Publicidad Productos"}/>
         </Container>
     </div>
   );

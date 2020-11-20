@@ -198,7 +198,7 @@ export default function NewPromotion(props) {
                                 variant="outlined"
                                 type="text"
                                 inputProps={{
-                                    maxLength: 50,
+                                    maxLength: 110,
                                 }}
                                 fullWidth
                             />                   
