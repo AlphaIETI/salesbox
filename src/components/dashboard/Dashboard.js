@@ -20,6 +20,7 @@ import AddPromotion from '../promotion/addPromotion';
 
 //AppBar
 import AppBarComponent from './appBar';
+import PublicityProduct from '../promotion/addPublicityProduct';
 
 function Copyright() {
     return (
@@ -254,15 +255,15 @@ export default function Dashboard(props) {
                                             classes={{ spacing: classes.actionSpacerCard }}
                                         >
                                             {localStorage.getItem('isAdmin') && JSON.parse(localStorage.getItem('entity')).name === view ? 
-                                                <div>
-                                                <Link to={{ pathname: '/Carrusel', state: {idProduct: '12s'} }}>
-                                                    <Button color="secondary" >
-                                                        Editar  <EditOutlinedIcon fontSize="small"/> 
-                                                    </Button>
-                                                </Link>
-                                                    <Button color="secondary">
-                                                        Promocionar  <FilterCenterFocusOutlinedIcon fontSize="small"/> 
-                                                    </Button>
+                                                <div style={{display: 'contents'}}> 
+                                                    <div>
+                                                        <Link to={{ pathname: '/Carrusel', state: {idProduct: '12s'} }}>
+                                                            <Button color="secondary" >
+                                                                Editar  <EditOutlinedIcon fontSize="small"/> 
+                                                            </Button>
+                                                        </Link>
+                                                    </div>
+                                                    <PublicityProduct promotion={pr}/>
                                                 </div>
                                                 :
                                                 <div>
