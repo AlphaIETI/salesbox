@@ -10,7 +10,10 @@ const breakPoints = [
   { width: 1200, itemsToShow: 4 },
 ];
 
+
+
 export default function CarouselComponent(props) {
+  
   return (
     <>
       <h1 style={{ textAlign: "center" }}>{props.tipo}</h1>

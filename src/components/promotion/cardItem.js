@@ -17,9 +17,12 @@ const useStyles = makeStyles(theme => ({
 export default function CardItem (props) {
   const classes = useStyles();
   const theme = useTheme();
-
+  const handleClickCard = (title) =>{
+    localStorage.setItem('nameEntity', title);
+    window.location='/Dashboard'
+  };
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} onClick = {event => handleClickCard(props.pr.brand)}>
       <CardActionArea>
         <CardMedia
           height="200"
