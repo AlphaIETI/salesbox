@@ -16,6 +16,7 @@ import Carrusel from './components/producto/Carrusel';
 import Coupons from './components/Coupons/Coupons';
 import CouponsInfo from './components/Coupons/CouponsInfo';
 import EstadoPedido from './components/estadoPedido/EstadoPedido';
+import ProductPage from './components/producto/productPage'; 
 
 
 function App() {
@@ -48,8 +49,8 @@ function App() {
           <Route exact path="/Dashboard">
             <Dashboard />
           </Route>
-          <Route exact path="/Carrusel">
-            <Carrusel />
+          <Route exact path="/ProductPage">
+            <ProductPage />
           </Route>
           <Route exact path="/Coupons">
             <Coupons />
