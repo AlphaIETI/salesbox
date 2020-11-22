@@ -86,7 +86,7 @@ export default function FavItem(props){
                         
                         </Grid>
                         <Grid item>
-                            <DeleteButton idproduct={props.currentItem} efecinco={props.efecinco} precioItem={(itemData.price-(itemData.price*(itemData.discount/100)))}></DeleteButton>
+                            <DeleteButton idproduct={props.favoritos} efecinco={props.efecinco}></DeleteButton>
                         </Grid>
                     </Grid>
                     <Grid item>

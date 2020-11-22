@@ -106,7 +106,7 @@ export default function AppBarComponent(props) {
                 setUser({fav:res.data.favorites.length,car:res.data.cart.length,tran:0,coup:0})
 				})
             }
-        }, []);
+        }, [user]);
         
     return (
         <div>
