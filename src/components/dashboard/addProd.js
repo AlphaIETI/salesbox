@@ -121,7 +121,7 @@ export default function NewProd(props) {
     return (
         <div>
             <IconButton onClick={handleClickOpen}>
-                <QueueOutlinedIcon fontSize="large" />
+                <QueueOutlinedIcon fontSize="large" style={{color:"#8A9592"}}/>
             </IconButton>
             <Dialog open={openForm} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Agregar Producto Nuevo</DialogTitle>

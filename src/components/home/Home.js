@@ -284,16 +284,21 @@ export default function ButtonBases() {
   
 
   return (
+   
     <div className={classes.root}>
       <AppBarComponent cantPromo={handleCantPromo}/>
+    
         <Container maxWidth="lg">
+        <div align="center">
         {brands.map((brand) => (
+          
               <ButtonBase
                   focusRipple
                   key={brand.name}
                   className={classes.image}
                   onClick={() => redirect(brand.name)}
                   focusVisibleClassName={classes.focusVisible}
+                
                   style={{
                       width: "30%",
                   }}
@@ -315,16 +320,20 @@ export default function ButtonBases() {
                       </Typography>
                   </span>
               </ButtonBase>
+             
         ))}
+      
               <br></br><br></br><br></br>
               {!localStorage.getItem('isAdmin') ?
               <div>
               <Button
                   onClick={handleViewAll}
                   variant="contained"
-                  color="primary"
+                  style={{backgroundColor:"#272C2A"}}
+                  align="center"
+                  size="large"
                 >
-                  <Typography variant="body2">
+                  <Typography variant="body2"  style={{color:"white"}} >
                     Ver todos los productos
                   </Typography>
               </Button>
@@ -332,11 +341,19 @@ export default function ButtonBases() {
               :
               null
               }
+                 </div>
               <br></br><br></br><br></br>
-              <CarouselComponent promotions={promotions} tipo={"Publicidad Marcas"}/>
+              <Typography variant="h4" align="center" style={{color:"black" , fontFamily: "Times New Roman"}} >
+                   Marcas Destacadas
+                  </Typography>
+              <CarouselComponent promotions={promotions} />
               <br></br><br></br><br></br>
-              <CarouselComponent promotions={promotions} tipo={"Publicidad Productos"}/>
+              <Typography variant="h4" align="center"  style={{color:"black" , fontFamily: "Times New Roman"}} >
+                    Productos Destacados
+                  </Typography>
+              <CarouselComponent promotions={promotions} />
         </Container>
     </div>
+    
   );
 }

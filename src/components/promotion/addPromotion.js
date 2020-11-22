@@ -162,7 +162,7 @@ export default function NewPromotion(props) {
         <div>
             <IconButton onClick={handleClickOpen}>
                 <Badge badgeContent={cantPublicity} color="secondary">      
-                    <FilterCenterFocusOutlinedIcon fontSize="large" />
+                    <FilterCenterFocusOutlinedIcon fontSize="large" style={{color:"#8A9592"}}/>
                 </Badge>
             </IconButton>
             <Dialog open={openForm} onClose={handleClose} aria-labelledby="form-dialog-title">
