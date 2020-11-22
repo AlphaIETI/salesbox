@@ -131,10 +131,7 @@ const useStyles = makeStyles((theme) => ({
     opacity: 0.4,
     transition: theme.transitions.create('opacity'),
   },
-  imageTitle: {
-    position: 'relative',
-    padding: `${theme.spacing(17)}px ${theme.spacing(22.5)}px ${theme.spacing(1) + 6}px`,
-  },
+
   imageMarked: {
     height: 3,
     width: 18,
@@ -315,7 +312,6 @@ export default function ButtonBases() {
                       component="span"
                       variant="subtitle1"
                       color="inherit"
-                      className={classes.imageTitle}
                       >
                       </Typography>
                   </span>
