@@ -178,7 +178,7 @@ export default function Dashboard(props) {
     }
 
     const filters = (pr) => {
-        return (((pr.price - (pr.price * (pr.discount/100))>=minMax[0]) && (pr.price - (pr.price * (pr.discount/100))<= minMax[1])) && (filCategory.includes(pr.category) || filCategory.length === 0) && (filGender.includes(pr.gender) || filGender.length === 0) && (filMarca.includes(pr.brand) || filMarca.length === 0) && (filColor.includes(pr.color) || filColor.length === 0))
+        return (((pr.price - (pr.price * (pr.discount/100))>=minMax[0]) && (pr.price - (pr.price * (pr.discount/100))<= minMax[1])) && (filCategory.includes(pr.category) || filCategory.length === 0) && (filGender.includes(pr.gender) || filGender.length === 0) && (filMarca.includes(pr.brand) || filMarca.length === 0) && (filColor.includes(pr.colors[0]) || filColor.length === 0))
     }
 
     const handlePromote = () => {
@@ -225,7 +225,7 @@ export default function Dashboard(props) {
                                             search: '?id='+pr.id
                                             }}>
                                                 <CardMedia
-                                                    image={pr.image}
+                                                    image={pr.images[0]}
                                                     className={classes.media}
                                                 >
                                                     <span className='porDescuento'>

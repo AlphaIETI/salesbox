@@ -71,6 +71,7 @@ export default function NewPromotion(props) {
                         addPromotionDB(promotion);
                         setPreviewSource();
                         setUrlImg("");
+                        setUpload(false);
                         setOpenForm(false);
                     }
                     else{

@@ -4,15 +4,15 @@ import Colors from './Colors'
 import DetailsThumb from './DetailsThumb';
 import AppBarComponent from '../dashboard/appBar';
 
-export default function ProductPage () {
+export default function ProductPage () { 
 
     let urlParams = new URLSearchParams(window.location.search);
     let myParam = urlParams.get('id');
     let BACKENDAPI = 'https://salesbox-alpha-backend.herokuapp.com/';
     let myRef = React.createRef();
-    const [pr, setPr] = React.useState({id:1,brand:"",image:[""],color:["white"],description:""});
-    const [imagesP, setImageP] = React.useState([pr.image])
-    const [colors, setColors] = React.useState([pr.color])
+    const [pr, setPr] = React.useState({id:1,brand:"",images:[""],colors:["white"],description:""});
+    const [imagesP, setImageP] = React.useState([pr.images])
+    const [colors, setColors] = React.useState([pr.colors])
     useEffect (() => {
       fetch(BACKENDAPI+'products/'+myParam, {
           method: 'GET'
@@ -20,8 +20,8 @@ export default function ProductPage () {
           .then(data => {
               console.log(data)
               setPr(data)
-              setImageP([data.image])
-              setColors([data.color])
+              setImageP(data.images)
+              setColors(data.colors)
           }).catch(error => {
               console.log(error)
           });
@@ -45,7 +45,7 @@ export default function ProductPage () {
             <div className="app">
                 <div className="details" key={pr.id}>
                     <div className="big-img">
-                    <img src={imagesP} alt=""/>
+                    <img src={pr.images[index]} alt=""/>
                     </div>
     
                     <div className="box">
