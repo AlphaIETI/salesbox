@@ -220,7 +220,10 @@ export default function Dashboard(props) {
                                 <Grid key={products.indexOf(pr)} item xs={12} sm={6} lg={4} xl={3}>
                                     <Card>
                                         <div>
-                                            <Link to="/productPage">
+                                        <Link to={{
+                                            pathname: '/productPage',
+                                            search: '?id='+pr.id
+                                            }}>
                                                 <CardMedia
                                                     image={pr.image}
                                                     className={classes.media}
@@ -257,7 +260,10 @@ export default function Dashboard(props) {
                                             {localStorage.getItem('isAdmin') && JSON.parse(localStorage.getItem('entity')).name === view ? 
                                                 <div style={{display: 'contents'}}> 
                                                     <div>
-                                                        <Link to={{ pathname: '/productPage', state: {idProduct: '12s'} }}>
+                                                        <Link to={{
+                                                                pathname: '/productPage',
+                                                                search: '?id='+pr.id
+                                                            }}>
                                                             <Button color="secondary" >
                                                                 Editar  <EditOutlinedIcon fontSize="small"/> 
                                                             </Button>
