@@ -1,34 +1,68 @@
-import React, { useEffect, useState } from 'react'
-import Axios from 'axios'
-import { Row, Col } from 'antd';
-import ProductImage from './productImage';
-import ProductInfo from './productInfo';
+import React, { useEffect } from 'react';
+import './ProductPage.css';
+import Colors from './Colors'
+import DetailsThumb from './DetailsThumb';
+import AppBarComponent from '../dashboard/appBar';
 
+export default function ProductPage () {
 
-export default function ProductPage(props) {
+    let urlParams = new URLSearchParams(window.location.search);
+    let myParam = urlParams.get('id');
+    let BACKENDAPI = 'https://salesbox-alpha-backend.herokuapp.com/';
+    let myRef = React.createRef();
+    const [pr, setPr] = React.useState({id:1,brand:"",image:[""],color:["white"],description:""});
+    const [imagesP, setImageP] = React.useState([pr.image])
+    const [colors, setColors] = React.useState([pr.color])
+    useEffect (() => {
+      fetch(BACKENDAPI+'products/'+myParam, {
+          method: 'GET'
+      }).then(response => response.json())
+          .then(data => {
+              console.log(data)
+              setPr(data)
+              setImageP([data.image])
+              setColors([data.color])
+          }).catch(error => {
+              console.log(error)
+          });
+      myRef.current.children[index].className = "active";
+      },[]);
+    
+    const [index,setIndex] = React.useState(0);
+    let images = [];
+    const handleTab = (index) => {
+        setIndex(index);
+        images = myRef.current.children;
+        for(let i=0; i<images.length; i++){
+            images[i].className = images[i].className.replace("active", "");
+        }
+        images[index].className = "active";
+    }
 
-  
-    const [Product, setProduct] = useState([{price:1000,sold:10,views:50,description:"hola",images:["https://dafitistaticco-a.akamaihd.net/p/nike-3236-2488211-1-product.jpg","https://dafitistaticco-a.akamaihd.net/p/nike-4643-6069211-1-product.jpg","https://dafitistaticco-a.akamaihd.net/p/nike-9709-1532511-1-product.jpg"]}]) 
-
-    return (
-        <div className="postPage" style={{ width: '100%', padding: '3rem 4rem' }}>
-
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <h1>Hola</h1>
+    return(
+        <div>
+            <AppBarComponent />
+            <div className="app">
+                <div className="details" key={pr.id}>
+                    <div className="big-img">
+                    <img src={imagesP} alt=""/>
+                    </div>
+    
+                    <div className="box">
+                    <div className="row">
+                        <h2>{pr.brand}</h2>
+                        <span>${pr.price}</span>
+                    </div>
+                    <Colors colors={colors} />
+    
+                    <h2>{pr.description}</h2>
+    
+                    <DetailsThumb images={imagesP} tab={handleTab} myRef={myRef} />
+                    <button className="cart">Añadir al Carrito</button>
+    
+                    </div>
+                </div>
             </div>
-
-            <br />
-
-            <Row gutter={[16, 16]} >
-                <Col lg={12} xs={24}>
-                    <ProductImage detail={Product} />
-                </Col>
-                <Col lg={12} xs={24}>
-                <ProductInfo
-                        detail={Product} />
-                </Col>
-            </Row>
         </div>
-    )
+      );
 }
-
