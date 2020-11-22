@@ -293,12 +293,12 @@ export default function ButtonBases() {
               }
                  </div>
               <br></br><br></br><br></br>
-              <Typography variant="h4" align="center" style={{color:"black" , fontFamily: "Times New Roman"}} >
+              <Typography variant="h4" align="center" style={{color:"black" , fontFamily: "Fantasy"}} >
                    Marcas Destacadas
                   </Typography>
-              <CarouselComponent promotions={promotions} />
+              <CarouselComponent promotions={promotions} className={classes.container}/>
               <br></br><br></br><br></br>
-              <Typography variant="h4" align="center"  style={{color:"black" , fontFamily: "Times New Roman"}} >
+              <Typography variant="h4" align="center"  style={{color:"black" , fontFamily: "Fantasy"}} >
                     Productos Destacados
                   </Typography>
               <CarouselComponent promotions={promotions} />
