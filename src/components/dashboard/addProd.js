@@ -24,7 +24,7 @@ export default function NewProd(props) {
     const [fileInputState, setFileInputState] = React.useState('');
     const [previewSource, setPreviewSource] = React.useState();
     const [file, setFile]= React.useState();
-    const [urlImg, setUrlImg] = React.useState("");
+    const [urlImg, setUrlImg] = React.useState([]);
     const [typeProd, setTypeProd] = React.useState("");
     const [typeGen, setTypeGen] = React.useState("");
     const [colorProd, setColorProd] = React.useState("");
@@ -44,13 +44,14 @@ export default function NewProd(props) {
                 'Content-Type': 'multipart/form-data'
             }
         });
-        setUrlImg(CLOUDINARY_URL_PREVIEW+res.data.version+"/"+res.data.public_id+"."+res.data.format);
         if(res.statusText==="OK"){
+            setUrlImg(urlImg => [...urlImg, CLOUDINARY_URL_PREVIEW+res.data.version+"/"+res.data.public_id+"."+res.data.format])
             setUpload(true);
         }
     };
 
     const handleFileImg = (e) => {
+        setUpload(false);
         const file1 = e.target.files[0];
         setFile(file1);
         const reader = new FileReader();
@@ -83,14 +84,16 @@ export default function NewProd(props) {
     }
 
     const handleAddProd = () => {
-        if(document.getElementById("descripcion").value !== "" && document.getElementById("precio").value !== "" && document.getElementById("descuento").value !== "" && typeProd !== "" && typeGen !== "" && colorProd !== "" && document.getElementById("tallaProducto").value !== "" && document.getElementById("cantidadDisponible").value !== "" && urlImg !== ""){
-            const pr = {id:"",brand:localStorage.getItem('nameEntity'),description:document.getElementById("descripcion").value,color:colorProd,price:document.getElementById("precio").value,discount:document.getElementById("descuento").value,image:urlImg,size:[document.getElementById("tallaProducto").value],category:typeProd,gender:typeGen,stockAvailable:document.getElementById("cantidadDisponible").value};
+        if(document.getElementById("name").value !== "" && document.getElementById("descripcion").value !== "" && document.getElementById("precio").value !== "" && document.getElementById("descuento").value !== "" && typeProd !== "" && typeGen !== "" && colorProd !== "" && document.getElementById("tallaProducto").value !== "" && document.getElementById("cantidadDisponible").value !== "" && urlImg.length !== 0){
+            const pr = {id:"",name:document.getElementById("name").value,brand:localStorage.getItem('nameEntity'),description:document.getElementById("descripcion").value,colors:[colorProd],price:document.getElementById("precio").value,discount:document.getElementById("descuento").value,images:urlImg,size:[document.getElementById("tallaProducto").value],category:typeProd,gender:typeGen,stockAvailable:document.getElementById("cantidadDisponible").value};
+            console.log(pr)
             addProductDB(pr);
             setPreviewSource();
             setTypeProd("");
             setTypeGen("");
             setColorProd("");
-            setUrlImg("");
+            setUrlImg([]);
+            setUpload(false);
             setOpenForm(false);
         } else {
             alert("No se completaron todos los datos del Producto.")
@@ -114,7 +117,8 @@ export default function NewProd(props) {
 
     const handleClose = () => {
         setPreviewSource();
-        setUpload(false)
+        setUrlImg([]);
+        setUpload(false);
         setOpenForm(false);
     };
 
@@ -131,6 +135,17 @@ export default function NewProd(props) {
                     </DialogContentText>
                     <TextField
                         autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Nombre"
+                        variant="outlined"
+                        type="text"
+                        inputProps={{
+                            maxLength: 30,
+                          }}
+                        fullWidth
+                    />
+                    <TextField
                         margin="dense"
                         id="descripcion"
                         label="Descripción"
@@ -249,9 +264,13 @@ export default function NewProd(props) {
                         {previewSource && (
                             <div>
                                 <img src={previewSource} alt="chosen" style={{height: '300px'}}/>
-                                <Button onClick={handleSubmit} color="primary">
-                                    Subir Imagen
-                                </Button>
+                                {!upload ?
+                                    <Button onClick={handleSubmit} color="primary">
+                                        Subir Imagen
+                                    </Button>
+                                    :
+                                null
+                                }
                                 {upload ? 
                                     <LinearProgressWithLabel state={10}/>
                                     :

@@ -75,13 +75,17 @@ export default function AccordionComponent(props) {
     if(props.products !== undefined){
         if(props.view === "#"){
             props.products.map(function(pr){
-                colors.push(pr.color)
+                pr.colors.map(function(co){
+                    colors.push(co)
+                })
             });
         }else{
             props.products.map(function(pr){
-                if(pr.brand === props.view){
-                    colors.push(pr.color)
-                }
+                pr.colors.map(function(co){
+                    if(pr.brand === props.view){
+                        colors.push(co)
+                    }
+                })
             });
         }
         colors.forEach(function(i) { countColors[i] = (countColors[i]||0) + 1;});
