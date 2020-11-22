@@ -21,12 +21,18 @@ import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumbe
 import AddProd from './addProd';
 import AddPromotion from '../promotion/addPromotion';
 import axios from 'axios';
+import logo from '../../logo.png';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     toolbar: {
-        paddingRight: 24, // keep right padding when drawer closed
+        paddingRight: 24,
+        backgroundColor: '#272C2A'// keep right padding when drawer closed
+    },
+    colorIcons:{
+        color: '#8A9592'
+
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
@@ -66,6 +72,10 @@ const useStyles = makeStyles((theme) => ({
     colorSalesBox: {
         color: "white"
     },
+    customBadge: {
+        backgroundColor: "#00AFD7",
+        color: "white"
+      }
 }));
 
 export default function AppBarComponent(props) {
@@ -118,7 +128,7 @@ export default function AppBarComponent(props) {
             
             <Typography component="h1" variant="h6" noWrap className={classes.title}>
                 <Link to="/Home" className={classes.colorSalesBox}>
-                    Salesbox
+                <img src={logo} alt="logo" style={{ height: '80px', position: 'relative', top: '0px', filter:"brightness(1)"}} />
                 </Link>
             </Typography>
  
@@ -126,7 +136,7 @@ export default function AppBarComponent(props) {
             <div>
                 <Link to="/Home">
                     <IconButton >
-                        <HomeOutlinedIcon fontSize="large" />
+                        <HomeOutlinedIcon fontSize="large" className={classes.colorIcons} />
                     </IconButton>
                 </Link>
             </div>
@@ -137,29 +147,29 @@ export default function AppBarComponent(props) {
                 <div>
                     <Link to="/Favorites">
                         <IconButton >
-                            <Badge badgeContent={user.fav} color="secondary">
-                                <FavoriteBorderOutlinedIcon fontSize="large" />
+                            <Badge badgeContent={user.fav} >
+                                <FavoriteBorderOutlinedIcon fontSize="large"  className={classes.colorIcons}/>
                             </Badge>
                         </IconButton>
                     </Link>
                     <Link to="/ShopCar">
                         <IconButton aria-label="cart">
                             <Badge badgeContent={user.car} color="secondary">
-                                <ShoppingCartOutlinedIcon fontSize="large"/>
+                                <ShoppingCartOutlinedIcon fontSize="large" className={classes.colorIcons} />
                             </Badge>
                         </IconButton> 
                     </Link>
                     <Link to="/EstadoPedido">
                         <IconButton aria-label="cart">
                             <Badge badgeContent={user.tran} color="secondary">
-                                <AssignmentOutlinedIcon fontSize="large"/>
+                                <AssignmentOutlinedIcon fontSize="large" className={classes.colorIcons}/>
                             </Badge>
                         </IconButton> 
                     </Link>
                     <Link to="/Coupons">
                         <IconButton aria-label="cart">
                             <Badge badgeContent={user.coup} color="secondary">
-                                <ConfirmationNumberOutlinedIcon fontSize="large"/>
+                                <ConfirmationNumberOutlinedIcon fontSize="large" className={classes.colorIcons}/>
                             </Badge>
                         </IconButton> 
                     </Link>
@@ -170,8 +180,8 @@ export default function AppBarComponent(props) {
             {localStorage.getItem('isAdmin') ?
                 <Link to="/EstadoPedido">
                     <IconButton aria-label="cart">
-                        <Badge badgeContent={2} color="secondary">
-                            <AssignmentOutlinedIcon fontSize="large"/>
+                        <Badge badgeContent={2} color="primary">
+                            <AssignmentOutlinedIcon fontSize="large" className={classes.colorIcons}/>
                         </Badge>
                     </IconButton>
                 </Link>
@@ -179,12 +189,12 @@ export default function AppBarComponent(props) {
                 null
             }
             {localStorage.getItem('isAdmin') ?
-                <AddProd editProducts={props.editProducts}/>
+                <AddProd editProducts={props.editProducts}  />
                 :
                 null
             }
             {localStorage.getItem('isAdmin') ?
-                <AddPromotion cantPromo={props.cantPromo}/>
+                <AddPromotion cantPromo={props.cantPromo} />
                 :
                 null
             }
