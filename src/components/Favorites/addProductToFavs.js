@@ -19,7 +19,7 @@ export default function addProductToFavs(props){
 
         let flag = false;
         user.favorites.map(item => {
-            if(item == props.idProduct){
+            if(item === props.idProduct){
                 flag = true;
             }
         });

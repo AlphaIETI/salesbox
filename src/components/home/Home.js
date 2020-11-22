@@ -3,19 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 import AppBarComponent from '../dashboard/appBar';
-import { Link ,Redirect,Router,Route} from 'react-router-dom';
-import Dashboard from '../dashboard/Dashboard';
-import { useArrowDarkButtonStyles } from '@mui-treasury/styles/button/arrowDark';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Color from 'color';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import { useFourThreeCardMediaStyles } from '@mui-treasury/styles/cardMedia/fourThree';
-import Promotions from '../promotion/promotions'
 import CarouselComponent from '../promotion/carousel';
 
 const useStyles = makeStyles((theme) => ({
@@ -154,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
       },
   }}));
 
-  const CustomCard = ({classes, image,title,subtitle}) => {
+  /* const CustomCard = ({classes, image,title,subtitle}) => {
     const mediaStyles=useFourThreeCardMediaStyles();
     return (
       <CardActionArea className={classes.actionArea}>
@@ -169,20 +159,20 @@ const useStyles = makeStyles((theme) => ({
         </Card>
       </CardActionArea>
     );
-  };
+  }; */
 
 
-const useGridStyles=makeStyles(({breakpoints}) =>  ({
+/* const useGridStyles=makeStyles(({breakpoints}) =>  ({
     root:{
       [breakpoints.up('md')]:{
         justifyContent:'center',
       },
     },
-  }));
+  })); */
 
 export default function ButtonBases() {
   const classes = useStyles();
-  const arrowStyles = useArrowDarkButtonStyles();
+  /* const arrowStyles = useArrowDarkButtonStyles(); */
   const BACKENDAPI = 'https://salesbox-alpha-backend.herokuapp.com/';
   const redirect = (td)=>{
     localStorage.setItem('nameEntity', td);
@@ -192,8 +182,8 @@ export default function ButtonBases() {
     localStorage.setItem('nameEntity', "#");
     window.location='/Dashboard'
   };
-  const gridStyles = useGridStyles();
-  const styles= useStyles({color: '#ff0000'})
+  /* const gridStyles = useGridStyles(); */
+  /* const styles= useStyles({color: '#ff0000'}) */
 
   //Promotions
   const [cantPromo,setCantPromo] = React.useState(0);
@@ -206,7 +196,7 @@ export default function ButtonBases() {
           method: 'GET'
       }).then(response => response.json())
           .then(data => {
-              console.log(data)
+              //console.log(data)
               data.map(pr => {
                   setPromotions(data);
               })
@@ -224,7 +214,7 @@ export default function ButtonBases() {
       method: 'GET'
     }).then(response => response.json())
       .then(data => {
-        console.log(data)
+        //console.log(data)
         data.map(pr => {
           setBrands(data);
         })

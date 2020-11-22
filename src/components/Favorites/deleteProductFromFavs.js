@@ -17,11 +17,11 @@ export default function deleteProductFromFavs(props){
 
         let valor = -1;
         for (var i=0; i<user.favorites.length;i++){
-            if(user.favorites[i] == (props.idproduct)){
+            if(user.favorites[i] === (props.idproduct)){
                 valor = i
             }
         }
-        if(valor == -1){
+        if(valor === -1){
             console.log("no hay item encontrado");
         }else{
             console.log(valor)

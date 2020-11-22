@@ -16,7 +16,6 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import { CredentialsList } from '../credential/CredentialsList';
 import { Fab } from '@material-ui/core';
 import axios from 'axios';
 

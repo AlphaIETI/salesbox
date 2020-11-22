@@ -1,16 +1,14 @@
-import React,  { Component,useState} from 'react';
+import React from 'react';
 
 import './Perfil.css';
 import Avatar from '@material-ui/core/Avatar';
-import {AppBar,Toolbar,Typography} from "@material-ui/core";
+import {Typography} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Grid from "@material-ui/core/Grid";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from '@material-ui/core/Button';
-import {useEffect} from "react";
-import axios from 'axios';
 
 
 export default function Perfil (props){

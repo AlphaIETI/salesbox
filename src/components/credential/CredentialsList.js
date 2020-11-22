@@ -1,6 +1,5 @@
 import React from 'react';
 import {Credentials} from './Credentials';
-import ReactDOM from 'react-dom';
 
 export class CredentialsList extends React.Component {
     render() {
