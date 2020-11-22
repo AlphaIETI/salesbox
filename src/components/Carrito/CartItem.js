@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
     },
     imageItem:{
         height:200
+    },
+    elboton: {
+        margin: 'auto',
     }
 }));
 
@@ -106,15 +109,15 @@ export default function Item(props){
                         
                         </Grid>
                         <Grid item>
-                            <DeleteButton idproduct={props.currentItem} efecinco={props.efecinco} precioItem={itemData.price} changePrecio={props.changePrecio} cantidadItem={cantidad}></DeleteButton>
+                            <DeleteButton idproduct={props.currentItem} efecinco={props.efecinco} precioItem={(itemData.price-(itemData.price*(itemData.discount/100)))} changePrecio={props.changePrecio} cantidadItem={cantidad}></DeleteButton>
                         </Grid>
                     </Grid>
                     <Grid item>
-                        <Grid item xs>
+                        <Grid item xs container spacing={2}>
                             <Typography gutterBottom variant="h5">
                             ${(itemData.price-(itemData.price*(itemData.discount/100)))*cantidad}
                             </Typography>
-                            <ButtonGroup >
+                            <ButtonGroup className={classes.elboton}>
                                 <Button onClick={restaCantidad}>-</Button>
                                     <span style={{color:"black", fontSize:'20px', width:'30px', textAlign:'center'}}>{cantidad}</span>
                                 <Button onClick={sumaCantidad}>+</Button>
