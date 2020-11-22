@@ -17,56 +17,6 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import { useFourThreeCardMediaStyles } from '@mui-treasury/styles/cardMedia/fourThree';
 import Promotions from '../promotion/promotions'
 import CarouselComponent from '../promotion/carousel';
-const images = [
-  {
-    url: "https://www.centrocomercialfundadores.com/wp-content/uploads/2017/09/TENNIS.jpg",
-    title: "Tennis",
-    width: "30%",
-  },
-  {
-    url: "https://creditoacr.com/wp-content/uploads/2019/10/naf-naf-Logo.jpg",
-    title: "Naf Naf",
-    width: "30%",
-  },
-  {
-    url: "https://www.centrocomercialfundadores.com/wp-content/uploads/2017/08/americanino.jpg",
-    title: "Americanino",
-    width: "30%",
-  },
-  {
-    url: "https://upload.wikimedia.org/wikipedia/commons/3/36/Logo_nike_principal.jpg",
-    title: "Nike",
-    width: "30%",
-  },
-  {
-    url: "https://cdn.britannica.com/94/193794-050-0FB7060D/Adidas-logo.jpg",
-    title: "Adidas",
-    width: "30%",
-  },
-  {
-    url: "https://brandemia.org/sites/default/files/zara_nuevo_logo.jpg",
-    title: "Zara",
-    width: "30%",
-  },
-  {
-    url: "https://www.sibaritissimo.com/wp-content/uploads/2010/06/Tommy-Hilfiger-Logo.jpg",
-    title: "Tommy",
-    width: "30%",
-  },
-  {
-    url: "https://www.cclaveronica.com/wp-content/uploads/2016/08/logo-bershka.jpg",
-    title: "Bershka",
-    width: "30%",
-  },
-  {
-    url: "https://www.roundabouthomeless.org/wp-content/uploads/2020/01/HM-Share-Image.jpg",
-    title: "H&M",
-    width: "30%",
-  },
-  
-
-  
-];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -155,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         paddingLeft: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
+        paddingBottom: theme.spacing(20),
     },
     playIcon: {
         height: 38,
@@ -197,6 +147,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '2rem',
         fontWeight: 500,
         fontSize: 14,
+      },
+      container: {
+        paddingTop: theme.spacing(20),
+        paddingBottom: theme.spacing(4),
       },
   }}));
 
@@ -285,7 +239,7 @@ export default function ButtonBases() {
     <div className={classes.root}>
       <AppBarComponent cantPromo={handleCantPromo}/>
     
-        <Container maxWidth="lg">
+        <Container maxWidth="md" className={classes.container}>
         <div align="center">
         {brands.map((brand) => (
           
