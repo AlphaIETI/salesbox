@@ -128,7 +128,5 @@ export default function Item(props){
                 </Grid>
             </Paper>
       </div>
-        
-        
     )
 }

@@ -1,24 +1,48 @@
 import React, {useState, useEffect} from 'react';
-import {CardImg, CardBody,CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
-import { Container, Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import axios from 'axios';
 import DeleteButton from '../Favorites/deleteProductFromFavs.js';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import { makeStyles} from '@material-ui/core/styles';
 
-export default function FavItem(props){
-
-    const imageItem = {
-        height: 200,
-        width: 200
-    }
-
-    const textStyle = {
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing(2),
+        margin: 'auto',
+        maxWidth: 897,
+    },
+    image: {
+        width: 128,
+        height: 128,
+    },
+    img: {
+        margin: 'auto',
+        display: 'block',
+        maxWidth: '100%',
+        maxHeight: '100%',
+    },
+    textStyle: {
         fontSize: '24px',
         textAlign: 'center',
         color: 'black'
+    },
+    imageItem:{
+        height:200
+    },
+    elboton: {
+        margin: 'auto',
     }
+}));
 
+export default function FavItem(props){
+
+    const classes = useStyles();
+    
     const [itemData, setItemData] = useState(
         {"id":"",
         "brand":"",
@@ -42,34 +66,37 @@ export default function FavItem(props){
         }, []);
 
     return(
-        <Container style={{background:'white'}}>
-            <Row>
-                <Col xs='auto' padding='30px 40px'>
-                    <Link>
-                        <AddShoppingCartIcon/>
-                    </Link>
-                </Col>
-                <Col >
-                    <CardImg style={imageItem} src={itemData.images[0]} alt="Missing Pic"/>
-                </Col>
-                <Col xs='auto' style={imageItem}>
-                    <CardBody >
-                        <CardTitle></CardTitle>
-                        <CardSubtitle style={textStyle}>{itemData.description}</CardSubtitle>
-                    </CardBody>
-                </Col>
-                <Col>
-                    <CardBody>
-                        <CardTitle></CardTitle>
-                        <CardSubtitle style={textStyle}>${itemData.price}</CardSubtitle>
-                    </CardBody>
-                </Col>
-                <Col>
-                    <Row>
-                        <DeleteButton idproduct={props.favoritos} efecinco={props.efecinco}></DeleteButton>
-                    </Row>
-                </Col>
-            </Row>
-        </Container>
+        <div className={classes.root}>
+            <Paper className={classes.paper}>
+                <Grid container spacing={2}>
+                    <Grid item>
+                    <ButtonBase className={classes.image}>
+                        <img className={classes.img} alt="complex" src={itemData.images[0]} />
+                    </ButtonBase>
+                    </Grid>
+                    <Grid item xs={12} sm container>
+                    <Grid item xs container direction="column" spacing={2}>
+                        <Grid item xs>
+                        <Typography gutterBottom variant="h5">
+                            {itemData.description}
+                        </Typography>
+                        <Typography variant="body2" gutterBottom>
+                            {itemData.brand}
+                        </Typography>
+                        
+                        </Grid>
+                        <Grid item>
+                            <DeleteButton idproduct={props.currentItem} efecinco={props.efecinco} precioItem={(itemData.price-(itemData.price*(itemData.discount/100)))}></DeleteButton>
+                        </Grid>
+                    </Grid>
+                    <Grid item>
+                        <Typography gutterBottom variant="h5">
+                            ${(itemData.price-(itemData.price*(itemData.discount/100)))}
+                        </Typography>
+                    </Grid>
+                    </Grid>
+                </Grid>
+            </Paper>
+      </div>
     );
 }
