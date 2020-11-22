@@ -9,7 +9,8 @@ import DeleteButton from '../Favorites/deleteProductFromFavs.js';
 export default function FavItem(props){
 
     const imageItem = {
-        padding:'10px'
+        height: 200,
+        width: 200
     }
 
     const textStyle = {
@@ -25,7 +26,7 @@ export default function FavItem(props){
         "color":"",
         "price":"",
         "discount":"",
-        "image":"",
+        "images":[],
         "size":"",
         "category":"",
         "gender":"",
@@ -49,7 +50,7 @@ export default function FavItem(props){
                     </Link>
                 </Col>
                 <Col >
-                    <CardImg style={imageItem} src={itemData.image} alt="Missing Pic"/>
+                    <CardImg style={imageItem} src={itemData.images[0]} alt="Missing Pic"/>
                 </Col>
                 <Col xs='auto' style={imageItem}>
                     <CardBody >

@@ -67,7 +67,7 @@ export default function Carrito(){
             <br/>
             <br/>
             <Container maxWidth="sm">
-                {carrito.length > 0 ? <PriceTotal precioTotal={precioTotal} /> : null}
+                {carrito.length > 0 ? <PriceTotal precioTotal={precioTotal} /> : <div></div>}
             </Container> 
             <br/>
             <br/>
