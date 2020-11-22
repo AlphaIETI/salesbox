@@ -15,7 +15,6 @@ import Button from '@material-ui/core/Button';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import ButtonProductToCar from '../Carrito/addProductToCart';
 import ButtonProductToFav from '../Favorites/addProductToFavs';
-import FilterCenterFocusOutlinedIcon from '@material-ui/icons/FilterCenterFocusOutlined';
 import AddPromotion from '../promotion/addPromotion';
 
 //AppBar
@@ -91,7 +90,7 @@ export default function Dashboard(props) {
             method: 'GET'
         }).then(response => response.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 data.map(pr => {
                     setProducts(data);
                 })
@@ -184,14 +183,12 @@ export default function Dashboard(props) {
     const handlePromote = () => {
         //Verificar cantidad de promociones disponibles de productos
         let cantAdvertising = 1;
-        console.log("ENtro")
         if(cantAdvertising > 0){
-            console.log("ENtro1")
             return (
                 <AddPromotion/>
             );
         }else {
-            console.log("ENtro2")
+            //console.log("ENtro2")
             return null
         }
     }

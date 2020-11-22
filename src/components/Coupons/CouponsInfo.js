@@ -1,15 +1,12 @@
-import React, {useEffect } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import TextField from '@material-ui/core/TextField';
 import FilterNoneIcon from '@material-ui/icons/FilterNone';
 import IconButton from '@material-ui/core/IconButton';
 import PermDeviceInformationIcon from '@material-ui/icons/PermDeviceInformation';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 
 export default function CouponsInfo() {

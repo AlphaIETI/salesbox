@@ -147,7 +147,7 @@ export default function AppBarComponent(props) {
                 <div>
                     <Link to="/Favorites">
                         <IconButton >
-                            <Badge badgeContent={user.fav} >
+                            <Badge badgeContent={user.fav} color="secondary" >
                                 <FavoriteBorderOutlinedIcon fontSize="large"  className={classes.colorIcons}/>
                             </Badge>
                         </IconButton>

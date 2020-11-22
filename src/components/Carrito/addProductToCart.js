@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
-import { ContactSupportOutlined } from '@material-ui/icons';
 import axios from 'axios';
 
 export default function addProductToCart(props){
@@ -18,7 +17,7 @@ export default function addProductToCart(props){
 
         let flag = false;
         user.cart.map(item => {
-            if(item == props.idProduct){
+            if(item === props.idProduct){
                 flag = true;
             }
         });

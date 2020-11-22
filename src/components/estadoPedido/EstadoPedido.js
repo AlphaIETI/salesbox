@@ -1,20 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import saco from "../../img/saco.jpg";
 import "./estadoPedido.css";
 import GeneralAppBar from "../Carrito/GeneralAppBar";
 import Container from '@material-ui/core/Container';
 import axios from "axios";
-import CardList from "../Carrito/CardList";
 import Divider from "@material-ui/core/Divider";
-import {Card, CardImg, Col} from "reactstrap";
 import OrderList from "./OrderList";
 
 const useStyles = makeStyles((theme) => ({
@@ -45,7 +37,7 @@ function getSteps() {
     return ['Producto Pagado', 'Producto Despachado', 'Producto entregado','Fin'];
 }
 
-function getStepContent(step) {
+/* function getStepContent(step) {
     switch (step) {
         case 0:
             return 'Su pago fue realizado exitosamente ';
@@ -56,7 +48,7 @@ function getStepContent(step) {
         default:
             return 'Gracias';
     }
-}
+} */
 
 export default function HorizontalLinearStepper() {
     const classes = useStyles();
@@ -71,8 +63,6 @@ export default function HorizontalLinearStepper() {
 
 
     const handleNext = () => {
-
-
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
 

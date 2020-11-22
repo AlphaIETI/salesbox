@@ -17,11 +17,11 @@ export default function deleteProductFromCart(props){
 
         let valor = -1;
         for (var i=0; i<user.cart.length;i++){
-            if(user.cart[i] == (props.idproduct)){
+            if(user.cart[i] === (props.idproduct)){
                 valor = i
             }
         }
-        if(valor == -1){
+        if(valor === -1){
             console.log("no hay item encontrado");
         }else{
             console.log(valor)

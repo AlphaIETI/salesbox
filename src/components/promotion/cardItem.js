@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useTheme } from "@material-ui/styles";
-import { Button, Card, CardActionArea, CardContent, CardMedia, Typography } from "@material-ui/core";
+/* import { useTheme } from "@material-ui/styles"; */
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 }));
 export default function CardItem (props) {
   const classes = useStyles();
-  const theme = useTheme();
+  /* const theme = useTheme(); */
   const handleClickCard = (title) =>{
     localStorage.setItem('nameEntity', title);
     window.location='/Dashboard'
