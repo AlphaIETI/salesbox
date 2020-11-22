@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -12,6 +12,7 @@ import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumbe
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import logo from '../../logo.png';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,6 +36,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar() {
     const classes = useStyles();
+
+    const [user, setUser] = React.useState({fav:0,car:0,tran:0,coup:0});
+
+    useEffect( () => {
+        if(localStorage.getItem('emailClient') !== null){
+            axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
+			.then(res => {
+                setUser({fav:res.data.favorites.length,car:res.data.cart.length,tran:0,coup:0})
+				})
+            }
+        }, []);
+
     return (
         <div className={classes.root}>
             <AppBar  position="fixed">
@@ -51,26 +64,28 @@ export default function ButtonAppBar() {
                     </Link>
                     <Link to="/Favorites">
                         <IconButton >
-                            <FavoriteBorderOutlinedIcon fontSize="large"  className={classes.colorIcons}/>
+                            <Badge badgeContent={user.fav} color="secondary">
+                                <FavoriteBorderOutlinedIcon fontSize="large"  className={classes.colorIcons}/>
+                            </Badge>
                         </IconButton>
                     </Link>
                     <Link to="/ShopCar">
                         <IconButton aria-label="cart">
-                            <Badge badgeContent={5} color="secondary">
+                            <Badge badgeContent={user.car} color="secondary">
                                 <ShoppingCartOutlinedIcon fontSize="large"  className={classes.colorIcons}/>
                             </Badge>
                         </IconButton> 
                     </Link>
                     <Link to="/EstadoPedido">
                         <IconButton aria-label="cart">
-                            <Badge badgeContent={2} color="secondary">
+                            <Badge  color="secondary">
                                 <AssignmentOutlinedIcon fontSize="large"  className={classes.colorIcons}/>
                             </Badge>
                         </IconButton> 
                     </Link>
                     <Link to="/Coupons">
                         <IconButton aria-label="cart">
-                            <Badge badgeContent={2} color="secondary">
+                            <Badge badgeContent={user.coup} color="secondary">
                                 <ConfirmationNumberOutlinedIcon fontSize="large"  className={classes.colorIcons}/>
                             </Badge>
                         </IconButton> 
