@@ -7,7 +7,11 @@ import axios from 'axios';
 export default function Item(props){
 
     const imageItem = {
-        padding:'10px'
+        padding:'10px',
+        margin: 'auto',
+        display: 'block',
+        maxWidth: '30%',
+        maxHeight: '30%',
     }
 
     const textStyle = {
@@ -20,13 +24,13 @@ export default function Item(props){
 
     const [itemData, setItemData] = useState(
 
-        {"id":"99999",
+        {"id":"",
             "brand":"",
             "description":"",
             "color":"",
-            "price":"",
-            "discount":"",
-            "image":"",
+            "price":0,
+            "discount":0,
+            "images":[],
             "size":"",
             "category":"",
             "gender":"",
@@ -45,7 +49,7 @@ export default function Item(props){
         <Container style={{background:'white'}}>
             <Row>
                 <Col >
-                    <CardImg style={imageItem} src={itemData.image} alt="Missing Pic"/>
+                    <CardImg style={imageItem} src={itemData.images[0]} alt="Missing Pic"/>
                 </Col>
                 <Col xs='6' style={imageItem}>
                     <CardBody >

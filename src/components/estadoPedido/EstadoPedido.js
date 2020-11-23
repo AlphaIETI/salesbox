@@ -75,7 +75,7 @@ export default function HorizontalLinearStepper() {
     };
 
     const [clientOrder, setClientOrder] = useState(
-        {"id":"999999",
+        {"id":"",
             "name":"",
             "lastname":"",
             "email":"",
