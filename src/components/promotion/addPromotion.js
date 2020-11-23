@@ -67,7 +67,7 @@ export default function NewPromotion(props) {
             if(typePlan !== ""){
                 if(typePlan === "Enterprise" && document.getElementById("descripcion").value !== ""){
                     if(urlImg !== ""){
-                        let promotion = {id:"",brand:localStorage.getItem('nameEntity'),image:urlImg,description:document.getElementById("descripcion").value}
+                        let promotion = {id:"",brand:localStorage.getItem('nameEntity'),image:urlImg,description:document.getElementById("descripcion").value,type:"Entity"}
                         addPromotionDB(promotion);
                         setPreviewSource();
                         setUrlImg("");
@@ -99,7 +99,6 @@ export default function NewPromotion(props) {
                         
                             if(response.ok){
                                 response.json().then(function(res) {
-                                    console.log(res);
                                     localStorage.setItem("entity",JSON.stringify(res));
                                 })
                             }else{
@@ -127,7 +126,6 @@ export default function NewPromotion(props) {
           }).then(function(response) {
                 if(response.ok){
                     response.json().then(function(res) {
-                        console.log(res);
                     })
                     props.cantPromo(1);
                 }else{

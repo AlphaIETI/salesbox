@@ -117,7 +117,6 @@ export default function Login() {
     }).then(function (response) {
       if (response.ok) {
         response.json().then(function (res) {
-          console.log(res);
           localStorage.setItem('isAdmin',true);
           localStorage.setItem('nameEntity',res.name);
           localStorage.setItem('entity', JSON.stringify(res));

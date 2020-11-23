@@ -16,8 +16,7 @@ export default function PublicityProduct(props) {
     const handleAddProd = () => {
         if(document.getElementById("descripcion").value !== ""){
             if(props.promotion !== undefined){
-                console.log(props.promotion)
-                let promotion = {id:"",brand:props.promotion.brand,image:props.promotion.image,description:document.getElementById("descripcion").value}
+                let promotion = {id:"",brand:props.promotion.brand,image:props.promotion.images[0],description:document.getElementById("descripcion").value,type:"Product",idProduct:props.promotion.id}
                 addPromotionDB(promotion);
                 setOpenForm(false);
             }                    
@@ -37,7 +36,6 @@ export default function PublicityProduct(props) {
           }).then(function(response) {
                 if(response.ok){
                     response.json().then(function(res) {
-                        console.log(res);
                     })
                     refreshCantPublicity();
                 }else{
@@ -61,7 +59,6 @@ export default function PublicityProduct(props) {
             }).then(function(response) {
                 if(response.ok){
                     response.json().then(function(res) {
-                        console.log(res);
                         localStorage.setItem("entity",JSON.stringify(res));
                     })
                 }else{

@@ -16,11 +16,13 @@ export default function CarouselComponent(props) {
   
   return (
     <>
-      <h1 style={{ textAlign: "center" }}>{props.tipo}</h1>
       <div className="AppCarousel">
         <Carousel focusOnSelect={true} breakPoints={breakPoints}>
             {props.promotions.map(pr =>
-                <CardItem key={props.promotions.indexOf(pr)} pr={pr}/>
+                pr.type === props.type ? 
+                  <CardItem key={props.promotions.indexOf(pr)} pr={pr} type={props.type}/>
+                  :
+                  null
             )}
         </Carousel>
       </div>
