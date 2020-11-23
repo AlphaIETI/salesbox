@@ -84,8 +84,25 @@
   cursor: pointer;
   padding: 10px 25px;
   margin-top: 15px;
+  text-align: center;
 }
-
+h1, h2, h3, h4, h5, h6 {
+  font-family: sans-serif;
+  color: black;
+  
+}
+.precioOrigi {
+  font-family: AdihausDIN,Helvetica,Arial,sans-serif;
+  color:black;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+.precioTotal {
+  font-family: AdihausDIN,Helvetica,Arial,sans-serif;
+  color: red;
+  margin-right: 10px;
+  font-weight: 700;
+}
 @media (max-width: 500px){
   .thumb{
     height: 50px;
@@ -93,4 +110,5 @@
   .thumb img{
     width: 50px;
   }
+
 }
