@@ -229,7 +229,7 @@ export default function ButtonBases() {
     <div className={classes.root}>
       <AppBarComponent cantPromo={handleCantPromo}/>
     
-        <Container maxWidth="md" className={classes.container}>
+        <Container maxWidth="lg" className={classes.container}>
         <div align="center">
         {brands.map((brand) => (
           
