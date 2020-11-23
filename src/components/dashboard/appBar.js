@@ -64,10 +64,14 @@ const useStyles = makeStyles((theme) => ({
     },
     drawerPaper: {
         width: drawerWidth,
-        backgroundColor:'#E5E7E7'
+        backgroundColor:'#272C2A',
     },
     drawerHeader: {
-        backgroundColor: '#E5E7E7',
+        backgroundColor: '#272C2A',
+        color: "white",
+    },
+    textColor: {
+        color: 'white',
     },
     colorSalesBox: {
         color: "white"
@@ -233,8 +237,9 @@ export default function AppBarComponent(props) {
             >
                 <div className={classes.drawerHeader}>
                     <IconButton onClick={handleDrawerClose}>
-                        <ChevronLeftIcon />
-                        Filtros
+                        <div className={classes.textColor}>
+                            <ChevronLeftIcon/>
+                        </div>
                     </IconButton>
                 </div>
                 <AccordionComponent funFilGender={props.funFilGender} funDelFilGender={props.funDelFilGender} funFilCategory={props.funFilCategory} funDelFilCategory={props.funDelFilCategory} funFilMarca={props.funFilMarca} funDelFilMarca={props.funDelFilMarca} view={props.view} isComp={props.isComp} isLog={props.isLog} products={props.products} funFilColor={props.funFilColor} funDelFilColor={props.funDelFilColor} funMinMaxPrice={props.funMinMaxPrice} minMaxPrice={props.minMaxPrice} flagPrice={props.flagPrice}/>

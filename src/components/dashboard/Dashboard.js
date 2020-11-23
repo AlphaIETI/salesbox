@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     appBarSpacer: theme.mixins.toolbar,
 
     content: {
-        backgroundColor: '#a9d7ee',
+        backgroundColor: '#FFFFFF',
         flexGrow: 1,
         padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
@@ -71,6 +71,9 @@ const useStyles = makeStyles((theme) => ({
     },
     actionSpacerCard: {
         justifyContent: 'space-around',
+    },
+    cardproduct: {
+        backgroundColor: '#E9E9E9',
     }
 }));
 
@@ -215,7 +218,7 @@ export default function Dashboard(props) {
                         {products.map(pr => { 
                             return (((view === "#"  || view === pr.brand ) || (localStorage.getItem('isAdmin') && pr.brand === view)) && filters(pr)) ?
                                 <Grid key={products.indexOf(pr)} item xs={12} sm={6} lg={4} xl={3}>
-                                    <Card>
+                                    <Card className={classes.cardproduct}>
                                         <div>
                                         <Link to={{
                                             pathname: '/productPage',

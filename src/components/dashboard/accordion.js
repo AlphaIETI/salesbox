@@ -23,16 +23,24 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: theme.typography.fontWeightRegular,
     },
     general:{
-        backgroundColor:'#E5E7E7',
+        backgroundColor:'#272C2A',
     },
     accordion:{
-        backgroundColor:'#E5E7E7',
-    }
+        backgroundColor:'#272C2A',
+    },
+    textColor: {
+        color: 'white',
+        fontWeight: 'bold',
+    },
+    divPrice: {
+        paddingLeft: '32px',
+        paddingRight: '32px',
+    },
 }));
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
-      color: '#42a5f5',
+      color: 'white',
       right: -3,
       top: 20,
       border: `2px solid ${theme.palette.background.paper}`,
@@ -251,22 +259,26 @@ export default function AccordionComponent(props) {
             <Divider />
                 <Accordion square expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        <Typography color="primary">Categorias</Typography>
+                        <Typography className={classes.textColor}>Categorias</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div>
                         {propsCategories.map(category => (
                             <div key={propsCategories.indexOf(category)}>
                             <StyledBadge badgeContent={category.cantCategories} color="default">
+                                <div className={classes.textColor}>
                                 <FormControlLabel
                                     control={
-                                        <Checkbox 
-                                            color="primary"
+                                        <Checkbox
+                                            style ={{
+                                                color: "white",
+                                            }}
                                             onChange={handleChangeCheckBoxCategory}
                                             name={category.name}
                                         />}
                                     label={category.name}
                                 />
+                                </div>
                             </StyledBadge>
                             </div>
                         ))}
@@ -277,22 +289,26 @@ export default function AccordionComponent(props) {
             {view === "#" ? 
                 <Accordion square expanded={expanded2 === 'panel1'} onChange={handleChange2('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        <Typography color="primary">Marcas</Typography>
+                        <Typography className={classes.textColor}>Marcas</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className={classes.root1}>
                             {propsBrands.map(brand => (
                                 <div key={propsBrands.indexOf(brand)}>
                                 <StyledBadge badgeContent={brand.cantProducts} color="default">
+                                    <div className={classes.textColor}>
                                     <FormControlLabel
                                         control={
                                             <Checkbox 
-                                                color="primary"
+                                                style ={{
+                                                    color: "white",
+                                                }}
                                                 onChange={handleChangeCheckBoxBrand}
                                                 name={brand.name}
                                             />}
                                         label={brand.name}
                                     />
+                                    </div>
                                 </StyledBadge>
                                 </div>    
                             ))}
@@ -305,22 +321,26 @@ export default function AccordionComponent(props) {
             <Divider />
                 <Accordion square expanded={expanded7 === 'panel1'} onChange={handleChange7('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        <Typography color="primary">Géneros</Typography>
+                        <Typography className={classes.textColor}>Géneros</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className={classes.root1}>
                             {propsGenres.map(gender => (
                                 <div key={propsGenres.indexOf(gender)}>
                                 <StyledBadge badgeContent={gender.cantGenres} color="default">
+                                    <div className={classes.textColor}>
                                     <FormControlLabel
                                         control={
                                             <Checkbox 
-                                                color="primary"
+                                                style ={{
+                                                    color: "white",
+                                                }}
                                                 onChange={handleChangeCheckBoxGender}
                                                 name={gender.name}
                                             />}
                                         label={gender.name}
                                     />
+                                    </div>
                                 </StyledBadge>
                                 </div>    
                             ))}
@@ -328,25 +348,28 @@ export default function AccordionComponent(props) {
                     </AccordionDetails>
                 </Accordion>
             <Divider />
-            <Divider />
                 <Accordion square expanded={expanded8 === 'panel1'} onChange={handleChange8('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        <Typography color="primary">Colores</Typography>
+                        <Typography className={classes.textColor}>Colores</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className={classes.root1}>
                             {propsColors.map(color => (
                                 <div key={propsColors.indexOf(color)}>
                                 <StyledBadge badgeContent={color.cantColors} color="default">
+                                    <div className={classes.textColor}>
                                     <FormControlLabel
                                         control={
                                             <Checkbox 
-                                                color="primary"
+                                                style ={{
+                                                    color: "white",
+                                                }}
                                                 onChange={handleChangeCheckBoxColors}
                                                 name={color.name}
                                             />}
                                         label={color.name}
                                     />
+                                    </div>
                                 </StyledBadge>
                                 </div>    
                             ))}
@@ -356,9 +379,9 @@ export default function AccordionComponent(props) {
             <Divider />
                 <Accordion square expanded={expanded3 === 'panel1'} onChange={handleChange3('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        <Typography color="primary">Precios</Typography>
+                        <Typography className={classes.textColor}>Precios</Typography>
                     </AccordionSummary>
-                    <AccordionDetails>
+                    <AccordionDetails className={classes.divPrice}>
                         <Pricing funMinMaxPrice={props.funMinMaxPrice} minMaxPrice={props.minMaxPrice} flagPrice={props.flagPrice}/>
                     </AccordionDetails>
                 </Accordion>
@@ -367,7 +390,7 @@ export default function AccordionComponent(props) {
             <div>  
                 <Accordion square expanded={expanded4 === 'panel1'} onChange={handleChange4('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        <Typography color="primary">Búsqueda Personalizada</Typography>
+                        <Typography className={classes.textColor}>Búsqueda Personalizada</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <FormControlLabel
@@ -385,7 +408,7 @@ export default function AccordionComponent(props) {
             <Divider />
                 <Accordion square expanded={expanded5 === 'panel1'} onChange={handleChange5('panel1')} className={classes.accordion}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                        <Typography color="primary">Favoritos</Typography>
+                        <Typography className={classes.textColor}>Favoritos</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div>
