@@ -220,10 +220,15 @@ export default function NewProd(props) {
                     >
                         <MenuItem value="Negro">Negro</MenuItem>
                         <MenuItem value="Blanco">Blanco</MenuItem>
-                        <MenuItem value="Rojo">Rojo</MenuItem>
-                        <MenuItem value="Azul">Azul</MenuItem>
                         <MenuItem value="Gris">Gris</MenuItem>
+                        <MenuItem value="Azul">Azul</MenuItem>
+                        <MenuItem value="Rojo">Rojo</MenuItem>
+                        <MenuItem value="Cafe">Café</MenuItem>
+                        <MenuItem value="Amarillo">Amarillo</MenuItem>
+                        <MenuItem value="Morado">Morado</MenuItem>
                         <MenuItem value="Verde">Verde</MenuItem>
+                        <MenuItem value="Rosado">Rosado</MenuItem>
+                        <MenuItem value="Anaranjado">Anaranjado</MenuItem>
                     </Select>
                     <TextField
                         margin="dense"
