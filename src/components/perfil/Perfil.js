@@ -121,7 +121,7 @@ export default function Perfil (props){
 								</Typography>
 
 								<Typography align={"center"} variant="h5">
-								{JSON.parse(localStorage.getItem('client')).coupons.toString()}
+								{JSON.parse(localStorage.getItem('client')).coupons.length}
 								</Typography>
 
 								<br/>
