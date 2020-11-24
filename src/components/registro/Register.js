@@ -293,7 +293,6 @@ const handleFileImg = (e) => {
         lastname: document.getElementById("apellidoCliente").value,
         email: document.getElementById("email").value.toLowerCase(),
         password: document.getElementById("contrasenaCliente").value,
-        coupons:"0",
         phone: document.getElementById("telefonoCliente").value.toString(),
         address: document.getElementById("direccionCliente").value,
         age:edad,
@@ -391,7 +390,7 @@ const handleFileImg = (e) => {
         })
       } else {
         console.log("");
-        alert("entre al else")
+        //alert("entre al else")
         registerClient(client);
       }
     }).catch(function (error) {
