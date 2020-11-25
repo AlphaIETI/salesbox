@@ -1,14 +1,9 @@
-import React, {useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
 import { Grid, Container } from '@material-ui/core';
 import GeneralAppBar from '../Carrito/GeneralAppBar';
-import CouponsInfo from "./CouponsInfo";
-
+import axios from 'axios';
+import CouponsList from './CouponsList.js';
 
 
 
@@ -30,10 +25,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Coupons() {
+export default function Coupons(props) {
   const classes = useStyles();
-  const[coupons,setCoupons] = React.useState([]);
-  useEffect(() => {
+  const[cliente,setClientCoupons] = useState(
+    {"id":"",
+    "name":"",
+    "lastname":"",
+    "email":"",
+    "password":"",
+    "coupons":"",
+    "phone":"",
+    "address":"",
+    "age":"",
+    "sizeUp":"",
+    "sizeDown":"",
+    "shoeSize":"",
+    "cart":"",
+    "favorites":""
+});
+  /* useEffect(() => {
     fetch('https://salesbox-alpha-backend.herokuapp.com/api/coupons', {
       method: 'GET'
     }).then(response => response.json())
@@ -45,7 +55,21 @@ export default function Coupons() {
       }).catch(error => {
         console.log(error)
       });
-  }, []);
+  }, []); */
+
+  useEffect( () => {
+
+		axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
+			.then(res => {
+          setClientCoupons(res.data)
+				})
+        }, []);
+
+  const coupons = Object.values(cliente.coupons);
+
+  
+
+
   return (
 
     <div>
@@ -55,33 +79,7 @@ export default function Coupons() {
           <Grid container spacing={1} className={classes.actionSpacer}> 
             {coupons.map(c => (
               <Grid xs={12} sm={6} md={4} lg={4} xl={2} item>
-                <Card className={classes.root}>
-                  <CardActionArea>
-
-                    <CardMedia
-                      className={classes.media}
-                      image={c.image}
-                      title="Contemplative Reptile"
-                      
-                    />
-                    
-                    <CardContent>
-                      <Typography gutterBottom variant="h7" component="h2">
-                        Coupon
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary" component="p">
-                        {c.percentage}
-                      </Typography>
-                      <Typography variant="subtitle" color="textSecondary">
-                        {c.endDate}
-                      </Typography>
-                      
-                      <CouponsInfo></CouponsInfo>
-                
-                    </CardContent>
-                  </CardActionArea>
-                  
-                </Card>
+                <CouponsList item={c}></CouponsList>
               </Grid>
             ))}
           </Grid>
