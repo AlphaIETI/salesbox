@@ -57,10 +57,10 @@ export default function addProductToFavs(props){
               
                 if(response.ok){
                     response.json().then(function(res) {
-                        console.log(res);
+                        //console.log(res);
                     })
                 }else{
-                    console.log('Respuesta de red OK pero respuesta HTTP no OK');
+                    //console.log('Respuesta de red OK pero respuesta HTTP no OK');
                 }
             }).catch(function(error) {
                 console.log('Hubo un problema con la petición Fetch:' + error.message);

@@ -8,6 +8,8 @@ import Card from "@material-ui/core/Card";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {Divider} from "@material-ui/core";
 import PaymentIcon from '@material-ui/icons/Payment';
+import axios from 'axios';
+
 
 
 export default function PriceTotal(props){
@@ -45,7 +47,67 @@ export default function PriceTotal(props){
 
 
     const classes = useStyles();
-    /* const bull = <span className={classes.bullet}>•</span>; */
+    
+    const generateCoupon =  async()  => {
+        let user = {};
+        
+
+        await axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
+			.then(res => {
+				user = res.data
+				})
+
+        /* let itemRepetido = false;
+        user.cart.map(item => {
+            if(item === props.idProduct){
+                itemRepetido = true;
+            }
+        });
+        if(!itemRepetido){
+            user.cart.push(props.idProduct);
+        } */
+
+        user.coupons.push('0004');
+
+        const newUser = {
+            id: user.id,
+            name: user.name,
+            lastname: user.lastname,
+            email: user.email,
+            password: user.password,
+            coupons: user.coupons,
+            phone: user.phone,
+            address: user.address,
+            age:user.age,
+            sizeUp: user.sizeUp,
+            sizeDown:user.sizeDown,
+            shoeSize:user.shoeSize,
+            cart: user.cart,
+            favorites: user.favorites
+        }
+
+        fetch('https://salesbox-alpha-backend.herokuapp.com/clients', { 
+            method:'PUT',
+            headers:{
+                'Content-Type': 'application/json ',
+                'Accept': 'application/json',
+              },
+            body:JSON.stringify(newUser),
+          }).then(function(response) {
+              
+                if(response.ok){
+                    response.json().then(function(res) {
+                        console.log(res);
+                    })
+                }else{
+                    console.log('Respuesta de red OK pero respuesta HTTP no OK');
+                }
+            }).catch(function(error) {
+                console.log('Hubo un problema con la petición Fetch:' + error.message);
+            });
+    }
+
+
     return(
         <Card className={classes.root}>
             <CardContent>
@@ -93,7 +155,7 @@ export default function PriceTotal(props){
                 </div>
                 <Divider/>
                 <Typography variant="body2" component="p">
-                    <Button size="large" color="primary" variant="contained">
+                    <Button size="large" color="primary" variant="contained" onClick={generateCoupon}>
                         <label>PAGAR</label>
                         <PaymentIcon/>
                     </Button>

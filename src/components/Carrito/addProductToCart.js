@@ -15,13 +15,13 @@ export default function addProductToCart(props){
 				user = res.data
 				})
 
-        let flag = false;
+        let itemRepetido = false;
         user.cart.map(item => {
             if(item === props.idProduct){
-                flag = true;
+                itemRepetido = true;
             }
         });
-        if(!flag){
+        if(!itemRepetido){
             user.cart.push(props.idProduct);
         }
         
@@ -55,7 +55,7 @@ export default function addProductToCart(props){
               
                 if(response.ok){
                     response.json().then(function(res) {
-                        console.log(res);
+                        //console.log(res);
                     })
                 }else{
                     console.log('Respuesta de red OK pero respuesta HTTP no OK');
