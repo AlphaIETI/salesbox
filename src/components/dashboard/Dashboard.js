@@ -243,7 +243,7 @@ export default function Dashboard(props) {
                                                 null
                                             }
                                             <div className="descriptionText">
-                                                {pr.description}
+                                                {pr.name}
                                             </div>
                                             <div>
                                                 <span className="precioTotal" >

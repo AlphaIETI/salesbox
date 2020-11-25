@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -18,6 +18,8 @@ import FormControl from '@material-ui/core/FormControl';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { Fab } from '@material-ui/core';
 import LinearProgressWithLabel from './progressUpload';
+import Checkbox from '@material-ui/core/Checkbox';
+import ListItemText from '@material-ui/core/ListItemText';
 
 export default function NewProd(props) {
     const [openForm, setOpenForm] = React.useState(false);
@@ -29,6 +31,30 @@ export default function NewProd(props) {
     const [typeGen, setTypeGen] = React.useState("");
     const [colorProd, setColorProd] = React.useState("");
     const [upload, setUpload] = React.useState(false);
+
+    const [sizes, setSizes] = React.useState([]);
+    const handleChange = (event) => {
+        setSizes(event.target.value);
+      };
+    
+    const [sizeList, setSizeList] = React.useState([]);
+
+    useEffect (() => {
+        setSizes([]);
+        if(typeProd !== "" && typeGen !== ""){
+            if(typeProd === "Ropa"){
+                setSizeList(['XS','S','M','L','XL','XXL']);
+            }else if(typeProd === "Tenis" || typeProd === "Deportes"){
+                if(typeGen === "Mujeres" || typeGen === "Hombres" || typeGen === "Unisex"){
+                    setSizeList(["28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43"]);
+                }else if (typeGen === "Niños"){
+                    setSizeList(["15","16","17","18","19","20","21","22","23","24","25","26","27"]);
+                }
+            }else{
+                setSizeList(['Talla Única']);
+            }
+        }
+        },[typeProd,typeGen]);
 
     const CLOUDINARY_URL_PREVIEW = 'https://res.cloudinary.com/deavblstk/image/upload/v';
     const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/deavblstk/image/upload';
@@ -72,7 +98,6 @@ export default function NewProd(props) {
           }).then(function(response) {
                 if(response.ok){
                     response.json().then(function(res) {
-                        console.log(res);
                     })
                     props.editProducts(1);
                 }else{
@@ -84,9 +109,8 @@ export default function NewProd(props) {
     }
 
     const handleAddProd = () => {
-        if(document.getElementById("name").value !== "" && document.getElementById("descripcion").value !== "" && document.getElementById("precio").value !== "" && document.getElementById("descuento").value !== "" && typeProd !== "" && typeGen !== "" && colorProd !== "" && document.getElementById("tallaProducto").value !== "" && document.getElementById("cantidadDisponible").value !== "" && urlImg.length !== 0){
-            const pr = {id:"",name:document.getElementById("name").value,brand:localStorage.getItem('nameEntity'),description:document.getElementById("descripcion").value,colors:[colorProd],price:document.getElementById("precio").value,discount:document.getElementById("descuento").value,images:urlImg,size:[document.getElementById("tallaProducto").value],category:typeProd,gender:typeGen,stockAvailable:document.getElementById("cantidadDisponible").value};
-            console.log(pr)
+        if(document.getElementById("name").value !== "" && document.getElementById("descripcion").value !== "" && document.getElementById("precio").value !== "" && document.getElementById("descuento").value !== "" && typeProd !== "" && typeGen !== "" && colorProd !== "" && sizes.length !== 0 && document.getElementById("cantidadDisponible").value !== "" && urlImg.length !== 0){
+            const pr = {id:"",name:document.getElementById("name").value,brand:localStorage.getItem('nameEntity'),description:document.getElementById("descripcion").value,colors:[colorProd],price:document.getElementById("precio").value,discount:document.getElementById("descuento").value,images:urlImg,size:sizes,category:typeProd,gender:typeGen,stockAvailable:document.getElementById("cantidadDisponible").value};
             addProductDB(pr);
             setPreviewSource();
             setTypeProd("");
@@ -94,6 +118,8 @@ export default function NewProd(props) {
             setColorProd("");
             setUrlImg([]);
             setUpload(false);
+            setSizes([]);
+            setSizeList([]);
             setOpenForm(false);
         } else {
             alert("No se completaron todos los datos del Producto.")
@@ -207,6 +233,29 @@ export default function NewProd(props) {
                         <MenuItem value="Niños">Niños</MenuItem>
                         <MenuItem value="Unisex">Unisex</MenuItem>
                     </Select>
+                    {typeProd !== "" && typeGen !== "" ?
+                        <FormControl fullWidth>
+                            <InputLabel id="demo-mutiple-checkbox-sizes">Tallas</InputLabel>
+                            <Select
+                            labelId="demo-mutiple-checkbox-sizes"
+                            id="sizes"
+                            multiple
+                            value={sizes}
+                            onChange={handleChange}
+                            renderValue={(selected) => selected.join(', ')}
+                            >
+                            
+                            {sizeList.map((size) => (
+                                <MenuItem key={size} value={size}>
+                                <Checkbox checked={sizes.indexOf(size) > -1} />
+                                <ListItemText primary={size} />
+                                </MenuItem>
+                            ))}
+                            </Select>
+                        </FormControl>
+                        :
+                        null
+                    }
                     <InputLabel id="demo-mutiple-name-label-color">Color</InputLabel>
                     <Select
                         value={colorProd}
@@ -230,14 +279,6 @@ export default function NewProd(props) {
                         <MenuItem value="Rosado">Rosado</MenuItem>
                         <MenuItem value="Anaranjado">Anaranjado</MenuItem>
                     </Select>
-                    <TextField
-                        margin="dense"
-                        id="tallaProducto"
-                        label="Talla"
-                        variant="outlined"
-                        type="number"
-                        fullWidth
-                    />
                     <TextField
                         margin="dense"
                         id="cantidadDisponible"
