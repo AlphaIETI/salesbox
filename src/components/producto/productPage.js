@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './ProductPage.css';
-import Colors from './Colors'
+import ColorView from './Colors'
 import DetailsThumb from './DetailsThumb';
 import AppBarComponent from '../dashboard/appBar';
 import TextField from '@material-ui/core/TextField';
@@ -14,7 +14,7 @@ export default function ProductPage () {
     let myParam = urlParams.get('id');
     let BACKENDAPI = 'https://salesbox-alpha-backend.herokuapp.com/';
     let myRef = React.createRef();
-    const [pr, setPr] = React.useState({id:1,brand:"",images:[""],colors:["white"],description:""});
+    const [pr, setPr] = React.useState({id:1,brand:"",images:[""],colors:["white"],description:"",size:[""]});
     const [imagesP, setImageP] = React.useState([pr.images])
     const [colors, setColors] = React.useState([pr.colors])
     useEffect (() => {
@@ -62,7 +62,17 @@ export default function ProductPage () {
                                 <span className="precioOrigi">${pr.price}</span>
                                 <span className="precioTotal">${pr.price-(pr.price*(pr.discount/100))}</span>
                             </div>
-                        
+                            <div>
+                                <h6>Colores disponibles:</h6>
+                                <ColorView colors={colors}/>
+                            </div>
+                            <div style={{display:'flex'}}>
+                                <h6>Tallas disponibles: </h6>
+                                {console.log(pr)}
+                                {pr.size.map(sz => (
+                                    <h6>{sz + ","}</h6>
+                                ))}
+                            </div>
                             <h4>{pr.name}</h4>
                             <TextField value={pr.category} disabled={false} />
                             <h6>Género: {pr.gender}</h6>
@@ -86,10 +96,21 @@ export default function ProductPage () {
                             <div className="row">
                                 <h3>{pr.brand}</h3>
                                 <h4 className="precioTotal">-{pr.discount}%</h4>
-                                <span className="precioOrigi">${pr.price}</span>
+                                <span className="precioOrigi" style={{color:'black'}}>${pr.price}</span>
                                 <span className="precioTotal">${pr.price-(pr.price*(pr.discount/100))}</span>
                             </div>
                             <h4>{pr.name}</h4>
+                            <div>
+                                <h6>Colores disponibles:</h6>
+                                <ColorView colors={colors}/>
+                            </div>
+                            <div style={{display:'flex'}}>
+                                <h6>Tallas disponibles: </h6>
+                                {console.log(pr)}
+                                {pr.size.map(sz => (
+                                    <h6>{sz + ","}</h6>
+                                ))}
+                            </div>
                             <h6>Categoría: {pr.category}</h6>
                             <h6>Género: {pr.gender}</h6>
                             <h6>Descripción: {pr.description}</h6>
@@ -97,12 +118,6 @@ export default function ProductPage () {
                             <DetailsThumb images={imagesP} tab={handleTab} myRef={myRef} />
                             <ButtonProductToCar idProduct={pr.id}/>
                         </div>
-                    
-                    
-                    
-                        {console.log(pr.id)}
-                        
-        
                     </div>
                 </div>
 
