@@ -34,6 +34,12 @@ export default function Carrito(){
         setRecarga(recargo + change)
     }
 
+    const [marca, setMarca] = useState("");
+
+    const efecinco2 = (change) => {
+        setMarca( change)
+    }
+
     const [precioTotal, setPrecioTotal] = useState(0);
 
     const changePrecio = (valor) => {
@@ -59,7 +65,7 @@ export default function Carrito(){
             <br/>
             <br/>
             <Container maxWidth="md">
-                {carrito.length > 0 ? carrito.map(item =>{return(<CardList currentItem={item} efecinco={efecinco} changePrecio={changePrecio} key={item}/>)}) : <Typography variant="h2" component="h2" align="center">Tu carrito esta vacío <ShoppingCartIcon fontSize="large"/></Typography>}
+                {carrito.length > 0 ? carrito.map(item =>{return(<CardList currentItem={item} efecinco={efecinco} efecinco2={efecinco2} changePrecio={changePrecio} key={item}/>)}) : <Typography variant="h2" component="h2" align="center">Tu carrito esta vacío <ShoppingCartIcon fontSize="large"/></Typography>}
                 <Divider />
             </Container>
             <br/>
@@ -67,7 +73,7 @@ export default function Carrito(){
             <br/>
             <br/>
             <Container maxWidth="sm">
-                {carrito.length > 0 ? <PriceTotal precioTotal={precioTotal} /> : <div></div>}
+                {carrito.length > 0 ? <PriceTotal precioTotal={precioTotal}  marca={marca}/> : <div></div>}
             </Container> 
             <br/>
             <br/>
