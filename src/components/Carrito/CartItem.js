@@ -84,7 +84,9 @@ export default function Item(props){
 		axios.get('https://salesbox-alpha-backend.herokuapp.com/products/'+ props.currentItem)
 			.then(res => {
                 setItemData(res.data)
-				})
+                props.efecinco2(res.data.brand)
+                })
+                
         }, []);
 
         

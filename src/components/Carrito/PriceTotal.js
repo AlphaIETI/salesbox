@@ -67,7 +67,36 @@ export default function PriceTotal(props){
             user.cart.push(props.idProduct);
         } */
 
-        user.coupons.push('0004');
+        /* console.log(props.marca);
+        console.log(JSON.parse(localStorage.getItem('client')).id.toString()); */
+
+        //user.coupons.push('0004');
+
+        const info = {
+            id: props.marca,
+            brand: JSON.parse(localStorage.getItem('client')).id.toString()
+        }
+
+        fetch('https://salesbox-alpha-backend.herokuapp.com/api/coupons', { 
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json ',
+                'Accept': 'application/json',
+              },
+            body:JSON.stringify(info),
+          }).then(function(response) {
+              
+                if(response.ok){
+                    response.json().then(function(res) {
+                        console.log(res);
+                    })
+                }else{
+                    console.log('Respuesta de red OK pero respuesta HTTP no OK');
+                }
+            }).catch(function(error) {
+                console.log('Hubo un problema con la petición Fetch:' + error.message);
+            });
+
 
         const newUser = {
             id: user.id,
