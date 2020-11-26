@@ -18,6 +18,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { Fab } from '@material-ui/core';
 import axios from 'axios';
+import FaceIcon from '@material-ui/icons/Face';
+import HomeWorkIcon from '@material-ui/icons/HomeWork';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import {Link} from "react-router-dom";
+import ReplayIcon from '@material-ui/icons/Replay';
+
+
+
 
 
 function TabPanel(props) {
@@ -409,142 +417,18 @@ const handleFileImg = (e) => {
   return (
 
 
-    <div className={classes.root} style={{ width: '480px', margin: '0 auto' }}>
-      <AppBar position="static" style={{ width: '480px', margin: '0 auto', background: 'BLACK' }}>
+    <div align="center"className={classes.root} style={{ width: '480px', margin: '0 auto' }}>
+      <AppBar position="static" style={{ width: '480px', margin: '0 auto', background: '#D1B76C' }}>
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" >
-          <Tab label="Empresa" {...a11yProps(0)} />
-          <Tab label="Cliente" {...a11yProps(1)} />
+        <Tab style={{width:'50 auto'}} label={<span style={{ color: '#020202'  }}><FaceIcon></FaceIcon>Cliente</span>} {...a11yProps(0)} />
+        <Tab label={<span style={{ color: '#020202' }}><HomeWorkIcon></HomeWorkIcon>Empresa</span>} {...a11yProps(1)} />
+        <Link style={{ textDecoration: 'none' }} to="/Login">
+         <Tab  label={<span style={{ color: '#020202' }}><ReplayIcon></ReplayIcon>volver</span>}/>
+         </Link>
         </Tabs>
       </AppBar>
-       
-      <TabPanel value={value} index={0} >
-
-
-        <img src={logo} alt="logo" style={{ height: '150px', position: 'relative', top: '0px', right: '-100px' }} />
-
-
-
-        <input
-          id="nombreEmpresa"
-          style={{ width: '400px', margin: '0 auto' }}
-          type="text"
-          className="form-controlj textbox-dgj"
-          placeholder="Nombre Empresa"
-
-
-        />
-        <br />
-        <br />
-        <input
-          id="nit"
-          style={{ width: '400px', margin: '0 auto' }}
-          type="text"
-          className="form-controlj textbox-dgj"
-          placeholder="Nit"
-
-
-        />
-        <br />
-        <br />
-        <input
-          id="emailEmpresa"
-          style={{ width: '400px', margin: '0 auto' }}
-          type="email"
-          className="form-controlj textbox-dgj"
-          placeholder="Email"
-
-
-        />
-        <br />
-        <br />
-        <input
-          id="direccionEmpresa"
-          style={{ width: '400px', margin: '0 auto' }}
-          type="text"
-          className="form-controlj textbox-dgj"
-          placeholder="Dirección"
-
-        />
-        <br />
-        <br />
-
-        <input
-          id="ciudadEmpresa"
-          style={{ width: '400px', margin: '0 auto' }}
-          type="text"
-          className="form-controlj textbox-dgj"
-          placeholder="Ciudad"
-
-        />
-        <br />
-        <br />
-
-        <input
-          id="telefonoEmpresa"
-          style={{ width: '400px', margin: '0 auto' }}
-          type="text"
-          className="form-controlj textbox-dgj"
-          placeholder="Telefono"
-
-        />
-        <br />
-        <br />
-        <input
-          id="contrasenaEmpresa"
-          style={{ width: '400px', margin: '0 auto' }}
-          type="Password"
-          className="form-controlj textbox-dgj"
-          placeholder="Contraseña"
-
-        />
-        <br />
-        <br />
-        <div>
-        <label htmlFor="upload-photo" >
-  <input
-    style={{ display: 'none' }}
-    id="upload-photo"
-    name="upload-photo"
-    type="file"
-    onChange={handleFileImg}
-    value={fileInputState}
-  />
-   
-
-  <Fab
-    style={{ width: '400px', margin: '0 auto' }}
-    size="small"
-    component="span"
-    aria-label="add"
-    variant="extended"
-    class="myButton2"
-  >
-    <CloudUploadIcon  /> 
-       . Selecciona la imagen(logo)
-  </Fab>
-  <br />
-  <br />
-  {previewSource && (
-                            <div>
-                                <img src={previewSource} alt="chosen" style={{height: '300px'}}/>
-                                <Button class="myButton2" onClick={handleSubmit} >
-                                    Subir Imagen
-                                </Button>
-                            </div>
-                        )}
-
-</label>
-</div>
-<br />
-  <br />
-   
-
-        <button class="myButton2" onClick={handleOnClick} style={{ position: 'relative', top: '0px', right: '-140px' }}>
-          Registrarse
-          </button>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <img src={logo} style={{ height: '150px', position: 'relative', top: '0px', right: '-100px' }} />
+      <TabPanel value={value} index={0}  >
+        <img src={logo} style={{ height: '40px' }} />
 
         <input
           id="nombreCliente"
@@ -729,6 +613,133 @@ const handleFileImg = (e) => {
       </Dialog>
 
       </TabPanel>
+      <TabPanel value={value} index={1} >
+
+
+        <img src={logo} alt="logo" style={{ height: '40px'}} />
+
+
+
+        <input
+          id="nombreEmpresa"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="text"
+          className="form-controlj textbox-dgj"
+          placeholder="Nombre Empresa"
+
+
+        />
+        <br />
+        <br />
+        <input
+          id="nit"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="text"
+          className="form-controlj textbox-dgj"
+          placeholder="Nit"
+
+
+        />
+        <br />
+        <br />
+        <input
+          id="emailEmpresa"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="email"
+          className="form-controlj textbox-dgj"
+          placeholder="Email"
+
+
+        />
+        <br />
+        <br />
+        <input
+          id="direccionEmpresa"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="text"
+          className="form-controlj textbox-dgj"
+          placeholder="Dirección"
+
+        />
+        <br />
+        <br />
+
+        <input
+          id="ciudadEmpresa"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="text"
+          className="form-controlj textbox-dgj"
+          placeholder="Ciudad"
+
+        />
+        <br />
+        <br />
+
+        <input
+          id="telefonoEmpresa"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="text"
+          className="form-controlj textbox-dgj"
+          placeholder="Telefono"
+
+        />
+        <br />
+        <br />
+        <input
+          id="contrasenaEmpresa"
+          style={{ width: '400px', margin: '0 auto' }}
+          type="Password"
+          className="form-controlj textbox-dgj"
+          placeholder="Contraseña"
+
+        />
+        <br />
+        <br />
+        <div>
+        <label htmlFor="upload-photo" >
+  <input
+    style={{ display: 'none' }}
+    id="upload-photo"
+    name="upload-photo"
+    type="file"
+    onChange={handleFileImg}
+    value={fileInputState}
+  />
+   
+
+  <Fab
+    style={{  margin: '0 auto' }}
+    size="small"
+    component="span"
+    aria-label="add"
+    variant="extended"
+    class="myButton2"
+  >
+    <CloudUploadIcon  /> 
+       . Selecciona la imagen(logo)
+  </Fab>
+  <br />
+  <br />
+  {previewSource && (
+                            <div>
+                                <img src={previewSource} alt="chosen" style={{height: '300px'}}/>
+                                <Button class="myButton2" onClick={handleSubmit} >
+                                    Subir Imagen
+                                </Button>
+                            </div>
+                        )}
+
+</label>
+</div>
+<br />
+  <br />
+   
+
+        <button class="myButton2" onClick={handleOnClick} style={{ position: 'relative' }}>
+          Registrarse
+          </button>
+      </TabPanel>
+     
 
     </div>
 

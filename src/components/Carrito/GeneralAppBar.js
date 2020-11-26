@@ -54,39 +54,39 @@ export default function ButtonAppBar() {
                 <Toolbar className={classes.toolbar}>
                     <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                     <Link to="/Home" className={classes.colorSalesBox}>
-                    <img src={logo} alt="logo" style={{ height: '80px', position: 'relative', top: '0px'}} />
+                    <img src={logo} alt="logo" style={{height: '16px', position: 'relative', top: '0px'}} />
                     </Link>
                     </Typography>
                     <Link to="/Home">
                         <IconButton >
-                            <HomeOutlinedIcon fontSize="large"  className={classes.colorIcons}/>
+                            <HomeOutlinedIcon fontSize="medium"  className={classes.colorIcons}/>
                         </IconButton>
                     </Link>
                     <Link to="/Favorites">
                         <IconButton >
                             <Badge badgeContent={user.fav} color="secondary">
-                                <FavoriteBorderOutlinedIcon fontSize="large"  className={classes.colorIcons}/>
+                                <FavoriteBorderOutlinedIcon fontSize="medium"   className={classes.colorIcons}/>
                             </Badge>
                         </IconButton>
                     </Link>
                     <Link to="/ShopCar">
                         <IconButton aria-label="cart">
                             <Badge badgeContent={user.car} color="secondary">
-                                <ShoppingCartOutlinedIcon fontSize="large"  className={classes.colorIcons}/>
+                                <ShoppingCartOutlinedIcon fontSize="medium"  className={classes.colorIcons}/>
                             </Badge>
                         </IconButton> 
                     </Link>
                     <Link to="/EstadoPedido">
                         <IconButton aria-label="cart">
                             <Badge  color="secondary">
-                                <AssignmentOutlinedIcon fontSize="large"  className={classes.colorIcons}/>
+                                <AssignmentOutlinedIcon fontSize="medium" className={classes.colorIcons}/>
                             </Badge>
                         </IconButton> 
                     </Link>
                     <Link to="/Coupons">
                         <IconButton aria-label="cart">
                             <Badge badgeContent={user.coup} color="secondary">
-                                <ConfirmationNumberOutlinedIcon fontSize="large"  className={classes.colorIcons}/>
+                                <ConfirmationNumberOutlinedIcon fontSize="medium"  className={classes.colorIcons}/>
                             </Badge>
                         </IconButton> 
                     </Link>

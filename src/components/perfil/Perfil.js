@@ -16,6 +16,7 @@ export default function Perfil (props){
 	const useStyles = makeStyles((theme) => ({
 		root: {
 			width: '100%',
+			backgroundcolor: '#272C2A',
 		},
 		heading: {
 			fontSize: theme.typography.pxToRem(15),
@@ -27,9 +28,12 @@ export default function Perfil (props){
 			color: theme.palette.text.secondary,
 		},
 		accordion:{
-			backgroundColor:'#E5E7E7',
-			backgroundcolor: '#E5E7E7',
+			backgroundColor:'#272C2A',
+			backgroundcolor: '#272C2A',
 		},
+		white:{
+			color:'white',
+		}
 	}));
 	const useStyless = makeStyles((theme) => ({
 		root: {
@@ -96,7 +100,7 @@ export default function Perfil (props){
 							<div>
 								<br/>
 
-								<Typography align={"center"} variant="h5">
+								<Typography align={"center"} variant="h5" className={classes.white}>
 									{JSON.parse(localStorage.getItem('client')).name.toString()+"  "
 									+JSON.parse(localStorage.getItem('client')).lastname.toString()}
 								</Typography>
@@ -110,35 +114,26 @@ export default function Perfil (props){
 								<br/>
 								<br/>
 
-								<Typography align={"center"} variant="h5">
+								<Typography align={"center"} variant="h5" className={classes.white}>
 								{JSON.parse(localStorage.getItem('client')).email.toString()}
 								</Typography>
 
 								<br/>
 
-								<Typography align={"center"} variant="h5">
+								<Typography align={"center"} variant="h5"className={classes.white}>
 								Mis Cupones:
 								</Typography>
 
-								<Typography align={"center"} variant="h5">
+								<Typography align={"center"} variant="h5" className={classes.white}>
 								{JSON.parse(localStorage.getItem('client')).coupons.length}
 								</Typography>
 
 								<br/>
-
-								<Typography align={"center"} variant="h5">
-									{'TEL: '+ JSON.parse(localStorage.getItem('client')).phone.toString()}
-								</Typography>
-
 								<br/>
-
-								<Typography align={"center"} variant="h5">
-								Dirección:
-								</Typography>
-
-								<Typography align={"center"} variant="h5">
-								{JSON.parse(localStorage.getItem('client')).address.toString()}
-								</Typography>
+								<br/>
+								<br/>
+								<br/>
+								<br/>
 
 							</div>
 							:
@@ -148,7 +143,7 @@ export default function Perfil (props){
 							<div>
 								<br/>
 
-								<Typography align={"center"} variant="h4">
+								<Typography align={"center"} variant="h4" className={classes.white}>
 									{JSON.parse(localStorage.getItem('entity')).name.toString()}
 								</Typography>
 
@@ -160,36 +155,31 @@ export default function Perfil (props){
 								</Avatar>
 								</Grid>
 
+								
+								<br/>
+								
 								<br/>
 
-								<Typography align={"center"} variant="h6">
-									{'NIT: '+JSON.parse(localStorage.getItem('entity')).nit.toString()}
-								</Typography>
-
-								<br/>
-
-								<Typography align={"center"} variant="h6">
+								<Typography align={"center"} variant="h6" className={classes.white}>
 									{JSON.parse(localStorage.getItem('entity')).email.toString()}
 								</Typography>
 
-								<br/>
-
-								<Typography align={"center"} variant="h6">
-									{'TEL: '+JSON.parse(localStorage.getItem('entity')).phone.toString()}
-								</Typography>
+						
 
 								<br/>
-
-								<Typography align={"center"} variant="h6">
-									{JSON.parse(localStorage.getItem('entity')).city.toString()}
-								</Typography>
-
+								
+								<br/>
+								
+								<br/>
+								
+								<br/>
+								
 								<br/>
 
-								<Typography align={"center"} variant="h6">
-									{JSON.parse(localStorage.getItem('entity')).address.toString()}
-								</Typography>
-
+								<br/>
+								
+								<br/>
+								
 								<br/>
 
 							</div>
@@ -201,11 +191,11 @@ export default function Perfil (props){
 						onClick={handleLogout}
 						variant="contained"
 						fullWidth
-						color="primary"
-						startIcon={<ExitToAppIcon />}
+						style={{background:'#272C2A'}}
+						startIcon={<ExitToAppIcon className={classes.white} />}
 					>
-						<Typography variant="h6">
-							Logout
+						<Typography variant="h6" className={classes.white}>
+							Log out 
 						</Typography>
 					</Button>
 				</Grid>

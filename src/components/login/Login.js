@@ -214,7 +214,7 @@ export default function Login() {
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div align="center" className={classes.paper}>
     
-          <AppBar position="static" style={{ width: '600px', margin: '0 auto', background: '#D1B76C'}}>
+          <AppBar position="static" style={{ width: '380px', margin: '0 auto', background: '#D1B76C'}}>
             <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" >
               <Tab style={{width:'50 auto'}} label={<span style={{ color: '#020202'  }}><FaceIcon></FaceIcon>Cliente</span>} {...a11yProps(0)} />
               <Tab label={<span style={{ color: '#020202' }}><HomeWorkIcon></HomeWorkIcon>Empresa</span>} {...a11yProps(1)} />
@@ -232,17 +232,14 @@ export default function Login() {
           }
 
       <TabPanel value={value} index={0}>
-      
-      
-     
-           
             <br />
             <br />
+            
         
       <Input
         position="static" 
         id="email"
-        style={{ height: '40px',width: '500px'}}
+        style={{ height: '40px',width: '300px'}}
         type="email"
         className="form-controlj textbox-dgj"
         placeholder="Email"
@@ -250,13 +247,12 @@ export default function Login() {
 
 
       />
-      <br />
-            <br />
+    
             <br />
             <br />
       <Input
         id="contrasenaCliente"
-        style={{ height: '40px', width: '500px', margin: '0 auto' }}
+        style={{ height: '40px', width: '300px', margin: '0 auto' }}
         type="Password"
         className="form-controlj textbox-dgj"
         placeholder="Contraseña"
@@ -264,10 +260,10 @@ export default function Login() {
 
 
       />
+      <br/>
       <br />
             <br />
-            <br />
-            <br />
+         
       <button className="myButton2" onClick={handleOnClickClient} style={{ position: 'relative', top: '0px' }}>
         Iniciar Sesión
         </button>
@@ -287,25 +283,15 @@ export default function Login() {
       <br>
       </br>
       <Link to="/Register"  style={{color:"grey" ,position: 'relative' }}>Haz click para registrarte</Link>
-      <br>
-      </br>
-      <br>
-      </br>
-      <br>
-      </br>
-       
-
     </TabPanel>
 
           <TabPanel value={value} index={1} >
-
-
+          <br />
+            <br />
            
-            <br />
-            <br />
             <Input
               id="emailEmpresa"
-              style={{  height: '40px',width: '500px', margin: '0 auto' }}
+              style={{  height: '40px',width: '300px', margin: '0 auto' }}
               type="email"
               className="form-controlj textbox-dgj"
               placeholder="Email"
@@ -314,19 +300,16 @@ export default function Login() {
             />
             <br />
             <br />
-            <br />
-            <br />
-
+        
             <Input
               id="contrasenaEmpresa"
-              style={{  height: '40px', width: '500px', margin: '0 auto' }}
+              style={{  height: '40px', width: '300px', margin: '0 auto' }}
               type="Password"
               className="form-controlj textbox-dgj"
               placeholder="Contraseña"
 
             />
-            <br />
-            <br />
+              <br />
             <br />
             <br />
             <button className="myButton2" onClick={handleOnClickEntity} style={{ position: 'relative', top: '0px'}}>
