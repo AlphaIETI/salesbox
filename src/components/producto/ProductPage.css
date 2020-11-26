@@ -103,6 +103,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 10px;
   font-weight: 700;
 }
+
+.divConfig{
+  clear: both;
+}
 @media (max-width: 500px){
   .thumb{
     height: 50px;
@@ -110,5 +114,6 @@ h1, h2, h3, h4, h5, h6 {
   .thumb img{
     width: 50px;
   }
+
 
 }

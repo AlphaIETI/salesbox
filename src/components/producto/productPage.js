@@ -6,6 +6,7 @@ import AppBarComponent from '../dashboard/appBar';
 import TextField from '@material-ui/core/TextField';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import Button from '@material-ui/core/Button';
+import ButtonProductToCar from '../Carrito/addProductToCart';
 
 export default function ProductPage () { 
 
@@ -57,7 +58,7 @@ export default function ProductPage () {
                                 <h3>{pr.brand}</h3>
                             </div>
                             <div className="row">
-                                <TextField InputProps={{readOnly: false,}} variant="outlined" value={pr.discount} disabled={false}/>
+                                <TextField value={pr.discount} disabled={false}/>
                                 <span className="precioOrigi">${pr.price}</span>
                                 <span className="precioTotal">${pr.price-(pr.price*(pr.discount/100))}</span>
                             </div>
@@ -68,10 +69,6 @@ export default function ProductPage () {
                             <h6>Descripción: {pr.description}</h6>
                             <TextField value={pr.stockAvailable} disabled={false} />
                             <DetailsThumb images={imagesP} tab={handleTab} myRef={myRef} />
-                            <button className="cart">Añadir al Carrito</button>
-                            <Button color="secondary" >
-                                Editar  <EditOutlinedIcon fontSize="small"/> 
-                            </Button>
         
                         </div>
                     </div>
@@ -97,11 +94,14 @@ export default function ProductPage () {
                             <h6>Género: {pr.gender}</h6>
                             <h6>Descripción: {pr.description}</h6>
                             <h6>Disponibles: {pr.stockAvailable}</h6>
+                            <DetailsThumb images={imagesP} tab={handleTab} myRef={myRef} />
+                            <ButtonProductToCar idProduct={pr.id}/>
                         </div>
                     
                     
-                    <DetailsThumb images={imagesP} tab={handleTab} myRef={myRef} />
-                        <button className="cart">Añadir al Carrito</button>
+                    
+                        {console.log(pr.id)}
+                        
         
                     </div>
                 </div>
