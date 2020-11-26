@@ -66,6 +66,9 @@ const useStyles = makeStyles((theme) => ({
         width: drawerWidth,
         backgroundColor:'#272C2A',
     },
+    drawerProfile:{
+        backgroundColor:'#272C2A',
+    },
     drawerHeader: {
         backgroundColor: '#272C2A',
         color: "white",
@@ -132,7 +135,7 @@ export default function AppBarComponent(props) {
             
             <Typography component="h1" variant="h6" noWrap className={classes.title}>
                 <Link to="/Home" className={classes.colorSalesBox}>
-                <img src={logo} alt="logo" style={{ height: '80px', position: 'relative', top: '0px', filter:"brightness(1)"}} />
+                <img src={logo} alt="logo" style={{ height: '16px', position: 'relative', top: '0px', filter:"brightness(1)"}} />
                 </Link>
             </Typography>
  
@@ -140,7 +143,7 @@ export default function AppBarComponent(props) {
             <div>
                 <Link to="/Home">
                     <IconButton >
-                        <HomeOutlinedIcon fontSize="large" className={classes.colorIcons} />
+                        <HomeOutlinedIcon fontSize="medium" className={classes.colorIcons} />
                     </IconButton>
                 </Link>
             </div>
@@ -152,28 +155,28 @@ export default function AppBarComponent(props) {
                     <Link to="/Favorites">
                         <IconButton >
                             <Badge badgeContent={user.fav} color="secondary" >
-                                <FavoriteBorderOutlinedIcon fontSize="large"  className={classes.colorIcons}/>
+                                <FavoriteBorderOutlinedIcon  fontSize="medium" className={classes.colorIcons}/>
                             </Badge>
                         </IconButton>
                     </Link>
                     <Link to="/ShopCar">
                         <IconButton aria-label="cart">
                             <Badge badgeContent={user.car} color="secondary">
-                                <ShoppingCartOutlinedIcon fontSize="large" className={classes.colorIcons} />
+                                <ShoppingCartOutlinedIcon  fontSize="medium" className={classes.colorIcons} />
                             </Badge>
                         </IconButton> 
                     </Link>
                     <Link to="/EstadoPedido">
                         <IconButton aria-label="cart">
                             <Badge badgeContent={user.tran} color="secondary">
-                                <AssignmentOutlinedIcon fontSize="large" className={classes.colorIcons}/>
+                                <AssignmentOutlinedIcon  fontSize="medium" className={classes.colorIcons}/>
                             </Badge>
                         </IconButton> 
                     </Link>
                     <Link to="/Coupons">
                         <IconButton aria-label="cart">
                             <Badge badgeContent={user.coup} color="secondary">
-                                <ConfirmationNumberOutlinedIcon fontSize="large" className={classes.colorIcons}/>
+                                <ConfirmationNumberOutlinedIcon fontSize="medium" className={classes.colorIcons}/>
                             </Badge>
                         </IconButton> 
                     </Link>
@@ -184,8 +187,8 @@ export default function AppBarComponent(props) {
             {localStorage.getItem('isAdmin') ?
                 <Link to="/EstadoPedido">
                     <IconButton aria-label="cart">
-                        <Badge badgeContent={2} color="primary">
-                            <AssignmentOutlinedIcon fontSize="large" className={classes.colorIcons}/>
+                        <Badge badgeContent={2} color="secondary">
+                            <AssignmentOutlinedIcon  fontSize="medium"className={classes.colorIcons}/>
                         </Badge>
                     </IconButton>
                 </Link>
@@ -193,12 +196,12 @@ export default function AppBarComponent(props) {
                 null
             }
             {localStorage.getItem('isAdmin') ?
-                <AddProd editProducts={props.editProducts}  />
+                <AddProd fontSize="medium" editProducts={props.editProducts}  />
                 :
                 null
             }
             {localStorage.getItem('isAdmin') ?
-                <AddPromotion cantPromo={props.cantPromo} />
+                <AddPromotion fontSize="medium" cantPromo={props.cantPromo} />
                 :
                 null
             }
@@ -212,11 +215,17 @@ export default function AppBarComponent(props) {
 
         </AppBar>
         <Drawer
+            className={classes.drawer}
             anchor = "right"
             open = {open2}
+            classes={{
+                paper: classes.drawerProfile,
+            }}
             onClose={() => setOpen2(false)}>
             {localStorage.getItem('isLoggedIn') ? 
+            
                 <Perfil/>
+            
                 :
                 <Route>
                     <Redirect to='/Login'>
