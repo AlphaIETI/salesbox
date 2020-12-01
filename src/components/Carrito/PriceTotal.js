@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./PriceTotal.css";
 
 import CardContent from "@material-ui/core/CardContent";
@@ -47,10 +47,19 @@ export default function PriceTotal(props){
 
 
     const classes = useStyles();
-    
+
+    const [order,setOrder]=useState(
+        {"id":"",
+            "idProduct":"",
+            "idEntity":"",
+            "idClient":"",
+            "quantity":""
+        }
+    );
+
     const generateCoupon =  async()  => {
         let user = {};
-        
+
 
         await axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
 			.then(res => {
@@ -77,6 +86,8 @@ export default function PriceTotal(props){
             brand: JSON.parse(localStorage.getItem('client')).id.toString()
         }
 
+
+
         fetch('https://salesbox-alpha-backend.herokuapp.com/api/coupons', { 
             method:'POST',
             headers:{
@@ -97,7 +108,33 @@ export default function PriceTotal(props){
                 console.log('Hubo un problema con la petición Fetch:' + error.message);
             });
 
-
+        order.idClient=user.id;
+        user.cart.map(item=>{
+            axios.get('https://salesbox-alpha-backend.herokuapp.com/products/'+item)
+                .then(res => {
+                    order.idProduct=res.data.id;
+                    order.idEntity = res.data.brand;
+                    fetch('https://salesbox-alpha-backend.herokuapp.com/addOrder', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json', 'Accept': 'application/json',
+                        },
+                        body: JSON.stringify(order)
+                    }).then(function (response) {
+                        if (response.ok) {
+                            response.json().then(function (res) {
+                                user.orders.push(res.id);
+                                
+                            })
+                        } else {
+                            console.log("")
+                        }
+                    }).catch(function (error) {
+                        console.log("Bad petition:" + error.message);
+                    });
+                })
+        })
+        console.log(user.orders);
         const newUser = {
             id: user.id,
             name: user.name,
@@ -112,28 +149,29 @@ export default function PriceTotal(props){
             sizeDown:user.sizeDown,
             shoeSize:user.shoeSize,
             cart: user.cart,
-            favorites: user.favorites
+            favorites: user.favorites,
+            orders:user.orders
         }
 
-        fetch('https://salesbox-alpha-backend.herokuapp.com/clients', { 
+        fetch('https://salesbox-alpha-backend.herokuapp.com/clients', {
             method:'PUT',
             headers:{
                 'Content-Type': 'application/json ',
                 'Accept': 'application/json',
-              },
+            },
             body:JSON.stringify(newUser),
-          }).then(function(response) {
-              
-                if(response.ok){
-                    response.json().then(function(res) {
-                        console.log(res);
-                    })
-                }else{
-                    console.log('Respuesta de red OK pero respuesta HTTP no OK');
-                }
-            }).catch(function(error) {
-                console.log('Hubo un problema con la petición Fetch:' + error.message);
-            });
+        }).then(function(response) {
+
+            if(response.ok){
+                response.json().then(function(res) {
+                    //console.log(res);
+                })
+            }else{
+                console.log('Respuesta de red OK pero respuesta HTTP no OK');
+            }
+        }).catch(function(error) {
+            console.log('Hubo un problema con la petición Fetch:' + error.message);
+        });
     }
 
 
