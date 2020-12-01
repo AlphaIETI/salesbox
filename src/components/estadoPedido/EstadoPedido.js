@@ -88,7 +88,8 @@ export default function HorizontalLinearStepper() {
             "sizeDown":"",
             "shoeSize":"",
             "cart":"",
-            "favorites":""
+            "favorites":"",
+            "orders":""
         });
 
     useEffect( () => {
@@ -99,7 +100,7 @@ export default function HorizontalLinearStepper() {
             })
     }, []);
 
-    const order = Object.values(clientOrder.cart)
+    const order = Object.values(clientOrder.orders)
 
     return (
         <div>
