@@ -143,8 +143,9 @@ export default function PriceTotal(props){
 
     const [mapProductBrand, setMapProductBrand] = useState({});
     const [user,setUser] = useState();
-    useEffect (async() => {
-        await axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
+    useEffect (() => {
+        async function fetchData() {
+            await axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
 			.then(res => {
                 let user = res.data
                 setUser(res.data)
@@ -165,7 +166,9 @@ export default function PriceTotal(props){
                         });
                 })
 				})
-        },[]);
+          }
+          fetchData();
+        },[mapProductBrand]);
 
     const generateOrder = () =>{
         for(let br in mapProductBrand){
@@ -179,7 +182,6 @@ export default function PriceTotal(props){
             }).then(function (response) {
                 if (response.ok) {
                     response.json().then(function (res) {
-                        console.log(res)
                         addOrderUserAndEntity(res.id,res.nameEntity)
                     })
                 } else {
@@ -204,7 +206,6 @@ export default function PriceTotal(props){
         }).then(function(response) {
             if(response.ok){
                 response.json().then(function(res) {
-                    console.log(res);
                 })
             }else{
                 console.log('Respuesta de red OK pero respuesta HTTP no OK');
@@ -229,7 +230,6 @@ export default function PriceTotal(props){
                 }).then(function(response) {
                         if(response.ok){
                             response.json().then(function(res) {
-                                console.log(res)
                             })
                         }else{
                             console.log('Respuesta de red OK pero respuesta HTTP no OK');
