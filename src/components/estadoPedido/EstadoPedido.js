@@ -74,6 +74,23 @@ export default function HorizontalLinearStepper() {
         setActiveStep(0);
     };
 
+    const [order,setOrder]=useState(
+        {"id":"",
+            "idProducts":[],
+            "idEntity":"",
+            "idClient":"",
+            "quantity":""
+        }
+    );
+
+    const getOrder = (idOrden) => {
+        axios.get('https://salesbox-alpha-backend.herokuapp.com/orders/id/'+idOrden)
+            .then(res => {
+                setOrder(res.data);
+                return (order.idProducts);
+            })
+    };
+
     const [clientOrder, setClientOrder] = useState(
         {"id":"",
             "name":"",
@@ -89,19 +106,36 @@ export default function HorizontalLinearStepper() {
             "shoeSize":"",
             "cart":"",
             "favorites":"",
-            "orders":""
+            "orders":[]
         });
 
-    useEffect( () => {
+    const getClient = () => {
 
         axios.get('https://salesbox-alpha-backend.herokuapp.com/clients/email/'+localStorage.getItem('emailClient'))
             .then(res => {
-                setClientOrder(res.data)
+                setClientOrder(res.data);
             })
-    }, []);
+    };
+    const [entityOrder, setEntityOrder] = useState(
+        {"id":"",
+            "name":"",
+            "nit":"",
+            "email":"",
+            "password":"",
+            "city":"",
+            "address":"",
+            "image":"",
+            "publicity":"",
+            "orders":[]
+        });
+    const getEntity = () => {
 
-    const order = Object.values(clientOrder.orders)
-
+        axios.get('https://salesbox-alpha-backend.herokuapp.com/api/entity/name/'+localStorage.getItem('nameEntity'))
+            .then(res => {
+                setEntityOrder(res.data);
+            })
+    };
+    const orders = Object.values(clientOrder.orders);
     return (
         <div>
         <GeneralAppBar/>
@@ -110,12 +144,30 @@ export default function HorizontalLinearStepper() {
             <Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
+                        { localStorage.getItem('isLoggedIn') && !localStorage.getItem('isAdmin') && true ?
                         <Container maxWidth="md">
-                            {order.map(item =>{
+                            {getClient()}
+                            {clientOrder.orders.map(item =>{
                                 return(<OrderList currentItem={item} key={item}/>)
-                            })}
+                            })
+                            }
                             <Divider />
                         </Container>
+                            :
+                            null
+                        }
+                        {localStorage.getItem('isAdmin') ?
+                            <Container maxWidth="md">
+                                {getEntity()}
+                                {entityOrder.orders.map(item =>{
+                                    return(<OrderList currentItem={item} key={item}/>)
+                                })
+                                }
+                                <Divider />
+                            </Container>
+                            :
+                            null
+                        }
                     </Paper>
                 </Grid>
             </Grid>
