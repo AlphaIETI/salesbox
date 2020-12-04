@@ -82,8 +82,8 @@ export default function NewPromotion(props) {
                     let putEntity = JSON.parse(localStorage.getItem('entity'));
                     let cantPubAct = JSON.parse(localStorage.getItem('entity')).publicity;
                     if(typePlan === "Basic"){
-                        putEntity.publicity = putEntity.publicity + 2;
-                        setCantPublicity(cantPubAct + 2);
+                        putEntity.publicity = putEntity.publicity + 3;
+                        setCantPublicity(cantPubAct + 3);
                     }else{
                         putEntity.publicity = putEntity.publicity + 5;
                         setCantPublicity(cantPubAct + 5);
@@ -138,11 +138,11 @@ export default function NewPromotion(props) {
 
     const handleChangeTypePlan = (e) => {
         if(e.target.value === "Enterprise"){
-            setCostPlan(20000);
-        }else if(e.target.value === "Basic"){
             setCostPlan(25000);
+        }else if(e.target.value === "Basic"){
+            setCostPlan(70000);
         }else{
-            setCostPlan(50000);
+            setCostPlan(100000);
         }
         setTypePlan(e.target.value);
     }
@@ -183,7 +183,7 @@ export default function NewPromotion(props) {
                         fullWidth
                     >
                         <MenuItem value="Enterprise">Publicidad de Marca</MenuItem>
-                        <MenuItem value="Basic">Publicidad de 2 Productos</MenuItem>
+                        <MenuItem value="Basic">Publicidad de 3 Productos</MenuItem>
                         <MenuItem value="Premium">Publicidad de 5 Productos</MenuItem>
                     </Select>
                     {typePlan === "Enterprise" ?
