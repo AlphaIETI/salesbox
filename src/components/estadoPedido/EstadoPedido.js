@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import "./estadoPedido.css";
-import GeneralAppBar from "../Carrito/GeneralAppBar";
+import AppBarComponent from '../dashboard/appBar';
 import Container from '@material-ui/core/Container';
 import axios from "axios";
 import Divider from "@material-ui/core/Divider";
@@ -138,7 +138,7 @@ export default function HorizontalLinearStepper() {
     const orders = Object.values(clientOrder.orders);
     return (
         <div>
-        <GeneralAppBar/>
+        <AppBarComponent/>
         <br/>
             <br/>
             <Grid direction={"column"} justify={"center"} alignItems={"center"} container spacing={2}>
