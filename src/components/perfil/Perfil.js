@@ -173,11 +173,22 @@ export default function Perfil (props){
 									{JSON.parse(localStorage.getItem('entity')).email.toString()}
 								</Typography>
 
-						
+
 
 								<br/>
+
+								<Link  underline="none" to="/EstadoPedido">
+									<Typography align={"center"} variant="h5" className={classes.white}>
+										Mis pedidos 
+									</Typography>
+								</Link>
 								
 								<br/>
+								
+								<Typography align={"center"} variant="h6" className={classes.white}>
+									Mis promociones: {JSON.parse(localStorage.getItem('entity')).publicity.toString()}
+								</Typography>
+								
 								
 								<br/>
 								
